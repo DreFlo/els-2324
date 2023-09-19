@@ -17,14 +17,16 @@ repositories {
 
 
 dependencies {
-    testImplementation "junit:junit:4.11" 	
+    testImplementation "junit:junit:4.11"
+	//! Add your dependencies here
+    implementation group: 'org.yaml', name: 'snakeyaml', version: '2.2'
 
-	//! Add your dependencies here    
 }
 
 // Add JARs in folder 'libs' as dependencies
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
 }
 
 
