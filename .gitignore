@@ -7,3 +7,7 @@
 # Class files
 **/*.class
 
+gradlew
+gradlew.bat
+
+
