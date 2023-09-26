@@ -1,5 +1,7 @@
 package pt.up.fe.els2023.Controller;
 
+import pt.up.fe.els2023.Config.Source.FileSource;
+import pt.up.fe.els2023.Config.Source.Source;
 import pt.up.fe.els2023.Config.TableConfig;
 import pt.up.fe.els2023.FileParser.ConfigFileParser.ConfigFileParser;
 import pt.up.fe.els2023.FileParser.ConfigFileParser.JSONConfigFileParser;
@@ -17,6 +19,7 @@ public class Controller {
 
     public Controller (File configFile){
         this.configFile = configFile;
+        inputFileParserList = new ArrayList<>();
     }
 
     public void setup() {
@@ -31,10 +34,11 @@ public class Controller {
 
         switch (extension) {
             case "json":
-                configFileParser = new JSONConfigFileParser();
+                configFileParser = new JSONConfigFileParser(configFile);
                 break;
             default:
                 System.out.println("Error: " + extension + " typefile not configurated.");
+                break;
         }
 
     }
@@ -42,18 +46,34 @@ public class Controller {
     public void run() {
 
         // Config File Parser
-        configFileParser.parse(configFile);
+        configFileParser.parse();
         List<TableConfig> tableConfigs = configFileParser.getConfigurationFiles();
         System.out.println(tableConfigs.get(0));
 
         // Input File Parser
 
-        InputFileParser inputFileParser = new YamlFileParser();
-        inputFileParser.parse(new File("resources/decision_tree_1.yaml"));
-        List<String> file = new ArrayList<>();
-        file.add("params/criterion");
-        file.add("params/splitter");
-        System.out.println(inputFileParser.getRow(file));
+        for (TableConfig tableConfig: tableConfigs) {
+            for (Source source: tableConfig.getSources()){
+                // TODO: Codigo Repetido -> Fazer isto em util.java
+                String extension = "";
+                String filePath = ((FileSource)  source).getPathPattern();
+
+                int index = filePath.lastIndexOf('.');
+                if (index > 0) {
+                    extension = filePath.substring(index + 1);
+                }
+
+                switch (extension) {
+                    case "yaml":
+                        inputFileParserList.add(new YamlFileParser(new File(filePath)));
+                        break;
+                    default:
+                        System.out.println("Error: " + extension + " typefile not configurated.");
+                        break;
+                }
+            }
+        }
+
 
         // Operations -> Commands
 

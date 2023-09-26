@@ -19,16 +19,13 @@ import org.json.simple.parser.*;
 
 public class JSONConfigFileParser implements ConfigFileParser {
     JSONObject jsonObject = null;
-
-    public JSONConfigFileParser() {
-    }
-
-    public static void main(String[] args) {
-        JSONConfigFileParser jsonConfigFileParser = new JSONConfigFileParser();
+    File inputFile;
+    public JSONConfigFileParser(File inputFile) {
+        this.inputFile = inputFile;
     }
 
     @Override
-    public void parse(File inputFile) {
+    public void parse() {
         try {
             jsonObject = (JSONObject) new JSONParser().parse(new FileReader(inputFile));
         } catch (IOException | ParseException e) {

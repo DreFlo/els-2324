@@ -5,7 +5,15 @@
       "sources": [
         {
           "type": "file",
-          "path": "resources/*"
+          "path": "resources/decision_tree_1.yaml"
+        },
+        {
+          "type": "file",
+          "path": "resources/decision_tree_2.yaml"
+        },
+        {
+          "type": "file",
+          "path": "resources/decision_tree_3.yaml"
         }
       ],
       "operations": [

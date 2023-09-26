@@ -13,11 +13,14 @@ import java.util.Map;
 
 public class YamlFileParser implements InputFileParser {
     Map<String, Object> obj;
+    File inputFile;
 
-    public YamlFileParser() {}
+    public YamlFileParser(File inputFile) {
+        this.inputFile = inputFile;
+    }
 
     @Override
-    public void parse(File inputFile) {
+    public void parse() {
 
         Yaml yaml = new Yaml();
         InputStream inputStream = null;
@@ -41,6 +44,7 @@ public class YamlFileParser implements InputFileParser {
         return res;
     }
 
+    // TODO: Codigo para colocar em util.java
     private <T> T getValue(Map map, String[] keys) {
         Object value = map;
 
