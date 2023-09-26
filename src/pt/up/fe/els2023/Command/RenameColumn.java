@@ -13,4 +13,12 @@ public class RenameColumn implements Command{
     public void execute() {
 
     }
+
+    @Override
+    public String toString() {
+        return "RenameColumn{" +
+                "oldName='" + oldName + '\'' +
+                ", newName='" + newName + '\'' +
+                '}';
+    }
 }

@@ -13,4 +13,11 @@ public class Select implements Command {
     public void execute() {
 
     }
+
+    @Override
+    public String toString() {
+        return "Select{" +
+                "selected=" + selected +
+                '}';
+    }
 }

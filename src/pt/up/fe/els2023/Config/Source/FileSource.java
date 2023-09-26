@@ -15,4 +15,11 @@ public class FileSource extends Source {
     public String getPathPattern() {
         return pathPattern;
     }
+
+    @Override
+    public String toString() {
+        return "FileSource{" +
+                "pathPattern='" + pathPattern + '\'' +
+                '}';
+    }
 }
