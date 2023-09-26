@@ -7,6 +7,7 @@ import pt.up.fe.els2023.FileParser.ConfigFileParser.ConfigFileParser;
 import pt.up.fe.els2023.FileParser.ConfigFileParser.JSONConfigFileParser;
 import pt.up.fe.els2023.FileParser.InputFileParser.InputFileParser;
 import pt.up.fe.els2023.FileParser.InputFileParser.YamlFileParser;
+import pt.up.fe.els2023.MyUtils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -23,14 +24,7 @@ public class Controller {
     }
 
     public void setup() {
-        // TODO: Fazer nisto noutra class, maybe
-        String extension = "";
-        String filePath = configFile.getPath();
-
-        int index = filePath.lastIndexOf('.');
-        if (index > 0) {
-            extension = filePath.substring(index + 1);
-        }
+        String extension = MyUtils.getExtensionFromFile(configFile);
 
         switch (extension) {
             case "json":
@@ -54,18 +48,12 @@ public class Controller {
 
         for (TableConfig tableConfig: tableConfigs) {
             for (Source source: tableConfig.getSources()){
-                // TODO: Codigo Repetido -> Fazer isto em util.java
-                String extension = "";
-                String filePath = ((FileSource)  source).getPathPattern();
-
-                int index = filePath.lastIndexOf('.');
-                if (index > 0) {
-                    extension = filePath.substring(index + 1);
-                }
+                File file = new File(((FileSource) source).getPathPattern());
+                String extension = MyUtils.getExtensionFromFile(file);
 
                 switch (extension) {
                     case "yaml":
-                        inputFileParserList.add(new YamlFileParser(new File(filePath)));
+                        inputFileParserList.add(new YamlFileParser(file));
                         break;
                     default:
                         System.out.println("Error: " + extension + " typefile not configurated.");
