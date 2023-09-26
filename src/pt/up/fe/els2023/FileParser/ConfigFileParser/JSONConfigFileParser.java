@@ -58,7 +58,7 @@ public class JSONConfigFileParser implements ConfigFileParser {
     }
 
     private TableConfig getTableConfig(JSONObject tableConfigJSON) {
-        String name = "";
+        String name;
         List<Source> sources = new ArrayList<>();
         List<Command> operations = new ArrayList<>();
         List<String> outputs = new ArrayList<>();
@@ -88,7 +88,10 @@ public class JSONConfigFileParser implements ConfigFileParser {
                 operations.add(new RenameColumn((String) operationJSON.get("oldName"), (String) operationJSON.get("newName")));
             }
             else if (operationJSON.get("type").equals("select")) {
-                operations.add(new Select((List<String>) operationJSON.get("columns")));
+                List<String> columns = new ArrayList<>();
+                for (Object columnObject : (JSONArray) operationJSON.get("columns"))
+                    columns.add((String) columnObject);
+                operations.add(new Select(columns));
             }
         }
 
