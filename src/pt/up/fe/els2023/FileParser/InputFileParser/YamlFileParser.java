@@ -1,7 +1,6 @@
 package pt.up.fe.els2023.FileParser.InputFileParser;
 
 import org.yaml.snakeyaml.Yaml;
-import pt.up.fe.els2023.Table.Row;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -37,7 +36,7 @@ public class YamlFileParser implements InputFileParser {
     public List<Object> getRow(List<String> headers) {
         List<Object> res = new ArrayList<>();
 
-        for (String header: headers) { // "params", "criterion"
+        for (String header: headers) {
             res.add(getValue(this.obj, header.split("/")));
         }
 

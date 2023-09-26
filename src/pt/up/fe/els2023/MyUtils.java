@@ -1,7 +1,5 @@
 package pt.up.fe.els2023;
 
-import pt.up.fe.els2023.Config.Source.FileSource;
-
 import java.io.File;
 
 public class MyUtils {
