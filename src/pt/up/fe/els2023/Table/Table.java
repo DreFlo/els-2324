@@ -5,14 +5,14 @@ import java.util.List;
 
 public class Table {
     private List<String> headers;
-    private List<Row> rows;
+    private List<List<Object>> rows;
 
     public void Table(List<String> headers) {
         this.headers = headers;
-        this.rows = new ArrayList<>();
+        this.rows = new ArrayList<>(new ArrayList<>());
     }
 
-    public void addRow(Row row) {
+    public void addRow(List<Object> row) {
         rows.add(row);
     }
 

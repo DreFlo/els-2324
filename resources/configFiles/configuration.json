@@ -1,0 +1,47 @@
+{
+  "tables": [
+    {
+      "name": "tableName",
+      "sources": [
+        {
+          "type": "file",
+          "path": "resources/*"
+        }
+      ],
+      "operations": [
+        {
+          "type" : "select",
+          "columns" : [
+            "params/criterion",
+            "params/splitter",
+            "params/ccp_alpha",
+            "params/min_samples_split"
+          ]
+        },
+        {
+          "type": "renameColumn",
+          "oldName": "params/criterion",
+          "newName": "Criterion"
+        },
+        {
+          "type": "renameColumn",
+          "oldName": "params/splitter",
+          "newName": "Splitter"
+        },
+        {
+          "type": "renameColumn",
+          "oldName": "params/ccp_alpha",
+          "newName": "CPP Alpha"
+        },
+        {
+          "type": "renameColumn",
+          "oldName": "params/min_samples_split",
+          "newName": "Min Samples Split"
+        }
+      ],
+      "outputs": [
+        "output/table.csv"
+      ]
+    }
+  ]
+}

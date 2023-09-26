@@ -4,4 +4,5 @@ import java.io.File;
 
 public interface FileParser {
     void parse(File inputFile);
+
 }
