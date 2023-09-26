@@ -33,8 +33,6 @@ public class Controller {
             case "json":
                 configFileParser = new JSONConfigFileParser();
                 break;
-            case "yaml":
-                break;
             default:
                 System.out.println("Error: " + extension + " typefile not configurated.");
         }
