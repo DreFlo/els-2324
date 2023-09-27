@@ -7,7 +7,7 @@ public class Table {
     private List<String> headers;
     private List<List<Object>> rows;
 
-    public void Table(List<String> headers) {
+    public Table(List<String> headers) {
         this.headers = headers;
         this.rows = new ArrayList<>(new ArrayList<>());
     }
@@ -16,4 +16,15 @@ public class Table {
         rows.add(row);
     }
 
+    public void addRows(List<List<Object>> rows) {
+        rows.addAll(rows);
+    }
+
+    public List<String> getHeaders() {
+        return headers;
+    }
+
+    public List<List<Object>> getRows() {
+        return rows;
+    }
 }
