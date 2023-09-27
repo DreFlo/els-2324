@@ -16,6 +16,7 @@ public class Table {
         rows.add(row);
     }
 
+    // TODO: Dar check a isto, que pode nao ficar na mesma ordem
     public void addRows(List<List<Object>> rows) {
         this.rows.addAll(rows);
     }

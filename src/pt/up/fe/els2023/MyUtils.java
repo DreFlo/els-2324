@@ -1,6 +1,8 @@
 package pt.up.fe.els2023;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MyUtils {
     public static String getExtensionFromFile(File file) {
@@ -13,5 +15,23 @@ public class MyUtils {
         }
 
         return extension;
+    }
+
+    public static Map<String, Object> getFlattenedMap(Map<String, Object> originalMap, String parentKey) {
+        Map<String, Object> flattenedMap = new HashMap<>();
+
+        for (Map.Entry<String, Object> entry: originalMap.entrySet()) {
+            String key = entry.getKey();
+            Object value = entry.getValue();
+
+            if (value instanceof Map) {
+                flattenedMap.putAll(getFlattenedMap((Map<String, Object>) value, parentKey + "/" + key));
+            } else {
+                flattenedMap.put(parentKey + "/" + key, value);
+            }
+
+        }
+
+        return flattenedMap;
     }
 }

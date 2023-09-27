@@ -8,6 +8,8 @@ import pt.up.fe.els2023.FileParser.ConfigFileParser.JSONConfigFileParser;
 import pt.up.fe.els2023.FileParser.InputFileParser.InputFileParser;
 import pt.up.fe.els2023.FileParser.InputFileParser.YamlFileParser;
 import pt.up.fe.els2023.MyUtils;
+import pt.up.fe.els2023.Table.Table;
+import pt.up.fe.els2023.TableBuilder.TableBuilder;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -42,7 +44,6 @@ public class Controller {
         // Config File Parser
         configFileParser.parse();
         List<TableConfig> tableConfigs = configFileParser.getConfigurationFiles();
-        System.out.println(tableConfigs.get(0));
 
         // Input File Parser
 
@@ -62,10 +63,17 @@ public class Controller {
             }
         }
 
+        for (InputFileParser inputFileParser: inputFileParserList) {
+            inputFileParser.parse();
+        }
 
-        // Operations -> Commands
 
+        TableBuilder tableBuilder = new TableBuilder(inputFileParserList);
+        Table table = tableBuilder.build();
+        System.out.println(table);
 
         // Output -> Ultima coisa
+
+
     }
 }
