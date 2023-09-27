@@ -17,7 +17,7 @@ public class Table {
     }
 
     public void addRows(List<List<Object>> rows) {
-        rows.addAll(rows);
+        this.rows.addAll(rows);
     }
 
     public List<String> getHeaders() {
@@ -26,5 +26,13 @@ public class Table {
 
     public List<List<Object>> getRows() {
         return rows;
+    }
+
+    @Override
+    public String toString() {
+        return "Table{" +
+                "headers=" + headers +
+                ", rows=" + rows +
+                '}';
     }
 }
