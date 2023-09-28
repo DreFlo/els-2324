@@ -24,10 +24,12 @@ public class MyUtils {
             String key = entry.getKey();
             Object value = entry.getValue();
 
+            String columnName = parentKey.equals("") ? key : parentKey + "/" + key;
             if (value instanceof Map) {
-                flattenedMap.putAll(getFlattenedMap((Map<String, Object>) value, parentKey + "/" + key));
+                // TODO Fix casting
+                flattenedMap.putAll(getFlattenedMap((Map<String, Object>) value, columnName));
             } else {
-                flattenedMap.put(parentKey + "/" + key, value);
+                flattenedMap.put(columnName, value);
             }
 
         }

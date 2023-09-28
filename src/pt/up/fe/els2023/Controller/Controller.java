@@ -10,6 +10,7 @@ import pt.up.fe.els2023.FileParser.InputFileParser.YamlFileParser;
 import pt.up.fe.els2023.MyUtils;
 import pt.up.fe.els2023.Table.Table;
 import pt.up.fe.els2023.TableBuilder.TableBuilder;
+import pt.up.fe.els2023.TableManipulator.TableManipulator;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -71,6 +72,13 @@ public class Controller {
         TableBuilder tableBuilder = new TableBuilder(inputFileParserList);
         Table table = tableBuilder.build();
         System.out.println(table);
+
+        // Table Operations
+        TableManipulator tableManipulator = new TableManipulator(tableConfigs.get(0).getOperations());
+
+        Table newTable = tableManipulator.applyOperations(table);
+
+        System.out.println(newTable);
 
         // Output -> Ultima coisa
 
