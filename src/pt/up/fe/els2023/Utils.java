@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MyUtils {
+public class Utils {
     public static String getExtensionFromFile(File file) {
         String extension = "";
         String filePath = file.getPath();

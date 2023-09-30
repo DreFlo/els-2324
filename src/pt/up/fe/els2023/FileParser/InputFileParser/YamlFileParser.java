@@ -1,7 +1,7 @@
 package pt.up.fe.els2023.FileParser.InputFileParser;
 
 import org.yaml.snakeyaml.Yaml;
-import pt.up.fe.els2023.MyUtils;
+import pt.up.fe.els2023.Utils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -33,6 +33,6 @@ public class YamlFileParser implements InputFileParser {
 
     @Override
     public Map<String, Object> getFlattenedRow() {
-        return MyUtils.getFlattenedMap(this.obj, "");
+        return Utils.getFlattenedMap(this.obj, "");
     }
 }

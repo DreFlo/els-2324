@@ -7,7 +7,7 @@ import pt.up.fe.els2023.FileParser.ConfigFileParser.ConfigFileParser;
 import pt.up.fe.els2023.FileParser.ConfigFileParser.JSONConfigFileParser;
 import pt.up.fe.els2023.FileParser.InputFileParser.InputFileParser;
 import pt.up.fe.els2023.FileParser.InputFileParser.YamlFileParser;
-import pt.up.fe.els2023.MyUtils;
+import pt.up.fe.els2023.Utils;
 import pt.up.fe.els2023.Table.Table;
 import pt.up.fe.els2023.TableBuilder.TableBuilder;
 import pt.up.fe.els2023.TableManipulator.TableManipulator;
@@ -28,7 +28,7 @@ public class Controller {
     }
 
     public void setup() {
-        String extension = MyUtils.getExtensionFromFile(configFile);
+        String extension = Utils.getExtensionFromFile(configFile);
 
         switch (extension) {
             case "json":
@@ -52,7 +52,7 @@ public class Controller {
             List<InputFileParser> inputFileParserList = new ArrayList<>();
             for (Source source: tableConfig.getSources()){
                 File file = new File(((FileSource) source).getPathPattern());
-                String extension = MyUtils.getExtensionFromFile(file);
+                String extension = Utils.getExtensionFromFile(file);
 
                 switch (extension) {
                     case "yaml":
