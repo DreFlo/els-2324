@@ -2,20 +2,19 @@ package pt.up.fe.els2023.FileParser.ConfigFileParser;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import pt.up.fe.els2023.Command.Command;
 import pt.up.fe.els2023.Command.RenameColumn;
 import pt.up.fe.els2023.Command.Select;
 import pt.up.fe.els2023.Config.Source.FileSource;
 import pt.up.fe.els2023.Config.Source.Source;
-import pt.up.fe.els2023.Config.TableConfig;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.json.simple.parser.*;
 
 public class JSONConfigFileParser extends ConfigFileParser<JSONObject> {
     public JSONConfigFileParser(File inputFile) {

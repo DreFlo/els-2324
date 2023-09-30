@@ -1,7 +1,5 @@
 package pt.up.fe.els2023.FileParser.ConfigFileParser;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import pt.up.fe.els2023.Command.Command;
 import pt.up.fe.els2023.Config.Source.Source;
 import pt.up.fe.els2023.Config.TableConfig;
