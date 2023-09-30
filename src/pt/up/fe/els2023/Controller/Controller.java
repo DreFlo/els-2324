@@ -19,7 +19,7 @@ import java.util.List;
 
 public class Controller {
     File configFile;
-    ConfigFileParser configFileParser;
+    ConfigFileParser<?> configFileParser;
     HashSet<Table> tables;
 
     public Controller (File configFile){

@@ -25,9 +25,8 @@ public class MyUtils {
             Object value = entry.getValue();
 
             String columnName = parentKey.equals("") ? key : parentKey + "/" + key;
-            if (value instanceof Map) {
-                // TODO Fix casting
-                flattenedMap.putAll(getFlattenedMap((Map<String, Object>) value, columnName));
+            if (value instanceof Map<?, ?>) {
+                flattenedMap.putAll(getFlattenedMap(safelyCastToStringObjectMap((Map<?, ?>) value), columnName));
             } else {
                 flattenedMap.put(columnName, value);
             }
@@ -35,5 +34,17 @@ public class MyUtils {
         }
 
         return flattenedMap;
+    }
+
+    public static Map<String, Object> safelyCastToStringObjectMap(Map<?, ?> map) {
+        Map<String, Object> safeMap = new HashMap<>();
+
+        for (Map.Entry<?, ?> entry : map.entrySet()) {
+            String key = (String) entry.getKey();
+            Object value = entry.getValue();
+            safeMap.put((String) key, value);
+        }
+
+        return safeMap;
     }
 }

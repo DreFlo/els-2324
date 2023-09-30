@@ -35,16 +35,4 @@ public class YamlFileParser implements InputFileParser {
     public Map<String, Object> getFlattenedRow() {
         return MyUtils.getFlattenedMap(this.obj, "");
     }
-
-    // TODO: Maybe we could make this on MyUtil.java
-    // This function has a particularity that get the Value of Map from every type on directories
-    private <T> T getValue(Map map, String[] keys) {
-        Object value = map;
-
-        for (String key: keys) {
-            value = ((Map) value).get(key);
-        }
-
-        return (T) value;
-    }
 }
