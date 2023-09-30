@@ -7,6 +7,8 @@ import pt.up.fe.els2023.FileParser.ConfigFileParser.ConfigFileParser;
 import pt.up.fe.els2023.FileParser.ConfigFileParser.JSONConfigFileParser;
 import pt.up.fe.els2023.FileParser.InputFileParser.InputFileParser;
 import pt.up.fe.els2023.FileParser.InputFileParser.YamlFileParser;
+import pt.up.fe.els2023.FileWriter.OutputFileWriter.CsvFileWriter;
+import pt.up.fe.els2023.FileWriter.OutputFileWriter.HtmlFileWriter;
 import pt.up.fe.els2023.Utils;
 import pt.up.fe.els2023.Table.Table;
 import pt.up.fe.els2023.TableBuilder.TableBuilder;
@@ -35,7 +37,7 @@ public class Controller {
                 configFileParser = new JSONConfigFileParser(configFile);
                 break;
             default:
-                System.out.println("Error: " + extension + " typefile not configurated.");
+                System.out.println("Error: " + extension + " file type not configured.");
                 break;
         }
 
@@ -59,7 +61,7 @@ public class Controller {
                         inputFileParserList.add(new YamlFileParser(file));
                         break;
                     default:
-                        System.out.println("Error: " + extension + " typefile not configurated.");
+                        System.out.println("Error: " + extension + " file type not configured.");
                         break;
                 }
             }
@@ -74,11 +76,27 @@ public class Controller {
 
             tables.add(tableManipulator.applyOperations(table));
 
-            // TODO Outputs
-        }
+            for (Table currentTable : tables) {
+                // config outputs for each table
+                for (String output: tableConfig.getOutputs()) {
+                    String extension = Utils.getExtensionFromPath(output);
 
-        for (Table table : tables) {
-            System.out.println(table);
+                    switch (extension) {
+                        case "csv":
+                            CsvFileWriter csvFileWriter = new CsvFileWriter(currentTable, output);
+                            csvFileWriter.writeFile();
+                            break;
+                        case "html":
+                            HtmlFileWriter htmlFileWriter = new HtmlFileWriter(currentTable, output);
+                            htmlFileWriter.writeFile();
+                            break;
+                        default:
+                            System.out.println("Error: " + extension + " file type not configured.");
+                            break;
+                    }
+                }
+            }
+
         }
     }
 }

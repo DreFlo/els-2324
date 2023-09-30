@@ -12,3 +12,5 @@ gradlew.bat
 gradle/
 
 /co-authors
+
+output/
