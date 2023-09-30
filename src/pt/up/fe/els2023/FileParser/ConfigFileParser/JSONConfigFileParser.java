@@ -17,70 +17,50 @@ import java.util.List;
 
 import org.json.simple.parser.*;
 
-public class JSONConfigFileParser implements ConfigFileParser {
-    JSONObject jsonObject = null;
-    File inputFile;
+public class JSONConfigFileParser extends ConfigFileParser<JSONObject> {
     public JSONConfigFileParser(File inputFile) {
-        this.inputFile = inputFile;
+        super(inputFile);
     }
 
     @Override
     public void parse() {
         try {
-            jsonObject = (JSONObject) new JSONParser().parse(new FileReader(inputFile));
+            parserObject = (JSONObject) new JSONParser().parse(new FileReader(inputFile));
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    public List<TableConfig> getConfigurationFiles() throws RuntimeException {
-        if (jsonObject == null) {
-            throw new RuntimeException("No JSON was Parsed");
+    protected List<JSONObject> retrieveConfigurationTableList(JSONObject jsonObject) {
+        JSONArray jsonArray = (JSONArray) jsonObject.get("tables");
+        List<JSONObject> jsonObjectList = new ArrayList<>();
+        for (Object object : jsonArray) {
+            jsonObjectList.add((JSONObject) object);
         }
-
-        if (!jsonObject.containsKey("tables")) {
-            throw new RuntimeException("JSON missing \"tables\"");
-        }
-
-        JSONArray tables = (JSONArray) jsonObject.get("tables");
-
-        List<TableConfig> tableConfigs = new ArrayList<>();
-
-        for (Object tableConfigObject : tables) {
-            tableConfigs.add(getTableConfig((JSONObject) tableConfigObject));
-        }
-
-        return tableConfigs;
+        return jsonObjectList;
     }
 
-    private TableConfig getTableConfig(JSONObject tableConfigJSON) {
-        String name;
-        List<Source> sources = new ArrayList<>();
-        List<Command> operations = new ArrayList<>();
-        List<String> outputs = new ArrayList<>();
+    @Override
+    protected String extractTableName(JSONObject jsonObject) {
+        return (String) jsonObject.get("name");
+    }
 
-        if (!tableConfigJSON.containsKey("name")) {
-            throw new RuntimeException("JSON missing \"name\"");
-        }
-
-        name = (String) tableConfigJSON.get("name");
-
-        if (!tableConfigJSON.containsKey("sources")) {
-            throw new RuntimeException("JSON missing \"sources\"");
-        }
-
-        for (Object sourceObject : (JSONArray) tableConfigJSON.get("sources")) {
+    @Override
+    protected void extractSources(List<Source> sources, JSONObject jsonObject) {
+        for (Object sourceObject : (JSONArray) jsonObject.get("sources")) {
             JSONObject sourceJSON = (JSONObject) sourceObject;
-            // TODO Source builder?
             if (sourceJSON.get("type").equals("file")) {
                 sources.add(new FileSource((String) sourceJSON.get("path")));
             }
         }
+    }
 
-        for (Object operationObject : (JSONArray) tableConfigJSON.get("operations")) {
+    @Override
+    protected void extractCommands(List<Command> operations, JSONObject jsonObject) {
+        for (Object operationObject : (JSONArray) jsonObject.get("operations")) {
             JSONObject operationJSON = (JSONObject) operationObject;
-            // TODO Command builder?
+
             if (operationJSON.get("type").equals("renameColumn")) {
                 operations.add(new RenameColumn((String) operationJSON.get("oldName"), (String) operationJSON.get("newName")));
             }
@@ -91,13 +71,39 @@ public class JSONConfigFileParser implements ConfigFileParser {
                 operations.add(new Select(columns));
             }
         }
+    }
 
-        for (Object outputObject : (JSONArray) tableConfigJSON.get("outputs")) {
+    @Override
+    protected void extractOutputs(List<String> outputs, JSONObject jsonObject) {
+        for (Object outputObject : (JSONArray) jsonObject.get("outputs")) {
             String outputString = (String) outputObject;
             outputs.add(outputString);
         }
+    }
 
-        return new TableConfig(name, sources, operations, outputs);
+    @Override
+    protected boolean hasTables(JSONObject jsonObject) {
+        return jsonObject.containsKey("tables");
+    }
+
+    @Override
+    protected boolean hasTableName(JSONObject jsonObject) {
+        return jsonObject.containsKey("name");
+    }
+
+    @Override
+    protected boolean hasSources(JSONObject jsonObject) {
+        return jsonObject.containsKey("sources");
+    }
+
+    @Override
+    protected boolean hasOperations(JSONObject jsonObject) {
+        return jsonObject.containsKey("operations");
+    }
+
+    @Override
+    protected boolean hasOutputs(JSONObject jsonObject) {
+        return jsonObject.containsKey("outputs");
     }
 
 }
