@@ -39,7 +39,7 @@ public abstract class ConfigFileParser<ParserObject> implements FileParser {
         return tableConfigs;
     }
 
-    private TableConfig getTableConfig(ParserObject parserObject) {
+    private TableConfig getTableConfig(ParserObject parserObject) throws RuntimeException {
         String name;
         List<Source> sources = new ArrayList<>();
         List<Command> operations = new ArrayList<>();

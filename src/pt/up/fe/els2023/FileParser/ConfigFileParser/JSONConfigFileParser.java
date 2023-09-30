@@ -23,7 +23,7 @@ public class JSONConfigFileParser extends ConfigFileParser<JSONObject> {
     }
 
     @Override
-    public void parse() {
+    public void parse() throws RuntimeException {
         try {
             parserObject = (JSONObject) new JSONParser().parse(new FileReader(inputFile));
         } catch (IOException | ParseException e) {
