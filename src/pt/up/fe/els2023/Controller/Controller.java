@@ -14,16 +14,17 @@ import pt.up.fe.els2023.TableManipulator.TableManipulator;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class Controller {
     File configFile;
     ConfigFileParser configFileParser;
-    List<InputFileParser> inputFileParserList;
+    HashSet<Table> tables;
 
     public Controller (File configFile){
         this.configFile = configFile;
-        inputFileParserList = new ArrayList<>();
+        this.tables = new HashSet<>();
     }
 
     public void setup() {
@@ -47,8 +48,8 @@ public class Controller {
         List<TableConfig> tableConfigs = configFileParser.getConfigurationFiles();
 
         // Input File Parser
-
         for (TableConfig tableConfig: tableConfigs) {
+            List<InputFileParser> inputFileParserList = new ArrayList<>();
             for (Source source: tableConfig.getSources()){
                 File file = new File(((FileSource) source).getPathPattern());
                 String extension = MyUtils.getExtensionFromFile(file);
@@ -62,26 +63,22 @@ public class Controller {
                         break;
                 }
             }
+            for (InputFileParser inputFileParser: inputFileParserList) {
+                inputFileParser.parse();
+            }
+            TableBuilder tableBuilder = new TableBuilder(tableConfig.getTableName(), inputFileParserList);
+
+            Table table = tableBuilder.build();
+
+            TableManipulator tableManipulator = new TableManipulator(tableConfigs.get(0).getOperations());
+
+            tables.add(tableManipulator.applyOperations(table));
+
+            // TODO Outputs
         }
 
-        for (InputFileParser inputFileParser: inputFileParserList) {
-            inputFileParser.parse();
+        for (Table table : tables) {
+            System.out.println(table);
         }
-
-
-        TableBuilder tableBuilder = new TableBuilder(inputFileParserList);
-        Table table = tableBuilder.build();
-        System.out.println(table);
-
-        // Table Operations
-        TableManipulator tableManipulator = new TableManipulator(tableConfigs.get(0).getOperations());
-
-        Table newTable = tableManipulator.applyOperations(table);
-
-        System.out.println(newTable);
-
-        // Output -> Ultima coisa
-
-
     }
 }

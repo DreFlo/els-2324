@@ -10,9 +10,11 @@ import java.util.Map;
 import java.util.Objects;
 
 public class TableBuilder {
+    String name;
     List<InputFileParser> inputFileParserList;
 
-    public TableBuilder(List<InputFileParser> inputFileParserList) {
+    public TableBuilder(String name, List<InputFileParser> inputFileParserList) {
+        this.name = name;
         this.inputFileParserList = inputFileParserList;
     }
 
@@ -35,9 +37,7 @@ public class TableBuilder {
             rows.add(row);
         }
 
-        Table table = new Table(headers);
-        table.addRows(rows);
-        return table;
+        return new Table(name, headers, rows);
 
     }
 }

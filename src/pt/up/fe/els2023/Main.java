@@ -19,19 +19,4 @@ public class Main {
         controller.setup();
         controller.run();
     }
-
-    public static void tableManipulatorTestMain(String[] args) {
-        Table table = new Table(new ArrayList<>(Arrays.asList("A", "B", "C")));
-        table.addRow(new ArrayList<>(Arrays.asList(1, 2, 3)));
-
-        System.out.println(table);
-
-        List<Command> commands = new ArrayList<>(Arrays.asList(new Select(Arrays.asList("A", "B")), new RenameColumn("B", "D")));
-
-        TableManipulator tableManipulator = new TableManipulator(commands);
-
-        Table newTable = tableManipulator.applyOperations(table);
-
-        System.out.println(newTable);
-    }
 }
