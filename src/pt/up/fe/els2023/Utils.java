@@ -6,10 +6,15 @@ import java.util.Map;
 
 public class Utils {
     public static String getExtensionFromFile(File file) {
-        String extension = "";
         String filePath = file.getPath();
 
+        return getExtensionFromPath(filePath);
+    }
+
+    public static String getExtensionFromPath(String filePath) {
+        String extension = "";
         int index = filePath.lastIndexOf('.');
+
         if (index > 0) {
             extension = filePath.substring(index + 1);
         }
