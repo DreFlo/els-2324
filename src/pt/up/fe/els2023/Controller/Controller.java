@@ -45,12 +45,17 @@ public class Controller {
 
     public void run() {
 
+        System.out.println("Parsing config file");
+
         // Config File Parser
         configFileParser.parse();
         List<TableConfig> tableConfigs = configFileParser.getConfigurationFiles();
 
+        System.out.println("Parsed config file");
+
         // Input File Parser
         for (TableConfig tableConfig: tableConfigs) {
+            System.out.println("Working on table: \"" + tableConfig.getTableName() + "\"");
             List<InputFileParser> inputFileParserList = new ArrayList<>();
             for (Source source: tableConfig.getSources()){
                 File file = new File(((FileSource) source).getPathPattern());
@@ -65,14 +70,20 @@ public class Controller {
                         break;
                 }
             }
+
             for (InputFileParser inputFileParser: inputFileParserList) {
                 inputFileParser.parse();
             }
+
+            System.out.println("Parsed input files");
+
             TableBuilder tableBuilder = new TableBuilder(tableConfig.getTableName(), inputFileParserList);
 
             Table table = tableBuilder.build();
 
             TableManipulator tableManipulator = new TableManipulator(tableConfigs.get(0).getOperations());
+
+            System.out.println("Applying operations");
 
             tables.add(tableManipulator.applyOperations(table));
 
