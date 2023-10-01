@@ -49,7 +49,7 @@ public class Controller {
 
         // Config File Parser
         configFileParser.parse();
-        List<TableConfig> tableConfigs = configFileParser.getConfigurationFiles();
+        List<TableConfig> tableConfigs = configFileParser.getTableConfigs();
 
         System.out.println("Parsed config file");
 

@@ -17,7 +17,7 @@ public abstract class ConfigFileParser<ParserObject> implements FileParser {
         this.inputFile = inputFile;
     }
 
-    public final List<TableConfig> getConfigurationFiles() throws RuntimeException {
+    public final List<TableConfig> getTableConfigs() throws RuntimeException {
         if (parserObject == null) {
             throw new RuntimeException("No Configuration was parsed");
         }
