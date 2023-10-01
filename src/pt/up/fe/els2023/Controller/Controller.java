@@ -81,33 +81,37 @@ public class Controller {
 
             Table table = tableBuilder.build();
 
-            TableManipulator tableManipulator = new TableManipulator(tableConfigs.get(0).getOperations());
+            TableManipulator tableManipulator = new TableManipulator(tableConfig.getOperations());
 
             System.out.println("Applying operations");
 
-            tables.add(tableManipulator.applyOperations(table));
+            table = tableManipulator.applyOperations(table);
 
-            for (Table currentTable : tables) {
-                // config outputs for each table
-                for (String output: tableConfig.getOutputs()) {
-                    String extension = Utils.getExtensionFromPath(output);
+            tables.add(table);
 
-                    switch (extension) {
-                        case "csv":
-                            CsvFileWriter csvFileWriter = new CsvFileWriter(currentTable, output);
-                            csvFileWriter.writeFile();
-                            break;
-                        case "html":
-                            HtmlFileWriter htmlFileWriter = new HtmlFileWriter(currentTable, output);
-                            htmlFileWriter.writeFile();
-                            break;
-                        default:
-                            System.out.println("Error: " + extension + " file type not configured.");
-                            break;
-                    }
-                }
+            if (!tableConfig.getOutputs().isEmpty()) {
+                System.out.println("Writing outputs");
             }
 
+            for (String output: tableConfig.getOutputs()) {
+                System.out.println("Writing: \"" + output + "\"");
+
+                String extension = Utils.getExtensionFromPath(output);
+
+                switch (extension) {
+                    case "csv":
+                        CsvFileWriter csvFileWriter = new CsvFileWriter(table, output);
+                        csvFileWriter.writeFile();
+                        break;
+                    case "html":
+                        HtmlFileWriter htmlFileWriter = new HtmlFileWriter(table, output);
+                        htmlFileWriter.writeFile();
+                        break;
+                    default:
+                        System.out.println("Error: " + extension + " file type not configured.");
+                        break;
+                }
+            }
         }
     }
 }

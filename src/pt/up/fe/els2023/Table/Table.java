@@ -40,7 +40,8 @@ public class Table {
     @Override
     public String toString() {
         return "Table{" +
-                "headers=" + headers +
+                "name=" + name +
+                ", headers=" + headers +
                 ", rows=" + rows +
                 '}';
     }
