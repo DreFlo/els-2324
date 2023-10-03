@@ -11,9 +11,9 @@ The `Controller` serves as the central coordinator of the entire process. It ini
 
 `Commands` represent actions or operations that the `TableManipulator` can use. They encapsulate specific tasks to be performed according to the configuration instructions.
 
-3. **Config:**
+3. **Table Config:**
 
-The `Config` component sets the file source for the configuration file and sets the table configuration according to that same source.
+The `TableConfig` component has all the information that was parsed from the configuration file (sources, operations (as `Command`), and outputs).
 
 4. **File Parser:**
 
@@ -45,7 +45,7 @@ At the time of the Assignment #1, this semantic model represents a data extracti
 
 Bellow is a description of how the described components interact within the semantic model in order to achieve the desired result:
 
-- The `Controller` uses the `File Parser` to read the configuration file and subsequently coordinate the entire process.
+- The `Controller` uses the `Table Config` to coordinate the entire process.
 - Based on the configuration, the `Controller` instructs the `File Parser` to read and parse the specified `YAML` source files.
 - The parsed data is passed to the `Table Builder` to create a new instance of a `Table` structure and apply the `"select"` operation.
 - The `Controller` then directs the `Table Manipulator` to apply additional transformations, such as column renaming.
