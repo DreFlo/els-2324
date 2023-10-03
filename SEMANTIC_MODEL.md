@@ -47,6 +47,6 @@ Bellow is a description of how the described components interact within the sema
 
 - The `Controller` uses the `Table Config` to coordinate the entire process.
 - Based on the configuration, the `Controller` instructs the `File Parser` to read and parse the specified `YAML` source files.
-- The parsed data is passed to the `Table Builder` to create a new instance of a `Table` structure and apply the `"select"` operation.
+- The parsed data is passed to the `Table Builder` to create a new instance of a `Table`.
 - The `Controller` then directs the `Table Manipulator` to apply additional transformations, such as column renaming.
 - Ultimately, the transformed data is sent to the `File Writer`, which exports it to a `CSV` output file as specified in the configuration.
