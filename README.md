@@ -1,8 +1,22 @@
 # ELS Project
 
-For this project, you need to [install Gradle](https://gradle.org/install/)
+### Authors:
+- André Flores
+- André Gonçalves
+- Tiago Rodrigues
+
+## [Semantic Model](./SEMANTIC_MODEL.md)
+Click the link to know more about the semantic model of this project.
+
+## [Configuration File](resources%2FconfigFiles%2FREADME.md)
+Click the link to explore the configuration file elements.
+
+## [Design Decisions and Priorities](DESIGN_DECISIONS.md)
+Follow the link to read about our decisions and priorities designing this model.
 
 ## Project setup
+
+For this project, you need to [install Gradle](https://gradle.org/install/)
 
 Copy your source files to the ``src`` folder, and your JUnit test files to the ``test`` folder.
 
@@ -18,4 +32,3 @@ When creating a Java executable, it is necessary to specify which class that con
 
 To test the program, run ``gradle test``. This will execute the build, and run the JUnit tests in the ``test`` folder. If you want to see output printed during the tests, use the flag ``-i`` (i.e., ``gradle test -i``).
 You can also see a test report by opening ``build/reports/tests/test/index.html``.
-
