@@ -9,7 +9,7 @@ The `Controller` serves as the central coordinator of the entire process. It ini
 
 2. **Command:**
 
-`Commands` represent actions or operations that the `Controller` can use. They encapsulate specific tasks to be performed according to the configuration instructions.
+`Commands` represent actions or operations that the `TableManipulator` can use. They encapsulate specific tasks to be performed according to the configuration instructions.
 
 3. **Config:**
 
@@ -27,11 +27,11 @@ The `Table` component represents the data structure used for intermediate data s
 
 6. **Table Builder:**
 
-The `Table Builder` is responsible for constructing tables based on the data extracted from the source files through the `File Parser`. It applies the "select" operation specified in the configuration to filter and structure the data appropriately.
+The `Table Builder` is responsible for constructing tables based on the data extracted from the source files through the `File Parser`.
 
 7. **Table Manipulator:**
 
-The `Table Manipulator` is responsible for applying transformations to the table data. It handles operations (such as renaming columns) specified in the configuration file.
+The `Table Manipulator` is responsible for applying transformations to the table data. It handles operations (such as renaming and selecting columns) specified in the configuration file.
 
 8. **File Writer:**
 
@@ -45,7 +45,7 @@ At the time of the Assignment #1, this semantic model represents a data extracti
 
 Bellow is a description of how the described components interact within the semantic model in order to achieve the desired result:
 
-- The `Controller` uses the `Config` component and the `File Parser` to read the configuration file and subsequently coordinate the entire process.
+- The `Controller` uses the `File Parser` to read the configuration file and subsequently coordinate the entire process.
 - Based on the configuration, the `Controller` instructs the `File Parser` to read and parse the specified `YAML` source files.
 - The parsed data is passed to the `Table Builder` to create a new instance of a `Table` structure and apply the `"select"` operation.
 - The `Controller` then directs the `Table Manipulator` to apply additional transformations, such as column renaming.
