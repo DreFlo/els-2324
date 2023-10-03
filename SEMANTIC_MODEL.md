@@ -37,6 +37,8 @@ The `Table Manipulator` is responsible for applying transformations to the table
 
 As the name implies, the `File Writer` handles the writing of the final transformed data into an output file. It takes the data produced by the `Table Manipulator` and stores it in the specified output location.
 
+![](docs/images/Semantic%20Model.png)
+
 ## How does this model work?
 
 At the time of the Assignment #1, this semantic model represents a data extraction and  manipulation pipeline where data is extracted from YAML files, processed, and finally stored into a CSV file. Each component plays a specific role in this pipeline, contributing to the overall functionality of the system.
