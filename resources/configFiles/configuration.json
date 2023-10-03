@@ -20,6 +20,7 @@
         {
           "type" : "select",
           "columns" : [
+            "filename",
             "params/criterion",
             "params/splitter",
             "params/ccp_alpha",

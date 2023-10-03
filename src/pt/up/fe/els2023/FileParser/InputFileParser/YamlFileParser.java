@@ -28,6 +28,7 @@ public class YamlFileParser implements InputFileParser {
             throw new RuntimeException(e);
         }
         obj = yaml.load(inputStream);
+        obj.put("filename", inputFile.getName());
 
     }
 
