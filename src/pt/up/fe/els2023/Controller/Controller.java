@@ -41,7 +41,6 @@ public class Controller {
                 System.out.println("Error: " + extension + " file type not configured.");
                 break;
         }
-
     }
 
     private List<InputFileParser> getSourceFileParsers(FileSource fileSource) {
@@ -70,6 +69,9 @@ public class Controller {
         File[] files = folder.listFiles();
         assert files != null;
         for (File file: files) {
+            if (file.isDirectory()) {
+                continue;
+            }
             addFileParser(inputFileParserList, file, true);
         }
         return inputFileParserList;
