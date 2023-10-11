@@ -7,6 +7,7 @@ import org.json.simple.parser.ParseException;
 import pt.up.fe.els2023.Command.Command;
 import pt.up.fe.els2023.Command.RenameColumn;
 import pt.up.fe.els2023.Command.Select;
+import pt.up.fe.els2023.Command.SquashRows;
 import pt.up.fe.els2023.Config.Source.FileSource;
 import pt.up.fe.els2023.Config.Source.Source;
 import pt.up.fe.els2023.Config.Source.SourceBuilder;
@@ -67,6 +68,8 @@ public class JSONConfigFileParser extends ConfigFileParser<JSONObject> {
                 for (Object columnObject : (JSONArray) operationJSON.get("columns"))
                     columns.add((String) columnObject);
                 operations.add(new Select(columns));
+            } else if (operationJSON.get("type").equals("squashRows")) {
+                operations.add(new SquashRows());
             }
         }
     }

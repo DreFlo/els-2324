@@ -9,12 +9,11 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Map;
 
-public class YamlFileParser implements InputFileParser {
-    Map<String, Object> obj;
-    File inputFile;
+public class YamlFileParser extends InputFileParser {
 
-    public YamlFileParser(File inputFile) {
+    public YamlFileParser(File inputFile, boolean storeFolderName) {
         this.inputFile = inputFile;
+        this.storeFolderName = storeFolderName;
     }
 
     @Override
@@ -29,7 +28,9 @@ public class YamlFileParser implements InputFileParser {
         }
         obj = yaml.load(inputStream);
         obj.put("filename", inputFile.getName());
-
+        if (storeFolderName) {
+            obj.put("folder", inputFile.getParentFile().getName());
+        }
     }
 
     @Override
