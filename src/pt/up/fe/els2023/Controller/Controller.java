@@ -1,6 +1,7 @@
 package pt.up.fe.els2023.Controller;
 
 import pt.up.fe.els2023.Config.Source.FileSource;
+import pt.up.fe.els2023.Config.Source.FolderSource;
 import pt.up.fe.els2023.Config.Source.Source;
 import pt.up.fe.els2023.Config.TableConfig;
 import pt.up.fe.els2023.FileParser.ConfigFileParser.ConfigFileParser;
@@ -43,6 +44,47 @@ public class Controller {
 
     }
 
+    private List<InputFileParser> getSourceFileParsers(FileSource fileSource) {
+        List<InputFileParser> inputFileParserList = new ArrayList<>();
+        File file = new File(fileSource.getPathPattern());
+        addFileParser(inputFileParserList, file, false);
+        return inputFileParserList;
+    }
+
+    private void addFileParser(List<InputFileParser> inputFileParserList, File file, boolean storeFolderName) {
+        String extension = Utils.getExtensionFromFile(file);
+
+        switch (extension) {
+            case "yaml":
+                inputFileParserList.add(new YamlFileParser(file, storeFolderName));
+                break;
+            default:
+                System.out.println("Error: " + extension + " file type not configured.");
+                break;
+        }
+    }
+
+    private List<InputFileParser> getSourceFileParsers(FolderSource folderSource) {
+        List<InputFileParser> inputFileParserList = new ArrayList<>();
+        File folder = new File(folderSource.getPathPattern());
+        File[] files = folder.listFiles();
+        assert files != null;
+        for (File file: files) {
+            addFileParser(inputFileParserList, file, true);
+        }
+        return inputFileParserList;
+    }
+
+    public List<InputFileParser> getSourceFileParsers(Source source) {
+        if (source instanceof FileSource) {
+            return getSourceFileParsers((FileSource) source);
+        }
+        if (source instanceof FolderSource) {
+            return getSourceFileParsers((FolderSource) source);
+        }
+        return new ArrayList<>();
+    }
+
     public void run() {
 
         System.out.println("Parsing config file");
@@ -58,17 +100,7 @@ public class Controller {
             System.out.println("Working on table: \"" + tableConfig.getTableName() + "\"");
             List<InputFileParser> inputFileParserList = new ArrayList<>();
             for (Source source: tableConfig.getSources()){
-                File file = new File(((FileSource) source).getPathPattern());
-                String extension = Utils.getExtensionFromFile(file);
-
-                switch (extension) {
-                    case "yaml":
-                        inputFileParserList.add(new YamlFileParser(file));
-                        break;
-                    default:
-                        System.out.println("Error: " + extension + " file type not configured.");
-                        break;
-                }
+                inputFileParserList.addAll(getSourceFileParsers(source));
             }
 
             for (InputFileParser inputFileParser: inputFileParserList) {
