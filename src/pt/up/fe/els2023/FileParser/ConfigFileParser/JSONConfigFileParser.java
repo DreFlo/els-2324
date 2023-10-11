@@ -9,6 +9,7 @@ import pt.up.fe.els2023.Command.RenameColumn;
 import pt.up.fe.els2023.Command.Select;
 import pt.up.fe.els2023.Config.Source.FileSource;
 import pt.up.fe.els2023.Config.Source.Source;
+import pt.up.fe.els2023.Config.Source.SourceBuilder;
 
 import java.io.File;
 import java.io.FileReader;
@@ -49,9 +50,7 @@ public class JSONConfigFileParser extends ConfigFileParser<JSONObject> {
     protected void extractSources(List<Source> sources, JSONObject jsonObject) {
         for (Object sourceObject : (JSONArray) jsonObject.get("sources")) {
             JSONObject sourceJSON = (JSONObject) sourceObject;
-            if (sourceJSON.get("type").equals("file")) {
-                sources.add(new FileSource((String) sourceJSON.get("path")));
-            }
+            sources.add(SourceBuilder.getSource((String) sourceJSON.get("type"), sourceJSON));
         }
     }
 
