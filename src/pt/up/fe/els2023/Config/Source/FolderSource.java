@@ -11,6 +11,7 @@ public class FolderSource extends Source{
         this.pathPattern = pathPattern;
     }
 
+    @Override
     public String getPathPattern() {
         return pathPattern;
     }

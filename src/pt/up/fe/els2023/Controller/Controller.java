@@ -4,6 +4,7 @@ import pt.up.fe.els2023.Config.Source.FileSource;
 import pt.up.fe.els2023.Config.Source.FolderSource;
 import pt.up.fe.els2023.Config.Source.Source;
 import pt.up.fe.els2023.Config.TableConfig;
+import pt.up.fe.els2023.FileMatcher;
 import pt.up.fe.els2023.FileParser.ConfigFileParser.ConfigFileParser;
 import pt.up.fe.els2023.FileParser.ConfigFileParser.JSONConfigFileParser;
 import pt.up.fe.els2023.FileParser.InputFileParser.InputFileParser;
@@ -17,8 +18,12 @@ import pt.up.fe.els2023.TableManipulator.TableManipulator;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public class Controller {
     File configFile;
@@ -43,12 +48,6 @@ public class Controller {
         }
     }
 
-    private List<InputFileParser> getSourceFileParsers(FileSource fileSource) {
-        List<InputFileParser> inputFileParserList = new ArrayList<>();
-        File file = new File(fileSource.getPathPattern());
-        addFileParser(inputFileParserList, file, false);
-        return inputFileParserList;
-    }
 
     private void addFileParser(List<InputFileParser> inputFileParserList, File file, boolean storeFolderName) {
         String extension = Utils.getExtensionFromFile(file);
@@ -61,31 +60,10 @@ public class Controller {
                 System.out.println("Error: " + extension + " file type not configured.");
                 break;
         }
+
+        System.out.println( "Added file parser;");
     }
 
-    private List<InputFileParser> getSourceFileParsers(FolderSource folderSource) {
-        List<InputFileParser> inputFileParserList = new ArrayList<>();
-        File folder = new File(folderSource.getPathPattern());
-        File[] files = folder.listFiles();
-        assert files != null;
-        for (File file: files) {
-            if (file.isDirectory()) {
-                continue;
-            }
-            addFileParser(inputFileParserList, file, true);
-        }
-        return inputFileParserList;
-    }
-
-    public List<InputFileParser> getSourceFileParsers(Source source) {
-        if (source instanceof FileSource) {
-            return getSourceFileParsers((FileSource) source);
-        }
-        if (source instanceof FolderSource) {
-            return getSourceFileParsers((FolderSource) source);
-        }
-        return new ArrayList<>();
-    }
 
     public void run() {
 
@@ -100,9 +78,16 @@ public class Controller {
         // Input File Parser
         for (TableConfig tableConfig: tableConfigs) {
             System.out.println("Working on table: \"" + tableConfig.getTableName() + "\"");
+
             List<InputFileParser> inputFileParserList = new ArrayList<>();
+            FileMatcher fileMatcher = new FileMatcher();
+            List<File> matchedFiles = new ArrayList<>();
+
             for (Source source: tableConfig.getSources()){
-                inputFileParserList.addAll(getSourceFileParsers(source));
+                matchedFiles.addAll(fileMatcher.matchedFiles(new File("./"), source.getPathPattern()));
+                for(File matchedFile: matchedFiles){
+                    addFileParser(inputFileParserList, matchedFile, false);
+                }
             }
 
             for (InputFileParser inputFileParser: inputFileParserList) {

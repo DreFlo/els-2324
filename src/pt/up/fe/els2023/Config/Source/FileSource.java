@@ -12,6 +12,7 @@ public class FileSource extends Source {
         this.pathPattern = pathPattern;
     }
 
+    @Override
     public String getPathPattern() {
         return pathPattern;
     }
