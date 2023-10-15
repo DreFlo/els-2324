@@ -41,7 +41,8 @@
         }
       ],
       "outputs": [
-        "output/table.csv"
+        "output/table.csv",
+        "output/table.html"
       ]
     }
   ]

@@ -14,3 +14,6 @@ gradle/
 /co-authors
 
 output/
+
+# MacOs
+.DS_Store
