@@ -57,8 +57,6 @@ public class Controller {
                 System.out.println("Error: " + extension + " file type not configured.");
                 break;
         }
-
-        System.out.println( "Added file parser;");
     }
 
 
