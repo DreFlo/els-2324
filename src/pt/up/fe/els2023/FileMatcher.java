@@ -8,6 +8,8 @@ import pt.up.fe.els2023.Config.Source.Source;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class FileMatcher {
 
@@ -34,7 +36,7 @@ public class FileMatcher {
         List<File> matchedFiles = new ArrayList<>();
         String[] subPatterns = pattern.split("/");
 
-        File[] files = getFiles(sourceFile, subPatterns);
+        File[] files = getFiles(sourceFile, subPatterns[0]);
 
         if (files != null) {
             for (File file: files) {
@@ -53,18 +55,24 @@ public class FileMatcher {
      * Configuration to set what path from sourceFile is accepted
      * @return Files accepted
      */
-    private static File[] getFiles(File sourceFile, String[] subPatterns) {
+    private static File[] getFiles(File sourceFile, String subPattern) {
         FilenameFilter filenameFilter = (dir, name) -> {
-            if (subPatterns[0].contains("*")) {
-                if(subPatterns[0].contains(".")) {
-                    String extension = Utils.getExtensionFromPath(subPatterns[0]);
+            if (subPattern.contains("*")) {
+                if(subPattern.contains(".")) {
+                    String extension = Utils.getExtensionFromPath(subPattern);
                     return name.toLowerCase().endsWith("." + extension);
                 }
                 else {
                     return true;
                 }
             }
-            return name.matches(subPatterns[0]);
+
+            Pattern pattern = Pattern.compile(subPattern);
+            Matcher matcher = pattern.matcher(name);
+            if(matcher.matches()) {
+                return true;
+            }
+            return name.matches(subPattern);
         };
 
         return sourceFile.listFiles(filenameFilter);
