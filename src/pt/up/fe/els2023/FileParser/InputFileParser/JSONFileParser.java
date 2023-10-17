@@ -17,28 +17,11 @@ public class JSONFileParser extends InputFileParser {
     }
 
     @Override
-    public Map<String, Object> getFlattenedRow() {
-        return Utils.getFlattenedMap(this.obj, "");
-    }
-
-    private Map<String, Object> safeCast(Object obj) {
-        Map<String, Object> map = new HashMap<>();
-        for (Map.Entry<?, ?> entry : ((Map<?, ?>) obj).entrySet()) {
-            map.put((String) entry.getKey(), entry.getValue());
-        }
-        return map;
-    }
-
-    @Override
-    public void parse() {
+    protected Map<String, Object> getMapFromFile() {
         try {
-            obj = safeCast(new JSONParser().parse(new FileReader(inputFile)));
+            return Utils.safelyCastToStringObjectMap(new JSONParser().parse(new FileReader(inputFile)));
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
-        }
-        obj.put("filename", inputFile.getName());
-        if (storeFolderName) {
-            obj.put("folder", inputFile.getParentFile().getName());
         }
     }
 }

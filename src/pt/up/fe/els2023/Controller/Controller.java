@@ -7,6 +7,7 @@ import pt.up.fe.els2023.FileParser.ConfigFileParser.ConfigFileParser;
 import pt.up.fe.els2023.FileParser.ConfigFileParser.JSONConfigFileParser;
 import pt.up.fe.els2023.FileParser.InputFileParser.InputFileParser;
 import pt.up.fe.els2023.FileParser.InputFileParser.JSONFileParser;
+import pt.up.fe.els2023.FileParser.InputFileParser.XMLFileParser;
 import pt.up.fe.els2023.FileParser.InputFileParser.YamlFileParser;
 import pt.up.fe.els2023.FileWriter.OutputFileWriter.CsvFileWriter;
 import pt.up.fe.els2023.FileWriter.OutputFileWriter.HtmlFileWriter;
@@ -52,6 +53,9 @@ public class Controller {
                 break;
             case "json":
                 inputFileParserList.add(new JSONFileParser(file, storeFolderName));
+                break;
+            case "xml":
+                inputFileParserList.add(new XMLFileParser(file, storeFolderName));
                 break;
             default:
                 System.out.println("Error: " + extension + " file type not configured.");

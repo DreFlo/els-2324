@@ -4,12 +4,16 @@
       "name": "tableName",
       "sources": [
         {
-          "type": "folder",
-          "path": "resources/configFiles"
+          "type": "file",
+          "path": "resources/decision_tree_1.yaml"
         },
         {
           "type": "file",
-          "path": "resources/*.yaml"
+          "path": "resources/decision_tree_2.yaml"
+        },
+        {
+          "type": "file",
+          "path": "resources/decision_tree_3.yaml"
         }
       ],
       "operations": [
