@@ -1,0 +1,25 @@
+{
+  "tables": [
+    {
+      "name": "tableName",
+      "sources": [
+        {
+          "type": "file",
+          "path": "resources/run1/vitis-report.xml"
+        }
+      ],
+      "operations": [
+        {
+          "type": "select",
+          "columns" : [
+            "filename",
+            "profile/ReportVersion/Version"
+          ]
+        }
+      ],
+      "outputs": [
+        "output/tableName.csv"
+      ]
+    }
+  ]
+}
