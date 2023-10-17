@@ -25,25 +25,6 @@ public class Utils {
         return extension;
     }
 
-    public static Map<String, Object> getFlattenedMap(Map<String, Object> originalMap, String parentKey) {
-        Map<String, Object> flattenedMap = new HashMap<>();
-
-        for (Map.Entry<String, Object> entry: originalMap.entrySet()) {
-            String key = entry.getKey();
-            Object value = entry.getValue();
-
-            String columnName = parentKey.equals("") ? key : parentKey + "/" + key;
-            if (value instanceof Map<?, ?>) {
-                flattenedMap.putAll(getFlattenedMap(safelyCastToStringObjectMap((Map<?, ?>) value), columnName));
-            } else {
-                flattenedMap.put(columnName, value);
-            }
-
-        }
-
-        return flattenedMap;
-    }
-
     public static Map<String, Object> safelyCastToStringObjectMap(Object map) {
         Map<String, Object> safeMap = new HashMap<>();
 

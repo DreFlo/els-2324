@@ -18,7 +18,7 @@ public class XMLFileParser extends InputFileParser{
     }
 
     @Override
-    public void parse() {
+    protected Map<String, Object> getMapFromFile() {
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = null;
         Document doc = null;
@@ -37,15 +37,6 @@ public class XMLFileParser extends InputFileParser{
 
         doc.getDocumentElement().normalize();
 
-        obj = Utils.generateXMLMap(doc.getDocumentElement());
-        obj.put("filename", inputFile.getName());
-        if (storeFolderName) {
-            obj.put("folder", inputFile.getParentFile().getName());
-        }
-    }
-
-    @Override
-    public Map<String, Object> getFlattenedRow() {
-        return Utils.getFlattenedMap(this.obj, "");
+        return Utils.generateXMLMap(doc.getDocumentElement());
     }
 }

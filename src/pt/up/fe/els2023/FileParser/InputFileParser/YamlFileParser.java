@@ -17,8 +17,7 @@ public class YamlFileParser extends InputFileParser {
     }
 
     @Override
-    public void parse() {
-
+    protected Map<String, Object> getMapFromFile() {
         Yaml yaml = new Yaml();
         InputStream inputStream = null;
         try {
@@ -26,15 +25,6 @@ public class YamlFileParser extends InputFileParser {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        obj = yaml.load(inputStream);
-        obj.put("filename", inputFile.getName());
-        if (storeFolderName) {
-            obj.put("folder", inputFile.getParentFile().getName());
-        }
-    }
-
-    @Override
-    public Map<String, Object> getFlattenedRow() {
-        return Utils.getFlattenedMap(this.obj, "");
+        return yaml.load(inputStream);
     }
 }
