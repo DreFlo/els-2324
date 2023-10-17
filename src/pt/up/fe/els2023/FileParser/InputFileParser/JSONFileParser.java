@@ -31,7 +31,6 @@ public class JSONFileParser extends InputFileParser {
 
     @Override
     public void parse() {
-        // TODO Fix cast
         try {
             obj = safeCast(new JSONParser().parse(new FileReader(inputFile)));
         } catch (IOException | ParseException e) {
