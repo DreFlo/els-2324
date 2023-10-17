@@ -1,9 +1,6 @@
 package pt.up.fe.els2023.FileWriter.OutputFileWriter;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.List;
 
 import pt.up.fe.els2023.Table.Table;
@@ -20,23 +17,50 @@ public class HtmlFileWriter implements OutputFileWriter {
 
     @Override
     public void writeFile() {
-        FileOutputStream outputStream = null;
+
         List<String> headers = table.getHeaders();
         List<List<Object>> rows = table.getRows();
 
-        try {
-            outputStream = new FileOutputStream(outputFilePath);
-        } catch (FileNotFoundException ex) {
-            throw new RuntimeException(ex);
+        StringBuilder htmlString = new StringBuilder();
+
+        // start html table string
+        htmlString.append("<html><body><table>");
+
+        // headers
+        htmlString.append("<tr>");
+        for (String header : headers) {
+            htmlString.append("<th>").append(header).append("</th>");
+        }
+        htmlString.append("</tr>");
+
+        // rows
+        for (List<Object> row : rows) {
+            htmlString.append("<tr>");
+            for (Object rowData : row) {
+                htmlString.append("<td>").append(rowData.toString()).append("</td>");
+            }
+            htmlString.append("</tr>");
         }
 
-        ObjectOutputStream objectOutput = null;
+        // close html table string
+        htmlString.append("</table></body></html>");
+
+        File outputFile = new File(outputFilePath);
+
         try {
-            objectOutput = new ObjectOutputStream(outputStream);
-            objectOutput.writeObject(headers);
-            objectOutput.close();
+            // create path directories if non-existent
+            outputFile.getParentFile().mkdirs();
+
+            try {
+                BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(outputFile));
+                bufferedWriter.write(htmlString.toString());
+                bufferedWriter.close();
+            } catch (FileNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
+
         } catch (IOException e) {
-            throw new RuntimeException(e);
+                throw new RuntimeException(e);
         }
     }
 }
