@@ -5,6 +5,10 @@
       "sources": [
         {
           "type": "folder",
+          "path": "resources/configFiles"
+        },
+        {
+          "type": "file",
           "path": "resources/*.yaml"
         }
       ],

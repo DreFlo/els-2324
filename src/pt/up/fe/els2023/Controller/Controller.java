@@ -1,7 +1,5 @@
 package pt.up.fe.els2023.Controller;
 
-import pt.up.fe.els2023.Config.Source.FileSource;
-import pt.up.fe.els2023.Config.Source.FolderSource;
 import pt.up.fe.els2023.Config.Source.Source;
 import pt.up.fe.els2023.Config.TableConfig;
 import pt.up.fe.els2023.FileMatcher;
@@ -17,13 +15,8 @@ import pt.up.fe.els2023.TableBuilder.TableBuilder;
 import pt.up.fe.els2023.TableManipulator.TableManipulator;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 
 public class Controller {
     File configFile;
@@ -65,6 +58,8 @@ public class Controller {
     }
 
 
+
+
     public void run() {
 
         System.out.println("Parsing config file");
@@ -80,12 +75,9 @@ public class Controller {
             System.out.println("Working on table: \"" + tableConfig.getTableName() + "\"");
 
             List<InputFileParser> inputFileParserList = new ArrayList<>();
-            FileMatcher fileMatcher = new FileMatcher();
-            List<File> matchedFiles = new ArrayList<>();
 
             for (Source source: tableConfig.getSources()){
-                matchedFiles.addAll(fileMatcher.matchedFiles(new File("./"), source.getPathPattern()));
-                for(File matchedFile: matchedFiles){
+                for(File matchedFile: Objects.requireNonNull(FileMatcher.matchedFiles(source))){
                     addFileParser(inputFileParserList, matchedFile, false);
                 }
             }
