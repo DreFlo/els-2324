@@ -21,12 +21,35 @@ public class Table {
         this.rows = rows;
     }
 
-    public void addRow(List<Object> row) {
+    public void extendTable(Map<String, Object> objectMap) {
+        List<String> keys = new ArrayList<>(objectMap.keySet());
+
+        List<Object> row = new ArrayList<>();
+        for (String key: keys) {
+            if (!headers.contains(key)) {
+                headers.add(key);
+            }
+            row.add(headers.indexOf(key), objectMap.get(key));
+        }
         rows.add(row);
     }
 
-    public void addRows(List<List<Object>> rows) {
-        this.rows.addAll(rows);
+    // Getters and Setters
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setHeaders(List<String> headers) {
+        this.headers = headers;
+    }
+
+    public void setRows(List<List<Object>> rows) {
+        this.rows = rows;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public List<String> getHeaders() {
@@ -37,6 +60,8 @@ public class Table {
         return rows;
     }
 
+
+    // Override
     @Override
     public String toString() {
         return "Table{" +
@@ -58,7 +83,5 @@ public class Table {
         return Objects.hash(name);
     }
 
-    public String getName() {
-        return name;
-    }
+
 }

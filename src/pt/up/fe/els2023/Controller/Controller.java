@@ -21,16 +21,19 @@ import java.util.*;
 
 
 public class Controller {
+    HashSet<Table> tables;
+
+    List<TableConfig> tableConfigs;
+
     File configFile;
     ConfigFileParser<?> configFileParser;
-    HashSet<Table> tables;
 
     public Controller (File configFile){
         this.configFile = configFile;
         this.tables = new HashSet<>();
     }
 
-    public void setup() {
+    public Controller setup() {
         String extension = Utils.getExtensionFromFile(configFile);
 
         switch (extension) {
@@ -41,6 +44,8 @@ public class Controller {
                 System.out.println("Error: " + extension + " file type not configured.");
                 break;
         }
+
+        return this;
     }
 
 
@@ -63,18 +68,20 @@ public class Controller {
         }
     }
 
-
-
-
-    public void run() {
-
+    public Controller parseConfigFile() {
         System.out.println("Parsing config file");
 
         // Config File Parser
         configFileParser.parse();
-        List<TableConfig> tableConfigs = configFileParser.getTableConfigs();
+        tableConfigs = configFileParser.getTableConfigs();
 
         System.out.println("Parsed config file");
+
+        return this;
+    }
+
+
+    public void run() {
 
         // Input File Parser
         for (TableConfig tableConfig: tableConfigs) {
@@ -130,5 +137,12 @@ public class Controller {
                 }
             }
         }
+    }
+
+
+    // Getters and Setters
+
+    public List<TableConfig> getTableConfigs() {
+        return tableConfigs;
     }
 }

@@ -1,25 +1,19 @@
 package pt.up.fe.els2023.Config.Source;
 
 public class FolderSource extends Source{
-    private String pathPattern;
+
+    public FolderSource() {
+        super();
+    }
 
     public FolderSource(String pathPattern) {
-        this.pathPattern = pathPattern;
-    }
-
-    public void setPathPattern(String pathPattern) {
-        this.pathPattern = pathPattern;
-    }
-
-    @Override
-    public String getPathPattern() {
-        return pathPattern;
+        super(pathPattern);
     }
 
     @Override
     public String toString() {
         return "FolderSource{" +
-                "pathPattern='" + pathPattern + '\'' +
+                "pathPattern='" + getPathPattern() + '\'' +
                 '}';
     }
 }
