@@ -1,13 +1,16 @@
 package pt.up.fe.els2023.Table;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Table {
-    private final String name;
-    private final List<String> headers;
-    private final List<List<Object>> rows;
+    private String name;
+    private List<String> headers;
+    private List<List<Object>> rows;
+
+    public Table(){
+        headers = new ArrayList<>();
+        rows = new ArrayList<>(new ArrayList<>());
+    }
 
     public Table(String name, List<String> headers) {
         this.name = name;
