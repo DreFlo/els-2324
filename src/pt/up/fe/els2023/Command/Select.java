@@ -8,6 +8,10 @@ import java.util.List;
 public class Select implements Command {
     List<String> selectedHeaders;
 
+    public Select() {
+        this.selectedHeaders = new ArrayList<>();
+    }
+
     public Select(List<String> selectedHeaders) {
         this.selectedHeaders = selectedHeaders;
     }
@@ -35,6 +39,11 @@ public class Select implements Command {
         }
 
         return newTable;
+    }
+
+    public void addHeader(String header) {
+        if (!this.selectedHeaders.contains(header))
+            this.selectedHeaders.add(header);
     }
 
     @Override

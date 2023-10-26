@@ -9,8 +9,19 @@ public class RenameColumn implements Command{
     String oldName;
     String newName;
 
+    public RenameColumn() {
+    }
+
     public RenameColumn(String oldName, String newName) {
         this.oldName = oldName;
+        this.newName = newName;
+    }
+
+    public void setOldName(String oldName) {
+        this.oldName = oldName;
+    }
+
+    public void setNewName(String newName) {
         this.newName = newName;
     }
 

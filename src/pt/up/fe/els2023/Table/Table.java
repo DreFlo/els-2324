@@ -34,10 +34,8 @@ public class Table {
             }
             row.add(headers.indexOf(key), objectMap.get(key));
         }
-        rows.add(row);
+        addRow(row);
     }
-
-    // Getters and Setters
 
     public void setName(String name) {
         this.name = name;
@@ -63,8 +61,14 @@ public class Table {
         return rows;
     }
 
+    public void addRow(List<Object> row) {
+        rows.add(row);
+    }
 
-    // Override
+    public void addRows(List<List<Object>> rows) {
+        this.rows.addAll(rows);
+    }
+
     @Override
     public String toString() {
         return "Table{" +
@@ -85,6 +89,4 @@ public class Table {
     public int hashCode() {
         return Objects.hash(name);
     }
-
-
 }
