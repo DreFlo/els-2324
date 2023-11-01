@@ -1,14 +1,12 @@
 package pt.up.fe.els2023;
 
 
-import pt.up.fe.els2023.Config.Source.FileSource;
-import pt.up.fe.els2023.Config.Source.FolderSource;
+import FileSource;
+import FolderSource;
 import pt.up.fe.els2023.Config.Source.Source;
 
 import java.io.File;
 import java.io.FilenameFilter;
-import java.nio.file.FileSystems;
-import java.nio.file.PathMatcher;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -1,6 +1,8 @@
-package pt.up.fe.els2023.Config.Source;
+package pt.up.fe.els2023.Config.Source.FileSystemSource;
 
-public class FolderSource extends Source{
+import pt.up.fe.els2023.Config.Source.Source;
+
+public class FolderSource extends FileSystemSource {
 
     public FolderSource() {
         super();

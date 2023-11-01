@@ -1,7 +1,7 @@
 package pt.up.fe.els2023.InternalDSL;
 
-import pt.up.fe.els2023.InternalDSL.DSLOperationsBuilder.DSLOperationsBuilder;
-import pt.up.fe.els2023.InternalDSL.DSLSourceBuilder.DSLSourceBuilder;
+import pt.up.fe.els2023.InternalDSL.DSLOperation.DSLOperationBuilder;
+import pt.up.fe.els2023.InternalDSL.DSLSource.DSLSourceBuilder;
 import pt.up.fe.els2023.Table.Table;
 
 public class DSLTableBuilder {
@@ -31,8 +31,8 @@ public class DSLTableBuilder {
         return new DSLSourceBuilder(this);
     }
 
-    public DSLOperationsBuilder operation() {
-        return new DSLOperationsBuilder(this);
+    public DSLOperationBuilder operation() {
+        return new DSLOperationBuilder(this);
     }
 
     public InternalDSL end() {
