@@ -6,19 +6,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Select implements Command {
-    List<String> selectedHeaders;
+    private final List<String> selectedHeaderPatterns;
 
     public Select() {
-        this.selectedHeaders = new ArrayList<>();
+        this.selectedHeaderPatterns = new ArrayList<>();
     }
 
     public Select(List<String> selectedHeaders) {
-        this.selectedHeaders = selectedHeaders;
+        this.selectedHeaderPatterns = selectedHeaders;
     }
 
     @Override
     public Table execute(Table table) {
         List<Integer> selectedHeaderIndices = new ArrayList<>();
+
+        List<String> selectedHeaders = getSelectedHeaders(table);
+
         // Get selected header indices in original table
         for (String selectedHeader : selectedHeaders) {
             Integer selectedHeaderIndex = table.getHeaders().indexOf(selectedHeader);
@@ -41,15 +44,31 @@ public class Select implements Command {
         return newTable;
     }
 
-    public void addHeader(String header) {
-        if (!this.selectedHeaders.contains(header))
-            this.selectedHeaders.add(header);
+    public void addHeaderPattern(String header) {
+        if (!this.selectedHeaderPatterns.contains(header))
+            this.selectedHeaderPatterns.add(header);
+    }
+
+    public List<String> getSelectedHeaderPatterns() {
+        return selectedHeaderPatterns;
+    }
+
+    public List<String> getSelectedHeaders(Table table) {
+        List<String> selectedHeaders = new ArrayList<>();
+        for (String selectedHeaderPattern : selectedHeaderPatterns) {
+            for (String header : table.getHeaders()) {
+                if (header.matches(selectedHeaderPattern)) {
+                    selectedHeaders.add(header);
+                }
+            }
+        }
+        return selectedHeaders;
     }
 
     @Override
     public String toString() {
         return "Select{" +
-                "selected=" + selectedHeaders +
+                "selected=" + selectedHeaderPatterns +
                 '}';
     }
 }

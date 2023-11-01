@@ -9,7 +9,7 @@ public class DSLSelect extends DSLOperation<Select> {
     }
 
     public DSLSelect column(String column) {
-        getCommand().addHeader(column);
+        getCommand().addHeaderPattern(column);
         return this;
     }
 }

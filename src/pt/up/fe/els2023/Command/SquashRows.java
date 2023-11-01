@@ -24,17 +24,20 @@ public class SquashRows implements Command {
             return (String) row.get(folderIndex);
         }));
 
+        System.out.println(groupByFolder.keySet());
+
         for (String folder: groupByFolder.keySet()) {
             List<List<Object>> rows = groupByFolder.get(folder);
             if (folder.equals("")) {
                 newRows.addAll(rows);
-            } else {
+            }
+            else {
                 List<Object> newRow = new ArrayList<>();
                 for (int i = 0; i < table.getHeaders().size(); i++) {
                     newRow.add(i , null);
                     for (List<Object> row : rows) {
                         if (row.get(i) != null) {
-                            newRow.add(i, row.get(i));
+                            newRow.set(i, row.get(i));
                             break;
                         }
                     }
