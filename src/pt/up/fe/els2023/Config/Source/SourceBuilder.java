@@ -1,5 +1,8 @@
 package pt.up.fe.els2023.Config.Source;
 
+import pt.up.fe.els2023.Config.Source.FileSystemSource.FileSource;
+import pt.up.fe.els2023.Config.Source.FileSystemSource.FolderSource;
+
 import java.util.Map;
 
 public class SourceBuilder {

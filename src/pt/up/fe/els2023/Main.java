@@ -36,15 +36,14 @@ public class Main {
                                 .end()
                         .operation()
                                 .squashRows()
-                                .end();
+                                .end()
+                        .end();
 
-
-
-        Controller controller = new Controller(new File(args[0]));
-
-        controller
-                .setup()
-                .parseConfigFile()
-                .run();
+//        Controller controller = new Controller(new File(args[0]));
+//
+//        controller
+//                .setup()
+//                .parseConfigFile()
+//                .run();
     }
 }

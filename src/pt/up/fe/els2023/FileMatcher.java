@@ -1,8 +1,7 @@
 package pt.up.fe.els2023;
 
-
-import FileSource;
-import FolderSource;
+import pt.up.fe.els2023.Config.Source.FileSystemSource.FileSource;
+import pt.up.fe.els2023.Config.Source.FileSystemSource.FolderSource;
 import pt.up.fe.els2023.Config.Source.Source;
 
 import java.io.File;
@@ -17,11 +16,10 @@ public class FileMatcher {
 
 
     public static List<File> matchedFiles(Source source) {
-
         if (source instanceof FileSource) {
-            return matchedFilesFileSource(new File("./"), source.getPathPattern());
+            return matchedFilesFileSource(new File("./"), ((FileSource) source).getPathPattern());
         } else if (source instanceof FolderSource) {
-            return matchedFilesFolderSource(new File("./"), source.getPathPattern());
+            return matchedFilesFolderSource(new File("./"), ((FolderSource) source).getPathPattern());
         } else {
             System.out.println(source.toString() + " not implemented.");
         }

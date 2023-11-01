@@ -7,7 +7,6 @@ import org.json.simple.parser.ParseException;
 import pt.up.fe.els2023.Command.Command;
 import pt.up.fe.els2023.Command.RenameColumn;
 import pt.up.fe.els2023.Command.Select;
-import FileSource;
 import pt.up.fe.els2023.Config.Source.Source;
 import pt.up.fe.els2023.Config.Source.SourceBuilder;
 
