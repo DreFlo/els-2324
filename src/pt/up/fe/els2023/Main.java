@@ -14,12 +14,8 @@ public class Main {
                 .table()
                         .name("tableName")
                         .source()
-                                .folder()
-                                .path("resources/run[1-2]")
-                                .end()
-                        .source()
                                 .file()
-                                .path("resources/run3.csv")
+                                .path("resources/run1/*")
                                 .end()
                         .operation()
                                 .select()
@@ -37,7 +33,7 @@ public class Main {
                         .operation()
                                 .squashRows()
                                 .end()
-                        .end();
+                        .outputTo("output/DSL.csv");
 
 //        Controller controller = new Controller(new File(args[0]));
 //

@@ -25,16 +25,33 @@ public class Table {
     }
 
     public void extendTable(Map<String, Object> objectMap) {
-        List<String> keys = new ArrayList<>(objectMap.keySet());
-
         List<Object> row = new ArrayList<>();
-        for (String key: keys) {
-            if (!headers.contains(key)) {
-                headers.add(key);
+        for (String header: objectMap.keySet()) {
+            if (!getHeaders().contains(header)) {
+                getHeaders().add(header);
             }
-            row.add(headers.indexOf(key), objectMap.get(key));
+        }
+        for (String header: getHeaders()) {
+            row.add(objectMap.getOrDefault(header, null));
         }
         addRow(row);
+        updateRows();
+    }
+
+    private void updateRows() {
+        List<List<Object>> newRows = new ArrayList<>();
+        for (List<Object> row: getRows()) {
+            List<Object> newRow = new ArrayList<>();
+            for (String header: getHeaders()) {
+                if (row.size() > getHeaders().indexOf(header)) {
+                    newRow.add(row.get(getHeaders().indexOf(header)));
+                } else {
+                    newRow.add(null);
+                }
+            }
+            newRows.add(newRow);
+        }
+        setRows(newRows);
     }
 
     public void setName(String name) {

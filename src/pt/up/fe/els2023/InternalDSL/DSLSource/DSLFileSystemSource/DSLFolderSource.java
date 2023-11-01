@@ -5,6 +5,6 @@ import pt.up.fe.els2023.InternalDSL.DSLTableBuilder;
 
 public class DSLFolderSource extends DSLFileSystemSource<FolderSource> {
     public DSLFolderSource(DSLTableBuilder dslTableBuilder) {
-        super(dslTableBuilder, new FolderSource(), false);
+        super(dslTableBuilder, new FolderSource(), true);
     }
 }

@@ -4,6 +4,7 @@ import pt.up.fe.els2023.Config.Source.Source;
 import pt.up.fe.els2023.InternalDSL.DSLTableBuilder;
 import pt.up.fe.els2023.Table.Table;
 
+import java.util.List;
 import java.util.Map;
 
 public abstract class DSLSource<S extends Source> {
@@ -23,12 +24,16 @@ public abstract class DSLSource<S extends Source> {
         return dslTableBuilder;
     }
 
-    protected abstract Map<String, Object> getFlattenedRow();
+    protected abstract List<Map<String, Object>> getTableRows();
 
     public final DSLTableBuilder end() {
         Table table = getDSLTableBuilder().getTable();
 
-        table.extendTable(getFlattenedRow());
+        for (Map<String, Object> row : getTableRows()) {
+            table.extendTable(row);
+        }
+
+        System.out.println(table);
 
         return getDSLTableBuilder();
     }

@@ -7,7 +7,11 @@ import java.io.File;
 public class InputFileParserBuilder {
     public static InputFileParser getInputFileParser(String path, boolean folder){
         File file = new File(path);
-        String extension = Utils.getExtensionFromPath(path);
+        return getInputFileParser(file, folder);
+    }
+
+    public static InputFileParser getInputFileParser(File file, boolean folder) {
+        String extension = Utils.getExtensionFromPath(file.getPath());
 
         return switch (extension) {
             case "yaml" -> new YamlFileParser(file, folder);
