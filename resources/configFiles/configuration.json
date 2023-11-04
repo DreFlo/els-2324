@@ -4,16 +4,8 @@
       "name": "tableName",
       "sources": [
         {
-          "type": "file",
-          "path": "resources/decision_tree_1.yaml"
-        },
-        {
-          "type": "file",
-          "path": "resources/decision_tree_2.yaml"
-        },
-        {
-          "type": "file",
-          "path": "resources/decision_tree_3.yaml"
+          "type": "folder",
+          "path": "resources/run[1-2]"
         }
       ],
       "operations": [

@@ -6,7 +6,7 @@ import pt.up.fe.els2023.InternalDSL.DSLTableBuilder;
 import java.util.Optional;
 
 public class DSLOperation<C extends Command> {
-    private final DSLTableBuilder dslTableBuilder;
+    protected final DSLTableBuilder dslTableBuilder;
     private final Optional<C> command;
 
     public DSLOperation(DSLTableBuilder dslTableBuilder, C command) {
@@ -20,7 +20,7 @@ public class DSLOperation<C extends Command> {
         return command.get();
     }
 
-    public final DSLTableBuilder end() {
+    public DSLTableBuilder end() {
         dslTableBuilder.setTable(getCommand().execute(dslTableBuilder.getTable()));
         return dslTableBuilder;
     }
