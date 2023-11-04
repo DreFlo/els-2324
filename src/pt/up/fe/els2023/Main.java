@@ -17,6 +17,22 @@ public class Main {
                                 .folder()
                                 .path("resources/run2")
                                 .end()
+// TODO
+//                .operation()
+//                    .exclude()
+//                        .condition()
+//                            .columName(".*\\/.*")
+//                        .condition()
+//                            .fileType(List)
+//                        .whitelist()
+//                            .columnName("^params\\/.*")
+//                .extractOneFromObjectList(
+//                        'souceColumn',
+//                        ('MAX' 'MIN' 'MEDIAN'),
+//                        'sortFunction',
+//                        ['targetColumn']
+//                )
+
                         .operation()
                             .squashRows()
                             .end()
