@@ -40,6 +40,7 @@ public abstract class DSLFileSystemSource<FSS extends FileSystemSource> extends 
         for (File file : files) {
             InputFileParser inputFileParser = InputFileParserBuilder.getInputFileParser(file.getAbsolutePath(), isFolder());
             inputFileParser.parse();
+            System.out.println(inputFileParser.getFlattenedRow());
             Map<String, Object> flattenedRow = inputFileParser.getFlattenedRow();
             flattenedRows.add(flattenedRow);
         }
