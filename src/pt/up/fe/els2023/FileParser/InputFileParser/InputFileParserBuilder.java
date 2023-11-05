@@ -1,6 +1,6 @@
 package pt.up.fe.els2023.FileParser.InputFileParser;
 
-import pt.up.fe.els2023.Utils;
+import pt.up.fe.els2023.Utils.TableUtils;
 
 import java.io.File;
 
@@ -11,7 +11,7 @@ public class InputFileParserBuilder {
     }
 
     public static InputFileParser getInputFileParser(File file, boolean folder) {
-        String extension = Utils.getExtensionFromPath(file.getPath());
+        String extension = TableUtils.getExtensionFromPath(file.getPath());
 
         return switch (extension) {
             case "yaml" -> new YamlFileParser(file, folder);

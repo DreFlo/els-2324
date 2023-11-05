@@ -38,7 +38,7 @@ public class Table {
         updateRows();
     }
 
-    public List<Object> getValueFromHeader(String header) throws Exception {
+    public List<Object> getColumn(String header) throws Exception {
         List<Object> values = new ArrayList<>();
         int headerIndex = headers.indexOf(header);
 
@@ -47,14 +47,37 @@ public class Table {
         }
 
         for (List<Object> row: rows) {
-            if (headerIndex < row.size()) {
-                values.add(row.get(headerIndex));
-            } else {
-                values.add(null);       // TODO: I don't know how to deal with this situation.
-            }
+            values.add(row.get(headerIndex));
         }
 
         return values;
+    }
+
+    public boolean removeColumn(String column) {
+        int index = headers.indexOf(column);
+        if (index == -1) {
+            return false;
+        }
+        headers.remove(index);
+        for (List<Object> row: rows) {
+            row.remove(index);
+        }
+        return true;
+    }
+
+    public boolean addColumn(String column, List<Object> values) {
+        if (headers.contains(column)) {
+            return false;
+        }
+        headers.add(column);
+        for (int i = 0; i < rows.size(); i++) {
+            if (i < values.size()) {
+                rows.get(i).add(values.get(i));
+            } else {
+                rows.get(i).add(null);
+            }
+        }
+        return true;
     }
 
     private void updateRows() {

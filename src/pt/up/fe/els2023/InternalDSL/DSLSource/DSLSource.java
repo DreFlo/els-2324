@@ -33,8 +33,6 @@ public abstract class DSLSource<S extends Source> {
             table.extendTable(row);
         }
 
-        System.out.println(table);
-
         return getDSLTableBuilder();
     }
 }

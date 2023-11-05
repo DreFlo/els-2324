@@ -1,17 +1,12 @@
 package pt.up.fe.els2023.FileParser.InputFileParser;
 
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import pt.up.fe.els2023.FileParser.FileParser;
-import pt.up.fe.els2023.Utils;
 
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static pt.up.fe.els2023.Utils.safelyCastToStringObjectMap;
+import static pt.up.fe.els2023.Utils.TableUtils.safelyCastToStringObjectMap;
 
 
 public abstract class InputFileParser implements FileParser {

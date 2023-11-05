@@ -3,6 +3,7 @@ package pt.up.fe.els2023;
 import pt.up.fe.els2023.Config.Source.FileSystemSource.FileSource;
 import pt.up.fe.els2023.Config.Source.FileSystemSource.FolderSource;
 import pt.up.fe.els2023.Config.Source.Source;
+import pt.up.fe.els2023.Utils.TableUtils;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -57,7 +58,7 @@ public class FileMatcher {
         FilenameFilter filenameFilter = (dir, name) -> {
             if (subPattern.contains("*")) {
                 if(subPattern.contains(".")) {
-                    String extension = Utils.getExtensionFromPath(subPattern);
+                    String extension = TableUtils.getExtensionFromPath(subPattern);
                     return name.toLowerCase().endsWith("." + extension);
                 }
                 else {

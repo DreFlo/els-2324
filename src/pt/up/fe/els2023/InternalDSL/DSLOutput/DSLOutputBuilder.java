@@ -2,7 +2,7 @@ package pt.up.fe.els2023.InternalDSL.DSLOutput;
 
 import pt.up.fe.els2023.InternalDSL.DSLTableBuilder;
 
-import static pt.up.fe.els2023.Utils.getExtensionFromPath;
+import static pt.up.fe.els2023.Utils.TableUtils.getExtensionFromPath;
 
 public class DSLOutputBuilder {
     DSLTableBuilder dslTableBuilder;

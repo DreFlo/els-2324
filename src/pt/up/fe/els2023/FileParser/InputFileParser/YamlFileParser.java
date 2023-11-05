@@ -1,7 +1,6 @@
 package pt.up.fe.els2023.FileParser.InputFileParser;
 
 import org.yaml.snakeyaml.Yaml;
-import pt.up.fe.els2023.Utils;
 
 import java.io.File;
 import java.io.FileInputStream;

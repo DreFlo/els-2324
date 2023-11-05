@@ -1,8 +1,8 @@
 package pt.up.fe.els2023;
 
 import pt.up.fe.els2023.InternalDSL.InternalDSL;
-
-import java.util.List;
+import pt.up.fe.els2023.Utils.Comparators;
+import pt.up.fe.els2023.Utils.Selectors;
 
 
 public class Main {
@@ -17,6 +17,16 @@ public class Main {
                         .folder()
                         .path("resources/run2")
                         .end()
+                .operation()
+                    .squashRows()
+                    .end()
+                .operation()
+                    .extract()
+                        .from("functions")
+                        .select(Selectors.MAX)
+                        .sortBy(Comparators.TIME_PERCENTAGE)
+                        .get("name")
+                    .end()
 //            .operation()
 //                .exclude()
 //                    .condition()
@@ -26,18 +36,8 @@ public class Main {
 //                    .whitelist()
 //                        .columnName("^params\\/.*")
 //                .end()
-                .operation()
-                .extract()
-                .get("name")
-                .from("functions")
-                .select("max")
-                //.sortBy()
-                .to("time%")
-                .end()
-            .operation()
-                .squashRows()
-                .end()
-//                        .operation()
+
+//                .operation()
 //                                .select()
 //                                .column(".*AreaEstimates/Resources/.*")
 //                                .end()

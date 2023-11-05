@@ -24,8 +24,6 @@ public class SquashRows implements Command {
             return (String) row.get(folderIndex);
         }));
 
-        System.out.println(groupByFolder.keySet());
-
         for (String folder: groupByFolder.keySet()) {
             List<List<Object>> rows = groupByFolder.get(folder);
             if (folder.equals("")) {

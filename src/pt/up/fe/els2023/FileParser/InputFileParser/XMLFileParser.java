@@ -2,7 +2,7 @@ package pt.up.fe.els2023.FileParser.InputFileParser;
 
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
-import pt.up.fe.els2023.Utils;
+import pt.up.fe.els2023.Utils.TableUtils;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -37,6 +37,6 @@ public class XMLFileParser extends InputFileParser{
 
         doc.getDocumentElement().normalize();
 
-        return Utils.generateXMLMap(doc.getDocumentElement());
+        return TableUtils.generateXMLMap(doc.getDocumentElement());
     }
 }

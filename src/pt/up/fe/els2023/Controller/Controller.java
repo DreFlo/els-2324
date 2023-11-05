@@ -11,7 +11,7 @@ import pt.up.fe.els2023.FileParser.InputFileParser.XMLFileParser;
 import pt.up.fe.els2023.FileParser.InputFileParser.YamlFileParser;
 import pt.up.fe.els2023.FileWriter.OutputFileWriter.CsvFileWriter;
 import pt.up.fe.els2023.FileWriter.OutputFileWriter.HtmlFileWriter;
-import pt.up.fe.els2023.Utils;
+import pt.up.fe.els2023.Utils.TableUtils;
 import pt.up.fe.els2023.Table.Table;
 import pt.up.fe.els2023.TableBuilder.TableBuilder;
 import pt.up.fe.els2023.TableManipulator.TableManipulator;
@@ -34,7 +34,7 @@ public class Controller {
     }
 
     public Controller setup() {
-        String extension = Utils.getExtensionFromFile(configFile);
+        String extension = TableUtils.getExtensionFromFile(configFile);
 
         switch (extension) {
             case "json":
@@ -50,7 +50,7 @@ public class Controller {
 
 
     private void addFileParser(List<InputFileParser> inputFileParserList, File file, boolean storeFolderName) {
-        String extension = Utils.getExtensionFromFile(file);
+        String extension = TableUtils.getExtensionFromFile(file);
 
         switch (extension) {
             case "yaml":
@@ -120,7 +120,7 @@ public class Controller {
             for (String output: tableConfig.getOutputs()) {
                 System.out.println("Writing: \"" + output + "\"");
 
-                String extension = Utils.getExtensionFromPath(output);
+                String extension = TableUtils.getExtensionFromPath(output);
 
                 switch (extension) {
                     case "csv":

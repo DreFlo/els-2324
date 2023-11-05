@@ -3,6 +3,12 @@ plugins {
 	// For runnable JARs
 	id 'application'
  	id 'distribution'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
+}
+
+javafx {
+    version = "21.0.1"
+    modules = [ 'javafx.base' ]
 }
 
 

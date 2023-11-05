@@ -1,13 +1,15 @@
-package pt.up.fe.els2023;
+package pt.up.fe.els2023.Utils;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-public class Utils {
+public class TableUtils {
     public static String getExtensionFromFile(File file) {
         String filePath = file.getPath();
 
@@ -33,6 +35,17 @@ public class Utils {
         for (Map.Entry<?, ?> entry : ((Map<?, ?>) map).entrySet()) {
             String key = (String) entry.getKey();
             Object value = entry.getValue();
+            if (value instanceof Map<?, ?>) {
+                value = safelyCastToStringObjectMap(value);
+            } else if (value instanceof List<?> list) {
+                if (list.size() > 0 && list.get(0) instanceof Map<?, ?>) {
+                    List<Map<String, Object>> newList = new ArrayList<>();
+                    for (Object o : list) {
+                        newList.add(safelyCastToStringObjectMap(o));
+                    }
+                    value = newList;
+                }
+            }
             safeMap.put(key, value);
         }
 
