@@ -20,7 +20,7 @@ public class DSLOperation<C extends Command> {
         return command.get();
     }
 
-    public DSLTableBuilder end() {
+    public DSLTableBuilder end() throws Exception {
         dslTableBuilder.setTable(getCommand().execute(dslTableBuilder.getTable()));
         return dslTableBuilder;
     }

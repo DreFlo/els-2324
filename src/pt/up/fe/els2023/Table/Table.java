@@ -38,6 +38,25 @@ public class Table {
         updateRows();
     }
 
+    public List<Object> getValueFromHeader(String header) throws Exception {
+        List<Object> values = new ArrayList<>();
+        int headerIndex = headers.indexOf(header);
+
+        if (headerIndex == -1) {
+            throw new Exception(header + " is not in the table " + name);
+        }
+
+        for (List<Object> row: rows) {
+            if (headerIndex < row.size()) {
+                values.add(row.get(headerIndex));
+            } else {
+                values.add(null);       // TODO: I don't know how to deal with this situation.
+            }
+        }
+
+        return values;
+    }
+
     private void updateRows() {
         List<List<Object>> newRows = new ArrayList<>();
         for (List<Object> row: getRows()) {

@@ -1,7 +1,6 @@
 package pt.up.fe.els2023.InternalDSL.DSLOperation;
 
 import pt.up.fe.els2023.InternalDSL.DSLOperation.DSLExclude.DSLExclude;
-import pt.up.fe.els2023.InternalDSL.DSLOperation.DSLExtract.DSLExtract;
 import pt.up.fe.els2023.InternalDSL.DSLTableBuilder;
 
 

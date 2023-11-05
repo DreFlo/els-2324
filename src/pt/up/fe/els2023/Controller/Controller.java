@@ -81,7 +81,7 @@ public class Controller {
     }
 
 
-    public void run() {
+    public void run() throws Exception {
 
         // Input File Parser
         for (TableConfig tableConfig: tableConfigs) {

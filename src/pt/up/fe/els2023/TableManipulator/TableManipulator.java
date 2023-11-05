@@ -13,7 +13,7 @@ public class TableManipulator {
         this.commands = commands;
     };
 
-    public Table applyOperations(Table table) {
+    public Table applyOperations(Table table) throws Exception {
         Table resultTable = table;
         for (Command command : commands) {
             resultTable = command.execute(resultTable);

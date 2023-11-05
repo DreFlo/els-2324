@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         InternalDSL internalDSL = new InternalDSL();
 
         internalDSL
@@ -17,25 +17,23 @@ public class Main {
                         .folder()
                         .path("resources/run2")
                         .end()
-            .operation()
-                .exclude()
-                    .condition()
-                        .column(".*\\/.*")
-                        .objectType(List.class)
-                    .endCondition()
+//            .operation()
+//                .exclude()
+//                    .condition()
+//                        .column(".*\\/.*")
+//                        .objectType(List.class)
+//                    .endCondition()
 //                    .whitelist()
 //                        .columnName("^params\\/.*")
+//                .end()
+                .operation()
+                .extract()
+                .get("name")
+                .from("time%")
+                .select("max")
+                .sortBy()
+                .to("maxTime%")
                 .end()
-//            .operation()
-//                .extract()
-//                    .sourceColumn("sourceColumn")
-//                    .function("max")
-//                    .sort()
-//                    .targetColumn()
-//                        .column("column1")
-//                        .end()
-
-
             .operation()
                 .squashRows()
                 .end()
@@ -43,13 +41,8 @@ public class Main {
 //                                .select()
 //                                .column(".*AreaEstimates/Resources/.*")
 //                                .end()
-                    .outputTo("output/DSL.csv");
 
-//        Controller controller = new Controller(new File(args[0]));
-//
-//        controller
-//                .setup()
-//                .parseConfigFile()
-//                .run();
+
+            .outputTo("output/DSL.csv");
     }
 }
