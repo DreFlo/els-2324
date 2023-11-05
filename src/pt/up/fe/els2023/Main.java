@@ -29,24 +29,18 @@ public class Main {
                         .sortBy(Comparators.TIME_PERCENTAGE)
                         .get("name")
                     .end()
-            .operation()
-                .exclude()
-                    .blacklist()
-                        .column(".*\\/.*")
-                        .objectType(List.class)
-                    .end()
-//                    .whitelist()
-//                        .columnName("^params\\/.*")
-                .end()
-            .operation()
-                .squashRows()
-                .end()
-//                        .operation()
-//                                .select()
-//                                .column(".*AreaEstimates/Resources/.*")
-//                                .end()
-
-
-            .outputTo("output/DSL.csv");
+                .operation()
+                    .filter()
+                        .blacklist()
+                            .column(".*\\/.*")
+                            .objectOfType(List.class)
+                            .end()
+                        .whitelist()
+                            .column("^params\\/.*")
+                            .column(".*AreaEstimates/Resources/.*")
+                            .column("^functions\\/.*")
+                            .end()
+                        .end()
+                .outputTo("output/DSL3.csv");
     }
 }
