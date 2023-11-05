@@ -10,7 +10,7 @@ public class DSLExclude extends DSLOperation<Exclude> {
         super(dslTableBuilder, new Exclude());
     }
 
-    public DSLCondition condition() {
-        return new DSLCondition(dslTableBuilder, this);
+    public DSLExcludeBlacklist blacklist() {
+        return new DSLExcludeBlacklist(dslTableBuilder, this);
     }
 }

@@ -10,7 +10,7 @@ import javafx.util.Pair;
 public class Extract implements Command{
     String sourceColumn;
     Function<List<?>, Object> selector;
-    Comparator<Object> comparator;
+    Comparator<Map<?, ?>> comparator;
     List<String> unwindColumns;
 
     public Extract() {
@@ -35,7 +35,14 @@ public class Extract implements Command{
         List<Object> values = new ArrayList<>();
 
         for (Object cell : column) {
-            List<?> cellList = (List<?>) cell;
+            List<Map<?, ?>> cellList = new ArrayList<>();
+
+            for (Object object : (List<?>) cell) {
+                if (!(object instanceof Map<?, ?>)) {
+                    throw new Exception(sourceColumn + " is not a list of maps");
+                }
+                cellList.add((Map<?, ?>) object);
+            }
 
             cellList.sort(comparator);
 
@@ -78,7 +85,7 @@ public class Extract implements Command{
         this.unwindColumns.add(unwindColumn);
     }
 
-    public void setSortComparator(Comparator<Object> comparator) {
+    public void setSortComparator(Comparator<Map<?, ?>> comparator) {
         this.comparator = comparator;
     }
 }

@@ -4,6 +4,8 @@ import pt.up.fe.els2023.InternalDSL.InternalDSL;
 import pt.up.fe.els2023.Utils.Comparators;
 import pt.up.fe.els2023.Utils.Selectors;
 
+import java.util.List;
+
 
 public class Main {
 
@@ -27,17 +29,19 @@ public class Main {
                         .sortBy(Comparators.TIME_PERCENTAGE)
                         .get("name")
                     .end()
-//            .operation()
-//                .exclude()
-//                    .condition()
-//                        .column(".*\\/.*")
-//                        .objectType(List.class)
-//                    .endCondition()
+            .operation()
+                .exclude()
+                    .blacklist()
+                        .column(".*\\/.*")
+                        .objectType(List.class)
+                    .end()
 //                    .whitelist()
 //                        .columnName("^params\\/.*")
-//                .end()
-
-//                .operation()
+                .end()
+            .operation()
+                .squashRows()
+                .end()
+//                        .operation()
 //                                .select()
 //                                .column(".*AreaEstimates/Resources/.*")
 //                                .end()

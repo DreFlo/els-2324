@@ -5,6 +5,7 @@ import pt.up.fe.els2023.InternalDSL.DSLTableBuilder;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 
 public class DSLExtract extends DSLOperation<Extract> {
@@ -29,7 +30,7 @@ public class DSLExtract extends DSLOperation<Extract> {
         return this;
     }
 
-    public DSLExtract sortBy(Comparator<Object> comparator) {
+    public DSLExtract sortBy(Comparator<Map<?, ?>> comparator) {
         getCommand().setSortComparator(comparator);
         return this;
     }
