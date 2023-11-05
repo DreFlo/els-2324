@@ -10,7 +10,7 @@ public class DSLCondition extends DSLExclude{
     }
 
     public DSLCondition column(String string) {
-        getCommand().addCondition(string);
+        dslExclude.getCommand().addCondition(string);
         return this;
     }
 
