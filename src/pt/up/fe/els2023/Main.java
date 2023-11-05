@@ -2,6 +2,7 @@ package pt.up.fe.els2023;
 
 import pt.up.fe.els2023.InternalDSL.InternalDSL;
 
+import java.util.List;
 
 
 public class Main {
@@ -20,19 +21,19 @@ public class Main {
                 .exclude()
                     .condition()
                         .column(".*\\/.*")
-                        .fileType(Integer.class)
+                        .objectType(List.class)
                     .endCondition()
 //                    .whitelist()
 //                        .columnName("^params\\/.*")
                 .end()
-            .operation()
-                .extract()
-                    .sourceColumn("sourceColumn")
-                    .function("max")
-                    .sort()
-                    .targetColumn()
-                        .column("column1")
-                        .end()
+//            .operation()
+//                .extract()
+//                    .sourceColumn("sourceColumn")
+//                    .function("max")
+//                    .sort()
+//                    .targetColumn()
+//                        .column("column1")
+//                        .end()
 
 
             .operation()

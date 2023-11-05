@@ -14,8 +14,8 @@ public class DSLCondition extends DSLExclude{
         return this;
     }
 
-    public DSLCondition fileType(Class<?> fileType) {
-        getCommand().addCondition(fileType);
+    public DSLCondition objectType(Class<?> objectType) {
+        getCommand().addCondition(objectType);
         return this;
     }
 
