@@ -30,6 +30,10 @@ public class Filter implements Command {
         for (int i = 0; i < table.getHeaders().size(); i++) {
             String header = table.getHeaders().get(i);
 
+            if (header.startsWith("0__")) {
+                continue;
+            }
+
             if (checkStringConditions(header, blacklistedColumns) && !checkStringConditions(header, whitelistedColumns)) {
                 columnsToExclude.add(header);
             } else {

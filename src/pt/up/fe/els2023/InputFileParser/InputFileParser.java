@@ -17,9 +17,9 @@ public abstract class InputFileParser implements FileParser {
     @Override
     public final void parse() {
         obj = getMapFromFile();
-        obj.put("filename", inputFile.getName());
+        obj.put("0__filename", inputFile.getName());
         if (storeFolderName) {
-            obj.put("folder", inputFile.getParentFile().getName());
+            obj.put("0__folder", inputFile.getParentFile().getName());
         }
     }
 

@@ -11,7 +11,7 @@ public class SquashRows implements Command {
     @Override
     public Table execute(Table table) {
         List<List<Object>> newRows = new ArrayList<>();
-        int folderIndex = table.getHeaders().indexOf("folder");
+        int folderIndex = table.getHeaders().indexOf("0__folder");
 
         if (folderIndex == -1) {
             return table;
