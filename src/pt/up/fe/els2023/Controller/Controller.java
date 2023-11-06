@@ -13,6 +13,7 @@ import pt.up.fe.els2023.Utils.TableUtils;
 import pt.up.fe.els2023.Table.Table;
 import pt.up.fe.els2023.TableBuilder.TableBuilder;
 import pt.up.fe.els2023.TableManipulator.TableManipulator;
+import pt.up.fe.els2023.exceptions.FileTypeNotConfiguredException;
 
 import java.io.File;
 import java.util.*;
@@ -28,7 +29,7 @@ public class Controller {
         this.tables = new HashSet<>();
     }
 
-    private void addFileParser(List<InputFileParser> inputFileParserList, File file, boolean storeFolderName) {
+    private void addFileParser(List<InputFileParser> inputFileParserList, File file, boolean storeFolderName) throws FileTypeNotConfiguredException {
         String extension = TableUtils.getExtensionFromFile(file);
 
         switch (extension) {
@@ -42,8 +43,7 @@ public class Controller {
                 inputFileParserList.add(new XMLFileParser(file, storeFolderName));
                 break;
             default:
-                System.out.println("Error: " + extension + " file type not configured.");
-                break;
+                throw new FileTypeNotConfiguredException(extension);
         }
     }
 
@@ -97,8 +97,7 @@ public class Controller {
                         htmlFileWriter.writeFile();
                         break;
                     default:
-                        System.out.println("Error: " + extension + " file type not configured.");
-                        break;
+                        throw new FileTypeNotConfiguredException(extension);
                 }
             }
         }

@@ -7,6 +7,7 @@ import pt.up.fe.els2023.InternalDSL.InternalDSL;
 import pt.up.fe.els2023.Utils.Comparators;
 import pt.up.fe.els2023.Utils.Selectors;
 import pt.up.fe.els2023.Utils.TableUtils;
+import pt.up.fe.els2023.exceptions.FileTypeNotConfiguredException;
 
 import java.io.File;
 import java.util.List;
@@ -22,7 +23,7 @@ public class Main {
         return configFileParser.getTableConfigs();
     }
 
-    public void setup() {
+    public void setup() throws FileTypeNotConfiguredException {
         String extension = TableUtils.getExtensionFromFile(configFile);
 
         switch (extension) {
@@ -30,8 +31,7 @@ public class Main {
                 configFileParser = new JSONConfigFileParser(configFile);
                 break;
             default:
-                System.out.println("Error: " + extension + " file type not configured.");
-                break;
+                throw new FileTypeNotConfiguredException(extension);
         }
     }
 

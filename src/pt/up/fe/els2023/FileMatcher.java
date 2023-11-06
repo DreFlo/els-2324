@@ -4,6 +4,8 @@ import pt.up.fe.els2023.Config.Source.FileSystemSource.FileSource;
 import pt.up.fe.els2023.Config.Source.FileSystemSource.FolderSource;
 import pt.up.fe.els2023.Config.Source.Source;
 import pt.up.fe.els2023.Utils.TableUtils;
+import pt.up.fe.els2023.exceptions.NotDirectoryNorFileException;
+import pt.up.fe.specs.util.exceptions.NotImplementedException;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -16,16 +18,14 @@ public class FileMatcher {
     public FileMatcher() {}
 
 
-    public static List<File> matchedFiles(Source source) {
+    public static List<File> matchedFiles(Source source) throws NotDirectoryNorFileException {
         if (source instanceof FileSource) {
             return matchedFilesFileSource(new File("./"), ((FileSource) source).getPathPattern());
         } else if (source instanceof FolderSource) {
             return matchedFilesFolderSource(new File("./"), ((FolderSource) source).getPathPattern());
         } else {
-            System.out.println(source.toString() + " not implemented.");
+            throw new NotImplementedException(source.toString() + " not implemented.");
         }
-
-        return null;
     }
 
     // File Source
@@ -81,7 +81,7 @@ public class FileMatcher {
 
     // Folder Source
 
-    public static List<File> matchedFilesFolderSource(File sourceFile, String pathPattern) {
+    public static List<File> matchedFilesFolderSource(File sourceFile, String pathPattern) throws NotDirectoryNorFileException {
 
         List<File> matchedFiles = new ArrayList<>();
         Queue<File> fileQueue = new PriorityQueue<>();
@@ -97,7 +97,7 @@ public class FileMatcher {
             } else if(file.isDirectory()) {
                 fileQueue.addAll(Arrays.asList(Objects.requireNonNull(file.listFiles())));
             } else {
-                System.out.println(file.getName() + " is neither a Directory nor a File.");
+                throw new NotDirectoryNorFileException(file.getName());
             }
         }
 
