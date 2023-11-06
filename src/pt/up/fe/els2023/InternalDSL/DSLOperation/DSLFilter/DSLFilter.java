@@ -4,9 +4,9 @@ import pt.up.fe.els2023.Command.Filter;
 import pt.up.fe.els2023.InternalDSL.DSLOperation.DSLOperation;
 import pt.up.fe.els2023.InternalDSL.DSLTableBuilder;
 
-public class DSLExclude extends DSLOperation<Filter> {
+public class DSLFilter extends DSLOperation<Filter> {
 
-    public DSLExclude(DSLTableBuilder dslTableBuilder) {
+    public DSLFilter(DSLTableBuilder dslTableBuilder) {
         super(dslTableBuilder, new Filter());
     }
 

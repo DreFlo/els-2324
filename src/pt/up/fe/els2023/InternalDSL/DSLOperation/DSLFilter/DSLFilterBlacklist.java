@@ -3,17 +3,17 @@ package pt.up.fe.els2023.InternalDSL.DSLOperation.DSLFilter;
 import pt.up.fe.els2023.InternalDSL.DSLTableBuilder;
 
 public class DSLFilterBlacklist extends DSLFilterList {
-    public DSLFilterBlacklist(DSLTableBuilder dslTableBuilder, DSLExclude dslExclude) {
-        super(dslTableBuilder, dslExclude);
+    public DSLFilterBlacklist(DSLTableBuilder dslTableBuilder, DSLFilter dslFilter) {
+        super(dslTableBuilder, dslFilter);
     }
 
     public DSLFilterBlacklist column(String string) {
-        dslExclude.getCommand().addBlacklistedColumn(string);
+        dslFilter.getCommand().addBlacklistedColumn(string);
         return this;
     }
 
     public DSLFilterBlacklist objectOfType(Class<?> objectType) {
-        dslExclude.getCommand().addBlacklistedType(objectType);
+        dslFilter.getCommand().addBlacklistedType(objectType);
         return this;
     }
 }
