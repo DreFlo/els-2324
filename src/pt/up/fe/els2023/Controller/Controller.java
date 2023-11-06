@@ -25,29 +25,10 @@ public class Controller {
 
     List<TableConfig> tableConfigs;
 
-    File configFile;
-    ConfigFileParser<?> configFileParser;
-
-    public Controller (File configFile){
-        this.configFile = configFile;
+    public Controller (List<TableConfig> tableConfigs){
+        this.tableConfigs = tableConfigs;
         this.tables = new HashSet<>();
     }
-
-    public Controller setup() {
-        String extension = TableUtils.getExtensionFromFile(configFile);
-
-        switch (extension) {
-            case "json":
-                configFileParser = new JSONConfigFileParser(configFile);
-                break;
-            default:
-                System.out.println("Error: " + extension + " file type not configured.");
-                break;
-        }
-
-        return this;
-    }
-
 
     private void addFileParser(List<InputFileParser> inputFileParserList, File file, boolean storeFolderName) {
         String extension = TableUtils.getExtensionFromFile(file);
@@ -68,21 +49,7 @@ public class Controller {
         }
     }
 
-    public Controller parseConfigFile() {
-        System.out.println("Parsing config file");
-
-        // Config File Parser
-        configFileParser.parse();
-        tableConfigs = configFileParser.getTableConfigs();
-
-        System.out.println("Parsed config file");
-
-        return this;
-    }
-
-
     public void run() throws Exception {
-
         // Input File Parser
         for (TableConfig tableConfig: tableConfigs) {
             System.out.println("Working on table: \"" + tableConfig.getTableName() + "\"");
@@ -139,9 +106,7 @@ public class Controller {
         }
     }
 
-
     // Getters and Setters
-
     public List<TableConfig> getTableConfigs() {
         return tableConfigs;
     }

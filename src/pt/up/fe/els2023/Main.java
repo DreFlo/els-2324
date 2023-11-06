@@ -1,13 +1,40 @@
 package pt.up.fe.els2023;
 
+import pt.up.fe.els2023.Config.TableConfig;
+import pt.up.fe.els2023.Controller.Controller;
+import pt.up.fe.els2023.FileParser.ConfigFileParser.ConfigFileParser;
+import pt.up.fe.els2023.FileParser.ConfigFileParser.JSONConfigFileParser;
 import pt.up.fe.els2023.InternalDSL.InternalDSL;
 import pt.up.fe.els2023.Utils.Comparators;
 import pt.up.fe.els2023.Utils.Selectors;
+import pt.up.fe.els2023.Utils.TableUtils;
 
+import java.io.File;
 import java.util.List;
 
 
 public class Main {
+    File configFile;
+    ConfigFileParser<?> configFileParser;
+
+    public List<TableConfig> parseConfigFile() {
+        // Config File Parser
+        configFileParser.parse();
+        return configFileParser.getTableConfigs();
+    }
+
+    public void setup() {
+        String extension = TableUtils.getExtensionFromFile(configFile);
+
+        switch (extension) {
+            case "json":
+                configFileParser = new JSONConfigFileParser(configFile);
+                break;
+            default:
+                System.out.println("Error: " + extension + " file type not configured.");
+                break;
+        }
+    }
 
     public static void main(String[] args) throws Exception {
         InternalDSL internalDSL = new InternalDSL();
@@ -16,19 +43,19 @@ public class Main {
             .table()
                 .name("tableName")
                 .source()
-                        .folder()
+                    .folder()
                         .path("resources/run2")
                         .end()
                 .operation()
                     .squashRows()
-                    .end()
+                        .end()
                 .operation()
                     .extract()
                         .from("functions")
                         .select(Selectors.MAX)
                         .sortBy(Comparators.TIME_PERCENTAGE)
                         .get("name")
-                    .end()
+                        .end()
                 .operation()
                     .filter()
                         .blacklist()
