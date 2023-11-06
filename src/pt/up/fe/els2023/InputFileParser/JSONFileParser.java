@@ -1,4 +1,4 @@
-package pt.up.fe.els2023.FileParser.InputFileParser;
+package pt.up.fe.els2023.InputFileParser;
 
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;

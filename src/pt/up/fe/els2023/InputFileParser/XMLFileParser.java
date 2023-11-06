@@ -1,4 +1,4 @@
-package pt.up.fe.els2023.FileParser.InputFileParser;
+package pt.up.fe.els2023.InputFileParser;
 
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;

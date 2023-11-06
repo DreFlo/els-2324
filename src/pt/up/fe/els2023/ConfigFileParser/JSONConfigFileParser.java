@@ -1,4 +1,4 @@
-package pt.up.fe.els2023.FileParser.ConfigFileParser;
+package pt.up.fe.els2023.ConfigFileParser;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;

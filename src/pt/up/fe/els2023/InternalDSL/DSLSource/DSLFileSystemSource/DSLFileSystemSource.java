@@ -2,14 +2,13 @@ package pt.up.fe.els2023.InternalDSL.DSLSource.DSLFileSystemSource;
 
 import pt.up.fe.els2023.Config.Source.FileSystemSource.FileSystemSource;
 import pt.up.fe.els2023.FileMatcher;
-import pt.up.fe.els2023.FileParser.InputFileParser.InputFileParser;
-import pt.up.fe.els2023.FileParser.InputFileParser.InputFileParserBuilder;
+import pt.up.fe.els2023.InputFileParser.InputFileParser;
+import pt.up.fe.els2023.InputFileParser.InputFileParserBuilder;
 import pt.up.fe.els2023.InternalDSL.DSLSource.DSLSource;
 import pt.up.fe.els2023.InternalDSL.DSLTableBuilder;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

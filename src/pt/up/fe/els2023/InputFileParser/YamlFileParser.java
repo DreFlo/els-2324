@@ -1,4 +1,4 @@
-package pt.up.fe.els2023.FileParser.InputFileParser;
+package pt.up.fe.els2023.InputFileParser;
 
 import org.yaml.snakeyaml.Yaml;
 

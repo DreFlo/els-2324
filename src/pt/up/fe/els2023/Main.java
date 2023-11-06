@@ -1,9 +1,8 @@
 package pt.up.fe.els2023;
 
 import pt.up.fe.els2023.Config.TableConfig;
-import pt.up.fe.els2023.Controller.Controller;
-import pt.up.fe.els2023.FileParser.ConfigFileParser.ConfigFileParser;
-import pt.up.fe.els2023.FileParser.ConfigFileParser.JSONConfigFileParser;
+import pt.up.fe.els2023.ConfigFileParser.ConfigFileParser;
+import pt.up.fe.els2023.ConfigFileParser.JSONConfigFileParser;
 import pt.up.fe.els2023.InternalDSL.InternalDSL;
 import pt.up.fe.els2023.Utils.Comparators;
 import pt.up.fe.els2023.Utils.Selectors;

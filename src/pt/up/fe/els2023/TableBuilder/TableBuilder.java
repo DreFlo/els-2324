@@ -1,13 +1,12 @@
 package pt.up.fe.els2023.TableBuilder;
 
 
-import pt.up.fe.els2023.FileParser.InputFileParser.InputFileParser;
+import pt.up.fe.els2023.InputFileParser.InputFileParser;
 import pt.up.fe.els2023.Table.Table;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class TableBuilder {
     String name;

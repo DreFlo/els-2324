@@ -1,9 +1,9 @@
-package pt.up.fe.els2023.FileParser.ConfigFileParser;
+package pt.up.fe.els2023.ConfigFileParser;
 
 import pt.up.fe.els2023.Command.Command;
 import pt.up.fe.els2023.Config.Source.Source;
 import pt.up.fe.els2023.Config.TableConfig;
-import pt.up.fe.els2023.FileParser.FileParser;
+import pt.up.fe.els2023.Utils.FileParser;
 
 import java.io.File;
 import java.util.ArrayList;
