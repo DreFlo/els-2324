@@ -44,6 +44,10 @@ public class SquashRows implements Command {
             }
         }
 
-        return new Table(table.getName(), table.getHeaders(), newRows);
+        Table newTable = new Table(table.getName(), table.getHeaders(), newRows);
+
+        newTable.removeColumn("0__filename");
+
+        return newTable;
     }
 }
