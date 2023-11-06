@@ -22,32 +22,16 @@ public class TableConfig {
         return tableName;
     }
 
-    public void setTableName(String tableName) {
-        this.tableName = tableName;
-    }
-
     public List<Source> getSources() {
         return sources;
-    }
-
-    public void setSources(List<Source> sources) {
-        this.sources = sources;
     }
 
     public List<Command> getOperations() {
         return operations;
     }
 
-    public void setOperations(List<Command> operations) {
-        this.operations = operations;
-    }
-
     public List<String> getOutputs() {
         return outputs;
-    }
-
-    public void setOutputs(List<String> outputs) {
-        this.outputs = outputs;
     }
 
     @Override

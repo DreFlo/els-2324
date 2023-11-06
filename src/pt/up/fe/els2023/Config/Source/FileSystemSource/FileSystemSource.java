@@ -27,10 +27,6 @@ public class FileSystemSource extends Source {
         this.pathPattern = pathPattern.describeConstable();
     }
 
-    public void unsetPathPattern() {
-        this.pathPattern = Optional.empty();
-    }
-
     public boolean isEmpty() {
         return pathPattern.isEmpty();
     }

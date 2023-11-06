@@ -26,7 +26,7 @@ public class SquashRows implements Command {
 
         for (String folder: groupByFolder.keySet()) {
             List<List<Object>> rows = groupByFolder.get(folder);
-            if (folder.equals("")) {
+            if (folder.isEmpty()) {
                 newRows.addAll(rows);
             }
             else {

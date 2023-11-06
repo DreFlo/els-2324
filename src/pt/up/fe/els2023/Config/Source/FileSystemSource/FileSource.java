@@ -1,7 +1,5 @@
 package pt.up.fe.els2023.Config.Source.FileSystemSource;
 
-import pt.up.fe.els2023.Config.Source.Source;
-
 public class FileSource extends FileSystemSource {
 
     public FileSource() {

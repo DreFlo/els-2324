@@ -66,8 +66,6 @@ public class JSONConfigFileParser extends ConfigFileParser<JSONObject> {
                 for (Object columnObject : (JSONArray) operationJSON.get("columns"))
                     columns.add((String) columnObject);
                 operations.add(new Select(columns));
-            } else if (operationJSON.get("type").equals("squashRows")) {
-                continue;
             }
         }
     }

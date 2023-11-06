@@ -18,7 +18,7 @@ public class YamlFileParser extends InputFileParser {
     @Override
     protected Map<String, Object> getMapFromFile() {
         Yaml yaml = new Yaml();
-        InputStream inputStream = null;
+        InputStream inputStream;
         try {
             inputStream = new FileInputStream(inputFile);
         } catch (FileNotFoundException e) {

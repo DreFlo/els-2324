@@ -36,7 +36,7 @@ public abstract class InputFileParser implements FileParser {
             String key = entry.getKey();
             Object value = entry.getValue();
 
-            String columnName = parentKey.equals("") ? key : parentKey + "/" + key;
+            String columnName = parentKey.isEmpty() ? key : parentKey + "/" + key;
             if (value instanceof Map<?, ?>) {
                 flattenedMap.putAll(getFlattenedMapHelper(safelyCastToStringObjectMap(value), columnName));
             } else {

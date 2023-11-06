@@ -102,9 +102,4 @@ public class Controller {
             }
         }
     }
-
-    // Getters and Setters
-    public List<TableConfig> getTableConfigs() {
-        return tableConfigs;
-    }
 }

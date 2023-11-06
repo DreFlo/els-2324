@@ -49,9 +49,6 @@ public class Select implements Command {
             this.selectedHeaderPatterns.add(header);
     }
 
-    public List<String> getSelectedHeaderPatterns() {
-        return selectedHeaderPatterns;
-    }
 
     public List<String> getSelectedHeaders(Table table) {
         List<String> selectedHeaders = new ArrayList<>();

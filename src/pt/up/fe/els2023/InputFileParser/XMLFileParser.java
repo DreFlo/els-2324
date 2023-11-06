@@ -20,8 +20,8 @@ public class XMLFileParser extends InputFileParser{
     @Override
     protected Map<String, Object> getMapFromFile() {
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = null;
-        Document doc = null;
+        DocumentBuilder dBuilder;
+        Document doc;
 
         try {
             dBuilder = dbFactory.newDocumentBuilder();

@@ -68,7 +68,7 @@ public abstract class ConfigFileParser<ParserObject> implements FileParser {
         extractOutputs(outputs, parserObject);
 
         return new TableConfig(name, sources, operations, outputs);
-    };
+    }
 
     protected abstract List<ParserObject> retrieveConfigurationTableList(ParserObject parserObject);
 
