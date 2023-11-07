@@ -34,7 +34,11 @@ public class Filter implements Command {
                 continue;
             }
 
-            if (checkStringConditions(header, blacklistedColumns) && !checkStringConditions(header, whitelistedColumns)) {
+            if (checkStringConditions(header, whitelistedColumns)) {
+                continue;
+            }
+
+            if (checkStringConditions(header, blacklistedColumns)) {
                 columnsToExclude.add(header);
             } else {
                 for (List<Object> row : table.getRows()) {

@@ -45,6 +45,10 @@ public class Main {
                     .folder()
                         .path("resources/run2")
                         .end()
+                .source()
+                    .folder()
+                        .path("resources/run2_copy")
+                        .end()
                 .operation()
                     .squashRows()
                         .end()
@@ -67,6 +71,6 @@ public class Main {
                             .column("^functions\\/.*")
                             .end()
                         .end()
-                .outputTo("output/DSL3.csv");
+                .outputTo("output/DSL4.csv");
     }
 }
