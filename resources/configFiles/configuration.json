@@ -10,39 +10,34 @@
       ],
       "operations": [
         {
-          "type" : "select",
-          "columns" : [
-            "filename",
-            "params/criterion",
-            "params/splitter",
-            "params/ccp_alpha",
-            "params/min_samples_split"
-          ]
+          "type" : "squashRows"
         },
         {
-          "type": "renameColumn",
-          "oldName": "params/criterion",
-          "newName": "Criterion"
+          "type": "extract",
+          "from": "functions",
+          "select": "Selectors.MAX",
+          "sortBy": "Comparators.TIME_PERCENTAGE",
+          "get": "name"
         },
         {
-          "type": "renameColumn",
-          "oldName": "params/splitter",
-          "newName": "Splitter"
-        },
-        {
-          "type": "renameColumn",
-          "oldName": "params/ccp_alpha",
-          "newName": "CPP Alpha"
-        },
-        {
-          "type": "renameColumn",
-          "oldName": "params/min_samples_split",
-          "newName": "Min Samples Split"
+          "type": "filter",
+          "blackList": {
+            "column": [
+              ".*\\/.*"
+            ],
+            "objectOfType": "List.class"
+          },
+          "whiteList": {
+            "column": [
+              "^params\\/.*",
+              ".*AreaEstimates/Resources/.*",
+              "^functions\\/.*"
+            ]
+          }
         }
       ],
       "outputs": [
-        "output/table.csv",
-        "output/table.html"
+        "output/DSL3.csv"
       ]
     }
   ]
