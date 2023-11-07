@@ -56,16 +56,6 @@ public class FileMatcher {
      */
     private static File[] getFilesFileSource(File sourceFile, String subPattern) {
         FilenameFilter filenameFilter = (dir, name) -> {
-            if (subPattern.contains("*")) {
-                if(subPattern.contains(".")) {
-                    String extension = TableUtils.getExtensionFromPath(subPattern);
-                    return name.toLowerCase().endsWith("." + extension);
-                }
-                else {
-                    return true;
-                }
-            }
-
             Pattern pattern = Pattern.compile(subPattern);
             Matcher matcher = pattern.matcher(name);
             if(matcher.matches()) {
