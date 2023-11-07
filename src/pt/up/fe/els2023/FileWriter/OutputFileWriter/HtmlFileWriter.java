@@ -33,11 +33,19 @@ public class HtmlFileWriter implements OutputFileWriter {
         }
         htmlString.append("</tr>");
 
+        System.out.println(rows);
+
         // rows
         for (List<Object> row : rows) {
             htmlString.append("<tr>");
+            System.out.println(row);
             for (Object rowData : row) {
+                if (rowData == null) {
+                    htmlString.append("<td>").append("null").append("</td>");
+                    continue;
+                }
                 htmlString.append("<td>").append(rowData.toString()).append("</td>");
+
             }
             htmlString.append("</tr>");
         }
