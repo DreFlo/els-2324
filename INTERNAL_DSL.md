@@ -52,6 +52,36 @@ internalDSL
 
 4. **Operations**
 
+- **Select**
+
+Select the columns to work on and to be outputed.
+
+```
+internalDSL
+    .table()
+        .name("table_name")
+    .operation()
+        .select()
+            .column("column1")
+            .column("column2")
+            .end();
+```
+
+- **Select**
+
+Change the name of a column from "foo" to "bar".
+
+```
+internalDSL
+    .table()
+        .name("table_name")
+    .operation()
+        .renameColumn()
+            .from("foo")
+            .to("bar")
+            .end();
+```
+
 - **Squash Rows**
 
 Combine multiple rows of a table into one single row:
