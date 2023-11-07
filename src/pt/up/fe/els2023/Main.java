@@ -57,7 +57,7 @@ public class Main {
                         .from("functions")
                         .select(Selectors.MAX)
                         .sortBy(Comparators.TIME_PERCENTAGE)
-                        .get("name")
+                        .get("name", "time%")
                         .end()
                 .operation()
                     .filter()
@@ -71,6 +71,6 @@ public class Main {
                             .column("^functions\\/.*")
                             .end()
                         .end()
-                .outputTo("output/DSL4.csv");
+                .outputTo("output/DSL4.html");
     }
 }
