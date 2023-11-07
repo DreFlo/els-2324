@@ -14,6 +14,9 @@ Click the link to explore the configuration file elements.
 ## [Design Decisions and Priorities](DESIGN_DECISIONS.md)
 Follow the link to read about our decisions and priorities designing this model.
 
+## [Internal DSL](INTERNAL_DSL.md)
+Click the link to dive into the key concepts and rules of our Internal DSL.
+
 ## Project setup
 
 For this project, you need to [install Gradle](https://gradle.org/install/)
