@@ -43,7 +43,7 @@ public class Main {
                 .name("tableName")
                 .source()
                     .folder()
-                        .path("resources/run2")
+                        .path("resources/run2.*")
                         .end()
                 .operation()
                     .squashRows()

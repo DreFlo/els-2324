@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.feup.els5.dsl
+Bundle-ManifestVersion: 2
+Bundle-Name: org.feup.els5.dsl
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: org.feup.els5.dsl; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.16.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
+ org.eclipse.xtext.util,
+ org.eclipse.emf.common,
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Export-Package: org.feup.els5.dsl,
+ org.feup.els5.dsl.generator,
+ org.feup.els5.dsl.serializer,
+ org.feup.els5.dsl.dSL,
+ org.feup.els5.dsl.dSL.util,
+ org.feup.els5.dsl.parser.antlr.internal,
+ org.feup.els5.dsl.scoping,
+ org.feup.els5.dsl.services,
+ org.feup.els5.dsl.parser.antlr,
+ org.feup.els5.dsl.validation,
+ org.feup.els5.dsl.dSL.impl
+Import-Package: org.apache.log4j
