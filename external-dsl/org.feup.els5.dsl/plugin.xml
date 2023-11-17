@@ -3,8 +3,8 @@
 <plugin>
 	<extension point="org.eclipse.emf.ecore.generated_package">
 		<package
-			uri = "http://www.feup.org/els5/dsl/DSL"
-			class = "org.feup.els5.dsl.dSL.DSLPackage"
-			genModel = "model/generated/DSL.genmodel" />
+			uri = "http://www.feup.org/els5/dsl/TableDSL"
+			class = "org.feup.els5.dsl.tableDSL.TableDSLPackage"
+			genModel = "model/generated/TableDSL.genmodel" />
 	</extension>
 </plugin>

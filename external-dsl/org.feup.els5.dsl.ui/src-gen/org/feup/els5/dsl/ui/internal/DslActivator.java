@@ -12,8 +12,8 @@ import org.apache.log4j.Logger;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ui.shared.SharedStateModule;
 import org.eclipse.xtext.util.Modules2;
-import org.feup.els5.dsl.DSLRuntimeModule;
-import org.feup.els5.dsl.ui.DSLUiModule;
+import org.feup.els5.dsl.TableDSLRuntimeModule;
+import org.feup.els5.dsl.ui.TableDSLUiModule;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -23,7 +23,7 @@ import org.osgi.framework.BundleContext;
 public class DslActivator extends AbstractUIPlugin {
 
 	public static final String PLUGIN_ID = "org.feup.els5.dsl.ui";
-	public static final String ORG_FEUP_ELS5_DSL_DSL = "org.feup.els5.dsl.DSL";
+	public static final String ORG_FEUP_ELS5_DSL_TABLEDSL = "org.feup.els5.dsl.TableDSL";
 	
 	private static final Logger logger = Logger.getLogger(DslActivator.class);
 	
@@ -73,15 +73,15 @@ public class DslActivator extends AbstractUIPlugin {
 	}
 	
 	protected com.google.inject.Module getRuntimeModule(String grammar) {
-		if (ORG_FEUP_ELS5_DSL_DSL.equals(grammar)) {
-			return new DSLRuntimeModule();
+		if (ORG_FEUP_ELS5_DSL_TABLEDSL.equals(grammar)) {
+			return new TableDSLRuntimeModule();
 		}
 		throw new IllegalArgumentException(grammar);
 	}
 	
 	protected com.google.inject.Module getUiModule(String grammar) {
-		if (ORG_FEUP_ELS5_DSL_DSL.equals(grammar)) {
-			return new DSLUiModule(this);
+		if (ORG_FEUP_ELS5_DSL_TABLEDSL.equals(grammar)) {
+			return new TableDSLUiModule(this);
 		}
 		throw new IllegalArgumentException(grammar);
 	}

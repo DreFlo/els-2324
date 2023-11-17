@@ -1,9 +1,0 @@
-grammar org.feup.els5.dsl.DSL with org.eclipse.xtext.common.Terminals
-
-generate dSL "http://www.feup.org/els5/dsl/DSL"
-
-Model:
-	greetings+=Greeting*;
-	
-Greeting:
-	'Hello' name=ID '!';

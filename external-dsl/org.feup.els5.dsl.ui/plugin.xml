@@ -4,48 +4,48 @@
 	<extension
 		point="org.eclipse.ui.editors">
 		<editor
-			class="org.feup.els5.dsl.ui.DSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+			class="org.feup.els5.dsl.ui.TableDSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
 			contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
 			default="true"
-			extensions="dsl"
-			id="org.feup.els5.dsl.DSL"
-			name="DSL Editor">
+			extensions="table"
+			id="org.feup.els5.dsl.TableDSL"
+			name="TableDSL Editor">
 		</editor>
 	</extension>
 	<extension
 		point="org.eclipse.ui.handlers">
 		<handler
-			class="org.feup.els5.dsl.ui.DSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
+			class="org.feup.els5.dsl.ui.TableDSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
 			commandId="org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclaration">
 			<activeWhen>
 				<reference
-					definitionId="org.feup.els5.dsl.DSL.Editor.opened">
+					definitionId="org.feup.els5.dsl.TableDSL.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
 		<handler
-			class="org.feup.els5.dsl.ui.DSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
-			commandId="org.feup.els5.dsl.DSL.validate">
+			class="org.feup.els5.dsl.ui.TableDSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
+			commandId="org.feup.els5.dsl.TableDSL.validate">
 			<activeWhen>
 				<reference
-					definitionId="org.feup.els5.dsl.DSL.Editor.opened">
+					definitionId="org.feup.els5.dsl.TableDSL.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
 		<!-- copy qualified name -->
 		<handler
-			class="org.feup.els5.dsl.ui.DSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
+			class="org.feup.els5.dsl.ui.TableDSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
 			commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName">
 			<activeWhen>
-				<reference definitionId="org.feup.els5.dsl.DSL.Editor.opened" />
+				<reference definitionId="org.feup.els5.dsl.TableDSL.Editor.opened" />
 			</activeWhen>
 		</handler>
 		<handler
-			class="org.feup.els5.dsl.ui.DSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
+			class="org.feup.els5.dsl.ui.TableDSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
 			commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName">
 			<activeWhen>
 				<and>
-					<reference definitionId="org.feup.els5.dsl.DSL.XtextEditor.opened" />
+					<reference definitionId="org.feup.els5.dsl.TableDSL.XtextEditor.opened" />
 					<iterate>
 						<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
 					</iterate>
@@ -54,22 +54,22 @@
 		</handler>
 	</extension>
 	<extension point="org.eclipse.core.expressions.definitions">
-		<definition id="org.feup.els5.dsl.DSL.Editor.opened">
+		<definition id="org.feup.els5.dsl.TableDSL.Editor.opened">
 			<and>
 				<reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
 				<with variable="activeEditor">
 					<test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName"
-						value="org.feup.els5.dsl.DSL"
+						value="org.feup.els5.dsl.TableDSL"
 						forcePluginActivation="true"/>
 				</with>
 			</and>
 		</definition>
-		<definition id="org.feup.els5.dsl.DSL.XtextEditor.opened">
+		<definition id="org.feup.els5.dsl.TableDSL.XtextEditor.opened">
 			<and>
 				<reference definitionId="isXtextEditorActive"/>
 				<with variable="activeEditor">
 					<test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName"
-						value="org.feup.els5.dsl.DSL"
+						value="org.feup.els5.dsl.TableDSL"
 						forcePluginActivation="true"/>
 				</with>
 			</and>
@@ -78,33 +78,33 @@
 	<extension
 			point="org.eclipse.ui.preferencePages">
 		<page
-			class="org.feup.els5.dsl.ui.DSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-			id="org.feup.els5.dsl.DSL"
-			name="DSL">
-			<keywordReference id="org.feup.els5.dsl.ui.keyword_DSL"/>
+			class="org.feup.els5.dsl.ui.TableDSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+			id="org.feup.els5.dsl.TableDSL"
+			name="TableDSL">
+			<keywordReference id="org.feup.els5.dsl.ui.keyword_TableDSL"/>
 		</page>
 		<page
-			category="org.feup.els5.dsl.DSL"
-			class="org.feup.els5.dsl.ui.DSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
-			id="org.feup.els5.dsl.DSL.coloring"
+			category="org.feup.els5.dsl.TableDSL"
+			class="org.feup.els5.dsl.ui.TableDSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
+			id="org.feup.els5.dsl.TableDSL.coloring"
 			name="Syntax Coloring">
-			<keywordReference id="org.feup.els5.dsl.ui.keyword_DSL"/>
+			<keywordReference id="org.feup.els5.dsl.ui.keyword_TableDSL"/>
 		</page>
 		<page
-			category="org.feup.els5.dsl.DSL"
-			class="org.feup.els5.dsl.ui.DSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
-			id="org.feup.els5.dsl.DSL.templates"
+			category="org.feup.els5.dsl.TableDSL"
+			class="org.feup.els5.dsl.ui.TableDSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
+			id="org.feup.els5.dsl.TableDSL.templates"
 			name="Templates">
-			<keywordReference id="org.feup.els5.dsl.ui.keyword_DSL"/>
+			<keywordReference id="org.feup.els5.dsl.ui.keyword_TableDSL"/>
 		</page>
 	</extension>
 	<extension
 			point="org.eclipse.ui.propertyPages">
 		<page
-			class="org.feup.els5.dsl.ui.DSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-			id="org.feup.els5.dsl.DSL"
-			name="DSL">
-			<keywordReference id="org.feup.els5.dsl.ui.keyword_DSL"/>
+			class="org.feup.els5.dsl.ui.TableDSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+			id="org.feup.els5.dsl.TableDSL"
+			name="TableDSL">
+			<keywordReference id="org.feup.els5.dsl.ui.keyword_TableDSL"/>
 			<enabledWhen>
 				<adapt type="org.eclipse.core.resources.IProject"/>
 			</enabledWhen>
@@ -114,14 +114,14 @@
 	<extension
 		point="org.eclipse.ui.keywords">
 		<keyword
-			id="org.feup.els5.dsl.ui.keyword_DSL"
-			label="DSL"/>
+			id="org.feup.els5.dsl.ui.keyword_TableDSL"
+			label="TableDSL"/>
 	</extension>
 	<extension
 		point="org.eclipse.ui.commands">
 		<command
 			description="Trigger expensive validation"
-			id="org.feup.els5.dsl.DSL.validate"
+			id="org.feup.els5.dsl.TableDSL.validate"
 			name="Validate">
 		</command>
 		<!-- copy qualified name -->
@@ -142,12 +142,12 @@
 		<menuContribution
 			locationURI="popup:#TextEditorContext?after=group.edit">
 			<command
-				commandId="org.feup.els5.dsl.DSL.validate"
+				commandId="org.feup.els5.dsl.TableDSL.validate"
 				style="push"
 				tooltip="Trigger expensive validation">
 				<visibleWhen checkEnabled="false">
 					<reference
-						definitionId="org.feup.els5.dsl.DSL.Editor.opened">
+						definitionId="org.feup.els5.dsl.TableDSL.Editor.opened">
 					</reference>
 				</visibleWhen>
 			</command>
@@ -157,7 +157,7 @@
 			<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName"
 				style="push" tooltip="Copy Qualified Name">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.feup.els5.dsl.DSL.Editor.opened" />
+					<reference definitionId="org.feup.els5.dsl.TableDSL.Editor.opened" />
 				</visibleWhen>
 			</command>
 		</menuContribution>
@@ -165,7 +165,7 @@
 			<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName"
 				style="push" tooltip="Copy Qualified Name">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.feup.els5.dsl.DSL.Editor.opened" />
+					<reference definitionId="org.feup.els5.dsl.TableDSL.Editor.opened" />
 				</visibleWhen>
 			</command>
 		</menuContribution>
@@ -174,7 +174,7 @@
 				style="push" tooltip="Copy Qualified Name">
 				<visibleWhen checkEnabled="false">
 					<and>
-						<reference definitionId="org.feup.els5.dsl.DSL.XtextEditor.opened" />
+						<reference definitionId="org.feup.els5.dsl.TableDSL.XtextEditor.opened" />
 						<iterate>
 							<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
 						</iterate>
@@ -187,7 +187,7 @@
 		<menuContribution locationURI="popup:#TextEditorContext?endof=group.find">
 			<command commandId="org.eclipse.xtext.ui.editor.FindReferences">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.feup.els5.dsl.DSL.Editor.opened">
+					<reference definitionId="org.feup.els5.dsl.TableDSL.Editor.opened">
 					</reference>
 				</visibleWhen>
 			</command>
@@ -195,11 +195,11 @@
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
 		<handler
-			class="org.feup.els5.dsl.ui.DSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
+			class="org.feup.els5.dsl.ui.TableDSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
 			commandId="org.eclipse.xtext.ui.editor.FindReferences">
 			<activeWhen>
 				<reference
-					definitionId="org.feup.els5.dsl.DSL.Editor.opened">
+					definitionId="org.feup.els5.dsl.TableDSL.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -207,9 +207,9 @@
 	<extension point="org.eclipse.core.contenttype.contentTypes">
 		<content-type
 			base-type="org.eclipse.core.runtime.text"
-			file-extensions="dsl"
-			id="org.feup.els5.dsl.DSL.contenttype"
-			name="DSL File"
+			file-extensions="table"
+			id="org.feup.els5.dsl.TableDSL.contenttype"
+			name="TableDSL File"
 			priority="normal">
 		</content-type>
 	</extension>
@@ -217,68 +217,68 @@
 	<extension
 		point="org.eclipse.emf.ecore.extension_parser">
 		<parser
-			class="org.feup.els5.dsl.ui.DSLExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
-			type="dsl">
+			class="org.feup.els5.dsl.ui.TableDSLExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
+			type="table">
 		</parser>
 	</extension>
 	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
 		<resourceServiceProvider
-			class="org.feup.els5.dsl.ui.DSLExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
-			uriExtension="dsl">
+			class="org.feup.els5.dsl.ui.TableDSLExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
+			uriExtension="table">
 		</resourceServiceProvider>
 	</extension>
-	<!-- marker definitions for org.feup.els5.dsl.DSL -->
+	<!-- marker definitions for org.feup.els5.dsl.TableDSL -->
 	<extension
-			id="dsl.check.fast"
-			name="DSL Problem"
+			id="tabledsl.check.fast"
+			name="TableDSL Problem"
 			point="org.eclipse.core.resources.markers">
 		<super type="org.eclipse.xtext.ui.check.fast"/>
 		<persistent value="true"/>
 	</extension>
 	<extension
-			id="dsl.check.normal"
-			name="DSL Problem"
+			id="tabledsl.check.normal"
+			name="TableDSL Problem"
 			point="org.eclipse.core.resources.markers">
 		<super type="org.eclipse.xtext.ui.check.normal"/>
 		<persistent value="true"/>
 	</extension>
 	<extension
-			id="dsl.check.expensive"
-			name="DSL Problem"
+			id="tabledsl.check.expensive"
+			name="TableDSL Problem"
 			point="org.eclipse.core.resources.markers">
 		<super type="org.eclipse.xtext.ui.check.expensive"/>
 		<persistent value="true"/>
 	</extension>
 	<extension point="org.eclipse.ui.preferencePages">
 		<page
-			category="org.feup.els5.dsl.DSL"
-			class="org.feup.els5.dsl.ui.DSLExecutableExtensionFactory:org.eclipse.xtext.ui.validation.ValidatorPreferencePage"
-			id="org.feup.els5.dsl.DSL.validator.preferencePage"
+			category="org.feup.els5.dsl.TableDSL"
+			class="org.feup.els5.dsl.ui.TableDSLExecutableExtensionFactory:org.eclipse.xtext.ui.validation.ValidatorPreferencePage"
+			id="org.feup.els5.dsl.TableDSL.validator.preferencePage"
 			name="Errors/Warnings">
-			<keywordReference id="org.feup.els5.dsl.ui.keyword_DSL"/>
+			<keywordReference id="org.feup.els5.dsl.ui.keyword_TableDSL"/>
 		</page>
 	</extension>
 	<extension point="org.eclipse.xtext.builder.participant">
 		<participant
-			class="org.feup.els5.dsl.ui.DSLExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
-			fileExtensions="dsl"/>
+			class="org.feup.els5.dsl.ui.TableDSLExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
+			fileExtensions="table"/>
 	</extension>
 	<extension point="org.eclipse.ui.preferencePages">
 		<page
-			category="org.feup.els5.dsl.DSL"
-			class="org.feup.els5.dsl.ui.DSLExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-			id="org.feup.els5.dsl.DSL.compiler.preferencePage"
+			category="org.feup.els5.dsl.TableDSL"
+			class="org.feup.els5.dsl.ui.TableDSLExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+			id="org.feup.els5.dsl.TableDSL.compiler.preferencePage"
 			name="Compiler">
-			<keywordReference id="org.feup.els5.dsl.ui.keyword_DSL"/>
+			<keywordReference id="org.feup.els5.dsl.ui.keyword_TableDSL"/>
 		</page>
 	</extension>
 	<extension point="org.eclipse.ui.propertyPages">
 		<page
-			category="org.feup.els5.dsl.DSL"
-			class="org.feup.els5.dsl.ui.DSLExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-			id="org.feup.els5.dsl.DSL.compiler.propertyPage"
+			category="org.feup.els5.dsl.TableDSL"
+			class="org.feup.els5.dsl.ui.TableDSLExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+			id="org.feup.els5.dsl.TableDSL.compiler.propertyPage"
 			name="Compiler">
-			<keywordReference id="org.feup.els5.dsl.ui.keyword_DSL"/>
+			<keywordReference id="org.feup.els5.dsl.ui.keyword_TableDSL"/>
 			<enabledWhen>
 				<adapt type="org.eclipse.core.resources.IProject"/>
 			</enabledWhen>
@@ -289,20 +289,20 @@
 		<menuContribution locationURI="popup:#TextEditorContext?after=xtext.ui.openDeclaration">
 			<command
 				commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand"
-				id="org.feup.els5.dsl.DSL.OpenGeneratedCode"
+				id="org.feup.els5.dsl.TableDSL.OpenGeneratedCode"
 				style="push">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.feup.els5.dsl.DSL.Editor.opened" />
+					<reference definitionId="org.feup.els5.dsl.TableDSL.Editor.opened" />
 				</visibleWhen>
 			</command>
 		</menuContribution>
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
 		<handler
-			class="org.feup.els5.dsl.ui.DSLExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
+			class="org.feup.els5.dsl.ui.TableDSLExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
 			commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand">
 			<activeWhen>
-				<reference definitionId="org.feup.els5.dsl.DSL.Editor.opened" />
+				<reference definitionId="org.feup.els5.dsl.TableDSL.Editor.opened" />
 			</activeWhen>
 		</handler>
 	</extension>
@@ -310,11 +310,11 @@
 	<extension
 		point="org.eclipse.ui.handlers">
 		<handler
-			class="org.feup.els5.dsl.ui.DSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
+			class="org.feup.els5.dsl.ui.TableDSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
 			commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline">
 			<activeWhen>
 				<reference
-					definitionId="org.feup.els5.dsl.DSL.Editor.opened">
+					definitionId="org.feup.els5.dsl.TableDSL.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -334,33 +334,33 @@
 				style="push"
 				tooltip="Open Quick Outline">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.feup.els5.dsl.DSL.Editor.opened"/>
+					<reference definitionId="org.feup.els5.dsl.TableDSL.Editor.opened"/>
 				</visibleWhen>
 			</command>
 		</menuContribution>
 	</extension>
-	<!-- quickfix marker resolution generator for org.feup.els5.dsl.DSL -->
+	<!-- quickfix marker resolution generator for org.feup.els5.dsl.TableDSL -->
 	<extension
 			point="org.eclipse.ui.ide.markerResolution">
 		<markerResolutionGenerator
-			class="org.feup.els5.dsl.ui.DSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-			markerType="org.feup.els5.dsl.ui.dsl.check.fast">
+			class="org.feup.els5.dsl.ui.TableDSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			markerType="org.feup.els5.dsl.ui.tabledsl.check.fast">
 			<attribute
 				name="FIXABLE_KEY"
 				value="true">
 			</attribute>
 		</markerResolutionGenerator>
 		<markerResolutionGenerator
-			class="org.feup.els5.dsl.ui.DSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-			markerType="org.feup.els5.dsl.ui.dsl.check.normal">
+			class="org.feup.els5.dsl.ui.TableDSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			markerType="org.feup.els5.dsl.ui.tabledsl.check.normal">
 			<attribute
 				name="FIXABLE_KEY"
 				value="true">
 			</attribute>
 		</markerResolutionGenerator>
 		<markerResolutionGenerator
-			class="org.feup.els5.dsl.ui.DSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-			markerType="org.feup.els5.dsl.ui.dsl.check.expensive">
+			class="org.feup.els5.dsl.ui.TableDSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			markerType="org.feup.els5.dsl.ui.tabledsl.check.expensive">
 			<attribute
 				name="FIXABLE_KEY"
 				value="true">
@@ -370,11 +370,11 @@
 	<!-- Rename Refactoring -->
 	<extension point="org.eclipse.ui.handlers">
 		<handler
-			class="org.feup.els5.dsl.ui.DSLExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
+			class="org.feup.els5.dsl.ui.TableDSLExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
 			commandId="org.eclipse.xtext.ui.refactoring.RenameElement">
 			<activeWhen>
 				<reference
-					definitionId="org.feup.els5.dsl.DSL.Editor.opened">
+					definitionId="org.feup.els5.dsl.TableDSL.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -386,7 +386,7 @@
 				style="push">
 				<visibleWhen checkEnabled="false">
 					<reference
-						definitionId="org.feup.els5.dsl.DSL.Editor.opened">
+						definitionId="org.feup.els5.dsl.TableDSL.Editor.opened">
 					</reference>
 				</visibleWhen>
 			</command>
@@ -394,40 +394,40 @@
 	</extension>
 	<extension point="org.eclipse.ui.preferencePages">
 		<page
-			category="org.feup.els5.dsl.DSL"
-			class="org.feup.els5.dsl.ui.DSLExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
-			id="org.feup.els5.dsl.DSL.refactoring"
+			category="org.feup.els5.dsl.TableDSL"
+			class="org.feup.els5.dsl.ui.TableDSLExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
+			id="org.feup.els5.dsl.TableDSL.refactoring"
 			name="Refactoring">
-			<keywordReference id="org.feup.els5.dsl.ui.keyword_DSL"/>
+			<keywordReference id="org.feup.els5.dsl.ui.keyword_TableDSL"/>
 		</page>
 	</extension>
 	<extension point="org.eclipse.compare.contentViewers">
-		<viewer id="org.feup.els5.dsl.DSL.compare.contentViewers"
-			class="org.feup.els5.dsl.ui.DSLExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
-			extensions="dsl">
+		<viewer id="org.feup.els5.dsl.TableDSL.compare.contentViewers"
+			class="org.feup.els5.dsl.ui.TableDSLExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+			extensions="table">
 		</viewer>
 		<contentTypeBinding
-			contentTypeId="org.feup.els5.dsl.DSL.contenttype"
-			contentViewerId="org.feup.els5.dsl.DSL.compare.contentViewers" />
+			contentTypeId="org.feup.els5.dsl.TableDSL.contenttype"
+			contentViewerId="org.feup.els5.dsl.TableDSL.compare.contentViewers" />
 	</extension>
 	<extension point="org.eclipse.compare.contentMergeViewers">
-		<viewer id="org.feup.els5.dsl.DSL.compare.contentMergeViewers"
-			class="org.feup.els5.dsl.ui.DSLExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
-			extensions="dsl" label="DSL Compare">
+		<viewer id="org.feup.els5.dsl.TableDSL.compare.contentMergeViewers"
+			class="org.feup.els5.dsl.ui.TableDSLExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+			extensions="table" label="TableDSL Compare">
 		</viewer>
 		<contentTypeBinding
-			contentTypeId="org.feup.els5.dsl.DSL.contenttype"
-			contentMergeViewerId="org.feup.els5.dsl.DSL.compare.contentMergeViewers" />
+			contentTypeId="org.feup.els5.dsl.TableDSL.contenttype"
+			contentMergeViewerId="org.feup.els5.dsl.TableDSL.compare.contentMergeViewers" />
 	</extension>
 	<extension point="org.eclipse.ui.editors.documentProviders">
-		<provider id="org.feup.els5.dsl.DSL.editors.documentProviders"
-			class="org.feup.els5.dsl.ui.DSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
-			extensions="dsl">
+		<provider id="org.feup.els5.dsl.TableDSL.editors.documentProviders"
+			class="org.feup.els5.dsl.ui.TableDSLExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
+			extensions="table">
 		</provider>
 	</extension>
 	<extension point="org.eclipse.team.core.fileTypes">
 		<fileTypes
-			extension="dsl"
+			extension="table"
 			type="text">
 		</fileTypes>
 	</extension>

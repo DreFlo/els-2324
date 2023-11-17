@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="tableDSL" nsURI="http://www.feup.org/els5/dsl/TableDSL" nsPrefix="tableDSL">
+  <eClassifiers xsi:type="ecore:EClass" name="Start">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="actions" upperBound="-1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CreateTable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TableAction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LoadData" eSuperTypes="#//TableAction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TableInputPath" eSuperTypes="#//CreateTable #//LoadData">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pathPatterns" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Output" eSuperTypes="#//TableAction">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="outputPath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Operation" eSuperTypes="#//TableAction"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Select" eSuperTypes="#//Operation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="columns" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RenameColumn" eSuperTypes="#//Operation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="oldName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="newName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Extract" eSuperTypes="#//Operation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="placeholder" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SquashRows" eSuperTypes="#//Operation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="column" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Filter" eSuperTypes="#//Operation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="placeholder" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

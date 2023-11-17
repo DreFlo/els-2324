@@ -1,0 +1,57 @@
+grammar org.feup.els5.dsl.TableDSL with org.eclipse.xtext.common.Terminals
+
+generate tableDSL "http://www.feup.org/els5/dsl/TableDSL"
+
+Start:
+	// TODO Named them actions, could be different
+	actions+=CreateTable?
+	actions+=TableAction*
+;
+
+terminal SEP:
+	";"
+;
+
+CreateTable:
+	"create"? "table" "from" TableInputPath SEP
+;
+
+TableAction:
+	LoadData | Operation | Output SEP
+;
+
+LoadData:
+	"load" TableInputPath
+;
+
+TableInputPath:
+	pathPatterns+=STRING+
+;
+
+Output:
+	"output" "to" outputPath=STRING
+;
+
+Operation:
+	Select | RenameColumn | Extract | SquashRows | Filter
+;
+
+Select:
+	"select" columns+=STRING+
+;
+
+RenameColumn:
+	"rename" oldName=STRING "to" newName=STRING // TODO Needs to support multiple 
+;
+
+Extract:
+	"extract" placeholder=STRING // TODO
+;
+
+SquashRows:
+	"squash" "rows" "by" column=STRING // TODO Maybe we could extend this one to squash by multiple columns?
+;
+
+Filter:
+	"filter" "by" placeholder=STRING // TODO
+;
