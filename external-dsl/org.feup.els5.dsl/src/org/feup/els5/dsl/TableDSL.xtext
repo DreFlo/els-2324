@@ -8,16 +8,12 @@ Start:
 	actions+=TableAction*
 ;
 
-terminal SEP:
-	";"
-;
-
 CreateTable:
-	"create"? "table" "from" TableInputPath SEP
+	"create"? "table" "from" TableInputPath ANY_OTHER
 ;
 
 TableAction:
-	LoadData | Operation | Output SEP
+	LoadData | Operation | Output ANY_OTHER
 ;
 
 LoadData:
@@ -25,11 +21,11 @@ LoadData:
 ;
 
 TableInputPath:
-	pathPatterns+=STRING+
+	pathPatterns+=STRING ("," pathPatterns+=STRING)*
 ;
 
 Output:
-	"output" "to" outputPath=STRING
+	"output" "to" outputPaths+=STRING ("," outputPaths+=STRING)*
 ;
 
 Operation:
@@ -37,11 +33,11 @@ Operation:
 ;
 
 Select:
-	"select" columns+=STRING+
+	"select" columnsPatterns+=STRING ("," columnPatterns+=STRING)*
 ;
 
 RenameColumn:
-	"rename" oldName=STRING "to" newName=STRING // TODO Needs to support multiple 
+	"rename" "column"? oldName=STRING "to" newName=STRING // TODO Needs to support multiple 
 ;
 
 Extract:
@@ -49,7 +45,7 @@ Extract:
 ;
 
 SquashRows:
-	"squash" "rows" "by" column=STRING // TODO Maybe we could extend this one to squash by multiple columns?
+	"squash" "rows"? "by" columns+=STRING ("," columns+=STRING)* // TODO Maybe we could extend this one to squash by multiple columns?
 ;
 
 Filter:
