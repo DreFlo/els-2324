@@ -2,8 +2,7 @@ package pt.up.fe.els2023;
 
 import org.eclipse.xtext.parser.IParser;
 import com.google.inject.Inject;
-import org.xtext.example.mydsl.MyDslStandaloneSetup;
-
+import org.feup.els5.dsl.TableDSLStandaloneSetup;
 import java.io.StringReader;
 
 public class Parser {
@@ -12,7 +11,7 @@ public class Parser {
     private IParser parser;
 
     public Parser() {
-        var injector = new MyDslStandaloneSetup().createInjectorAndDoEMFRegistration();
+        var injector = new TableDSLStandaloneSetup().createInjectorAndDoEMFRegistration();
         injector.injectMembers(this);
     }
 
