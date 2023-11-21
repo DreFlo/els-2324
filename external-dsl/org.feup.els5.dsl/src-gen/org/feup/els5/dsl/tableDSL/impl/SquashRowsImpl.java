@@ -3,11 +3,13 @@
  */
 package org.feup.els5.dsl.tableDSL.impl;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.util.Collection;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 
 import org.feup.els5.dsl.tableDSL.SquashRows;
 import org.feup.els5.dsl.tableDSL.TableDSLPackage;
@@ -20,7 +22,7 @@ import org.feup.els5.dsl.tableDSL.TableDSLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.feup.els5.dsl.tableDSL.impl.SquashRowsImpl#getColumn <em>Column</em>}</li>
+ *   <li>{@link org.feup.els5.dsl.tableDSL.impl.SquashRowsImpl#getColumns <em>Columns</em>}</li>
  * </ul>
  *
  * @generated
@@ -28,24 +30,14 @@ import org.feup.els5.dsl.tableDSL.TableDSLPackage;
 public class SquashRowsImpl extends OperationImpl implements SquashRows
 {
   /**
-   * The default value of the '{@link #getColumn() <em>Column</em>}' attribute.
+   * The cached value of the '{@link #getColumns() <em>Columns</em>}' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getColumn()
+   * @see #getColumns()
    * @generated
    * @ordered
    */
-  protected static final String COLUMN_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getColumn() <em>Column</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getColumn()
-   * @generated
-   * @ordered
-   */
-  protected String column = COLUMN_EDEFAULT;
+  protected EList<String> columns;
 
   /**
    * <!-- begin-user-doc -->
@@ -74,23 +66,13 @@ public class SquashRowsImpl extends OperationImpl implements SquashRows
    * @generated
    */
   @Override
-  public String getColumn()
+  public EList<String> getColumns()
   {
-    return column;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setColumn(String newColumn)
-  {
-    String oldColumn = column;
-    column = newColumn;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TableDSLPackage.SQUASH_ROWS__COLUMN, oldColumn, column));
+    if (columns == null)
+    {
+      columns = new EDataTypeEList<String>(String.class, this, TableDSLPackage.SQUASH_ROWS__COLUMNS);
+    }
+    return columns;
   }
 
   /**
@@ -103,8 +85,8 @@ public class SquashRowsImpl extends OperationImpl implements SquashRows
   {
     switch (featureID)
     {
-      case TableDSLPackage.SQUASH_ROWS__COLUMN:
-        return getColumn();
+      case TableDSLPackage.SQUASH_ROWS__COLUMNS:
+        return getColumns();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -114,13 +96,15 @@ public class SquashRowsImpl extends OperationImpl implements SquashRows
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case TableDSLPackage.SQUASH_ROWS__COLUMN:
-        setColumn((String)newValue);
+      case TableDSLPackage.SQUASH_ROWS__COLUMNS:
+        getColumns().clear();
+        getColumns().addAll((Collection<? extends String>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -136,8 +120,8 @@ public class SquashRowsImpl extends OperationImpl implements SquashRows
   {
     switch (featureID)
     {
-      case TableDSLPackage.SQUASH_ROWS__COLUMN:
-        setColumn(COLUMN_EDEFAULT);
+      case TableDSLPackage.SQUASH_ROWS__COLUMNS:
+        getColumns().clear();
         return;
     }
     super.eUnset(featureID);
@@ -153,8 +137,8 @@ public class SquashRowsImpl extends OperationImpl implements SquashRows
   {
     switch (featureID)
     {
-      case TableDSLPackage.SQUASH_ROWS__COLUMN:
-        return COLUMN_EDEFAULT == null ? column != null : !COLUMN_EDEFAULT.equals(column);
+      case TableDSLPackage.SQUASH_ROWS__COLUMNS:
+        return columns != null && !columns.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -170,8 +154,8 @@ public class SquashRowsImpl extends OperationImpl implements SquashRows
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (column: ");
-    result.append(column);
+    result.append(" (columns: ");
+    result.append(columns);
     result.append(')');
     return result.toString();
   }

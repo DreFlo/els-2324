@@ -21,29 +21,31 @@ public class TableDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected TableDSLGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_CreateTable_CreateKeyword_0_q;
+	protected AbstractElementAlias match_RenameColumn_ColumnKeyword_1_q;
+	protected AbstractElementAlias match_SquashRows_RowsKeyword_1_q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (TableDSLGrammarAccess) access;
 		match_CreateTable_CreateKeyword_0_q = new TokenAlias(false, true, grammarAccess.getCreateTableAccess().getCreateKeyword_0());
+		match_RenameColumn_ColumnKeyword_1_q = new TokenAlias(false, true, grammarAccess.getRenameColumnAccess().getColumnKeyword_1());
+		match_SquashRows_RowsKeyword_1_q = new TokenAlias(false, true, grammarAccess.getSquashRowsAccess().getRowsKeyword_1());
 	}
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (ruleCall.getRule() == grammarAccess.getSEPRule())
-			return getSEPToken(semanticObject, ruleCall, node);
+		if (ruleCall.getRule() == grammarAccess.getANY_OTHERRule())
+			return getANY_OTHERToken(semanticObject, ruleCall, node);
 		return "";
 	}
 	
 	/**
-	 * terminal SEP:
-	 * 	";"
-	 * ;
+	 * terminal ANY_OTHER: .;
 	 */
-	protected String getSEPToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+	protected String getANY_OTHERToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (node != null)
 			return getTokenText(node);
-		return ";";
+		return "";
 	}
 	
 	@Override
@@ -54,6 +56,10 @@ public class TableDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
 			if (match_CreateTable_CreateKeyword_0_q.equals(syntax))
 				emit_CreateTable_CreateKeyword_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_RenameColumn_ColumnKeyword_1_q.equals(syntax))
+				emit_RenameColumn_ColumnKeyword_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_SquashRows_RowsKeyword_1_q.equals(syntax))
+				emit_SquashRows_RowsKeyword_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -69,6 +75,34 @@ public class TableDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * </pre>
 	 */
 	protected void emit_CreateTable_CreateKeyword_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * <pre>
+	 * Ambiguous syntax:
+	 *     'column'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) 'rename' (ambiguity) oldName=STRING
+	 
+	 * </pre>
+	 */
+	protected void emit_RenameColumn_ColumnKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * <pre>
+	 * Ambiguous syntax:
+	 *     'rows'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) 'squash' (ambiguity) 'by' columns+=STRING
+	 
+	 * </pre>
+	 */
+	protected void emit_SquashRows_RowsKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

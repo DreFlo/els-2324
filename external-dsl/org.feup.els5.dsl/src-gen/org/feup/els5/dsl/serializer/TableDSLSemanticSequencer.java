@@ -119,17 +119,11 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     Output returns Output
 	 *
 	 * Constraint:
-	 *     outputPath=STRING
+	 *     (outputPaths+=STRING outputPaths+=STRING*)
 	 * </pre>
 	 */
 	protected void sequence_Output(ISerializationContext context, Output semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, TableDSLPackage.Literals.OUTPUT__OUTPUT_PATH) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TableDSLPackage.Literals.OUTPUT__OUTPUT_PATH));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getOutputAccess().getOutputPathSTRINGTerminalRuleCall_2_0(), semanticObject.getOutputPath());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -152,8 +146,8 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TableDSLPackage.Literals.RENAME_COLUMN__NEW_NAME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getRenameColumnAccess().getOldNameSTRINGTerminalRuleCall_1_0(), semanticObject.getOldName());
-		feeder.accept(grammarAccess.getRenameColumnAccess().getNewNameSTRINGTerminalRuleCall_3_0(), semanticObject.getNewName());
+		feeder.accept(grammarAccess.getRenameColumnAccess().getOldNameSTRINGTerminalRuleCall_2_0(), semanticObject.getOldName());
+		feeder.accept(grammarAccess.getRenameColumnAccess().getNewNameSTRINGTerminalRuleCall_4_0(), semanticObject.getNewName());
 		feeder.finish();
 	}
 	
@@ -166,7 +160,7 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     Select returns Select
 	 *
 	 * Constraint:
-	 *     columns+=STRING+
+	 *     (columnsPatterns+=STRING columnPatterns+=STRING*)
 	 * </pre>
 	 */
 	protected void sequence_Select(ISerializationContext context, Select semanticObject) {
@@ -182,17 +176,11 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     SquashRows returns SquashRows
 	 *
 	 * Constraint:
-	 *     column=STRING
+	 *     (columns+=STRING columns+=STRING*)
 	 * </pre>
 	 */
 	protected void sequence_SquashRows(ISerializationContext context, SquashRows semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, TableDSLPackage.Literals.SQUASH_ROWS__COLUMN) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TableDSLPackage.Literals.SQUASH_ROWS__COLUMN));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getSquashRowsAccess().getColumnSTRINGTerminalRuleCall_3_0(), semanticObject.getColumn());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -219,7 +207,7 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     TableInputPath returns TableInputPath
 	 *
 	 * Constraint:
-	 *     pathPatterns+=STRING+
+	 *     (pathPatterns+=STRING pathPatterns+=STRING*)
 	 * </pre>
 	 */
 	protected void sequence_TableInputPath(ISerializationContext context, TableInputPath semanticObject) {

@@ -3,11 +3,13 @@
  */
 package org.feup.els5.dsl.tableDSL.impl;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.util.Collection;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 
 import org.feup.els5.dsl.tableDSL.Output;
 import org.feup.els5.dsl.tableDSL.TableDSLPackage;
@@ -20,7 +22,7 @@ import org.feup.els5.dsl.tableDSL.TableDSLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.feup.els5.dsl.tableDSL.impl.OutputImpl#getOutputPath <em>Output Path</em>}</li>
+ *   <li>{@link org.feup.els5.dsl.tableDSL.impl.OutputImpl#getOutputPaths <em>Output Paths</em>}</li>
  * </ul>
  *
  * @generated
@@ -28,24 +30,14 @@ import org.feup.els5.dsl.tableDSL.TableDSLPackage;
 public class OutputImpl extends TableActionImpl implements Output
 {
   /**
-   * The default value of the '{@link #getOutputPath() <em>Output Path</em>}' attribute.
+   * The cached value of the '{@link #getOutputPaths() <em>Output Paths</em>}' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getOutputPath()
+   * @see #getOutputPaths()
    * @generated
    * @ordered
    */
-  protected static final String OUTPUT_PATH_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getOutputPath() <em>Output Path</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getOutputPath()
-   * @generated
-   * @ordered
-   */
-  protected String outputPath = OUTPUT_PATH_EDEFAULT;
+  protected EList<String> outputPaths;
 
   /**
    * <!-- begin-user-doc -->
@@ -74,23 +66,13 @@ public class OutputImpl extends TableActionImpl implements Output
    * @generated
    */
   @Override
-  public String getOutputPath()
+  public EList<String> getOutputPaths()
   {
-    return outputPath;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setOutputPath(String newOutputPath)
-  {
-    String oldOutputPath = outputPath;
-    outputPath = newOutputPath;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TableDSLPackage.OUTPUT__OUTPUT_PATH, oldOutputPath, outputPath));
+    if (outputPaths == null)
+    {
+      outputPaths = new EDataTypeEList<String>(String.class, this, TableDSLPackage.OUTPUT__OUTPUT_PATHS);
+    }
+    return outputPaths;
   }
 
   /**
@@ -103,8 +85,8 @@ public class OutputImpl extends TableActionImpl implements Output
   {
     switch (featureID)
     {
-      case TableDSLPackage.OUTPUT__OUTPUT_PATH:
-        return getOutputPath();
+      case TableDSLPackage.OUTPUT__OUTPUT_PATHS:
+        return getOutputPaths();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -114,13 +96,15 @@ public class OutputImpl extends TableActionImpl implements Output
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case TableDSLPackage.OUTPUT__OUTPUT_PATH:
-        setOutputPath((String)newValue);
+      case TableDSLPackage.OUTPUT__OUTPUT_PATHS:
+        getOutputPaths().clear();
+        getOutputPaths().addAll((Collection<? extends String>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -136,8 +120,8 @@ public class OutputImpl extends TableActionImpl implements Output
   {
     switch (featureID)
     {
-      case TableDSLPackage.OUTPUT__OUTPUT_PATH:
-        setOutputPath(OUTPUT_PATH_EDEFAULT);
+      case TableDSLPackage.OUTPUT__OUTPUT_PATHS:
+        getOutputPaths().clear();
         return;
     }
     super.eUnset(featureID);
@@ -153,8 +137,8 @@ public class OutputImpl extends TableActionImpl implements Output
   {
     switch (featureID)
     {
-      case TableDSLPackage.OUTPUT__OUTPUT_PATH:
-        return OUTPUT_PATH_EDEFAULT == null ? outputPath != null : !OUTPUT_PATH_EDEFAULT.equals(outputPath);
+      case TableDSLPackage.OUTPUT__OUTPUT_PATHS:
+        return outputPaths != null && !outputPaths.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -170,8 +154,8 @@ public class OutputImpl extends TableActionImpl implements Output
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (outputPath: ");
-    result.append(outputPath);
+    result.append(" (outputPaths: ");
+    result.append(outputPaths);
     result.append(')');
     return result.toString();
   }

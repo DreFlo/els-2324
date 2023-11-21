@@ -37,21 +37,30 @@ public class TableDSLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getCreateTableAccess().getGroup(), "rule__CreateTable__Group__0");
 			builder.put(grammarAccess.getTableActionAccess().getGroup_2(), "rule__TableAction__Group_2__0");
 			builder.put(grammarAccess.getLoadDataAccess().getGroup(), "rule__LoadData__Group__0");
+			builder.put(grammarAccess.getTableInputPathAccess().getGroup(), "rule__TableInputPath__Group__0");
+			builder.put(grammarAccess.getTableInputPathAccess().getGroup_1(), "rule__TableInputPath__Group_1__0");
 			builder.put(grammarAccess.getOutputAccess().getGroup(), "rule__Output__Group__0");
+			builder.put(grammarAccess.getOutputAccess().getGroup_3(), "rule__Output__Group_3__0");
 			builder.put(grammarAccess.getSelectAccess().getGroup(), "rule__Select__Group__0");
+			builder.put(grammarAccess.getSelectAccess().getGroup_2(), "rule__Select__Group_2__0");
 			builder.put(grammarAccess.getRenameColumnAccess().getGroup(), "rule__RenameColumn__Group__0");
 			builder.put(grammarAccess.getExtractAccess().getGroup(), "rule__Extract__Group__0");
 			builder.put(grammarAccess.getSquashRowsAccess().getGroup(), "rule__SquashRows__Group__0");
+			builder.put(grammarAccess.getSquashRowsAccess().getGroup_4(), "rule__SquashRows__Group_4__0");
 			builder.put(grammarAccess.getFilterAccess().getGroup(), "rule__Filter__Group__0");
 			builder.put(grammarAccess.getStartAccess().getActionsAssignment_0(), "rule__Start__ActionsAssignment_0");
 			builder.put(grammarAccess.getStartAccess().getActionsAssignment_1(), "rule__Start__ActionsAssignment_1");
-			builder.put(grammarAccess.getTableInputPathAccess().getPathPatternsAssignment(), "rule__TableInputPath__PathPatternsAssignment");
-			builder.put(grammarAccess.getOutputAccess().getOutputPathAssignment_2(), "rule__Output__OutputPathAssignment_2");
-			builder.put(grammarAccess.getSelectAccess().getColumnsAssignment_1(), "rule__Select__ColumnsAssignment_1");
-			builder.put(grammarAccess.getRenameColumnAccess().getOldNameAssignment_1(), "rule__RenameColumn__OldNameAssignment_1");
-			builder.put(grammarAccess.getRenameColumnAccess().getNewNameAssignment_3(), "rule__RenameColumn__NewNameAssignment_3");
+			builder.put(grammarAccess.getTableInputPathAccess().getPathPatternsAssignment_0(), "rule__TableInputPath__PathPatternsAssignment_0");
+			builder.put(grammarAccess.getTableInputPathAccess().getPathPatternsAssignment_1_1(), "rule__TableInputPath__PathPatternsAssignment_1_1");
+			builder.put(grammarAccess.getOutputAccess().getOutputPathsAssignment_2(), "rule__Output__OutputPathsAssignment_2");
+			builder.put(grammarAccess.getOutputAccess().getOutputPathsAssignment_3_1(), "rule__Output__OutputPathsAssignment_3_1");
+			builder.put(grammarAccess.getSelectAccess().getColumnsPatternsAssignment_1(), "rule__Select__ColumnsPatternsAssignment_1");
+			builder.put(grammarAccess.getSelectAccess().getColumnPatternsAssignment_2_1(), "rule__Select__ColumnPatternsAssignment_2_1");
+			builder.put(grammarAccess.getRenameColumnAccess().getOldNameAssignment_2(), "rule__RenameColumn__OldNameAssignment_2");
+			builder.put(grammarAccess.getRenameColumnAccess().getNewNameAssignment_4(), "rule__RenameColumn__NewNameAssignment_4");
 			builder.put(grammarAccess.getExtractAccess().getPlaceholderAssignment_1(), "rule__Extract__PlaceholderAssignment_1");
-			builder.put(grammarAccess.getSquashRowsAccess().getColumnAssignment_3(), "rule__SquashRows__ColumnAssignment_3");
+			builder.put(grammarAccess.getSquashRowsAccess().getColumnsAssignment_3(), "rule__SquashRows__ColumnsAssignment_3");
+			builder.put(grammarAccess.getSquashRowsAccess().getColumnsAssignment_4_1(), "rule__SquashRows__ColumnsAssignment_4_1");
 			builder.put(grammarAccess.getFilterAccess().getPlaceholderAssignment_2(), "rule__Filter__PlaceholderAssignment_2");
 		}
 	}

@@ -16,11 +16,12 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//TableInputPath/pathPatterns"/>
     </genClasses>
     <genClasses ecoreClass="TableDSL.ecore#//Output">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//Output/outputPath"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//Output/outputPaths"/>
     </genClasses>
     <genClasses ecoreClass="TableDSL.ecore#//Operation"/>
     <genClasses ecoreClass="TableDSL.ecore#//Select">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//Select/columns"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//Select/columnsPatterns"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//Select/columnPatterns"/>
     </genClasses>
     <genClasses ecoreClass="TableDSL.ecore#//RenameColumn">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//RenameColumn/oldName"/>
@@ -30,7 +31,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//Extract/placeholder"/>
     </genClasses>
     <genClasses ecoreClass="TableDSL.ecore#//SquashRows">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//SquashRows/column"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//SquashRows/columns"/>
     </genClasses>
     <genClasses ecoreClass="TableDSL.ecore#//Filter">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//Filter/placeholder"/>

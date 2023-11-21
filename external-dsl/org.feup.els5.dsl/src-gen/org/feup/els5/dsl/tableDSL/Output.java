@@ -3,6 +3,7 @@
  */
 package org.feup.els5.dsl.tableDSL;
 
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,7 +14,7 @@ package org.feup.els5.dsl.tableDSL;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.feup.els5.dsl.tableDSL.Output#getOutputPath <em>Output Path</em>}</li>
+ *   <li>{@link org.feup.els5.dsl.tableDSL.Output#getOutputPaths <em>Output Paths</em>}</li>
  * </ul>
  *
  * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getOutput()
@@ -23,25 +24,15 @@ package org.feup.els5.dsl.tableDSL;
 public interface Output extends TableAction
 {
   /**
-   * Returns the value of the '<em><b>Output Path</b></em>' attribute.
+   * Returns the value of the '<em><b>Output Paths</b></em>' attribute list.
+   * The list contents are of type {@link java.lang.String}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Output Path</em>' attribute.
-   * @see #setOutputPath(String)
-   * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getOutput_OutputPath()
-   * @model
+   * @return the value of the '<em>Output Paths</em>' attribute list.
+   * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getOutput_OutputPaths()
+   * @model unique="false"
    * @generated
    */
-  String getOutputPath();
-
-  /**
-   * Sets the value of the '{@link org.feup.els5.dsl.tableDSL.Output#getOutputPath <em>Output Path</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Output Path</em>' attribute.
-   * @see #getOutputPath()
-   * @generated
-   */
-  void setOutputPath(String value);
+  EList<String> getOutputPaths();
 
 } // Output

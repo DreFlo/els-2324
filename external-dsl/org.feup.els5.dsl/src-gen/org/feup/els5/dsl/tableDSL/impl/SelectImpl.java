@@ -22,7 +22,8 @@ import org.feup.els5.dsl.tableDSL.TableDSLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.feup.els5.dsl.tableDSL.impl.SelectImpl#getColumns <em>Columns</em>}</li>
+ *   <li>{@link org.feup.els5.dsl.tableDSL.impl.SelectImpl#getColumnsPatterns <em>Columns Patterns</em>}</li>
+ *   <li>{@link org.feup.els5.dsl.tableDSL.impl.SelectImpl#getColumnPatterns <em>Column Patterns</em>}</li>
  * </ul>
  *
  * @generated
@@ -30,14 +31,24 @@ import org.feup.els5.dsl.tableDSL.TableDSLPackage;
 public class SelectImpl extends OperationImpl implements Select
 {
   /**
-   * The cached value of the '{@link #getColumns() <em>Columns</em>}' attribute list.
+   * The cached value of the '{@link #getColumnsPatterns() <em>Columns Patterns</em>}' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getColumns()
+   * @see #getColumnsPatterns()
    * @generated
    * @ordered
    */
-  protected EList<String> columns;
+  protected EList<String> columnsPatterns;
+
+  /**
+   * The cached value of the '{@link #getColumnPatterns() <em>Column Patterns</em>}' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getColumnPatterns()
+   * @generated
+   * @ordered
+   */
+  protected EList<String> columnPatterns;
 
   /**
    * <!-- begin-user-doc -->
@@ -66,13 +77,28 @@ public class SelectImpl extends OperationImpl implements Select
    * @generated
    */
   @Override
-  public EList<String> getColumns()
+  public EList<String> getColumnsPatterns()
   {
-    if (columns == null)
+    if (columnsPatterns == null)
     {
-      columns = new EDataTypeEList<String>(String.class, this, TableDSLPackage.SELECT__COLUMNS);
+      columnsPatterns = new EDataTypeEList<String>(String.class, this, TableDSLPackage.SELECT__COLUMNS_PATTERNS);
     }
-    return columns;
+    return columnsPatterns;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EList<String> getColumnPatterns()
+  {
+    if (columnPatterns == null)
+    {
+      columnPatterns = new EDataTypeEList<String>(String.class, this, TableDSLPackage.SELECT__COLUMN_PATTERNS);
+    }
+    return columnPatterns;
   }
 
   /**
@@ -85,8 +111,10 @@ public class SelectImpl extends OperationImpl implements Select
   {
     switch (featureID)
     {
-      case TableDSLPackage.SELECT__COLUMNS:
-        return getColumns();
+      case TableDSLPackage.SELECT__COLUMNS_PATTERNS:
+        return getColumnsPatterns();
+      case TableDSLPackage.SELECT__COLUMN_PATTERNS:
+        return getColumnPatterns();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -102,9 +130,13 @@ public class SelectImpl extends OperationImpl implements Select
   {
     switch (featureID)
     {
-      case TableDSLPackage.SELECT__COLUMNS:
-        getColumns().clear();
-        getColumns().addAll((Collection<? extends String>)newValue);
+      case TableDSLPackage.SELECT__COLUMNS_PATTERNS:
+        getColumnsPatterns().clear();
+        getColumnsPatterns().addAll((Collection<? extends String>)newValue);
+        return;
+      case TableDSLPackage.SELECT__COLUMN_PATTERNS:
+        getColumnPatterns().clear();
+        getColumnPatterns().addAll((Collection<? extends String>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -120,8 +152,11 @@ public class SelectImpl extends OperationImpl implements Select
   {
     switch (featureID)
     {
-      case TableDSLPackage.SELECT__COLUMNS:
-        getColumns().clear();
+      case TableDSLPackage.SELECT__COLUMNS_PATTERNS:
+        getColumnsPatterns().clear();
+        return;
+      case TableDSLPackage.SELECT__COLUMN_PATTERNS:
+        getColumnPatterns().clear();
         return;
     }
     super.eUnset(featureID);
@@ -137,8 +172,10 @@ public class SelectImpl extends OperationImpl implements Select
   {
     switch (featureID)
     {
-      case TableDSLPackage.SELECT__COLUMNS:
-        return columns != null && !columns.isEmpty();
+      case TableDSLPackage.SELECT__COLUMNS_PATTERNS:
+        return columnsPatterns != null && !columnsPatterns.isEmpty();
+      case TableDSLPackage.SELECT__COLUMN_PATTERNS:
+        return columnPatterns != null && !columnPatterns.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -154,8 +191,10 @@ public class SelectImpl extends OperationImpl implements Select
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (columns: ");
-    result.append(columns);
+    result.append(" (columnsPatterns: ");
+    result.append(columnsPatterns);
+    result.append(", columnPatterns: ");
+    result.append(columnPatterns);
     result.append(')');
     return result.toString();
   }

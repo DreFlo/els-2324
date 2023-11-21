@@ -3,6 +3,7 @@
  */
 package org.feup.els5.dsl.tableDSL;
 
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,7 +14,7 @@ package org.feup.els5.dsl.tableDSL;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.feup.els5.dsl.tableDSL.SquashRows#getColumn <em>Column</em>}</li>
+ *   <li>{@link org.feup.els5.dsl.tableDSL.SquashRows#getColumns <em>Columns</em>}</li>
  * </ul>
  *
  * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getSquashRows()
@@ -23,25 +24,15 @@ package org.feup.els5.dsl.tableDSL;
 public interface SquashRows extends Operation
 {
   /**
-   * Returns the value of the '<em><b>Column</b></em>' attribute.
+   * Returns the value of the '<em><b>Columns</b></em>' attribute list.
+   * The list contents are of type {@link java.lang.String}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Column</em>' attribute.
-   * @see #setColumn(String)
-   * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getSquashRows_Column()
-   * @model
+   * @return the value of the '<em>Columns</em>' attribute list.
+   * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getSquashRows_Columns()
+   * @model unique="false"
    * @generated
    */
-  String getColumn();
-
-  /**
-   * Sets the value of the '{@link org.feup.els5.dsl.tableDSL.SquashRows#getColumn <em>Column</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Column</em>' attribute.
-   * @see #getColumn()
-   * @generated
-   */
-  void setColumn(String value);
+  EList<String> getColumns();
 
 } // SquashRows

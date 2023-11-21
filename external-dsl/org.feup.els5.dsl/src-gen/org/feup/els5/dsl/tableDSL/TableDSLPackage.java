@@ -181,13 +181,13 @@ public interface TableDSLPackage extends EPackage
   int OUTPUT = 5;
 
   /**
-   * The feature id for the '<em><b>Output Path</b></em>' attribute.
+   * The feature id for the '<em><b>Output Paths</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int OUTPUT__OUTPUT_PATH = TABLE_ACTION_FEATURE_COUNT + 0;
+  int OUTPUT__OUTPUT_PATHS = TABLE_ACTION_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Output</em>' class.
@@ -228,13 +228,22 @@ public interface TableDSLPackage extends EPackage
   int SELECT = 7;
 
   /**
-   * The feature id for the '<em><b>Columns</b></em>' attribute list.
+   * The feature id for the '<em><b>Columns Patterns</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SELECT__COLUMNS = OPERATION_FEATURE_COUNT + 0;
+  int SELECT__COLUMNS_PATTERNS = OPERATION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Column Patterns</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SELECT__COLUMN_PATTERNS = OPERATION_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Select</em>' class.
@@ -243,7 +252,7 @@ public interface TableDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SELECT_FEATURE_COUNT = OPERATION_FEATURE_COUNT + 1;
+  int SELECT_FEATURE_COUNT = OPERATION_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.feup.els5.dsl.tableDSL.impl.RenameColumnImpl <em>Rename Column</em>}' class.
@@ -321,13 +330,13 @@ public interface TableDSLPackage extends EPackage
   int SQUASH_ROWS = 10;
 
   /**
-   * The feature id for the '<em><b>Column</b></em>' attribute.
+   * The feature id for the '<em><b>Columns</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SQUASH_ROWS__COLUMN = OPERATION_FEATURE_COUNT + 0;
+  int SQUASH_ROWS__COLUMNS = OPERATION_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Squash Rows</em>' class.
@@ -450,15 +459,15 @@ public interface TableDSLPackage extends EPackage
   EClass getOutput();
 
   /**
-   * Returns the meta object for the attribute '{@link org.feup.els5.dsl.tableDSL.Output#getOutputPath <em>Output Path</em>}'.
+   * Returns the meta object for the attribute list '{@link org.feup.els5.dsl.tableDSL.Output#getOutputPaths <em>Output Paths</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Output Path</em>'.
-   * @see org.feup.els5.dsl.tableDSL.Output#getOutputPath()
+   * @return the meta object for the attribute list '<em>Output Paths</em>'.
+   * @see org.feup.els5.dsl.tableDSL.Output#getOutputPaths()
    * @see #getOutput()
    * @generated
    */
-  EAttribute getOutput_OutputPath();
+  EAttribute getOutput_OutputPaths();
 
   /**
    * Returns the meta object for class '{@link org.feup.els5.dsl.tableDSL.Operation <em>Operation</em>}'.
@@ -481,15 +490,26 @@ public interface TableDSLPackage extends EPackage
   EClass getSelect();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.feup.els5.dsl.tableDSL.Select#getColumns <em>Columns</em>}'.
+   * Returns the meta object for the attribute list '{@link org.feup.els5.dsl.tableDSL.Select#getColumnsPatterns <em>Columns Patterns</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Columns</em>'.
-   * @see org.feup.els5.dsl.tableDSL.Select#getColumns()
+   * @return the meta object for the attribute list '<em>Columns Patterns</em>'.
+   * @see org.feup.els5.dsl.tableDSL.Select#getColumnsPatterns()
    * @see #getSelect()
    * @generated
    */
-  EAttribute getSelect_Columns();
+  EAttribute getSelect_ColumnsPatterns();
+
+  /**
+   * Returns the meta object for the attribute list '{@link org.feup.els5.dsl.tableDSL.Select#getColumnPatterns <em>Column Patterns</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Column Patterns</em>'.
+   * @see org.feup.els5.dsl.tableDSL.Select#getColumnPatterns()
+   * @see #getSelect()
+   * @generated
+   */
+  EAttribute getSelect_ColumnPatterns();
 
   /**
    * Returns the meta object for class '{@link org.feup.els5.dsl.tableDSL.RenameColumn <em>Rename Column</em>}'.
@@ -555,15 +575,15 @@ public interface TableDSLPackage extends EPackage
   EClass getSquashRows();
 
   /**
-   * Returns the meta object for the attribute '{@link org.feup.els5.dsl.tableDSL.SquashRows#getColumn <em>Column</em>}'.
+   * Returns the meta object for the attribute list '{@link org.feup.els5.dsl.tableDSL.SquashRows#getColumns <em>Columns</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Column</em>'.
-   * @see org.feup.els5.dsl.tableDSL.SquashRows#getColumn()
+   * @return the meta object for the attribute list '<em>Columns</em>'.
+   * @see org.feup.els5.dsl.tableDSL.SquashRows#getColumns()
    * @see #getSquashRows()
    * @generated
    */
-  EAttribute getSquashRows_Column();
+  EAttribute getSquashRows_Columns();
 
   /**
    * Returns the meta object for class '{@link org.feup.els5.dsl.tableDSL.Filter <em>Filter</em>}'.
@@ -686,12 +706,12 @@ public interface TableDSLPackage extends EPackage
     EClass OUTPUT = eINSTANCE.getOutput();
 
     /**
-     * The meta object literal for the '<em><b>Output Path</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Output Paths</b></em>' attribute list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute OUTPUT__OUTPUT_PATH = eINSTANCE.getOutput_OutputPath();
+    EAttribute OUTPUT__OUTPUT_PATHS = eINSTANCE.getOutput_OutputPaths();
 
     /**
      * The meta object literal for the '{@link org.feup.els5.dsl.tableDSL.impl.OperationImpl <em>Operation</em>}' class.
@@ -714,12 +734,20 @@ public interface TableDSLPackage extends EPackage
     EClass SELECT = eINSTANCE.getSelect();
 
     /**
-     * The meta object literal for the '<em><b>Columns</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Columns Patterns</b></em>' attribute list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute SELECT__COLUMNS = eINSTANCE.getSelect_Columns();
+    EAttribute SELECT__COLUMNS_PATTERNS = eINSTANCE.getSelect_ColumnsPatterns();
+
+    /**
+     * The meta object literal for the '<em><b>Column Patterns</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SELECT__COLUMN_PATTERNS = eINSTANCE.getSelect_ColumnPatterns();
 
     /**
      * The meta object literal for the '{@link org.feup.els5.dsl.tableDSL.impl.RenameColumnImpl <em>Rename Column</em>}' class.
@@ -776,12 +804,12 @@ public interface TableDSLPackage extends EPackage
     EClass SQUASH_ROWS = eINSTANCE.getSquashRows();
 
     /**
-     * The meta object literal for the '<em><b>Column</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Columns</b></em>' attribute list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute SQUASH_ROWS__COLUMN = eINSTANCE.getSquashRows_Column();
+    EAttribute SQUASH_ROWS__COLUMNS = eINSTANCE.getSquashRows_Columns();
 
     /**
      * The meta object literal for the '{@link org.feup.els5.dsl.tableDSL.impl.FilterImpl <em>Filter</em>}' class.

@@ -14,7 +14,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.feup.els5.dsl.tableDSL.Select#getColumns <em>Columns</em>}</li>
+ *   <li>{@link org.feup.els5.dsl.tableDSL.Select#getColumnsPatterns <em>Columns Patterns</em>}</li>
+ *   <li>{@link org.feup.els5.dsl.tableDSL.Select#getColumnPatterns <em>Column Patterns</em>}</li>
  * </ul>
  *
  * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getSelect()
@@ -24,15 +25,27 @@ import org.eclipse.emf.common.util.EList;
 public interface Select extends Operation
 {
   /**
-   * Returns the value of the '<em><b>Columns</b></em>' attribute list.
+   * Returns the value of the '<em><b>Columns Patterns</b></em>' attribute list.
    * The list contents are of type {@link java.lang.String}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Columns</em>' attribute list.
-   * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getSelect_Columns()
+   * @return the value of the '<em>Columns Patterns</em>' attribute list.
+   * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getSelect_ColumnsPatterns()
    * @model unique="false"
    * @generated
    */
-  EList<String> getColumns();
+  EList<String> getColumnsPatterns();
+
+  /**
+   * Returns the value of the '<em><b>Column Patterns</b></em>' attribute list.
+   * The list contents are of type {@link java.lang.String}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Column Patterns</em>' attribute list.
+   * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getSelect_ColumnPatterns()
+   * @model unique="false"
+   * @generated
+   */
+  EList<String> getColumnPatterns();
 
 } // Select

@@ -31,18 +31,18 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final RuleCall cActionsTableActionParserRuleCall_1_0 = (RuleCall)cActionsAssignment_1.eContents().get(0);
 		
 		//Start:
-		//    // Named them actions, could be different
+		//    // TODO Named them actions, could be different
 		//    actions+=CreateTable?
 		//    actions+=TableAction*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//// Named them actions, could be different
+		//// TODO Named them actions, could be different
 		//actions+=CreateTable?
 		//actions+=TableAction*
 		public Group getGroup() { return cGroup; }
 		
-		//// Named them actions, could be different
+		//// TODO Named them actions, could be different
 		//actions+=CreateTable?
 		public Assignment getActionsAssignment_0() { return cActionsAssignment_0; }
 		
@@ -62,14 +62,14 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final Keyword cTableKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cFromKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final RuleCall cTableInputPathParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
-		private final RuleCall cSEPTerminalRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
+		private final RuleCall cANY_OTHERTerminalRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
 		
 		//CreateTable:
-		//    "create"? "table" "from" TableInputPath SEP
+		//    "create"? "table" "from" TableInputPath ANY_OTHER
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"create"? "table" "from" TableInputPath SEP
+		//"create"? "table" "from" TableInputPath ANY_OTHER
 		public Group getGroup() { return cGroup; }
 		
 		//"create"?
@@ -84,8 +84,8 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//TableInputPath
 		public RuleCall getTableInputPathParserRuleCall_3() { return cTableInputPathParserRuleCall_3; }
 		
-		//SEP
-		public RuleCall getSEPTerminalRuleCall_4() { return cSEPTerminalRuleCall_4; }
+		//ANY_OTHER
+		public RuleCall getANY_OTHERTerminalRuleCall_4() { return cANY_OTHERTerminalRuleCall_4; }
 	}
 	public class TableActionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.feup.els5.dsl.TableDSL.TableAction");
@@ -94,14 +94,14 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final RuleCall cOperationParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
 		private final RuleCall cOutputParserRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
-		private final RuleCall cSEPTerminalRuleCall_2_1 = (RuleCall)cGroup_2.eContents().get(1);
+		private final RuleCall cANY_OTHERTerminalRuleCall_2_1 = (RuleCall)cGroup_2.eContents().get(1);
 		
 		//TableAction:
-		//    LoadData | Operation | Output SEP
+		//    LoadData | Operation | Output ANY_OTHER
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//LoadData | Operation | Output SEP
+		//LoadData | Operation | Output ANY_OTHER
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//LoadData
@@ -110,14 +110,14 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//Operation
 		public RuleCall getOperationParserRuleCall_1() { return cOperationParserRuleCall_1; }
 		
-		//Output SEP
+		//Output ANY_OTHER
 		public Group getGroup_2() { return cGroup_2; }
 		
 		//Output
 		public RuleCall getOutputParserRuleCall_2_0() { return cOutputParserRuleCall_2_0; }
 		
-		//SEP
-		public RuleCall getSEPTerminalRuleCall_2_1() { return cSEPTerminalRuleCall_2_1; }
+		//ANY_OTHER
+		public RuleCall getANY_OTHERTerminalRuleCall_2_1() { return cANY_OTHERTerminalRuleCall_2_1; }
 	}
 	public class LoadDataElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.feup.els5.dsl.TableDSL.LoadData");
@@ -141,34 +141,58 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	public class TableInputPathElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.feup.els5.dsl.TableDSL.TableInputPath");
-		private final Assignment cPathPatternsAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cPathPatternsSTRINGTerminalRuleCall_0 = (RuleCall)cPathPatternsAssignment.eContents().get(0);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cPathPatternsAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cPathPatternsSTRINGTerminalRuleCall_0_0 = (RuleCall)cPathPatternsAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cCommaKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cPathPatternsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cPathPatternsSTRINGTerminalRuleCall_1_1_0 = (RuleCall)cPathPatternsAssignment_1_1.eContents().get(0);
 		
 		//TableInputPath:
-		//    pathPatterns+=STRING+
+		//    pathPatterns+=STRING ("," pathPatterns+=STRING)*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//pathPatterns+=STRING+
-		public Assignment getPathPatternsAssignment() { return cPathPatternsAssignment; }
+		//pathPatterns+=STRING ("," pathPatterns+=STRING)*
+		public Group getGroup() { return cGroup; }
+		
+		//pathPatterns+=STRING
+		public Assignment getPathPatternsAssignment_0() { return cPathPatternsAssignment_0; }
 		
 		//STRING
-		public RuleCall getPathPatternsSTRINGTerminalRuleCall_0() { return cPathPatternsSTRINGTerminalRuleCall_0; }
+		public RuleCall getPathPatternsSTRINGTerminalRuleCall_0_0() { return cPathPatternsSTRINGTerminalRuleCall_0_0; }
+		
+		//("," pathPatterns+=STRING)*
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//","
+		public Keyword getCommaKeyword_1_0() { return cCommaKeyword_1_0; }
+		
+		//pathPatterns+=STRING
+		public Assignment getPathPatternsAssignment_1_1() { return cPathPatternsAssignment_1_1; }
+		
+		//STRING
+		public RuleCall getPathPatternsSTRINGTerminalRuleCall_1_1_0() { return cPathPatternsSTRINGTerminalRuleCall_1_1_0; }
 	}
 	public class OutputElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.feup.els5.dsl.TableDSL.Output");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cOutputKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cToKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cOutputPathAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cOutputPathSTRINGTerminalRuleCall_2_0 = (RuleCall)cOutputPathAssignment_2.eContents().get(0);
+		private final Assignment cOutputPathsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOutputPathsSTRINGTerminalRuleCall_2_0 = (RuleCall)cOutputPathsAssignment_2.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cCommaKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cOutputPathsAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cOutputPathsSTRINGTerminalRuleCall_3_1_0 = (RuleCall)cOutputPathsAssignment_3_1.eContents().get(0);
 		
 		//Output:
-		//    "output" "to" outputPath=STRING
+		//    "output" "to" outputPaths+=STRING ("," outputPaths+=STRING)*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"output" "to" outputPath=STRING
+		//"output" "to" outputPaths+=STRING ("," outputPaths+=STRING)*
 		public Group getGroup() { return cGroup; }
 		
 		//"output"
@@ -177,11 +201,23 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//"to"
 		public Keyword getToKeyword_1() { return cToKeyword_1; }
 		
-		//outputPath=STRING
-		public Assignment getOutputPathAssignment_2() { return cOutputPathAssignment_2; }
+		//outputPaths+=STRING
+		public Assignment getOutputPathsAssignment_2() { return cOutputPathsAssignment_2; }
 		
 		//STRING
-		public RuleCall getOutputPathSTRINGTerminalRuleCall_2_0() { return cOutputPathSTRINGTerminalRuleCall_2_0; }
+		public RuleCall getOutputPathsSTRINGTerminalRuleCall_2_0() { return cOutputPathsSTRINGTerminalRuleCall_2_0; }
+		
+		//("," outputPaths+=STRING)*
+		public Group getGroup_3() { return cGroup_3; }
+		
+		//","
+		public Keyword getCommaKeyword_3_0() { return cCommaKeyword_3_0; }
+		
+		//outputPaths+=STRING
+		public Assignment getOutputPathsAssignment_3_1() { return cOutputPathsAssignment_3_1; }
+		
+		//STRING
+		public RuleCall getOutputPathsSTRINGTerminalRuleCall_3_1_0() { return cOutputPathsSTRINGTerminalRuleCall_3_1_0; }
 	}
 	public class OperationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.feup.els5.dsl.TableDSL.Operation");
@@ -219,61 +255,81 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.feup.els5.dsl.TableDSL.Select");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cSelectKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cColumnsAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cColumnsSTRINGTerminalRuleCall_1_0 = (RuleCall)cColumnsAssignment_1.eContents().get(0);
+		private final Assignment cColumnsPatternsAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cColumnsPatternsSTRINGTerminalRuleCall_1_0 = (RuleCall)cColumnsPatternsAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Assignment cColumnPatternsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cColumnPatternsSTRINGTerminalRuleCall_2_1_0 = (RuleCall)cColumnPatternsAssignment_2_1.eContents().get(0);
 		
 		//Select:
-		//    "select" columns+=STRING+
+		//    "select" columnsPatterns+=STRING ("," columnPatterns+=STRING)*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"select" columns+=STRING+
+		//"select" columnsPatterns+=STRING ("," columnPatterns+=STRING)*
 		public Group getGroup() { return cGroup; }
 		
 		//"select"
 		public Keyword getSelectKeyword_0() { return cSelectKeyword_0; }
 		
-		//columns+=STRING+
-		public Assignment getColumnsAssignment_1() { return cColumnsAssignment_1; }
+		//columnsPatterns+=STRING
+		public Assignment getColumnsPatternsAssignment_1() { return cColumnsPatternsAssignment_1; }
 		
 		//STRING
-		public RuleCall getColumnsSTRINGTerminalRuleCall_1_0() { return cColumnsSTRINGTerminalRuleCall_1_0; }
+		public RuleCall getColumnsPatternsSTRINGTerminalRuleCall_1_0() { return cColumnsPatternsSTRINGTerminalRuleCall_1_0; }
+		
+		//("," columnPatterns+=STRING)*
+		public Group getGroup_2() { return cGroup_2; }
+		
+		//","
+		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
+		
+		//columnPatterns+=STRING
+		public Assignment getColumnPatternsAssignment_2_1() { return cColumnPatternsAssignment_2_1; }
+		
+		//STRING
+		public RuleCall getColumnPatternsSTRINGTerminalRuleCall_2_1_0() { return cColumnPatternsSTRINGTerminalRuleCall_2_1_0; }
 	}
 	public class RenameColumnElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.feup.els5.dsl.TableDSL.RenameColumn");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cRenameKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cOldNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cOldNameSTRINGTerminalRuleCall_1_0 = (RuleCall)cOldNameAssignment_1.eContents().get(0);
-		private final Keyword cToKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cNewNameAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cNewNameSTRINGTerminalRuleCall_3_0 = (RuleCall)cNewNameAssignment_3.eContents().get(0);
+		private final Keyword cColumnKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cOldNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOldNameSTRINGTerminalRuleCall_2_0 = (RuleCall)cOldNameAssignment_2.eContents().get(0);
+		private final Keyword cToKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cNewNameAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cNewNameSTRINGTerminalRuleCall_4_0 = (RuleCall)cNewNameAssignment_4.eContents().get(0);
 		
 		//RenameColumn:
-		//    "rename" oldName=STRING "to" newName=STRING // TODO Needs to support multiple
+		//    "rename" "column"? oldName=STRING "to" newName=STRING // TODO Needs to support multiple
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"rename" oldName=STRING "to" newName=STRING
+		//"rename" "column"? oldName=STRING "to" newName=STRING
 		public Group getGroup() { return cGroup; }
 		
 		//"rename"
 		public Keyword getRenameKeyword_0() { return cRenameKeyword_0; }
 		
+		//"column"?
+		public Keyword getColumnKeyword_1() { return cColumnKeyword_1; }
+		
 		//oldName=STRING
-		public Assignment getOldNameAssignment_1() { return cOldNameAssignment_1; }
+		public Assignment getOldNameAssignment_2() { return cOldNameAssignment_2; }
 		
 		//STRING
-		public RuleCall getOldNameSTRINGTerminalRuleCall_1_0() { return cOldNameSTRINGTerminalRuleCall_1_0; }
+		public RuleCall getOldNameSTRINGTerminalRuleCall_2_0() { return cOldNameSTRINGTerminalRuleCall_2_0; }
 		
 		//"to"
-		public Keyword getToKeyword_2() { return cToKeyword_2; }
+		public Keyword getToKeyword_3() { return cToKeyword_3; }
 		
 		//newName=STRING
-		public Assignment getNewNameAssignment_3() { return cNewNameAssignment_3; }
+		public Assignment getNewNameAssignment_4() { return cNewNameAssignment_4; }
 		
 		//STRING
-		public RuleCall getNewNameSTRINGTerminalRuleCall_3_0() { return cNewNameSTRINGTerminalRuleCall_3_0; }
+		public RuleCall getNewNameSTRINGTerminalRuleCall_4_0() { return cNewNameSTRINGTerminalRuleCall_4_0; }
 	}
 	public class ExtractElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.feup.els5.dsl.TableDSL.Extract");
@@ -305,31 +361,47 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final Keyword cSquashKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cRowsKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cByKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cColumnAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cColumnSTRINGTerminalRuleCall_3_0 = (RuleCall)cColumnAssignment_3.eContents().get(0);
+		private final Assignment cColumnsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cColumnsSTRINGTerminalRuleCall_3_0 = (RuleCall)cColumnsAssignment_3.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cCommaKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cColumnsAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cColumnsSTRINGTerminalRuleCall_4_1_0 = (RuleCall)cColumnsAssignment_4_1.eContents().get(0);
 		
 		//SquashRows:
-		//    "squash" "rows" "by" column=STRING // TODO Maybe we could extend this one to squash by multiple columns?
+		//    "squash" "rows"? "by" columns+=STRING ("," columns+=STRING)* // TODO Maybe we could extend this one to squash by multiple columns?
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"squash" "rows" "by" column=STRING
+		//"squash" "rows"? "by" columns+=STRING ("," columns+=STRING)*
 		public Group getGroup() { return cGroup; }
 		
 		//"squash"
 		public Keyword getSquashKeyword_0() { return cSquashKeyword_0; }
 		
-		//"rows"
+		//"rows"?
 		public Keyword getRowsKeyword_1() { return cRowsKeyword_1; }
 		
 		//"by"
 		public Keyword getByKeyword_2() { return cByKeyword_2; }
 		
-		//column=STRING
-		public Assignment getColumnAssignment_3() { return cColumnAssignment_3; }
+		//columns+=STRING
+		public Assignment getColumnsAssignment_3() { return cColumnsAssignment_3; }
 		
 		//STRING
-		public RuleCall getColumnSTRINGTerminalRuleCall_3_0() { return cColumnSTRINGTerminalRuleCall_3_0; }
+		public RuleCall getColumnsSTRINGTerminalRuleCall_3_0() { return cColumnsSTRINGTerminalRuleCall_3_0; }
+		
+		//("," columns+=STRING)*
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//","
+		public Keyword getCommaKeyword_4_0() { return cCommaKeyword_4_0; }
+		
+		//columns+=STRING
+		public Assignment getColumnsAssignment_4_1() { return cColumnsAssignment_4_1; }
+		
+		//STRING
+		public RuleCall getColumnsSTRINGTerminalRuleCall_4_1_0() { return cColumnsSTRINGTerminalRuleCall_4_1_0; }
 	}
 	public class FilterElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.feup.els5.dsl.TableDSL.Filter");
@@ -362,7 +434,6 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	
 	
 	private final StartElements pStart;
-	private final TerminalRule tSEP;
 	private final CreateTableElements pCreateTable;
 	private final TableActionElements pTableAction;
 	private final LoadDataElements pLoadData;
@@ -385,7 +456,6 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
 		this.pStart = new StartElements();
-		this.tSEP = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.feup.els5.dsl.TableDSL.SEP");
 		this.pCreateTable = new CreateTableElements();
 		this.pTableAction = new TableActionElements();
 		this.pLoadData = new LoadDataElements();
@@ -427,7 +497,7 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 
 	
 	//Start:
-	//    // Named them actions, could be different
+	//    // TODO Named them actions, could be different
 	//    actions+=CreateTable?
 	//    actions+=TableAction*
 	//;
@@ -439,15 +509,8 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		return getStartAccess().getRule();
 	}
 	
-	//terminal SEP:
-	//    ";"
-	//;
-	public TerminalRule getSEPRule() {
-		return tSEP;
-	}
-	
 	//CreateTable:
-	//    "create"? "table" "from" TableInputPath SEP
+	//    "create"? "table" "from" TableInputPath ANY_OTHER
 	//;
 	public CreateTableElements getCreateTableAccess() {
 		return pCreateTable;
@@ -458,7 +521,7 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//TableAction:
-	//    LoadData | Operation | Output SEP
+	//    LoadData | Operation | Output ANY_OTHER
 	//;
 	public TableActionElements getTableActionAccess() {
 		return pTableAction;
@@ -480,7 +543,7 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//TableInputPath:
-	//    pathPatterns+=STRING+
+	//    pathPatterns+=STRING ("," pathPatterns+=STRING)*
 	//;
 	public TableInputPathElements getTableInputPathAccess() {
 		return pTableInputPath;
@@ -491,7 +554,7 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//Output:
-	//    "output" "to" outputPath=STRING
+	//    "output" "to" outputPaths+=STRING ("," outputPaths+=STRING)*
 	//;
 	public OutputElements getOutputAccess() {
 		return pOutput;
@@ -513,7 +576,7 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//Select:
-	//    "select" columns+=STRING+
+	//    "select" columnsPatterns+=STRING ("," columnPatterns+=STRING)*
 	//;
 	public SelectElements getSelectAccess() {
 		return pSelect;
@@ -524,7 +587,7 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//RenameColumn:
-	//    "rename" oldName=STRING "to" newName=STRING // TODO Needs to support multiple
+	//    "rename" "column"? oldName=STRING "to" newName=STRING // TODO Needs to support multiple
 	//;
 	public RenameColumnElements getRenameColumnAccess() {
 		return pRenameColumn;
@@ -546,7 +609,7 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//SquashRows:
-	//    "squash" "rows" "by" column=STRING // TODO Maybe we could extend this one to squash by multiple columns?
+	//    "squash" "rows"? "by" columns+=STRING ("," columns+=STRING)* // TODO Maybe we could extend this one to squash by multiple columns?
 	//;
 	public SquashRowsElements getSquashRowsAccess() {
 		return pSquashRows;
