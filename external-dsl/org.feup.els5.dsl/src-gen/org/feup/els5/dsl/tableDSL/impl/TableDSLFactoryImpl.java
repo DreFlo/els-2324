@@ -74,9 +74,20 @@ public class TableDSLFactoryImpl extends EFactoryImpl implements TableDSLFactory
       case TableDSLPackage.OPERATION: return createOperation();
       case TableDSLPackage.SELECT: return createSelect();
       case TableDSLPackage.RENAME_COLUMN: return createRenameColumn();
+      case TableDSLPackage.RENAME_COLUMN_PAIR: return createRenameColumnPair();
+      case TableDSLPackage.RENAME_COLUMN_TO_PAIR: return createRenameColumnToPair();
+      case TableDSLPackage.RENAME_COLUMN_PREPEND_PAIR: return createRenameColumnPrependPair();
+      case TableDSLPackage.RENAME_COLUMN_APPEND_PAIR: return createRenameColumnAppendPair();
       case TableDSLPackage.EXTRACT: return createExtract();
+      case TableDSLPackage.SELECTOR: return createSelector();
+      case TableDSLPackage.COMPARATOR: return createComparator();
       case TableDSLPackage.SQUASH_ROWS: return createSquashRows();
       case TableDSLPackage.FILTER: return createFilter();
+      case TableDSLPackage.FILTER_DENYLIST: return createFilterDenylist();
+      case TableDSLPackage.FILTER_EXCEPTLIST: return createFilterExceptlist();
+      case TableDSLPackage.FILTER_RULE: return createFilterRule();
+      case TableDSLPackage.FILTER_OBJECT_TYPE_RULE: return createFilterObjectTypeRule();
+      case TableDSLPackage.FILTER_COLUMN_RULE: return createFilterColumnRule();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -196,10 +207,82 @@ public class TableDSLFactoryImpl extends EFactoryImpl implements TableDSLFactory
    * @generated
    */
   @Override
+  public RenameColumnPair createRenameColumnPair()
+  {
+    RenameColumnPairImpl renameColumnPair = new RenameColumnPairImpl();
+    return renameColumnPair;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public RenameColumnToPair createRenameColumnToPair()
+  {
+    RenameColumnToPairImpl renameColumnToPair = new RenameColumnToPairImpl();
+    return renameColumnToPair;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public RenameColumnPrependPair createRenameColumnPrependPair()
+  {
+    RenameColumnPrependPairImpl renameColumnPrependPair = new RenameColumnPrependPairImpl();
+    return renameColumnPrependPair;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public RenameColumnAppendPair createRenameColumnAppendPair()
+  {
+    RenameColumnAppendPairImpl renameColumnAppendPair = new RenameColumnAppendPairImpl();
+    return renameColumnAppendPair;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Extract createExtract()
   {
     ExtractImpl extract = new ExtractImpl();
     return extract;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Selector createSelector()
+  {
+    SelectorImpl selector = new SelectorImpl();
+    return selector;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Comparator createComparator()
+  {
+    ComparatorImpl comparator = new ComparatorImpl();
+    return comparator;
   }
 
   /**
@@ -224,6 +307,66 @@ public class TableDSLFactoryImpl extends EFactoryImpl implements TableDSLFactory
   {
     FilterImpl filter = new FilterImpl();
     return filter;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public FilterDenylist createFilterDenylist()
+  {
+    FilterDenylistImpl filterDenylist = new FilterDenylistImpl();
+    return filterDenylist;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public FilterExceptlist createFilterExceptlist()
+  {
+    FilterExceptlistImpl filterExceptlist = new FilterExceptlistImpl();
+    return filterExceptlist;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public FilterRule createFilterRule()
+  {
+    FilterRuleImpl filterRule = new FilterRuleImpl();
+    return filterRule;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public FilterObjectTypeRule createFilterObjectTypeRule()
+  {
+    FilterObjectTypeRuleImpl filterObjectTypeRule = new FilterObjectTypeRuleImpl();
+    return filterObjectTypeRule;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public FilterColumnRule createFilterColumnRule()
+  {
+    FilterColumnRuleImpl filterColumnRule = new FilterColumnRuleImpl();
+    return filterColumnRule;
   }
 
   /**

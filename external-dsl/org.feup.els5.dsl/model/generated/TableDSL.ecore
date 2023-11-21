@@ -24,17 +24,60 @@
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RenameColumn" eSuperTypes="#//Operation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="renameTuples" upperBound="-1"
+        eType="#//RenameColumnPair" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RenameColumnPair">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="oldName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RenameColumnToPair" eSuperTypes="#//RenameColumnPair">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="newName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RenameColumnPrependPair" eSuperTypes="#//RenameColumnPair">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="prefix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RenameColumnAppendPair" eSuperTypes="#//RenameColumnPair">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="suffix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Extract" eSuperTypes="#//Operation">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="placeholder" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetColumns" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceColumn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="selector" eType="#//Selector"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="comparator" eType="#//Comparator"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Selector">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="n" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Comparator">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="keys" unique="false" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SquashRows" eSuperTypes="#//Operation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="columns" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Filter" eSuperTypes="#//Operation">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="placeholder" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="denylist" eType="#//FilterDenylist"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exceptlist" eType="#//FilterExceptlist"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FilterDenylist">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="denylist" upperBound="-1"
+        eType="#//FilterRule" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FilterExceptlist">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exceptlist" upperBound="-1"
+        eType="#//FilterRule" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FilterRule"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FilterObjectTypeRule" eSuperTypes="#//FilterRule">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="columnPattern" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FilterColumnRule" eSuperTypes="#//FilterRule">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="objectClass" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

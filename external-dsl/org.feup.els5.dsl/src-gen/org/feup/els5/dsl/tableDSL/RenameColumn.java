@@ -3,6 +3,7 @@
  */
 package org.feup.els5.dsl.tableDSL;
 
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,8 +14,7 @@ package org.feup.els5.dsl.tableDSL;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.feup.els5.dsl.tableDSL.RenameColumn#getOldName <em>Old Name</em>}</li>
- *   <li>{@link org.feup.els5.dsl.tableDSL.RenameColumn#getNewName <em>New Name</em>}</li>
+ *   <li>{@link org.feup.els5.dsl.tableDSL.RenameColumn#getRenameTuples <em>Rename Tuples</em>}</li>
  * </ul>
  *
  * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getRenameColumn()
@@ -24,47 +24,15 @@ package org.feup.els5.dsl.tableDSL;
 public interface RenameColumn extends Operation
 {
   /**
-   * Returns the value of the '<em><b>Old Name</b></em>' attribute.
+   * Returns the value of the '<em><b>Rename Tuples</b></em>' containment reference list.
+   * The list contents are of type {@link org.feup.els5.dsl.tableDSL.RenameColumnPair}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Old Name</em>' attribute.
-   * @see #setOldName(String)
-   * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getRenameColumn_OldName()
-   * @model
+   * @return the value of the '<em>Rename Tuples</em>' containment reference list.
+   * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getRenameColumn_RenameTuples()
+   * @model containment="true"
    * @generated
    */
-  String getOldName();
-
-  /**
-   * Sets the value of the '{@link org.feup.els5.dsl.tableDSL.RenameColumn#getOldName <em>Old Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Old Name</em>' attribute.
-   * @see #getOldName()
-   * @generated
-   */
-  void setOldName(String value);
-
-  /**
-   * Returns the value of the '<em><b>New Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>New Name</em>' attribute.
-   * @see #setNewName(String)
-   * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getRenameColumn_NewName()
-   * @model
-   * @generated
-   */
-  String getNewName();
-
-  /**
-   * Sets the value of the '{@link org.feup.els5.dsl.tableDSL.RenameColumn#getNewName <em>New Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>New Name</em>' attribute.
-   * @see #getNewName()
-   * @generated
-   */
-  void setNewName(String value);
+  EList<RenameColumnPair> getRenameTuples();
 
 } // RenameColumn

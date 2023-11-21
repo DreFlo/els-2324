@@ -37,11 +37,35 @@ Select:
 ;
 
 RenameColumn:
-	"rename" "column"? oldName=STRING "to" newName=STRING // TODO Needs to support multiple 
+	"rename" "column"? renameTuples+=RenameColumnPair+
+;
+
+RenameColumnPair:
+	RenameColumnToPair | RenameColumnAppendPair | RenameColumnPrependPair
+;
+
+RenameColumnToPair:
+	oldName=STRING "to" newName=STRING
+;
+
+RenameColumnPrependPair:
+	oldName=STRING "prepend" prefix=STRING
+;
+
+RenameColumnAppendPair:
+	oldName=STRING "append" suffix=STRING
 ;
 
 Extract:
-	"extract" placeholder=STRING // TODO
+	"extract" targetColumns+=STRING ("," targetColumns+=STRING)* "from" sourceColumn=STRING "select" selector=Selector "sort" "by"? comparator=Comparator
+;
+
+Selector:
+	{Selector} "MAX" | {Selector} "MIN" | {Selector} "MEDIAN" | ("TOP" n=INT)
+;
+
+Comparator:
+	keys+=STRING ("," keys+=STRING)*
 ;
 
 SquashRows:
@@ -49,5 +73,25 @@ SquashRows:
 ;
 
 Filter:
-	"filter" "by" placeholder=STRING // TODO
+	"filter" denylist=FilterDenylist exceptlist=FilterExceptlist? // TODO
+;
+
+FilterDenylist:
+	"deny" denylist+=FilterRule
+;
+
+FilterExceptlist:
+	"except" exceptlist+=FilterRule
+;
+
+FilterRule:
+	FilterColumnRule | FilterObjectTypeRule
+;
+
+FilterObjectTypeRule:
+	"column" columnPattern=STRING
+;
+
+FilterColumnRule:
+	"object" "of"? objectClass=STRING
 ;

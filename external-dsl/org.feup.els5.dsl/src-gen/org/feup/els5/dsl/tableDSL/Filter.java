@@ -13,7 +13,8 @@ package org.feup.els5.dsl.tableDSL;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.feup.els5.dsl.tableDSL.Filter#getPlaceholder <em>Placeholder</em>}</li>
+ *   <li>{@link org.feup.els5.dsl.tableDSL.Filter#getDenylist <em>Denylist</em>}</li>
+ *   <li>{@link org.feup.els5.dsl.tableDSL.Filter#getExceptlist <em>Exceptlist</em>}</li>
  * </ul>
  *
  * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getFilter()
@@ -23,25 +24,47 @@ package org.feup.els5.dsl.tableDSL;
 public interface Filter extends Operation
 {
   /**
-   * Returns the value of the '<em><b>Placeholder</b></em>' attribute.
+   * Returns the value of the '<em><b>Denylist</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Placeholder</em>' attribute.
-   * @see #setPlaceholder(String)
-   * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getFilter_Placeholder()
-   * @model
+   * @return the value of the '<em>Denylist</em>' containment reference.
+   * @see #setDenylist(FilterDenylist)
+   * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getFilter_Denylist()
+   * @model containment="true"
    * @generated
    */
-  String getPlaceholder();
+  FilterDenylist getDenylist();
 
   /**
-   * Sets the value of the '{@link org.feup.els5.dsl.tableDSL.Filter#getPlaceholder <em>Placeholder</em>}' attribute.
+   * Sets the value of the '{@link org.feup.els5.dsl.tableDSL.Filter#getDenylist <em>Denylist</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Placeholder</em>' attribute.
-   * @see #getPlaceholder()
+   * @param value the new value of the '<em>Denylist</em>' containment reference.
+   * @see #getDenylist()
    * @generated
    */
-  void setPlaceholder(String value);
+  void setDenylist(FilterDenylist value);
+
+  /**
+   * Returns the value of the '<em><b>Exceptlist</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Exceptlist</em>' containment reference.
+   * @see #setExceptlist(FilterExceptlist)
+   * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getFilter_Exceptlist()
+   * @model containment="true"
+   * @generated
+   */
+  FilterExceptlist getExceptlist();
+
+  /**
+   * Sets the value of the '{@link org.feup.els5.dsl.tableDSL.Filter#getExceptlist <em>Exceptlist</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Exceptlist</em>' containment reference.
+   * @see #getExceptlist()
+   * @generated
+   */
+  void setExceptlist(FilterExceptlist value);
 
 } // Filter

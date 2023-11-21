@@ -10,6 +10,7 @@ import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.AlternativeAlias;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
@@ -21,14 +22,20 @@ public class TableDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected TableDSLGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_CreateTable_CreateKeyword_0_q;
+	protected AbstractElementAlias match_Extract_ByKeyword_8_q;
+	protected AbstractElementAlias match_FilterColumnRule_OfKeyword_1_q;
 	protected AbstractElementAlias match_RenameColumn_ColumnKeyword_1_q;
+	protected AbstractElementAlias match_Selector_MAXKeyword_0_1_or_MEDIANKeyword_2_1_or_MINKeyword_1_1;
 	protected AbstractElementAlias match_SquashRows_RowsKeyword_1_q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (TableDSLGrammarAccess) access;
 		match_CreateTable_CreateKeyword_0_q = new TokenAlias(false, true, grammarAccess.getCreateTableAccess().getCreateKeyword_0());
+		match_Extract_ByKeyword_8_q = new TokenAlias(false, true, grammarAccess.getExtractAccess().getByKeyword_8());
+		match_FilterColumnRule_OfKeyword_1_q = new TokenAlias(false, true, grammarAccess.getFilterColumnRuleAccess().getOfKeyword_1());
 		match_RenameColumn_ColumnKeyword_1_q = new TokenAlias(false, true, grammarAccess.getRenameColumnAccess().getColumnKeyword_1());
+		match_Selector_MAXKeyword_0_1_or_MEDIANKeyword_2_1_or_MINKeyword_1_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getSelectorAccess().getMAXKeyword_0_1()), new TokenAlias(false, false, grammarAccess.getSelectorAccess().getMEDIANKeyword_2_1()), new TokenAlias(false, false, grammarAccess.getSelectorAccess().getMINKeyword_1_1()));
 		match_SquashRows_RowsKeyword_1_q = new TokenAlias(false, true, grammarAccess.getSquashRowsAccess().getRowsKeyword_1());
 	}
 	
@@ -56,8 +63,14 @@ public class TableDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
 			if (match_CreateTable_CreateKeyword_0_q.equals(syntax))
 				emit_CreateTable_CreateKeyword_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Extract_ByKeyword_8_q.equals(syntax))
+				emit_Extract_ByKeyword_8_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_FilterColumnRule_OfKeyword_1_q.equals(syntax))
+				emit_FilterColumnRule_OfKeyword_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_RenameColumn_ColumnKeyword_1_q.equals(syntax))
 				emit_RenameColumn_ColumnKeyword_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Selector_MAXKeyword_0_1_or_MEDIANKeyword_2_1_or_MINKeyword_1_1.equals(syntax))
+				emit_Selector_MAXKeyword_0_1_or_MEDIANKeyword_2_1_or_MINKeyword_1_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_SquashRows_RowsKeyword_1_q.equals(syntax))
 				emit_SquashRows_RowsKeyword_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
@@ -81,14 +94,56 @@ public class TableDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 	/**
 	 * <pre>
 	 * Ambiguous syntax:
+	 *     'by'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     selector=Selector 'sort' (ambiguity) comparator=Comparator
+	 
+	 * </pre>
+	 */
+	protected void emit_Extract_ByKeyword_8_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * <pre>
+	 * Ambiguous syntax:
+	 *     'of'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) 'object' (ambiguity) objectClass=STRING
+	 
+	 * </pre>
+	 */
+	protected void emit_FilterColumnRule_OfKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * <pre>
+	 * Ambiguous syntax:
 	 *     'column'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) 'rename' (ambiguity) oldName=STRING
+	 *     (rule start) 'rename' (ambiguity) renameTuples+=RenameColumnPair
 	 
 	 * </pre>
 	 */
 	protected void emit_RenameColumn_ColumnKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * <pre>
+	 * Ambiguous syntax:
+	 *     'MAX' | 'MIN' | 'MEDIAN'
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) (rule start)
+	 
+	 * </pre>
+	 */
+	protected void emit_Selector_MAXKeyword_0_1_or_MEDIANKeyword_2_1_or_MINKeyword_1_1(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

@@ -4,12 +4,16 @@
 package org.feup.els5.dsl.tableDSL.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.feup.els5.dsl.tableDSL.Filter;
+import org.feup.els5.dsl.tableDSL.FilterDenylist;
+import org.feup.els5.dsl.tableDSL.FilterExceptlist;
 import org.feup.els5.dsl.tableDSL.TableDSLPackage;
 
 /**
@@ -20,7 +24,8 @@ import org.feup.els5.dsl.tableDSL.TableDSLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.feup.els5.dsl.tableDSL.impl.FilterImpl#getPlaceholder <em>Placeholder</em>}</li>
+ *   <li>{@link org.feup.els5.dsl.tableDSL.impl.FilterImpl#getDenylist <em>Denylist</em>}</li>
+ *   <li>{@link org.feup.els5.dsl.tableDSL.impl.FilterImpl#getExceptlist <em>Exceptlist</em>}</li>
  * </ul>
  *
  * @generated
@@ -28,24 +33,24 @@ import org.feup.els5.dsl.tableDSL.TableDSLPackage;
 public class FilterImpl extends OperationImpl implements Filter
 {
   /**
-   * The default value of the '{@link #getPlaceholder() <em>Placeholder</em>}' attribute.
+   * The cached value of the '{@link #getDenylist() <em>Denylist</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getPlaceholder()
+   * @see #getDenylist()
    * @generated
    * @ordered
    */
-  protected static final String PLACEHOLDER_EDEFAULT = null;
+  protected FilterDenylist denylist;
 
   /**
-   * The cached value of the '{@link #getPlaceholder() <em>Placeholder</em>}' attribute.
+   * The cached value of the '{@link #getExceptlist() <em>Exceptlist</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getPlaceholder()
+   * @see #getExceptlist()
    * @generated
    * @ordered
    */
-  protected String placeholder = PLACEHOLDER_EDEFAULT;
+  protected FilterExceptlist exceptlist;
 
   /**
    * <!-- begin-user-doc -->
@@ -74,9 +79,26 @@ public class FilterImpl extends OperationImpl implements Filter
    * @generated
    */
   @Override
-  public String getPlaceholder()
+  public FilterDenylist getDenylist()
   {
-    return placeholder;
+    return denylist;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetDenylist(FilterDenylist newDenylist, NotificationChain msgs)
+  {
+    FilterDenylist oldDenylist = denylist;
+    denylist = newDenylist;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TableDSLPackage.FILTER__DENYLIST, oldDenylist, newDenylist);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
   }
 
   /**
@@ -85,12 +107,88 @@ public class FilterImpl extends OperationImpl implements Filter
    * @generated
    */
   @Override
-  public void setPlaceholder(String newPlaceholder)
+  public void setDenylist(FilterDenylist newDenylist)
   {
-    String oldPlaceholder = placeholder;
-    placeholder = newPlaceholder;
+    if (newDenylist != denylist)
+    {
+      NotificationChain msgs = null;
+      if (denylist != null)
+        msgs = ((InternalEObject)denylist).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TableDSLPackage.FILTER__DENYLIST, null, msgs);
+      if (newDenylist != null)
+        msgs = ((InternalEObject)newDenylist).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TableDSLPackage.FILTER__DENYLIST, null, msgs);
+      msgs = basicSetDenylist(newDenylist, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TableDSLPackage.FILTER__DENYLIST, newDenylist, newDenylist));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public FilterExceptlist getExceptlist()
+  {
+    return exceptlist;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetExceptlist(FilterExceptlist newExceptlist, NotificationChain msgs)
+  {
+    FilterExceptlist oldExceptlist = exceptlist;
+    exceptlist = newExceptlist;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TableDSLPackage.FILTER__PLACEHOLDER, oldPlaceholder, placeholder));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TableDSLPackage.FILTER__EXCEPTLIST, oldExceptlist, newExceptlist);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setExceptlist(FilterExceptlist newExceptlist)
+  {
+    if (newExceptlist != exceptlist)
+    {
+      NotificationChain msgs = null;
+      if (exceptlist != null)
+        msgs = ((InternalEObject)exceptlist).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TableDSLPackage.FILTER__EXCEPTLIST, null, msgs);
+      if (newExceptlist != null)
+        msgs = ((InternalEObject)newExceptlist).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TableDSLPackage.FILTER__EXCEPTLIST, null, msgs);
+      msgs = basicSetExceptlist(newExceptlist, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TableDSLPackage.FILTER__EXCEPTLIST, newExceptlist, newExceptlist));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case TableDSLPackage.FILTER__DENYLIST:
+        return basicSetDenylist(null, msgs);
+      case TableDSLPackage.FILTER__EXCEPTLIST:
+        return basicSetExceptlist(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -103,8 +201,10 @@ public class FilterImpl extends OperationImpl implements Filter
   {
     switch (featureID)
     {
-      case TableDSLPackage.FILTER__PLACEHOLDER:
-        return getPlaceholder();
+      case TableDSLPackage.FILTER__DENYLIST:
+        return getDenylist();
+      case TableDSLPackage.FILTER__EXCEPTLIST:
+        return getExceptlist();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -119,8 +219,11 @@ public class FilterImpl extends OperationImpl implements Filter
   {
     switch (featureID)
     {
-      case TableDSLPackage.FILTER__PLACEHOLDER:
-        setPlaceholder((String)newValue);
+      case TableDSLPackage.FILTER__DENYLIST:
+        setDenylist((FilterDenylist)newValue);
+        return;
+      case TableDSLPackage.FILTER__EXCEPTLIST:
+        setExceptlist((FilterExceptlist)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -136,8 +239,11 @@ public class FilterImpl extends OperationImpl implements Filter
   {
     switch (featureID)
     {
-      case TableDSLPackage.FILTER__PLACEHOLDER:
-        setPlaceholder(PLACEHOLDER_EDEFAULT);
+      case TableDSLPackage.FILTER__DENYLIST:
+        setDenylist((FilterDenylist)null);
+        return;
+      case TableDSLPackage.FILTER__EXCEPTLIST:
+        setExceptlist((FilterExceptlist)null);
         return;
     }
     super.eUnset(featureID);
@@ -153,27 +259,12 @@ public class FilterImpl extends OperationImpl implements Filter
   {
     switch (featureID)
     {
-      case TableDSLPackage.FILTER__PLACEHOLDER:
-        return PLACEHOLDER_EDEFAULT == null ? placeholder != null : !PLACEHOLDER_EDEFAULT.equals(placeholder);
+      case TableDSLPackage.FILTER__DENYLIST:
+        return denylist != null;
+      case TableDSLPackage.FILTER__EXCEPTLIST:
+        return exceptlist != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (placeholder: ");
-    result.append(placeholder);
-    result.append(')');
-    return result.toString();
   }
 
 } //FilterImpl

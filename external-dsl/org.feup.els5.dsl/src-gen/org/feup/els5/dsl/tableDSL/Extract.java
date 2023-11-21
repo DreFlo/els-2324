@@ -3,6 +3,7 @@
  */
 package org.feup.els5.dsl.tableDSL;
 
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,7 +14,10 @@ package org.feup.els5.dsl.tableDSL;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.feup.els5.dsl.tableDSL.Extract#getPlaceholder <em>Placeholder</em>}</li>
+ *   <li>{@link org.feup.els5.dsl.tableDSL.Extract#getTargetColumns <em>Target Columns</em>}</li>
+ *   <li>{@link org.feup.els5.dsl.tableDSL.Extract#getSourceColumn <em>Source Column</em>}</li>
+ *   <li>{@link org.feup.els5.dsl.tableDSL.Extract#getSelector <em>Selector</em>}</li>
+ *   <li>{@link org.feup.els5.dsl.tableDSL.Extract#getComparator <em>Comparator</em>}</li>
  * </ul>
  *
  * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getExtract()
@@ -23,25 +27,81 @@ package org.feup.els5.dsl.tableDSL;
 public interface Extract extends Operation
 {
   /**
-   * Returns the value of the '<em><b>Placeholder</b></em>' attribute.
+   * Returns the value of the '<em><b>Target Columns</b></em>' attribute list.
+   * The list contents are of type {@link java.lang.String}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Placeholder</em>' attribute.
-   * @see #setPlaceholder(String)
-   * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getExtract_Placeholder()
+   * @return the value of the '<em>Target Columns</em>' attribute list.
+   * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getExtract_TargetColumns()
+   * @model unique="false"
+   * @generated
+   */
+  EList<String> getTargetColumns();
+
+  /**
+   * Returns the value of the '<em><b>Source Column</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Source Column</em>' attribute.
+   * @see #setSourceColumn(String)
+   * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getExtract_SourceColumn()
    * @model
    * @generated
    */
-  String getPlaceholder();
+  String getSourceColumn();
 
   /**
-   * Sets the value of the '{@link org.feup.els5.dsl.tableDSL.Extract#getPlaceholder <em>Placeholder</em>}' attribute.
+   * Sets the value of the '{@link org.feup.els5.dsl.tableDSL.Extract#getSourceColumn <em>Source Column</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Placeholder</em>' attribute.
-   * @see #getPlaceholder()
+   * @param value the new value of the '<em>Source Column</em>' attribute.
+   * @see #getSourceColumn()
    * @generated
    */
-  void setPlaceholder(String value);
+  void setSourceColumn(String value);
+
+  /**
+   * Returns the value of the '<em><b>Selector</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Selector</em>' containment reference.
+   * @see #setSelector(Selector)
+   * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getExtract_Selector()
+   * @model containment="true"
+   * @generated
+   */
+  Selector getSelector();
+
+  /**
+   * Sets the value of the '{@link org.feup.els5.dsl.tableDSL.Extract#getSelector <em>Selector</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Selector</em>' containment reference.
+   * @see #getSelector()
+   * @generated
+   */
+  void setSelector(Selector value);
+
+  /**
+   * Returns the value of the '<em><b>Comparator</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Comparator</em>' containment reference.
+   * @see #setComparator(Comparator)
+   * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getExtract_Comparator()
+   * @model containment="true"
+   * @generated
+   */
+  Comparator getComparator();
+
+  /**
+   * Sets the value of the '{@link org.feup.els5.dsl.tableDSL.Extract#getComparator <em>Comparator</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Comparator</em>' containment reference.
+   * @see #getComparator()
+   * @generated
+   */
+  void setComparator(Comparator value);
 
 } // Extract

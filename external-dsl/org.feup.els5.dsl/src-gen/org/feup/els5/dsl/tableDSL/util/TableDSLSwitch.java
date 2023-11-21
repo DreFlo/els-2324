@@ -146,12 +146,57 @@ public class TableDSLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case TableDSLPackage.RENAME_COLUMN_PAIR:
+      {
+        RenameColumnPair renameColumnPair = (RenameColumnPair)theEObject;
+        T result = caseRenameColumnPair(renameColumnPair);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TableDSLPackage.RENAME_COLUMN_TO_PAIR:
+      {
+        RenameColumnToPair renameColumnToPair = (RenameColumnToPair)theEObject;
+        T result = caseRenameColumnToPair(renameColumnToPair);
+        if (result == null) result = caseRenameColumnPair(renameColumnToPair);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TableDSLPackage.RENAME_COLUMN_PREPEND_PAIR:
+      {
+        RenameColumnPrependPair renameColumnPrependPair = (RenameColumnPrependPair)theEObject;
+        T result = caseRenameColumnPrependPair(renameColumnPrependPair);
+        if (result == null) result = caseRenameColumnPair(renameColumnPrependPair);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TableDSLPackage.RENAME_COLUMN_APPEND_PAIR:
+      {
+        RenameColumnAppendPair renameColumnAppendPair = (RenameColumnAppendPair)theEObject;
+        T result = caseRenameColumnAppendPair(renameColumnAppendPair);
+        if (result == null) result = caseRenameColumnPair(renameColumnAppendPair);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case TableDSLPackage.EXTRACT:
       {
         Extract extract = (Extract)theEObject;
         T result = caseExtract(extract);
         if (result == null) result = caseOperation(extract);
         if (result == null) result = caseTableAction(extract);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TableDSLPackage.SELECTOR:
+      {
+        Selector selector = (Selector)theEObject;
+        T result = caseSelector(selector);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TableDSLPackage.COMPARATOR:
+      {
+        Comparator comparator = (Comparator)theEObject;
+        T result = caseComparator(comparator);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -170,6 +215,43 @@ public class TableDSLSwitch<T> extends Switch<T>
         T result = caseFilter(filter);
         if (result == null) result = caseOperation(filter);
         if (result == null) result = caseTableAction(filter);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TableDSLPackage.FILTER_DENYLIST:
+      {
+        FilterDenylist filterDenylist = (FilterDenylist)theEObject;
+        T result = caseFilterDenylist(filterDenylist);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TableDSLPackage.FILTER_EXCEPTLIST:
+      {
+        FilterExceptlist filterExceptlist = (FilterExceptlist)theEObject;
+        T result = caseFilterExceptlist(filterExceptlist);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TableDSLPackage.FILTER_RULE:
+      {
+        FilterRule filterRule = (FilterRule)theEObject;
+        T result = caseFilterRule(filterRule);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TableDSLPackage.FILTER_OBJECT_TYPE_RULE:
+      {
+        FilterObjectTypeRule filterObjectTypeRule = (FilterObjectTypeRule)theEObject;
+        T result = caseFilterObjectTypeRule(filterObjectTypeRule);
+        if (result == null) result = caseFilterRule(filterObjectTypeRule);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TableDSLPackage.FILTER_COLUMN_RULE:
+      {
+        FilterColumnRule filterColumnRule = (FilterColumnRule)theEObject;
+        T result = caseFilterColumnRule(filterColumnRule);
+        if (result == null) result = caseFilterRule(filterColumnRule);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -322,6 +404,70 @@ public class TableDSLSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Rename Column Pair</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Rename Column Pair</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRenameColumnPair(RenameColumnPair object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Rename Column To Pair</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Rename Column To Pair</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRenameColumnToPair(RenameColumnToPair object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Rename Column Prepend Pair</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Rename Column Prepend Pair</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRenameColumnPrependPair(RenameColumnPrependPair object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Rename Column Append Pair</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Rename Column Append Pair</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRenameColumnAppendPair(RenameColumnAppendPair object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Extract</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -333,6 +479,38 @@ public class TableDSLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseExtract(Extract object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Selector</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Selector</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSelector(Selector object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Comparator</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Comparator</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseComparator(Comparator object)
   {
     return null;
   }
@@ -365,6 +543,86 @@ public class TableDSLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseFilter(Filter object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Filter Denylist</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Filter Denylist</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFilterDenylist(FilterDenylist object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Filter Exceptlist</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Filter Exceptlist</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFilterExceptlist(FilterExceptlist object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Filter Rule</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Filter Rule</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFilterRule(FilterRule object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Filter Object Type Rule</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Filter Object Type Rule</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFilterObjectTypeRule(FilterObjectTypeRule object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Filter Column Rule</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Filter Column Rule</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFilterColumnRule(FilterColumnRule object)
   {
     return null;
   }

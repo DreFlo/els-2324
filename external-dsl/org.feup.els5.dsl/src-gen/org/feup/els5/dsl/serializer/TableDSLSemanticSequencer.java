@@ -15,11 +15,20 @@ import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.feup.els5.dsl.services.TableDSLGrammarAccess;
+import org.feup.els5.dsl.tableDSL.Comparator;
 import org.feup.els5.dsl.tableDSL.Extract;
 import org.feup.els5.dsl.tableDSL.Filter;
+import org.feup.els5.dsl.tableDSL.FilterColumnRule;
+import org.feup.els5.dsl.tableDSL.FilterDenylist;
+import org.feup.els5.dsl.tableDSL.FilterExceptlist;
+import org.feup.els5.dsl.tableDSL.FilterObjectTypeRule;
 import org.feup.els5.dsl.tableDSL.Output;
 import org.feup.els5.dsl.tableDSL.RenameColumn;
+import org.feup.els5.dsl.tableDSL.RenameColumnAppendPair;
+import org.feup.els5.dsl.tableDSL.RenameColumnPrependPair;
+import org.feup.els5.dsl.tableDSL.RenameColumnToPair;
 import org.feup.els5.dsl.tableDSL.Select;
+import org.feup.els5.dsl.tableDSL.Selector;
 import org.feup.els5.dsl.tableDSL.SquashRows;
 import org.feup.els5.dsl.tableDSL.Start;
 import org.feup.els5.dsl.tableDSL.TableDSLPackage;
@@ -39,11 +48,26 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == TableDSLPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case TableDSLPackage.COMPARATOR:
+				sequence_Comparator(context, (Comparator) semanticObject); 
+				return; 
 			case TableDSLPackage.EXTRACT:
 				sequence_Extract(context, (Extract) semanticObject); 
 				return; 
 			case TableDSLPackage.FILTER:
 				sequence_Filter(context, (Filter) semanticObject); 
+				return; 
+			case TableDSLPackage.FILTER_COLUMN_RULE:
+				sequence_FilterColumnRule(context, (FilterColumnRule) semanticObject); 
+				return; 
+			case TableDSLPackage.FILTER_DENYLIST:
+				sequence_FilterDenylist(context, (FilterDenylist) semanticObject); 
+				return; 
+			case TableDSLPackage.FILTER_EXCEPTLIST:
+				sequence_FilterExceptlist(context, (FilterExceptlist) semanticObject); 
+				return; 
+			case TableDSLPackage.FILTER_OBJECT_TYPE_RULE:
+				sequence_FilterObjectTypeRule(context, (FilterObjectTypeRule) semanticObject); 
 				return; 
 			case TableDSLPackage.OUTPUT:
 				sequence_Output(context, (Output) semanticObject); 
@@ -51,8 +75,20 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 			case TableDSLPackage.RENAME_COLUMN:
 				sequence_RenameColumn(context, (RenameColumn) semanticObject); 
 				return; 
+			case TableDSLPackage.RENAME_COLUMN_APPEND_PAIR:
+				sequence_RenameColumnAppendPair(context, (RenameColumnAppendPair) semanticObject); 
+				return; 
+			case TableDSLPackage.RENAME_COLUMN_PREPEND_PAIR:
+				sequence_RenameColumnPrependPair(context, (RenameColumnPrependPair) semanticObject); 
+				return; 
+			case TableDSLPackage.RENAME_COLUMN_TO_PAIR:
+				sequence_RenameColumnToPair(context, (RenameColumnToPair) semanticObject); 
+				return; 
 			case TableDSLPackage.SELECT:
 				sequence_Select(context, (Select) semanticObject); 
+				return; 
+			case TableDSLPackage.SELECTOR:
+				sequence_Selector(context, (Selector) semanticObject); 
 				return; 
 			case TableDSLPackage.SQUASH_ROWS:
 				sequence_SquashRows(context, (SquashRows) semanticObject); 
@@ -71,21 +107,99 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     Comparator returns Comparator
+	 *
+	 * Constraint:
+	 *     (keys+=STRING keys+=STRING*)
+	 * </pre>
+	 */
+	protected void sequence_Comparator(ISerializationContext context, Comparator semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     TableAction returns Extract
 	 *     Operation returns Extract
 	 *     Extract returns Extract
 	 *
 	 * Constraint:
-	 *     placeholder=STRING
+	 *     (targetColumns+=STRING targetColumns+=STRING* sourceColumn=STRING selector=Selector comparator=Comparator)
 	 * </pre>
 	 */
 	protected void sequence_Extract(ISerializationContext context, Extract semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     FilterRule returns FilterColumnRule
+	 *     FilterColumnRule returns FilterColumnRule
+	 *
+	 * Constraint:
+	 *     objectClass=STRING
+	 * </pre>
+	 */
+	protected void sequence_FilterColumnRule(ISerializationContext context, FilterColumnRule semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, TableDSLPackage.Literals.EXTRACT__PLACEHOLDER) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TableDSLPackage.Literals.EXTRACT__PLACEHOLDER));
+			if (transientValues.isValueTransient(semanticObject, TableDSLPackage.Literals.FILTER_COLUMN_RULE__OBJECT_CLASS) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TableDSLPackage.Literals.FILTER_COLUMN_RULE__OBJECT_CLASS));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getExtractAccess().getPlaceholderSTRINGTerminalRuleCall_1_0(), semanticObject.getPlaceholder());
+		feeder.accept(grammarAccess.getFilterColumnRuleAccess().getObjectClassSTRINGTerminalRuleCall_2_0(), semanticObject.getObjectClass());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     FilterDenylist returns FilterDenylist
+	 *
+	 * Constraint:
+	 *     denylist+=FilterRule
+	 * </pre>
+	 */
+	protected void sequence_FilterDenylist(ISerializationContext context, FilterDenylist semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     FilterExceptlist returns FilterExceptlist
+	 *
+	 * Constraint:
+	 *     exceptlist+=FilterRule
+	 * </pre>
+	 */
+	protected void sequence_FilterExceptlist(ISerializationContext context, FilterExceptlist semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     FilterRule returns FilterObjectTypeRule
+	 *     FilterObjectTypeRule returns FilterObjectTypeRule
+	 *
+	 * Constraint:
+	 *     columnPattern=STRING
+	 * </pre>
+	 */
+	protected void sequence_FilterObjectTypeRule(ISerializationContext context, FilterObjectTypeRule semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, TableDSLPackage.Literals.FILTER_OBJECT_TYPE_RULE__COLUMN_PATTERN) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TableDSLPackage.Literals.FILTER_OBJECT_TYPE_RULE__COLUMN_PATTERN));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getFilterObjectTypeRuleAccess().getColumnPatternSTRINGTerminalRuleCall_1_0(), semanticObject.getColumnPattern());
 		feeder.finish();
 	}
 	
@@ -98,17 +212,11 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     Filter returns Filter
 	 *
 	 * Constraint:
-	 *     placeholder=STRING
+	 *     (denylist=FilterDenylist exceptlist=FilterExceptlist?)
 	 * </pre>
 	 */
 	protected void sequence_Filter(ISerializationContext context, Filter semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, TableDSLPackage.Literals.FILTER__PLACEHOLDER) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TableDSLPackage.Literals.FILTER__PLACEHOLDER));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getFilterAccess().getPlaceholderSTRINGTerminalRuleCall_2_0(), semanticObject.getPlaceholder());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -130,25 +238,88 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     TableAction returns RenameColumn
-	 *     Operation returns RenameColumn
-	 *     RenameColumn returns RenameColumn
+	 *     RenameColumnPair returns RenameColumnAppendPair
+	 *     RenameColumnAppendPair returns RenameColumnAppendPair
+	 *
+	 * Constraint:
+	 *     (oldName=STRING suffix=STRING)
+	 * </pre>
+	 */
+	protected void sequence_RenameColumnAppendPair(ISerializationContext context, RenameColumnAppendPair semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, TableDSLPackage.Literals.RENAME_COLUMN_PAIR__OLD_NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TableDSLPackage.Literals.RENAME_COLUMN_PAIR__OLD_NAME));
+			if (transientValues.isValueTransient(semanticObject, TableDSLPackage.Literals.RENAME_COLUMN_APPEND_PAIR__SUFFIX) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TableDSLPackage.Literals.RENAME_COLUMN_APPEND_PAIR__SUFFIX));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getRenameColumnAppendPairAccess().getOldNameSTRINGTerminalRuleCall_0_0(), semanticObject.getOldName());
+		feeder.accept(grammarAccess.getRenameColumnAppendPairAccess().getSuffixSTRINGTerminalRuleCall_2_0(), semanticObject.getSuffix());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     RenameColumnPair returns RenameColumnPrependPair
+	 *     RenameColumnPrependPair returns RenameColumnPrependPair
+	 *
+	 * Constraint:
+	 *     (oldName=STRING prefix=STRING)
+	 * </pre>
+	 */
+	protected void sequence_RenameColumnPrependPair(ISerializationContext context, RenameColumnPrependPair semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, TableDSLPackage.Literals.RENAME_COLUMN_PAIR__OLD_NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TableDSLPackage.Literals.RENAME_COLUMN_PAIR__OLD_NAME));
+			if (transientValues.isValueTransient(semanticObject, TableDSLPackage.Literals.RENAME_COLUMN_PREPEND_PAIR__PREFIX) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TableDSLPackage.Literals.RENAME_COLUMN_PREPEND_PAIR__PREFIX));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getRenameColumnPrependPairAccess().getOldNameSTRINGTerminalRuleCall_0_0(), semanticObject.getOldName());
+		feeder.accept(grammarAccess.getRenameColumnPrependPairAccess().getPrefixSTRINGTerminalRuleCall_2_0(), semanticObject.getPrefix());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     RenameColumnPair returns RenameColumnToPair
+	 *     RenameColumnToPair returns RenameColumnToPair
 	 *
 	 * Constraint:
 	 *     (oldName=STRING newName=STRING)
 	 * </pre>
 	 */
-	protected void sequence_RenameColumn(ISerializationContext context, RenameColumn semanticObject) {
+	protected void sequence_RenameColumnToPair(ISerializationContext context, RenameColumnToPair semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, TableDSLPackage.Literals.RENAME_COLUMN__OLD_NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TableDSLPackage.Literals.RENAME_COLUMN__OLD_NAME));
-			if (transientValues.isValueTransient(semanticObject, TableDSLPackage.Literals.RENAME_COLUMN__NEW_NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TableDSLPackage.Literals.RENAME_COLUMN__NEW_NAME));
+			if (transientValues.isValueTransient(semanticObject, TableDSLPackage.Literals.RENAME_COLUMN_PAIR__OLD_NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TableDSLPackage.Literals.RENAME_COLUMN_PAIR__OLD_NAME));
+			if (transientValues.isValueTransient(semanticObject, TableDSLPackage.Literals.RENAME_COLUMN_TO_PAIR__NEW_NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TableDSLPackage.Literals.RENAME_COLUMN_TO_PAIR__NEW_NAME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getRenameColumnAccess().getOldNameSTRINGTerminalRuleCall_2_0(), semanticObject.getOldName());
-		feeder.accept(grammarAccess.getRenameColumnAccess().getNewNameSTRINGTerminalRuleCall_4_0(), semanticObject.getNewName());
+		feeder.accept(grammarAccess.getRenameColumnToPairAccess().getOldNameSTRINGTerminalRuleCall_0_0(), semanticObject.getOldName());
+		feeder.accept(grammarAccess.getRenameColumnToPairAccess().getNewNameSTRINGTerminalRuleCall_2_0(), semanticObject.getNewName());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     TableAction returns RenameColumn
+	 *     Operation returns RenameColumn
+	 *     RenameColumn returns RenameColumn
+	 *
+	 * Constraint:
+	 *     renameTuples+=RenameColumnPair+
+	 * </pre>
+	 */
+	protected void sequence_RenameColumn(ISerializationContext context, RenameColumn semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -164,6 +335,20 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 * </pre>
 	 */
 	protected void sequence_Select(ISerializationContext context, Select semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Selector returns Selector
+	 *
+	 * Constraint:
+	 *     n=INT?
+	 * </pre>
+	 */
+	protected void sequence_Selector(ISerializationContext context, Selector semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

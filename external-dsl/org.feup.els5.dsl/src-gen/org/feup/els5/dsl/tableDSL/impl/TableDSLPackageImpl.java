@@ -10,14 +10,25 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.feup.els5.dsl.tableDSL.Comparator;
 import org.feup.els5.dsl.tableDSL.CreateTable;
 import org.feup.els5.dsl.tableDSL.Extract;
 import org.feup.els5.dsl.tableDSL.Filter;
+import org.feup.els5.dsl.tableDSL.FilterColumnRule;
+import org.feup.els5.dsl.tableDSL.FilterDenylist;
+import org.feup.els5.dsl.tableDSL.FilterExceptlist;
+import org.feup.els5.dsl.tableDSL.FilterObjectTypeRule;
+import org.feup.els5.dsl.tableDSL.FilterRule;
 import org.feup.els5.dsl.tableDSL.LoadData;
 import org.feup.els5.dsl.tableDSL.Operation;
 import org.feup.els5.dsl.tableDSL.Output;
 import org.feup.els5.dsl.tableDSL.RenameColumn;
+import org.feup.els5.dsl.tableDSL.RenameColumnAppendPair;
+import org.feup.els5.dsl.tableDSL.RenameColumnPair;
+import org.feup.els5.dsl.tableDSL.RenameColumnPrependPair;
+import org.feup.els5.dsl.tableDSL.RenameColumnToPair;
 import org.feup.els5.dsl.tableDSL.Select;
+import org.feup.els5.dsl.tableDSL.Selector;
 import org.feup.els5.dsl.tableDSL.SquashRows;
 import org.feup.els5.dsl.tableDSL.Start;
 import org.feup.els5.dsl.tableDSL.TableAction;
@@ -101,7 +112,49 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass renameColumnPairEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass renameColumnToPairEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass renameColumnPrependPairEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass renameColumnAppendPairEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass extractEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass selectorEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass comparatorEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -116,6 +169,41 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
    * @generated
    */
   private EClass filterEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass filterDenylistEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass filterExceptlistEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass filterRuleEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass filterObjectTypeRuleEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass filterColumnRuleEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -339,9 +427,9 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getRenameColumn_OldName()
+  public EReference getRenameColumn_RenameTuples()
   {
-    return (EAttribute)renameColumnEClass.getEStructuralFeatures().get(0);
+    return (EReference)renameColumnEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -350,9 +438,86 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getRenameColumn_NewName()
+  public EClass getRenameColumnPair()
   {
-    return (EAttribute)renameColumnEClass.getEStructuralFeatures().get(1);
+    return renameColumnPairEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getRenameColumnPair_OldName()
+  {
+    return (EAttribute)renameColumnPairEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getRenameColumnToPair()
+  {
+    return renameColumnToPairEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getRenameColumnToPair_NewName()
+  {
+    return (EAttribute)renameColumnToPairEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getRenameColumnPrependPair()
+  {
+    return renameColumnPrependPairEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getRenameColumnPrependPair_Prefix()
+  {
+    return (EAttribute)renameColumnPrependPairEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getRenameColumnAppendPair()
+  {
+    return renameColumnAppendPairEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getRenameColumnAppendPair_Suffix()
+  {
+    return (EAttribute)renameColumnAppendPairEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -372,9 +537,86 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getExtract_Placeholder()
+  public EAttribute getExtract_TargetColumns()
   {
     return (EAttribute)extractEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getExtract_SourceColumn()
+  {
+    return (EAttribute)extractEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getExtract_Selector()
+  {
+    return (EReference)extractEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getExtract_Comparator()
+  {
+    return (EReference)extractEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getSelector()
+  {
+    return selectorEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getSelector_N()
+  {
+    return (EAttribute)selectorEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getComparator()
+  {
+    return comparatorEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getComparator_Keys()
+  {
+    return (EAttribute)comparatorEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -416,9 +658,119 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getFilter_Placeholder()
+  public EReference getFilter_Denylist()
   {
-    return (EAttribute)filterEClass.getEStructuralFeatures().get(0);
+    return (EReference)filterEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getFilter_Exceptlist()
+  {
+    return (EReference)filterEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getFilterDenylist()
+  {
+    return filterDenylistEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getFilterDenylist_Denylist()
+  {
+    return (EReference)filterDenylistEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getFilterExceptlist()
+  {
+    return filterExceptlistEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getFilterExceptlist_Exceptlist()
+  {
+    return (EReference)filterExceptlistEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getFilterRule()
+  {
+    return filterRuleEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getFilterObjectTypeRule()
+  {
+    return filterObjectTypeRuleEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getFilterObjectTypeRule_ColumnPattern()
+  {
+    return (EAttribute)filterObjectTypeRuleEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getFilterColumnRule()
+  {
+    return filterColumnRuleEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getFilterColumnRule_ObjectClass()
+  {
+    return (EAttribute)filterColumnRuleEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -474,17 +826,52 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
     createEAttribute(selectEClass, SELECT__COLUMN_PATTERNS);
 
     renameColumnEClass = createEClass(RENAME_COLUMN);
-    createEAttribute(renameColumnEClass, RENAME_COLUMN__OLD_NAME);
-    createEAttribute(renameColumnEClass, RENAME_COLUMN__NEW_NAME);
+    createEReference(renameColumnEClass, RENAME_COLUMN__RENAME_TUPLES);
+
+    renameColumnPairEClass = createEClass(RENAME_COLUMN_PAIR);
+    createEAttribute(renameColumnPairEClass, RENAME_COLUMN_PAIR__OLD_NAME);
+
+    renameColumnToPairEClass = createEClass(RENAME_COLUMN_TO_PAIR);
+    createEAttribute(renameColumnToPairEClass, RENAME_COLUMN_TO_PAIR__NEW_NAME);
+
+    renameColumnPrependPairEClass = createEClass(RENAME_COLUMN_PREPEND_PAIR);
+    createEAttribute(renameColumnPrependPairEClass, RENAME_COLUMN_PREPEND_PAIR__PREFIX);
+
+    renameColumnAppendPairEClass = createEClass(RENAME_COLUMN_APPEND_PAIR);
+    createEAttribute(renameColumnAppendPairEClass, RENAME_COLUMN_APPEND_PAIR__SUFFIX);
 
     extractEClass = createEClass(EXTRACT);
-    createEAttribute(extractEClass, EXTRACT__PLACEHOLDER);
+    createEAttribute(extractEClass, EXTRACT__TARGET_COLUMNS);
+    createEAttribute(extractEClass, EXTRACT__SOURCE_COLUMN);
+    createEReference(extractEClass, EXTRACT__SELECTOR);
+    createEReference(extractEClass, EXTRACT__COMPARATOR);
+
+    selectorEClass = createEClass(SELECTOR);
+    createEAttribute(selectorEClass, SELECTOR__N);
+
+    comparatorEClass = createEClass(COMPARATOR);
+    createEAttribute(comparatorEClass, COMPARATOR__KEYS);
 
     squashRowsEClass = createEClass(SQUASH_ROWS);
     createEAttribute(squashRowsEClass, SQUASH_ROWS__COLUMNS);
 
     filterEClass = createEClass(FILTER);
-    createEAttribute(filterEClass, FILTER__PLACEHOLDER);
+    createEReference(filterEClass, FILTER__DENYLIST);
+    createEReference(filterEClass, FILTER__EXCEPTLIST);
+
+    filterDenylistEClass = createEClass(FILTER_DENYLIST);
+    createEReference(filterDenylistEClass, FILTER_DENYLIST__DENYLIST);
+
+    filterExceptlistEClass = createEClass(FILTER_EXCEPTLIST);
+    createEReference(filterExceptlistEClass, FILTER_EXCEPTLIST__EXCEPTLIST);
+
+    filterRuleEClass = createEClass(FILTER_RULE);
+
+    filterObjectTypeRuleEClass = createEClass(FILTER_OBJECT_TYPE_RULE);
+    createEAttribute(filterObjectTypeRuleEClass, FILTER_OBJECT_TYPE_RULE__COLUMN_PATTERN);
+
+    filterColumnRuleEClass = createEClass(FILTER_COLUMN_RULE);
+    createEAttribute(filterColumnRuleEClass, FILTER_COLUMN_RULE__OBJECT_CLASS);
   }
 
   /**
@@ -523,9 +910,14 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
     operationEClass.getESuperTypes().add(this.getTableAction());
     selectEClass.getESuperTypes().add(this.getOperation());
     renameColumnEClass.getESuperTypes().add(this.getOperation());
+    renameColumnToPairEClass.getESuperTypes().add(this.getRenameColumnPair());
+    renameColumnPrependPairEClass.getESuperTypes().add(this.getRenameColumnPair());
+    renameColumnAppendPairEClass.getESuperTypes().add(this.getRenameColumnPair());
     extractEClass.getESuperTypes().add(this.getOperation());
     squashRowsEClass.getESuperTypes().add(this.getOperation());
     filterEClass.getESuperTypes().add(this.getOperation());
+    filterObjectTypeRuleEClass.getESuperTypes().add(this.getFilterRule());
+    filterColumnRuleEClass.getESuperTypes().add(this.getFilterRule());
 
     // Initialize classes and features; add operations and parameters
     initEClass(startEClass, Start.class, "Start", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -550,17 +942,52 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
     initEAttribute(getSelect_ColumnPatterns(), ecorePackage.getEString(), "columnPatterns", null, 0, -1, Select.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(renameColumnEClass, RenameColumn.class, "RenameColumn", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getRenameColumn_OldName(), ecorePackage.getEString(), "oldName", null, 0, 1, RenameColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getRenameColumn_NewName(), ecorePackage.getEString(), "newName", null, 0, 1, RenameColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRenameColumn_RenameTuples(), this.getRenameColumnPair(), null, "renameTuples", null, 0, -1, RenameColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(renameColumnPairEClass, RenameColumnPair.class, "RenameColumnPair", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRenameColumnPair_OldName(), ecorePackage.getEString(), "oldName", null, 0, 1, RenameColumnPair.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(renameColumnToPairEClass, RenameColumnToPair.class, "RenameColumnToPair", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRenameColumnToPair_NewName(), ecorePackage.getEString(), "newName", null, 0, 1, RenameColumnToPair.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(renameColumnPrependPairEClass, RenameColumnPrependPair.class, "RenameColumnPrependPair", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRenameColumnPrependPair_Prefix(), ecorePackage.getEString(), "prefix", null, 0, 1, RenameColumnPrependPair.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(renameColumnAppendPairEClass, RenameColumnAppendPair.class, "RenameColumnAppendPair", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRenameColumnAppendPair_Suffix(), ecorePackage.getEString(), "suffix", null, 0, 1, RenameColumnAppendPair.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(extractEClass, Extract.class, "Extract", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getExtract_Placeholder(), ecorePackage.getEString(), "placeholder", null, 0, 1, Extract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getExtract_TargetColumns(), ecorePackage.getEString(), "targetColumns", null, 0, -1, Extract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getExtract_SourceColumn(), ecorePackage.getEString(), "sourceColumn", null, 0, 1, Extract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExtract_Selector(), this.getSelector(), null, "selector", null, 0, 1, Extract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExtract_Comparator(), this.getComparator(), null, "comparator", null, 0, 1, Extract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(selectorEClass, Selector.class, "Selector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getSelector_N(), ecorePackage.getEInt(), "n", null, 0, 1, Selector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(comparatorEClass, Comparator.class, "Comparator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getComparator_Keys(), ecorePackage.getEString(), "keys", null, 0, -1, Comparator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(squashRowsEClass, SquashRows.class, "SquashRows", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getSquashRows_Columns(), ecorePackage.getEString(), "columns", null, 0, -1, SquashRows.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(filterEClass, Filter.class, "Filter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getFilter_Placeholder(), ecorePackage.getEString(), "placeholder", null, 0, 1, Filter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFilter_Denylist(), this.getFilterDenylist(), null, "denylist", null, 0, 1, Filter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFilter_Exceptlist(), this.getFilterExceptlist(), null, "exceptlist", null, 0, 1, Filter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(filterDenylistEClass, FilterDenylist.class, "FilterDenylist", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getFilterDenylist_Denylist(), this.getFilterRule(), null, "denylist", null, 0, -1, FilterDenylist.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(filterExceptlistEClass, FilterExceptlist.class, "FilterExceptlist", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getFilterExceptlist_Exceptlist(), this.getFilterRule(), null, "exceptlist", null, 0, -1, FilterExceptlist.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(filterRuleEClass, FilterRule.class, "FilterRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(filterObjectTypeRuleEClass, FilterObjectTypeRule.class, "FilterObjectTypeRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFilterObjectTypeRule_ColumnPattern(), ecorePackage.getEString(), "columnPattern", null, 0, 1, FilterObjectTypeRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(filterColumnRuleEClass, FilterColumnRule.class, "FilterColumnRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFilterColumnRule_ObjectClass(), ecorePackage.getEString(), "objectClass", null, 0, 1, FilterColumnRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

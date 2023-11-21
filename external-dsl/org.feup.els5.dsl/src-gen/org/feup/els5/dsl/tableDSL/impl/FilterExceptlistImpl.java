@@ -12,44 +12,46 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.feup.els5.dsl.tableDSL.RenameColumn;
-import org.feup.els5.dsl.tableDSL.RenameColumnPair;
+import org.feup.els5.dsl.tableDSL.FilterExceptlist;
+import org.feup.els5.dsl.tableDSL.FilterRule;
 import org.feup.els5.dsl.tableDSL.TableDSLPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Rename Column</b></em>'.
+ * An implementation of the model object '<em><b>Filter Exceptlist</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.feup.els5.dsl.tableDSL.impl.RenameColumnImpl#getRenameTuples <em>Rename Tuples</em>}</li>
+ *   <li>{@link org.feup.els5.dsl.tableDSL.impl.FilterExceptlistImpl#getExceptlist <em>Exceptlist</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class RenameColumnImpl extends OperationImpl implements RenameColumn
+public class FilterExceptlistImpl extends MinimalEObjectImpl.Container implements FilterExceptlist
 {
   /**
-   * The cached value of the '{@link #getRenameTuples() <em>Rename Tuples</em>}' containment reference list.
+   * The cached value of the '{@link #getExceptlist() <em>Exceptlist</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getRenameTuples()
+   * @see #getExceptlist()
    * @generated
    * @ordered
    */
-  protected EList<RenameColumnPair> renameTuples;
+  protected EList<FilterRule> exceptlist;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected RenameColumnImpl()
+  protected FilterExceptlistImpl()
   {
     super();
   }
@@ -62,7 +64,7 @@ public class RenameColumnImpl extends OperationImpl implements RenameColumn
   @Override
   protected EClass eStaticClass()
   {
-    return TableDSLPackage.Literals.RENAME_COLUMN;
+    return TableDSLPackage.Literals.FILTER_EXCEPTLIST;
   }
 
   /**
@@ -71,13 +73,13 @@ public class RenameColumnImpl extends OperationImpl implements RenameColumn
    * @generated
    */
   @Override
-  public EList<RenameColumnPair> getRenameTuples()
+  public EList<FilterRule> getExceptlist()
   {
-    if (renameTuples == null)
+    if (exceptlist == null)
     {
-      renameTuples = new EObjectContainmentEList<RenameColumnPair>(RenameColumnPair.class, this, TableDSLPackage.RENAME_COLUMN__RENAME_TUPLES);
+      exceptlist = new EObjectContainmentEList<FilterRule>(FilterRule.class, this, TableDSLPackage.FILTER_EXCEPTLIST__EXCEPTLIST);
     }
-    return renameTuples;
+    return exceptlist;
   }
 
   /**
@@ -90,8 +92,8 @@ public class RenameColumnImpl extends OperationImpl implements RenameColumn
   {
     switch (featureID)
     {
-      case TableDSLPackage.RENAME_COLUMN__RENAME_TUPLES:
-        return ((InternalEList<?>)getRenameTuples()).basicRemove(otherEnd, msgs);
+      case TableDSLPackage.FILTER_EXCEPTLIST__EXCEPTLIST:
+        return ((InternalEList<?>)getExceptlist()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -106,8 +108,8 @@ public class RenameColumnImpl extends OperationImpl implements RenameColumn
   {
     switch (featureID)
     {
-      case TableDSLPackage.RENAME_COLUMN__RENAME_TUPLES:
-        return getRenameTuples();
+      case TableDSLPackage.FILTER_EXCEPTLIST__EXCEPTLIST:
+        return getExceptlist();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -123,9 +125,9 @@ public class RenameColumnImpl extends OperationImpl implements RenameColumn
   {
     switch (featureID)
     {
-      case TableDSLPackage.RENAME_COLUMN__RENAME_TUPLES:
-        getRenameTuples().clear();
-        getRenameTuples().addAll((Collection<? extends RenameColumnPair>)newValue);
+      case TableDSLPackage.FILTER_EXCEPTLIST__EXCEPTLIST:
+        getExceptlist().clear();
+        getExceptlist().addAll((Collection<? extends FilterRule>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -141,8 +143,8 @@ public class RenameColumnImpl extends OperationImpl implements RenameColumn
   {
     switch (featureID)
     {
-      case TableDSLPackage.RENAME_COLUMN__RENAME_TUPLES:
-        getRenameTuples().clear();
+      case TableDSLPackage.FILTER_EXCEPTLIST__EXCEPTLIST:
+        getExceptlist().clear();
         return;
     }
     super.eUnset(featureID);
@@ -158,10 +160,10 @@ public class RenameColumnImpl extends OperationImpl implements RenameColumn
   {
     switch (featureID)
     {
-      case TableDSLPackage.RENAME_COLUMN__RENAME_TUPLES:
-        return renameTuples != null && !renameTuples.isEmpty();
+      case TableDSLPackage.FILTER_EXCEPTLIST__EXCEPTLIST:
+        return exceptlist != null && !exceptlist.isEmpty();
     }
     return super.eIsSet(featureID);
   }
 
-} //RenameColumnImpl
+} //FilterExceptlistImpl

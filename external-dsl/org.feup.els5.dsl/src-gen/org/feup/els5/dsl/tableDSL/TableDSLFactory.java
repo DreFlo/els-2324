@@ -105,6 +105,42 @@ public interface TableDSLFactory extends EFactory
   RenameColumn createRenameColumn();
 
   /**
+   * Returns a new object of class '<em>Rename Column Pair</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Rename Column Pair</em>'.
+   * @generated
+   */
+  RenameColumnPair createRenameColumnPair();
+
+  /**
+   * Returns a new object of class '<em>Rename Column To Pair</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Rename Column To Pair</em>'.
+   * @generated
+   */
+  RenameColumnToPair createRenameColumnToPair();
+
+  /**
+   * Returns a new object of class '<em>Rename Column Prepend Pair</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Rename Column Prepend Pair</em>'.
+   * @generated
+   */
+  RenameColumnPrependPair createRenameColumnPrependPair();
+
+  /**
+   * Returns a new object of class '<em>Rename Column Append Pair</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Rename Column Append Pair</em>'.
+   * @generated
+   */
+  RenameColumnAppendPair createRenameColumnAppendPair();
+
+  /**
    * Returns a new object of class '<em>Extract</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -112,6 +148,24 @@ public interface TableDSLFactory extends EFactory
    * @generated
    */
   Extract createExtract();
+
+  /**
+   * Returns a new object of class '<em>Selector</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Selector</em>'.
+   * @generated
+   */
+  Selector createSelector();
+
+  /**
+   * Returns a new object of class '<em>Comparator</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Comparator</em>'.
+   * @generated
+   */
+  Comparator createComparator();
 
   /**
    * Returns a new object of class '<em>Squash Rows</em>'.
@@ -130,6 +184,51 @@ public interface TableDSLFactory extends EFactory
    * @generated
    */
   Filter createFilter();
+
+  /**
+   * Returns a new object of class '<em>Filter Denylist</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Filter Denylist</em>'.
+   * @generated
+   */
+  FilterDenylist createFilterDenylist();
+
+  /**
+   * Returns a new object of class '<em>Filter Exceptlist</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Filter Exceptlist</em>'.
+   * @generated
+   */
+  FilterExceptlist createFilterExceptlist();
+
+  /**
+   * Returns a new object of class '<em>Filter Rule</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Filter Rule</em>'.
+   * @generated
+   */
+  FilterRule createFilterRule();
+
+  /**
+   * Returns a new object of class '<em>Filter Object Type Rule</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Filter Object Type Rule</em>'.
+   * @generated
+   */
+  FilterObjectTypeRule createFilterObjectTypeRule();
+
+  /**
+   * Returns a new object of class '<em>Filter Column Rule</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Filter Column Rule</em>'.
+   * @generated
+   */
+  FilterColumnRule createFilterColumnRule();
 
   /**
    * Returns the package supported by this factory.

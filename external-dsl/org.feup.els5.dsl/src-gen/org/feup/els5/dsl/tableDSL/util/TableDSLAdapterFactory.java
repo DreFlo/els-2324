@@ -121,9 +121,39 @@ public class TableDSLAdapterFactory extends AdapterFactoryImpl
         return createRenameColumnAdapter();
       }
       @Override
+      public Adapter caseRenameColumnPair(RenameColumnPair object)
+      {
+        return createRenameColumnPairAdapter();
+      }
+      @Override
+      public Adapter caseRenameColumnToPair(RenameColumnToPair object)
+      {
+        return createRenameColumnToPairAdapter();
+      }
+      @Override
+      public Adapter caseRenameColumnPrependPair(RenameColumnPrependPair object)
+      {
+        return createRenameColumnPrependPairAdapter();
+      }
+      @Override
+      public Adapter caseRenameColumnAppendPair(RenameColumnAppendPair object)
+      {
+        return createRenameColumnAppendPairAdapter();
+      }
+      @Override
       public Adapter caseExtract(Extract object)
       {
         return createExtractAdapter();
+      }
+      @Override
+      public Adapter caseSelector(Selector object)
+      {
+        return createSelectorAdapter();
+      }
+      @Override
+      public Adapter caseComparator(Comparator object)
+      {
+        return createComparatorAdapter();
       }
       @Override
       public Adapter caseSquashRows(SquashRows object)
@@ -134,6 +164,31 @@ public class TableDSLAdapterFactory extends AdapterFactoryImpl
       public Adapter caseFilter(Filter object)
       {
         return createFilterAdapter();
+      }
+      @Override
+      public Adapter caseFilterDenylist(FilterDenylist object)
+      {
+        return createFilterDenylistAdapter();
+      }
+      @Override
+      public Adapter caseFilterExceptlist(FilterExceptlist object)
+      {
+        return createFilterExceptlistAdapter();
+      }
+      @Override
+      public Adapter caseFilterRule(FilterRule object)
+      {
+        return createFilterRuleAdapter();
+      }
+      @Override
+      public Adapter caseFilterObjectTypeRule(FilterObjectTypeRule object)
+      {
+        return createFilterObjectTypeRuleAdapter();
+      }
+      @Override
+      public Adapter caseFilterColumnRule(FilterColumnRule object)
+      {
+        return createFilterColumnRuleAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -293,6 +348,66 @@ public class TableDSLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.feup.els5.dsl.tableDSL.RenameColumnPair <em>Rename Column Pair</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.feup.els5.dsl.tableDSL.RenameColumnPair
+   * @generated
+   */
+  public Adapter createRenameColumnPairAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.feup.els5.dsl.tableDSL.RenameColumnToPair <em>Rename Column To Pair</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.feup.els5.dsl.tableDSL.RenameColumnToPair
+   * @generated
+   */
+  public Adapter createRenameColumnToPairAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.feup.els5.dsl.tableDSL.RenameColumnPrependPair <em>Rename Column Prepend Pair</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.feup.els5.dsl.tableDSL.RenameColumnPrependPair
+   * @generated
+   */
+  public Adapter createRenameColumnPrependPairAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.feup.els5.dsl.tableDSL.RenameColumnAppendPair <em>Rename Column Append Pair</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.feup.els5.dsl.tableDSL.RenameColumnAppendPair
+   * @generated
+   */
+  public Adapter createRenameColumnAppendPairAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.feup.els5.dsl.tableDSL.Extract <em>Extract</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -303,6 +418,36 @@ public class TableDSLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createExtractAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.feup.els5.dsl.tableDSL.Selector <em>Selector</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.feup.els5.dsl.tableDSL.Selector
+   * @generated
+   */
+  public Adapter createSelectorAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.feup.els5.dsl.tableDSL.Comparator <em>Comparator</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.feup.els5.dsl.tableDSL.Comparator
+   * @generated
+   */
+  public Adapter createComparatorAdapter()
   {
     return null;
   }
@@ -333,6 +478,81 @@ public class TableDSLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createFilterAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.feup.els5.dsl.tableDSL.FilterDenylist <em>Filter Denylist</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.feup.els5.dsl.tableDSL.FilterDenylist
+   * @generated
+   */
+  public Adapter createFilterDenylistAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.feup.els5.dsl.tableDSL.FilterExceptlist <em>Filter Exceptlist</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.feup.els5.dsl.tableDSL.FilterExceptlist
+   * @generated
+   */
+  public Adapter createFilterExceptlistAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.feup.els5.dsl.tableDSL.FilterRule <em>Filter Rule</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.feup.els5.dsl.tableDSL.FilterRule
+   * @generated
+   */
+  public Adapter createFilterRuleAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.feup.els5.dsl.tableDSL.FilterObjectTypeRule <em>Filter Object Type Rule</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.feup.els5.dsl.tableDSL.FilterObjectTypeRule
+   * @generated
+   */
+  public Adapter createFilterObjectTypeRuleAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.feup.els5.dsl.tableDSL.FilterColumnRule <em>Filter Column Rule</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.feup.els5.dsl.tableDSL.FilterColumnRule
+   * @generated
+   */
+  public Adapter createFilterColumnRuleAdapter()
   {
     return null;
   }

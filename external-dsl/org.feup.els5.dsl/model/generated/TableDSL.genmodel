@@ -24,17 +24,51 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//Select/columnPatterns"/>
     </genClasses>
     <genClasses ecoreClass="TableDSL.ecore#//RenameColumn">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//RenameColumn/oldName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//RenameColumn/newName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TableDSL.ecore#//RenameColumn/renameTuples"/>
+    </genClasses>
+    <genClasses ecoreClass="TableDSL.ecore#//RenameColumnPair">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//RenameColumnPair/oldName"/>
+    </genClasses>
+    <genClasses ecoreClass="TableDSL.ecore#//RenameColumnToPair">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//RenameColumnToPair/newName"/>
+    </genClasses>
+    <genClasses ecoreClass="TableDSL.ecore#//RenameColumnPrependPair">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//RenameColumnPrependPair/prefix"/>
+    </genClasses>
+    <genClasses ecoreClass="TableDSL.ecore#//RenameColumnAppendPair">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//RenameColumnAppendPair/suffix"/>
     </genClasses>
     <genClasses ecoreClass="TableDSL.ecore#//Extract">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//Extract/placeholder"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//Extract/targetColumns"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//Extract/sourceColumn"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TableDSL.ecore#//Extract/selector"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TableDSL.ecore#//Extract/comparator"/>
+    </genClasses>
+    <genClasses ecoreClass="TableDSL.ecore#//Selector">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//Selector/n"/>
+    </genClasses>
+    <genClasses ecoreClass="TableDSL.ecore#//Comparator">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//Comparator/keys"/>
     </genClasses>
     <genClasses ecoreClass="TableDSL.ecore#//SquashRows">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//SquashRows/columns"/>
     </genClasses>
     <genClasses ecoreClass="TableDSL.ecore#//Filter">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//Filter/placeholder"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TableDSL.ecore#//Filter/denylist"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TableDSL.ecore#//Filter/exceptlist"/>
+    </genClasses>
+    <genClasses ecoreClass="TableDSL.ecore#//FilterDenylist">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TableDSL.ecore#//FilterDenylist/denylist"/>
+    </genClasses>
+    <genClasses ecoreClass="TableDSL.ecore#//FilterExceptlist">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TableDSL.ecore#//FilterExceptlist/exceptlist"/>
+    </genClasses>
+    <genClasses ecoreClass="TableDSL.ecore#//FilterRule"/>
+    <genClasses ecoreClass="TableDSL.ecore#//FilterObjectTypeRule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//FilterObjectTypeRule/columnPattern"/>
+    </genClasses>
+    <genClasses ecoreClass="TableDSL.ecore#//FilterColumnRule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//FilterColumnRule/objectClass"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
