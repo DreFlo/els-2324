@@ -38,16 +38,9 @@ public abstract class ConfigFileParser<ParserObject> implements FileParser {
     }
 
     private TableConfig getTableConfig(ParserObject parserObject) throws RuntimeException {
-        String name;
         List<Source> sources = new ArrayList<>();
         List<Command> operations = new ArrayList<>();
         List<String> outputs = new ArrayList<>();
-
-        if (!hasTableName(parserObject)) {
-            throw new RuntimeException("Configuration missing \"name\"");
-        }
-
-        name = extractTableName(parserObject);
 
         if (!hasSources(parserObject)) {
             throw new RuntimeException("Configuration missing \"sources\"");
@@ -67,12 +60,10 @@ public abstract class ConfigFileParser<ParserObject> implements FileParser {
 
         extractOutputs(outputs, parserObject);
 
-        return new TableConfig(name, sources, operations, outputs);
+        return new TableConfig(sources, operations, outputs);
     }
 
     protected abstract List<ParserObject> retrieveConfigurationTableList(ParserObject parserObject);
-
-    protected abstract String extractTableName(ParserObject parserObject);
 
     protected abstract void extractSources(List<Source> sources, ParserObject parserObject);
 
@@ -81,8 +72,6 @@ public abstract class ConfigFileParser<ParserObject> implements FileParser {
     protected abstract void extractOutputs(List<String> outputs, ParserObject parserObject);
 
     protected abstract boolean hasTables(ParserObject parserObject);
-
-    protected abstract boolean hasTableName(ParserObject parserObject);
 
     protected abstract boolean hasSources(ParserObject parserObject);
 

@@ -41,11 +41,6 @@ public class JSONConfigFileParser extends ConfigFileParser<JSONObject> {
     }
 
     @Override
-    protected String extractTableName(JSONObject jsonObject) {
-        return (String) jsonObject.get("name");
-    }
-
-    @Override
     protected void extractSources(List<Source> sources, JSONObject jsonObject) {
         for (Object sourceObject : (JSONArray) jsonObject.get("sources")) {
             JSONObject sourceJSON = (JSONObject) sourceObject;
@@ -81,11 +76,6 @@ public class JSONConfigFileParser extends ConfigFileParser<JSONObject> {
     @Override
     protected boolean hasTables(JSONObject jsonObject) {
         return jsonObject.containsKey("tables");
-    }
-
-    @Override
-    protected boolean hasTableName(JSONObject jsonObject) {
-        return jsonObject.containsKey("name");
     }
 
     @Override

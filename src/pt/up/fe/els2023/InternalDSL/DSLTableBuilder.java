@@ -23,11 +23,6 @@ public class DSLTableBuilder {
         this.table = table;
     }
 
-    public DSLTableBuilder name(String name) {
-        table.setName(name);
-        return this;
-    }
-
     public DSLSourceBuilder source() {
         return new DSLSourceBuilder(this);
     }

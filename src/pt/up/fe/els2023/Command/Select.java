@@ -28,7 +28,7 @@ public class Select implements Command {
             selectedHeaderIndices.add(selectedHeaderIndex);
         }
 
-        Table newTable = new Table(table.getName(), selectedHeaders);
+        Table newTable = new Table(selectedHeaders);
 
         // Get rows
         for (List<Object> row : table.getRows()) {

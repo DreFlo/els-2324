@@ -6,20 +6,14 @@ import pt.up.fe.els2023.Config.Source.Source;
 import java.util.List;
 
 public class TableConfig {
-    String tableName;
     List<Source> sources;
     List<Command> operations;
     List<String> outputs;
 
-    public TableConfig(String tableName, List<Source> sources, List<Command> operations, List<String> outputs) {
-        this.tableName = tableName;
+    public TableConfig(List<Source> sources, List<Command> operations, List<String> outputs) {
         this.sources = sources;
         this.operations = operations;
         this.outputs = outputs;
-    }
-
-    public String getTableName() {
-        return tableName;
     }
 
     public List<Source> getSources() {
@@ -37,8 +31,7 @@ public class TableConfig {
     @Override
     public String toString() {
         return "TableConfig{" +
-                "tableName='" + tableName + '\'' +
-                ", sources=" + sources +
+                "sources=" + sources +
                 ", operations=" + operations +
                 ", outputs=" + outputs +
                 '}';

@@ -3,11 +3,11 @@ package pt.up.fe.els2023;
 import pt.up.fe.els2023.Config.TableConfig;
 import pt.up.fe.els2023.ConfigFileParser.ConfigFileParser;
 import pt.up.fe.els2023.ConfigFileParser.JSONConfigFileParser;
+import pt.up.fe.els2023.CustomExceptions.FileTypeNotConfiguredException;
 import pt.up.fe.els2023.InternalDSL.InternalDSL;
 import pt.up.fe.els2023.Utils.Comparators;
 import pt.up.fe.els2023.Utils.Selectors;
 import pt.up.fe.els2023.Utils.TableUtils;
-import pt.up.fe.els2023.Exceptions.FileTypeNotConfiguredException;
 
 import java.io.File;
 import java.util.List;
@@ -40,7 +40,6 @@ public class Main {
 
         internalDSL
             .table()
-                .name("tableName")
                 .source()
                     .fileSystemSource()
                         .path("resources/run2.*")

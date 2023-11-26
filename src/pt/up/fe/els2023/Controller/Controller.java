@@ -14,7 +14,7 @@ import pt.up.fe.els2023.Utils.TableUtils;
 import pt.up.fe.els2023.Table.Table;
 import pt.up.fe.els2023.TableBuilder.TableBuilder;
 import pt.up.fe.els2023.TableManipulator.TableManipulator;
-import pt.up.fe.els2023.Exceptions.FileTypeNotConfiguredException;
+import pt.up.fe.els2023.CustomExceptions.FileTypeNotConfiguredException;
 
 import java.io.File;
 import java.util.*;
@@ -51,7 +51,7 @@ public class Controller {
     public void run() throws Exception {
         // Input File Parser
         for (TableConfig tableConfig: tableConfigs) {
-            System.out.println("Working on table: \"" + tableConfig.getTableName() + "\"");
+            System.out.println("Working on table");
 
             List<InputFileParser> inputFileParserList = new ArrayList<>();
 
@@ -69,7 +69,7 @@ public class Controller {
 
             System.out.println("Parsed input files");
 
-            TableBuilder tableBuilder = new TableBuilder(tableConfig.getTableName(), inputFileParserList);
+            TableBuilder tableBuilder = new TableBuilder(inputFileParserList);
 
             Table table = tableBuilder.build();
 

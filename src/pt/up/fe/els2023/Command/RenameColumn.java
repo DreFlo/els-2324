@@ -34,9 +34,7 @@ public class RenameColumn implements Command{
             else
                 newHeaders.add(oldHeader);
         }
-        Table newTable = new Table(table.getName(), newHeaders);
-        newTable.addRows(table.getRows());
-        return newTable;
+        return new Table(newHeaders, table.getRows());
     }
 
     @Override

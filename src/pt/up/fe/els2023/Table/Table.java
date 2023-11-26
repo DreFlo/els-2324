@@ -3,23 +3,18 @@ package pt.up.fe.els2023.Table;
 import java.util.*;
 
 public class Table {
-    private String name;
     private List<String> headers;
     private List<List<Object>> rows;
 
     public Table(){
-        headers = new ArrayList<>();
-        rows = new ArrayList<>(new ArrayList<>());
+        this(new ArrayList<>(), new ArrayList<>());
     }
 
-    public Table(String name, List<String> headers) {
-        this.name = name;
-        this.headers = headers;
-        this.rows = new ArrayList<>(new ArrayList<>());
+    public Table(List<String> headers) {
+        this(headers, new ArrayList<>());
     }
 
-    public Table(String name, List<String> headers, List<List<Object>> rows) {
-        this.name = name;
+    public Table(List<String> headers, List<List<Object>> rows) {
         this.headers = headers;
         this.rows = rows;
     }
@@ -43,7 +38,7 @@ public class Table {
         int headerIndex = headers.indexOf(header);
 
         if (headerIndex == -1) {
-            throw new Exception(header + " is not in the table " + name);
+            throw new Exception(header + " is not in the table");
         }
 
         for (List<Object> row: rows) {
@@ -96,20 +91,12 @@ public class Table {
         setRows(newRows);
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void setHeaders(List<String> headers) {
         this.headers = headers;
     }
 
     public void setRows(List<List<Object>> rows) {
         this.rows = rows;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public List<String> getHeaders() {
@@ -131,8 +118,7 @@ public class Table {
     @Override
     public String toString() {
         return "Table{" +
-                "name=" + name +
-                ", headers=" + headers +
+                "headers=" + headers +
                 ", rows=" + rows +
                 '}';
     }
@@ -141,11 +127,6 @@ public class Table {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Table table)) return false;
-        return name.equals(table.name) && getHeaders().equals(table.getHeaders()) && getRows().equals(table.getRows());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
+        return getHeaders().equals(table.getHeaders()) && getRows().equals(table.getRows());
     }
 }
