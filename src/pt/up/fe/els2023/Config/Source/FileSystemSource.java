@@ -1,4 +1,4 @@
-package pt.up.fe.els2023.Config.Source.FileSystemSource;
+package pt.up.fe.els2023.Config.Source;
 
 import pt.up.fe.els2023.Config.Source.Source;
 
@@ -29,5 +29,12 @@ public class FileSystemSource extends Source {
 
     public boolean isEmpty() {
         return pathPattern.isEmpty();
+    }
+
+    @Override
+    public String toString() {
+        return "FileSystemSource{" +
+                "pathPattern='" + pathPattern + '\'' +
+                '}';
     }
 }

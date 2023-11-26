@@ -1,11 +1,7 @@
 package pt.up.fe.els2023;
 
-import pt.up.fe.els2023.Config.Source.FileSystemSource.FileSource;
-import pt.up.fe.els2023.Config.Source.FileSystemSource.FolderSource;
-import pt.up.fe.els2023.Config.Source.Source;
-import pt.up.fe.els2023.Utils.TableUtils;
+import pt.up.fe.els2023.Config.Source.FileSystemSource;
 import pt.up.fe.els2023.exceptions.NotDirectoryNorFileException;
-import pt.up.fe.specs.util.exceptions.NotImplementedException;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -18,66 +14,12 @@ public class FileMatcher {
     public FileMatcher() {}
 
 
-    public static List<File> matchedFiles(Source source) throws NotDirectoryNorFileException {
-        if (source instanceof FileSource) {
-            return matchedFilesFileSource(new File("./"), ((FileSource) source).getPathPattern());
-        } else if (source instanceof FolderSource) {
-            return matchedFilesFolderSource(new File("./"), ((FolderSource) source).getPathPattern());
-        } else {
-            throw new NotImplementedException(source.toString() + " not implemented.");
-        }
-    }
-
-    // File Source
-
-    public static List<File> matchedFilesFileSource(File sourceFile, String pattern) {
-
-        List<File> matchedFiles = new ArrayList<>();
-        String[] subPatterns = pattern.split("/");
-
-        File[] files = getFilesFileSource(sourceFile, subPatterns[0]);
-
-        if (files != null) {
-            for (File file: files) {
-                if(file.isDirectory()) {
-                    matchedFiles.addAll(matchedFilesFileSource(file, pattern.replace(subPatterns[0] + "/", "")));
-                } else {
-                    matchedFiles.add(file);
-                }
-            }
-        }
-
-        return matchedFiles;
-    }
-
-    /**
-     * Configuration to set what path from sourceFile is accepted
-     * @return Files accepted
-     */
-    private static File[] getFilesFileSource(File sourceFile, String subPattern) {
-        FilenameFilter filenameFilter = (dir, name) -> {
-            Pattern pattern = Pattern.compile(subPattern);
-            Matcher matcher = pattern.matcher(name);
-            if(matcher.matches()) {
-                return true;
-            }
-            return name.matches(subPattern);
-        };
-
-        return sourceFile.listFiles(filenameFilter);
-    }
-
-
-
-    // Folder Source
-
-    public static List<File> matchedFilesFolderSource(File sourceFile, String pathPattern) throws NotDirectoryNorFileException {
-
+    public static List<File> matchedFiles(FileSystemSource source) throws NotDirectoryNorFileException {
         List<File> matchedFiles = new ArrayList<>();
         Queue<File> fileQueue = new PriorityQueue<>();
-        ArrayList<String> subPatterns = new ArrayList<>(Arrays.asList(pathPattern.split("/")));
+        ArrayList<String> subPatterns = new ArrayList<>(Arrays.asList(source.getPathPattern().split("/")));
 
-        fileQueue.addAll(getFilesFolderSource(sourceFile, subPatterns));
+        fileQueue.addAll(getFiles(new File("./"), subPatterns));
 
         while(!fileQueue.isEmpty()) {
             File file = fileQueue.poll();
@@ -94,7 +36,7 @@ public class FileMatcher {
         return matchedFiles;
     }
 
-    private static List<File> getFilesFolderSource(File sourceFile, ArrayList<String> subPatterns) {
+    private static List<File> getFiles(File sourceFile, ArrayList<String> subPatterns) {
         if (subPatterns.isEmpty()) {
             return Arrays.asList(Objects.requireNonNull(sourceFile.listFiles()));
         }
@@ -115,8 +57,9 @@ public class FileMatcher {
         subPatterns.remove(0);
 
         assert files != null;
+
         for (File file: files) {
-            matchedFiles.addAll(getFilesFolderSource(file, subPatterns));
+            matchedFiles.addAll(getFiles(file, subPatterns));
         }
 
         return matchedFiles;

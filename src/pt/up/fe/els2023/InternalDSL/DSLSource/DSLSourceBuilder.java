@@ -1,7 +1,5 @@
 package pt.up.fe.els2023.InternalDSL.DSLSource;
 
-import pt.up.fe.els2023.InternalDSL.DSLSource.DSLFileSystemSource.DSLFileSource;
-import pt.up.fe.els2023.InternalDSL.DSLSource.DSLFileSystemSource.DSLFolderSource;
 import pt.up.fe.els2023.InternalDSL.DSLTableBuilder;
 
 public class DSLSourceBuilder {
@@ -15,12 +13,8 @@ public class DSLSourceBuilder {
         return dslTableBuilder;
     }
 
-    public final DSLFileSource file() {
-        return new DSLFileSource(dslTableBuilder);
-    }
-
-    public final DSLFolderSource folder() {
-        return new DSLFolderSource(dslTableBuilder);
+    public final DSLFileSystemSource fileSystemSource() {
+        return new DSLFileSystemSource(dslTableBuilder);
     }
 
     public DSLTableBuilder end() {

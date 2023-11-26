@@ -10,9 +10,8 @@ import java.io.IOException;
 import java.util.Map;
 
 public class JSONFileParser extends InputFileParser {
-    public JSONFileParser(File inputFile, boolean storeFolderName) {
+    public JSONFileParser(File inputFile) {
         this.inputFile = inputFile;
-        this.storeFolderName = storeFolderName;
     }
 
     @Override

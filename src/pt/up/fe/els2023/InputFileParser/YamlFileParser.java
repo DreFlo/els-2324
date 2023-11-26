@@ -10,9 +10,8 @@ import java.util.Map;
 
 public class YamlFileParser extends InputFileParser {
 
-    public YamlFileParser(File inputFile, boolean storeFolderName) {
+    public YamlFileParser(File inputFile) {
         this.inputFile = inputFile;
-        this.storeFolderName = storeFolderName;
     }
 
     @Override

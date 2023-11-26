@@ -1,10 +1,9 @@
-package pt.up.fe.els2023.InternalDSL.DSLSource.DSLFileSystemSource;
+package pt.up.fe.els2023.InternalDSL.DSLSource;
 
-import pt.up.fe.els2023.Config.Source.FileSystemSource.FileSystemSource;
+import pt.up.fe.els2023.Config.Source.FileSystemSource;
 import pt.up.fe.els2023.FileMatcher;
 import pt.up.fe.els2023.InputFileParser.InputFileParser;
 import pt.up.fe.els2023.InputFileParser.InputFileParserBuilder;
-import pt.up.fe.els2023.InternalDSL.DSLSource.DSLSource;
 import pt.up.fe.els2023.InternalDSL.DSLTableBuilder;
 import pt.up.fe.els2023.exceptions.NotDirectoryNorFileException;
 
@@ -13,21 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public abstract class DSLFileSystemSource<FSS extends FileSystemSource> extends DSLSource<FSS> {
-    private final boolean isFolder;
-
-    public DSLFileSystemSource(DSLTableBuilder dslTableBuilder, FSS source, boolean isFolder) {
-        super(dslTableBuilder, source);
-        this.isFolder = isFolder;
+public class DSLFileSystemSource extends DSLSource<FileSystemSource> {
+    public DSLFileSystemSource(DSLTableBuilder dslTableBuilder) {
+        super(dslTableBuilder, new FileSystemSource());
     }
 
-    public DSLFileSystemSource<FSS> path(String path) {
+    public DSLFileSystemSource path(String path) {
         getSource().setPathPattern(path);
         return this;
-    }
-
-    public boolean isFolder() {
-        return isFolder;
     }
 
     @Override
@@ -38,7 +30,7 @@ public abstract class DSLFileSystemSource<FSS extends FileSystemSource> extends 
         assert files != null;
 
         for (File file : files) {
-            InputFileParser inputFileParser = InputFileParserBuilder.getInputFileParser(file.getAbsolutePath(), isFolder());
+            InputFileParser inputFileParser = InputFileParserBuilder.getInputFileParser(file.getAbsolutePath());
             inputFileParser.parse();
             Map<String, Object> flattenedRow = inputFileParser.getFlattenedRow();
             flattenedRows.add(flattenedRow);

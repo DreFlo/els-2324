@@ -12,9 +12,8 @@ import java.io.IOException;
 import java.util.Map;
 
 public class XMLFileParser extends InputFileParser{
-    public XMLFileParser(File inputFile, boolean storeFolderName) {
+    public XMLFileParser(File inputFile) {
         this.inputFile = inputFile;
-        this.storeFolderName = storeFolderName;
     }
 
     @Override

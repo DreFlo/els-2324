@@ -12,15 +12,12 @@ import static pt.up.fe.els2023.Utils.TableUtils.safelyCastToStringObjectMap;
 public abstract class InputFileParser implements FileParser {
     Map<String, Object> obj;
     File inputFile;
-    boolean storeFolderName;
 
     @Override
     public final void parse() {
         obj = getMapFromFile();
         obj.put("0__filename", inputFile.getName());
-        if (storeFolderName) {
-            obj.put("0__folder", inputFile.getParentFile().getName());
-        }
+        obj.put("0__folder", inputFile.getParentFile().getName());
     }
 
     protected abstract Map<String, Object> getMapFromFile();

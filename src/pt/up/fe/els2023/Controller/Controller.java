@@ -1,5 +1,6 @@
 package pt.up.fe.els2023.Controller;
 
+import pt.up.fe.els2023.Config.Source.FileSystemSource;
 import pt.up.fe.els2023.Config.Source.Source;
 import pt.up.fe.els2023.Config.TableConfig;
 import pt.up.fe.els2023.FileMatcher;
@@ -29,18 +30,18 @@ public class Controller {
         this.tables = new HashSet<>();
     }
 
-    private void addFileParser(List<InputFileParser> inputFileParserList, File file, boolean storeFolderName) throws FileTypeNotConfiguredException {
+    private void addFileParser(List<InputFileParser> inputFileParserList, File file) throws FileTypeNotConfiguredException {
         String extension = TableUtils.getExtensionFromFile(file);
 
         switch (extension) {
             case "yaml":
-                inputFileParserList.add(new YamlFileParser(file, storeFolderName));
+                inputFileParserList.add(new YamlFileParser(file));
                 break;
             case "json":
-                inputFileParserList.add(new JSONFileParser(file, storeFolderName));
+                inputFileParserList.add(new JSONFileParser(file));
                 break;
             case "xml":
-                inputFileParserList.add(new XMLFileParser(file, storeFolderName));
+                inputFileParserList.add(new XMLFileParser(file));
                 break;
             default:
                 throw new FileTypeNotConfiguredException(extension);
@@ -55,8 +56,10 @@ public class Controller {
             List<InputFileParser> inputFileParserList = new ArrayList<>();
 
             for (Source source: tableConfig.getSources()){
-                for(File matchedFile: Objects.requireNonNull(FileMatcher.matchedFiles(source))){
-                    addFileParser(inputFileParserList, matchedFile, false);
+                if (source instanceof FileSystemSource fileSystemSource) {
+                    for (File matchedFile : Objects.requireNonNull(FileMatcher.matchedFiles(fileSystemSource))) {
+                        addFileParser(inputFileParserList, matchedFile);
+                    }
                 }
             }
 

@@ -42,7 +42,7 @@ public class Main {
             .table()
                 .name("tableName")
                 .source()
-                    .folder()
+                    .fileSystemSource()
                         .path("resources/run2.*")
                         .end()
                 .operation()
