@@ -2,13 +2,14 @@ package pt.up.fe.els2023.InternalDSL.DSLSource;
 
 import pt.up.fe.els2023.Config.Source.Source;
 import pt.up.fe.els2023.InternalDSL.DSLTableBuilder;
+import pt.up.fe.els2023.InternalDSL.InternalDSLExecutable;
 import pt.up.fe.els2023.Table.Table;
 import pt.up.fe.els2023.CustomExceptions.NotDirectoryNorFileException;
 
 import java.util.List;
 import java.util.Map;
 
-public abstract class DSLSource<S extends Source> {
+public abstract class DSLSource<S extends Source> implements InternalDSLExecutable {
     private final DSLTableBuilder dslTableBuilder;
     private final S source;
 
@@ -27,13 +28,16 @@ public abstract class DSLSource<S extends Source> {
 
     protected abstract List<Map<String, Object>> getTableRows() throws NotDirectoryNorFileException;
 
-    public final DSLTableBuilder end() throws NotDirectoryNorFileException {
+    public final DSLTableBuilder end() {
+        getDSLTableBuilder().addExecutable(this);
+        return getDSLTableBuilder();
+    }
+
+    public void execute() throws Exception {
         Table table = getDSLTableBuilder().getTable();
 
         for (Map<String, Object> row : getTableRows()) {
             table.extendTable(row);
         }
-
-        return getDSLTableBuilder();
     }
 }

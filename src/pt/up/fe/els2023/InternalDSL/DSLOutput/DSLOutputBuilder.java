@@ -1,14 +1,17 @@
 package pt.up.fe.els2023.InternalDSL.DSLOutput;
 
 import pt.up.fe.els2023.InternalDSL.DSLTableBuilder;
+import pt.up.fe.els2023.InternalDSL.InternalDSLExecutable;
 
 import static pt.up.fe.els2023.Utils.TableUtils.getExtensionFromPath;
 
-public class DSLOutputBuilder {
+public class DSLOutputBuilder implements InternalDSLExecutable {
     DSLTableBuilder dslTableBuilder;
+    String path;
 
     public DSLOutputBuilder(DSLTableBuilder dslTableBuilder) {
         this.dslTableBuilder = dslTableBuilder;
+        this.path = "";
     }
 
     public DSLTableBuilder getDSLTableBuilder() {
@@ -16,7 +19,13 @@ public class DSLOutputBuilder {
     }
 
     public DSLTableBuilder outputTo(String path) {
-        DSLOutput dslOutput = null;
+        this.path = path;
+        getDSLTableBuilder().addExecutable(this);
+        return dslTableBuilder;
+    }
+
+    public void execute() throws Exception {
+        DSLOutput<?> dslOutput = null;
 
         switch(getExtensionFromPath(path)) {
             case "csv" -> dslOutput = new DSLCSVOutput(getDSLTableBuilder(), path);
@@ -25,7 +34,5 @@ public class DSLOutputBuilder {
         }
 
         dslOutput.write();
-
-        return dslTableBuilder;
     }
 }

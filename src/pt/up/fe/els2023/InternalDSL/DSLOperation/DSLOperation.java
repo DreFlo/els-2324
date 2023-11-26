@@ -2,10 +2,11 @@ package pt.up.fe.els2023.InternalDSL.DSLOperation;
 
 import pt.up.fe.els2023.Command.Command;
 import pt.up.fe.els2023.InternalDSL.DSLTableBuilder;
+import pt.up.fe.els2023.InternalDSL.InternalDSLExecutable;
 
 import java.util.Optional;
 
-public class DSLOperation<C extends Command> {
+public class DSLOperation<C extends Command> implements InternalDSLExecutable {
     protected final DSLTableBuilder dslTableBuilder;
     private final Optional<C> command;
 
@@ -20,8 +21,16 @@ public class DSLOperation<C extends Command> {
         return command.get();
     }
 
-    public DSLTableBuilder end() throws Exception {
-        dslTableBuilder.setTable(getCommand().execute(dslTableBuilder.getTable()));
+    public DSLTableBuilder getDSLTableBuilder() {
         return dslTableBuilder;
+    }
+
+    public DSLTableBuilder end() throws Exception {
+        getDSLTableBuilder().addExecutable(this);
+        return getDSLTableBuilder();
+    }
+
+    public void execute() throws Exception {
+        dslTableBuilder.setTable(getCommand().execute(dslTableBuilder.getTable()));
     }
 }

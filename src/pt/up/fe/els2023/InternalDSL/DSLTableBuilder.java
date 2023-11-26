@@ -5,11 +5,18 @@ import pt.up.fe.els2023.InternalDSL.DSLOutput.DSLOutputBuilder;
 import pt.up.fe.els2023.InternalDSL.DSLSource.DSLSourceBuilder;
 import pt.up.fe.els2023.Table.Table;
 
+import java.util.LinkedList;
+import java.util.PriorityQueue;
+import java.util.Queue;
+
 public class DSLTableBuilder {
     private Table table;
 
+    private final Queue<InternalDSLExecutable> executableQueue;
+
     public DSLTableBuilder() {
         this.table = new Table();
+        this.executableQueue = new LinkedList<>();
     }
 
     public Table getTable() {
@@ -32,8 +39,16 @@ public class DSLTableBuilder {
         return new DSLOutputBuilder(this).outputTo(path);
     }
 
-    public DSLTableBuilder end() {
-        return this;
+    public DSLTableExecutor end() {
+        return new DSLTableExecutor(this);
+    }
+
+    public void addExecutable(InternalDSLExecutable executable) {
+        executableQueue.add(executable);
+    }
+
+    public Queue<InternalDSLExecutable> getExecutableQueue() {
+        return executableQueue;
     }
 }
 

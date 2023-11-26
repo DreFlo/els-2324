@@ -65,6 +65,8 @@ public class Main {
                         .column("^functions\\/.*")
                         .end()
                     .end()
-            .outputTo("output/DSL4.html");
+            .outputTo("output/DSL4.html")
+            .end()
+            .execute();
     }
 }
