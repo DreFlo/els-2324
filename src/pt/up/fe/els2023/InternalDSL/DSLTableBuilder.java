@@ -6,12 +6,9 @@ import pt.up.fe.els2023.InternalDSL.DSLSource.DSLSourceBuilder;
 import pt.up.fe.els2023.Table.Table;
 
 public class DSLTableBuilder {
-    private final InternalDSL internalDSL;
-
     private Table table;
 
-    public DSLTableBuilder(InternalDSL internalDSL) {
-        this.internalDSL = internalDSL;
+    public DSLTableBuilder() {
         this.table = new Table();
     }
 
@@ -35,13 +32,8 @@ public class DSLTableBuilder {
         return new DSLOutputBuilder(this).outputTo(path);
     }
 
-    public InternalDSL getInternalDSL() {
-        return internalDSL;
-    }
-
-    public InternalDSL end() {
-        getInternalDSL().addTable(getTable());
-        return internalDSL;
+    public DSLTableBuilder end() {
+        return this;
     }
 }
 
