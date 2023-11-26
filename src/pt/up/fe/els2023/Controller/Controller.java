@@ -14,7 +14,7 @@ import pt.up.fe.els2023.Utils.TableUtils;
 import pt.up.fe.els2023.Table.Table;
 import pt.up.fe.els2023.TableBuilder.TableBuilder;
 import pt.up.fe.els2023.TableManipulator.TableManipulator;
-import pt.up.fe.els2023.exceptions.FileTypeNotConfiguredException;
+import pt.up.fe.els2023.Exceptions.FileTypeNotConfiguredException;
 
 import java.io.File;
 import java.util.*;

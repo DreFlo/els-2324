@@ -5,7 +5,7 @@ import pt.up.fe.els2023.FileMatcher;
 import pt.up.fe.els2023.InputFileParser.InputFileParser;
 import pt.up.fe.els2023.InputFileParser.InputFileParserBuilder;
 import pt.up.fe.els2023.InternalDSL.DSLTableBuilder;
-import pt.up.fe.els2023.exceptions.NotDirectoryNorFileException;
+import pt.up.fe.els2023.Exceptions.NotDirectoryNorFileException;
 
 import java.io.File;
 import java.util.ArrayList;

@@ -3,7 +3,7 @@ package pt.up.fe.els2023.InternalDSL.DSLSource;
 import pt.up.fe.els2023.Config.Source.Source;
 import pt.up.fe.els2023.InternalDSL.DSLTableBuilder;
 import pt.up.fe.els2023.Table.Table;
-import pt.up.fe.els2023.exceptions.NotDirectoryNorFileException;
+import pt.up.fe.els2023.Exceptions.NotDirectoryNorFileException;
 
 import java.util.List;
 import java.util.Map;

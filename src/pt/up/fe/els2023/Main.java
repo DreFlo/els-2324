@@ -7,7 +7,7 @@ import pt.up.fe.els2023.InternalDSL.InternalDSL;
 import pt.up.fe.els2023.Utils.Comparators;
 import pt.up.fe.els2023.Utils.Selectors;
 import pt.up.fe.els2023.Utils.TableUtils;
-import pt.up.fe.els2023.exceptions.FileTypeNotConfiguredException;
+import pt.up.fe.els2023.Exceptions.FileTypeNotConfiguredException;
 
 import java.io.File;
 import java.util.List;

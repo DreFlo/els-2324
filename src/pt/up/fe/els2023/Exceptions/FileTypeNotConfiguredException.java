@@ -1,4 +1,4 @@
-package pt.up.fe.els2023.exceptions;
+package pt.up.fe.els2023.Exceptions;
 
 public class FileTypeNotConfiguredException extends Exception{
     public FileTypeNotConfiguredException(String fileType) {

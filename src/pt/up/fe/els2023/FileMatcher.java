@@ -1,7 +1,7 @@
 package pt.up.fe.els2023;
 
 import pt.up.fe.els2023.Config.Source.FileSystemSource;
-import pt.up.fe.els2023.exceptions.NotDirectoryNorFileException;
+import pt.up.fe.els2023.Exceptions.NotDirectoryNorFileException;
 
 import java.io.File;
 import java.io.FilenameFilter;

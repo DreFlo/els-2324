@@ -1,4 +1,4 @@
-package pt.up.fe.els2023.exceptions;
+package pt.up.fe.els2023.Exceptions;
 
 public class NotDirectoryNorFileException extends Exception {
     public NotDirectoryNorFileException(String filePath) {
