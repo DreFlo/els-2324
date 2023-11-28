@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import org.feup.els5.dsl.tableDSL.ColumnName;
 import org.feup.els5.dsl.tableDSL.Comparator;
 import org.feup.els5.dsl.tableDSL.CreateTable;
 import org.feup.els5.dsl.tableDSL.Extract;
@@ -206,6 +207,13 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
   private EClass filterColumnRuleEClass = null;
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass columnNameEClass = null;
+
+  /**
    * Creates an instance of the model <b>Package</b>, registered with
    * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
    * package URI value.
@@ -394,9 +402,9 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getSelect_ColumnsPatterns()
+  public EReference getSelect_ColumnsPatterns()
   {
-    return (EAttribute)selectEClass.getEStructuralFeatures().get(0);
+    return (EReference)selectEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -405,9 +413,9 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getSelect_ColumnPatterns()
+  public EReference getSelect_ColumnPatterns()
   {
-    return (EAttribute)selectEClass.getEStructuralFeatures().get(1);
+    return (EReference)selectEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -614,9 +622,9 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getComparator_Keys()
+  public EReference getComparator_Keys()
   {
-    return (EAttribute)comparatorEClass.getEStructuralFeatures().get(0);
+    return (EReference)comparatorEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -636,9 +644,9 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getSquashRows_Columns()
+  public EReference getSquashRows_Columns()
   {
-    return (EAttribute)squashRowsEClass.getEStructuralFeatures().get(0);
+    return (EReference)squashRowsEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -746,9 +754,9 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getFilterObjectTypeRule_ColumnPattern()
+  public EReference getFilterObjectTypeRule_ColumnPattern()
   {
-    return (EAttribute)filterObjectTypeRuleEClass.getEStructuralFeatures().get(0);
+    return (EReference)filterObjectTypeRuleEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -771,6 +779,28 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
   public EAttribute getFilterColumnRule_ObjectClass()
   {
     return (EAttribute)filterColumnRuleEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getColumnName()
+  {
+    return columnNameEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getColumnName_ColumnName()
+  {
+    return (EAttribute)columnNameEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -822,8 +852,8 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
     operationEClass = createEClass(OPERATION);
 
     selectEClass = createEClass(SELECT);
-    createEAttribute(selectEClass, SELECT__COLUMNS_PATTERNS);
-    createEAttribute(selectEClass, SELECT__COLUMN_PATTERNS);
+    createEReference(selectEClass, SELECT__COLUMNS_PATTERNS);
+    createEReference(selectEClass, SELECT__COLUMN_PATTERNS);
 
     renameColumnEClass = createEClass(RENAME_COLUMN);
     createEReference(renameColumnEClass, RENAME_COLUMN__RENAME_TUPLES);
@@ -850,10 +880,10 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
     createEAttribute(selectorEClass, SELECTOR__N);
 
     comparatorEClass = createEClass(COMPARATOR);
-    createEAttribute(comparatorEClass, COMPARATOR__KEYS);
+    createEReference(comparatorEClass, COMPARATOR__KEYS);
 
     squashRowsEClass = createEClass(SQUASH_ROWS);
-    createEAttribute(squashRowsEClass, SQUASH_ROWS__COLUMNS);
+    createEReference(squashRowsEClass, SQUASH_ROWS__COLUMNS);
 
     filterEClass = createEClass(FILTER);
     createEReference(filterEClass, FILTER__DENYLIST);
@@ -868,10 +898,13 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
     filterRuleEClass = createEClass(FILTER_RULE);
 
     filterObjectTypeRuleEClass = createEClass(FILTER_OBJECT_TYPE_RULE);
-    createEAttribute(filterObjectTypeRuleEClass, FILTER_OBJECT_TYPE_RULE__COLUMN_PATTERN);
+    createEReference(filterObjectTypeRuleEClass, FILTER_OBJECT_TYPE_RULE__COLUMN_PATTERN);
 
     filterColumnRuleEClass = createEClass(FILTER_COLUMN_RULE);
     createEAttribute(filterColumnRuleEClass, FILTER_COLUMN_RULE__OBJECT_CLASS);
+
+    columnNameEClass = createEClass(COLUMN_NAME);
+    createEAttribute(columnNameEClass, COLUMN_NAME__COLUMN_NAME);
   }
 
   /**
@@ -938,8 +971,8 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
     initEClass(operationEClass, Operation.class, "Operation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(selectEClass, Select.class, "Select", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getSelect_ColumnsPatterns(), ecorePackage.getEString(), "columnsPatterns", null, 0, -1, Select.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getSelect_ColumnPatterns(), ecorePackage.getEString(), "columnPatterns", null, 0, -1, Select.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSelect_ColumnsPatterns(), this.getColumnName(), null, "columnsPatterns", null, 0, -1, Select.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSelect_ColumnPatterns(), this.getColumnName(), null, "columnPatterns", null, 0, -1, Select.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(renameColumnEClass, RenameColumn.class, "RenameColumn", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRenameColumn_RenameTuples(), this.getRenameColumnPair(), null, "renameTuples", null, 0, -1, RenameColumn.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -966,10 +999,10 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
     initEAttribute(getSelector_N(), ecorePackage.getEInt(), "n", null, 0, 1, Selector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(comparatorEClass, Comparator.class, "Comparator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getComparator_Keys(), ecorePackage.getEString(), "keys", null, 0, -1, Comparator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getComparator_Keys(), this.getColumnName(), null, "keys", null, 0, -1, Comparator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(squashRowsEClass, SquashRows.class, "SquashRows", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getSquashRows_Columns(), ecorePackage.getEString(), "columns", null, 0, -1, SquashRows.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSquashRows_Columns(), this.getColumnName(), null, "columns", null, 0, -1, SquashRows.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(filterEClass, Filter.class, "Filter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getFilter_Denylist(), this.getFilterDenylist(), null, "denylist", null, 0, 1, Filter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -984,10 +1017,13 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
     initEClass(filterRuleEClass, FilterRule.class, "FilterRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(filterObjectTypeRuleEClass, FilterObjectTypeRule.class, "FilterObjectTypeRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getFilterObjectTypeRule_ColumnPattern(), ecorePackage.getEString(), "columnPattern", null, 0, 1, FilterObjectTypeRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFilterObjectTypeRule_ColumnPattern(), this.getColumnName(), null, "columnPattern", null, 0, 1, FilterObjectTypeRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(filterColumnRuleEClass, FilterColumnRule.class, "FilterColumnRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getFilterColumnRule_ObjectClass(), ecorePackage.getEString(), "objectClass", null, 0, 1, FilterColumnRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(columnNameEClass, ColumnName.class, "ColumnName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getColumnName_ColumnName(), ecorePackage.getEString(), "columnName", null, 0, 1, ColumnName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

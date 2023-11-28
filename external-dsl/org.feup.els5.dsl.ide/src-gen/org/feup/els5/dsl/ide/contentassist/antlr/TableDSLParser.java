@@ -31,14 +31,15 @@ public class TableDSLParser extends AbstractContentAssistParser {
 		}
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, TableDSLGrammarAccess grammarAccess) {
-			builder.put(grammarAccess.getTableActionAccess().getAlternatives(), "rule__TableAction__Alternatives");
+			builder.put(grammarAccess.getTableActionAccess().getAlternatives_0(), "rule__TableAction__Alternatives_0");
 			builder.put(grammarAccess.getOperationAccess().getAlternatives(), "rule__Operation__Alternatives");
 			builder.put(grammarAccess.getRenameColumnPairAccess().getAlternatives(), "rule__RenameColumnPair__Alternatives");
 			builder.put(grammarAccess.getSelectorAccess().getAlternatives(), "rule__Selector__Alternatives");
 			builder.put(grammarAccess.getFilterRuleAccess().getAlternatives(), "rule__FilterRule__Alternatives");
+			builder.put(grammarAccess.getColumnNameAccess().getColumnNameAlternatives_0(), "rule__ColumnName__ColumnNameAlternatives_0");
 			builder.put(grammarAccess.getStartAccess().getGroup(), "rule__Start__Group__0");
 			builder.put(grammarAccess.getCreateTableAccess().getGroup(), "rule__CreateTable__Group__0");
-			builder.put(grammarAccess.getTableActionAccess().getGroup_2(), "rule__TableAction__Group_2__0");
+			builder.put(grammarAccess.getTableActionAccess().getGroup(), "rule__TableAction__Group__0");
 			builder.put(grammarAccess.getLoadDataAccess().getGroup(), "rule__LoadData__Group__0");
 			builder.put(grammarAccess.getTableInputPathAccess().getGroup(), "rule__TableInputPath__Group__0");
 			builder.put(grammarAccess.getTableInputPathAccess().getGroup_1(), "rule__TableInputPath__Group_1__0");
@@ -96,6 +97,7 @@ public class TableDSLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFilterExceptlistAccess().getExceptlistAssignment_1(), "rule__FilterExceptlist__ExceptlistAssignment_1");
 			builder.put(grammarAccess.getFilterObjectTypeRuleAccess().getColumnPatternAssignment_1(), "rule__FilterObjectTypeRule__ColumnPatternAssignment_1");
 			builder.put(grammarAccess.getFilterColumnRuleAccess().getObjectClassAssignment_2(), "rule__FilterColumnRule__ObjectClassAssignment_2");
+			builder.put(grammarAccess.getColumnNameAccess().getColumnNameAssignment(), "rule__ColumnName__ColumnNameAssignment");
 		}
 	}
 	

@@ -231,6 +231,15 @@ public interface TableDSLFactory extends EFactory
   FilterColumnRule createFilterColumnRule();
 
   /**
+   * Returns a new object of class '<em>Column Name</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Column Name</em>'.
+   * @generated
+   */
+  ColumnName createColumnName();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

@@ -5,12 +5,17 @@ package org.feup.els5.dsl.tableDSL.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.feup.els5.dsl.tableDSL.ColumnName;
 import org.feup.els5.dsl.tableDSL.Select;
 import org.feup.els5.dsl.tableDSL.TableDSLPackage;
 
@@ -31,24 +36,24 @@ import org.feup.els5.dsl.tableDSL.TableDSLPackage;
 public class SelectImpl extends OperationImpl implements Select
 {
   /**
-   * The cached value of the '{@link #getColumnsPatterns() <em>Columns Patterns</em>}' attribute list.
+   * The cached value of the '{@link #getColumnsPatterns() <em>Columns Patterns</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getColumnsPatterns()
    * @generated
    * @ordered
    */
-  protected EList<String> columnsPatterns;
+  protected EList<ColumnName> columnsPatterns;
 
   /**
-   * The cached value of the '{@link #getColumnPatterns() <em>Column Patterns</em>}' attribute list.
+   * The cached value of the '{@link #getColumnPatterns() <em>Column Patterns</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getColumnPatterns()
    * @generated
    * @ordered
    */
-  protected EList<String> columnPatterns;
+  protected EList<ColumnName> columnPatterns;
 
   /**
    * <!-- begin-user-doc -->
@@ -77,11 +82,11 @@ public class SelectImpl extends OperationImpl implements Select
    * @generated
    */
   @Override
-  public EList<String> getColumnsPatterns()
+  public EList<ColumnName> getColumnsPatterns()
   {
     if (columnsPatterns == null)
     {
-      columnsPatterns = new EDataTypeEList<String>(String.class, this, TableDSLPackage.SELECT__COLUMNS_PATTERNS);
+      columnsPatterns = new EObjectContainmentEList<ColumnName>(ColumnName.class, this, TableDSLPackage.SELECT__COLUMNS_PATTERNS);
     }
     return columnsPatterns;
   }
@@ -92,13 +97,31 @@ public class SelectImpl extends OperationImpl implements Select
    * @generated
    */
   @Override
-  public EList<String> getColumnPatterns()
+  public EList<ColumnName> getColumnPatterns()
   {
     if (columnPatterns == null)
     {
-      columnPatterns = new EDataTypeEList<String>(String.class, this, TableDSLPackage.SELECT__COLUMN_PATTERNS);
+      columnPatterns = new EObjectContainmentEList<ColumnName>(ColumnName.class, this, TableDSLPackage.SELECT__COLUMN_PATTERNS);
     }
     return columnPatterns;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case TableDSLPackage.SELECT__COLUMNS_PATTERNS:
+        return ((InternalEList<?>)getColumnsPatterns()).basicRemove(otherEnd, msgs);
+      case TableDSLPackage.SELECT__COLUMN_PATTERNS:
+        return ((InternalEList<?>)getColumnPatterns()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -132,11 +155,11 @@ public class SelectImpl extends OperationImpl implements Select
     {
       case TableDSLPackage.SELECT__COLUMNS_PATTERNS:
         getColumnsPatterns().clear();
-        getColumnsPatterns().addAll((Collection<? extends String>)newValue);
+        getColumnsPatterns().addAll((Collection<? extends ColumnName>)newValue);
         return;
       case TableDSLPackage.SELECT__COLUMN_PATTERNS:
         getColumnPatterns().clear();
-        getColumnPatterns().addAll((Collection<? extends String>)newValue);
+        getColumnPatterns().addAll((Collection<? extends ColumnName>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -178,25 +201,6 @@ public class SelectImpl extends OperationImpl implements Select
         return columnPatterns != null && !columnPatterns.isEmpty();
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (columnsPatterns: ");
-    result.append(columnsPatterns);
-    result.append(", columnPatterns: ");
-    result.append(columnPatterns);
-    result.append(')');
-    return result.toString();
   }
 
 } //SelectImpl

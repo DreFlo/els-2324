@@ -88,6 +88,7 @@ public class TableDSLFactoryImpl extends EFactoryImpl implements TableDSLFactory
       case TableDSLPackage.FILTER_RULE: return createFilterRule();
       case TableDSLPackage.FILTER_OBJECT_TYPE_RULE: return createFilterObjectTypeRule();
       case TableDSLPackage.FILTER_COLUMN_RULE: return createFilterColumnRule();
+      case TableDSLPackage.COLUMN_NAME: return createColumnName();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -367,6 +368,18 @@ public class TableDSLFactoryImpl extends EFactoryImpl implements TableDSLFactory
   {
     FilterColumnRuleImpl filterColumnRule = new FilterColumnRuleImpl();
     return filterColumnRule;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ColumnName createColumnName()
+  {
+    ColumnNameImpl columnName = new ColumnNameImpl();
+    return columnName;
   }
 
   /**

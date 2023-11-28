@@ -2,6 +2,8 @@ grammar org.feup.els5.dsl.TableDSL with org.eclipse.xtext.common.Terminals
 
 generate tableDSL "http://www.feup.org/els5/dsl/TableDSL"
 
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
 Start:
 	// TODO Named them actions, could be different
 	actions+=CreateTable?
@@ -13,7 +15,7 @@ CreateTable:
 ;
 
 TableAction:
-	LoadData | Operation | Output ANY_OTHER
+	(LoadData | Operation | Output) ANY_OTHER
 ;
 
 LoadData:
@@ -33,7 +35,7 @@ Operation:
 ;
 
 Select:
-	"select" columnsPatterns+=STRING ("," columnPatterns+=STRING)*
+	"select" columnsPatterns+=ColumnName ("," columnPatterns+=ColumnName)*
 ;
 
 RenameColumn:
@@ -65,15 +67,15 @@ Selector:
 ;
 
 Comparator:
-	keys+=STRING ("," keys+=STRING)*
+	keys+=ColumnName ("," keys+=ColumnName)*
 ;
 
 SquashRows:
-	"squash" "rows"? "by" columns+=STRING ("," columns+=STRING)* // TODO Maybe we could extend this one to squash by multiple columns?
+	"squash" "rows"? "by" columns+=ColumnName ("," columns+=ColumnName)*
 ;
 
 Filter:
-	"filter" denylist=FilterDenylist exceptlist=FilterExceptlist? // TODO
+	"filter" denylist=FilterDenylist exceptlist=FilterExceptlist?
 ;
 
 FilterDenylist:
@@ -89,9 +91,18 @@ FilterRule:
 ;
 
 FilterObjectTypeRule:
-	"column" columnPattern=STRING
+	"column" columnPattern=ColumnName
 ;
 
 FilterColumnRule:
 	"object" "of"? objectClass=STRING
+;
+
+ColumnName:
+	columnName=(RESERVED_KEYWORDS | STRING)
+;
+
+terminal RESERVED_KEYWORDS returns ecore::EString:
+	"FILENAME" |
+	"DIRECTORY"
 ;

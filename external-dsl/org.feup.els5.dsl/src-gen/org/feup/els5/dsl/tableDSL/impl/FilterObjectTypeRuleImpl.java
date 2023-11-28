@@ -4,11 +4,14 @@
 package org.feup.els5.dsl.tableDSL.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.feup.els5.dsl.tableDSL.ColumnName;
 import org.feup.els5.dsl.tableDSL.FilterObjectTypeRule;
 import org.feup.els5.dsl.tableDSL.TableDSLPackage;
 
@@ -28,24 +31,14 @@ import org.feup.els5.dsl.tableDSL.TableDSLPackage;
 public class FilterObjectTypeRuleImpl extends FilterRuleImpl implements FilterObjectTypeRule
 {
   /**
-   * The default value of the '{@link #getColumnPattern() <em>Column Pattern</em>}' attribute.
+   * The cached value of the '{@link #getColumnPattern() <em>Column Pattern</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getColumnPattern()
    * @generated
    * @ordered
    */
-  protected static final String COLUMN_PATTERN_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getColumnPattern() <em>Column Pattern</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getColumnPattern()
-   * @generated
-   * @ordered
-   */
-  protected String columnPattern = COLUMN_PATTERN_EDEFAULT;
+  protected ColumnName columnPattern;
 
   /**
    * <!-- begin-user-doc -->
@@ -74,7 +67,7 @@ public class FilterObjectTypeRuleImpl extends FilterRuleImpl implements FilterOb
    * @generated
    */
   @Override
-  public String getColumnPattern()
+  public ColumnName getColumnPattern()
   {
     return columnPattern;
   }
@@ -84,13 +77,54 @@ public class FilterObjectTypeRuleImpl extends FilterRuleImpl implements FilterOb
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public void setColumnPattern(String newColumnPattern)
+  public NotificationChain basicSetColumnPattern(ColumnName newColumnPattern, NotificationChain msgs)
   {
-    String oldColumnPattern = columnPattern;
+    ColumnName oldColumnPattern = columnPattern;
     columnPattern = newColumnPattern;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TableDSLPackage.FILTER_OBJECT_TYPE_RULE__COLUMN_PATTERN, oldColumnPattern, columnPattern));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TableDSLPackage.FILTER_OBJECT_TYPE_RULE__COLUMN_PATTERN, oldColumnPattern, newColumnPattern);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setColumnPattern(ColumnName newColumnPattern)
+  {
+    if (newColumnPattern != columnPattern)
+    {
+      NotificationChain msgs = null;
+      if (columnPattern != null)
+        msgs = ((InternalEObject)columnPattern).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TableDSLPackage.FILTER_OBJECT_TYPE_RULE__COLUMN_PATTERN, null, msgs);
+      if (newColumnPattern != null)
+        msgs = ((InternalEObject)newColumnPattern).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TableDSLPackage.FILTER_OBJECT_TYPE_RULE__COLUMN_PATTERN, null, msgs);
+      msgs = basicSetColumnPattern(newColumnPattern, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TableDSLPackage.FILTER_OBJECT_TYPE_RULE__COLUMN_PATTERN, newColumnPattern, newColumnPattern));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case TableDSLPackage.FILTER_OBJECT_TYPE_RULE__COLUMN_PATTERN:
+        return basicSetColumnPattern(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -120,7 +154,7 @@ public class FilterObjectTypeRuleImpl extends FilterRuleImpl implements FilterOb
     switch (featureID)
     {
       case TableDSLPackage.FILTER_OBJECT_TYPE_RULE__COLUMN_PATTERN:
-        setColumnPattern((String)newValue);
+        setColumnPattern((ColumnName)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -137,7 +171,7 @@ public class FilterObjectTypeRuleImpl extends FilterRuleImpl implements FilterOb
     switch (featureID)
     {
       case TableDSLPackage.FILTER_OBJECT_TYPE_RULE__COLUMN_PATTERN:
-        setColumnPattern(COLUMN_PATTERN_EDEFAULT);
+        setColumnPattern((ColumnName)null);
         return;
     }
     super.eUnset(featureID);
@@ -154,26 +188,9 @@ public class FilterObjectTypeRuleImpl extends FilterRuleImpl implements FilterOb
     switch (featureID)
     {
       case TableDSLPackage.FILTER_OBJECT_TYPE_RULE__COLUMN_PATTERN:
-        return COLUMN_PATTERN_EDEFAULT == null ? columnPattern != null : !COLUMN_PATTERN_EDEFAULT.equals(columnPattern);
+        return columnPattern != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (columnPattern: ");
-    result.append(columnPattern);
-    result.append(')');
-    return result.toString();
   }
 
 } //FilterObjectTypeRuleImpl

@@ -153,7 +153,7 @@ public class TableDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'rows'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) 'squash' (ambiguity) 'by' columns+=STRING
+	 *     (rule start) 'squash' (ambiguity) 'by' columns+=ColumnName
 	 
 	 * </pre>
 	 */

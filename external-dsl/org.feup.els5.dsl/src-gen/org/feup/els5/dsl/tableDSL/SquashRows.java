@@ -24,15 +24,15 @@ import org.eclipse.emf.common.util.EList;
 public interface SquashRows extends Operation
 {
   /**
-   * Returns the value of the '<em><b>Columns</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
+   * Returns the value of the '<em><b>Columns</b></em>' containment reference list.
+   * The list contents are of type {@link org.feup.els5.dsl.tableDSL.ColumnName}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Columns</em>' attribute list.
+   * @return the value of the '<em>Columns</em>' containment reference list.
    * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getSquashRows_Columns()
-   * @model unique="false"
+   * @model containment="true"
    * @generated
    */
-  EList<String> getColumns();
+  EList<ColumnName> getColumns();
 
 } // SquashRows

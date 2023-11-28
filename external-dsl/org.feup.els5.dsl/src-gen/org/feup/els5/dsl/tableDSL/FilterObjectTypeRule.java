@@ -23,25 +23,25 @@ package org.feup.els5.dsl.tableDSL;
 public interface FilterObjectTypeRule extends FilterRule
 {
   /**
-   * Returns the value of the '<em><b>Column Pattern</b></em>' attribute.
+   * Returns the value of the '<em><b>Column Pattern</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Column Pattern</em>' attribute.
-   * @see #setColumnPattern(String)
+   * @return the value of the '<em>Column Pattern</em>' containment reference.
+   * @see #setColumnPattern(ColumnName)
    * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getFilterObjectTypeRule_ColumnPattern()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getColumnPattern();
+  ColumnName getColumnPattern();
 
   /**
-   * Sets the value of the '{@link org.feup.els5.dsl.tableDSL.FilterObjectTypeRule#getColumnPattern <em>Column Pattern</em>}' attribute.
+   * Sets the value of the '{@link org.feup.els5.dsl.tableDSL.FilterObjectTypeRule#getColumnPattern <em>Column Pattern</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Column Pattern</em>' attribute.
+   * @param value the new value of the '<em>Column Pattern</em>' containment reference.
    * @see #getColumnPattern()
    * @generated
    */
-  void setColumnPattern(String value);
+  void setColumnPattern(ColumnName value);
 
 } // FilterObjectTypeRule

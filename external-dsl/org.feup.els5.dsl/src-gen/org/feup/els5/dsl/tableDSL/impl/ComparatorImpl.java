@@ -5,14 +5,19 @@ package org.feup.els5.dsl.tableDSL.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.feup.els5.dsl.tableDSL.ColumnName;
 import org.feup.els5.dsl.tableDSL.Comparator;
 import org.feup.els5.dsl.tableDSL.TableDSLPackage;
 
@@ -32,14 +37,14 @@ import org.feup.els5.dsl.tableDSL.TableDSLPackage;
 public class ComparatorImpl extends MinimalEObjectImpl.Container implements Comparator
 {
   /**
-   * The cached value of the '{@link #getKeys() <em>Keys</em>}' attribute list.
+   * The cached value of the '{@link #getKeys() <em>Keys</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getKeys()
    * @generated
    * @ordered
    */
-  protected EList<String> keys;
+  protected EList<ColumnName> keys;
 
   /**
    * <!-- begin-user-doc -->
@@ -68,13 +73,29 @@ public class ComparatorImpl extends MinimalEObjectImpl.Container implements Comp
    * @generated
    */
   @Override
-  public EList<String> getKeys()
+  public EList<ColumnName> getKeys()
   {
     if (keys == null)
     {
-      keys = new EDataTypeEList<String>(String.class, this, TableDSLPackage.COMPARATOR__KEYS);
+      keys = new EObjectContainmentEList<ColumnName>(ColumnName.class, this, TableDSLPackage.COMPARATOR__KEYS);
     }
     return keys;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case TableDSLPackage.COMPARATOR__KEYS:
+        return ((InternalEList<?>)getKeys()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -106,7 +127,7 @@ public class ComparatorImpl extends MinimalEObjectImpl.Container implements Comp
     {
       case TableDSLPackage.COMPARATOR__KEYS:
         getKeys().clear();
-        getKeys().addAll((Collection<? extends String>)newValue);
+        getKeys().addAll((Collection<? extends ColumnName>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -143,23 +164,6 @@ public class ComparatorImpl extends MinimalEObjectImpl.Container implements Comp
         return keys != null && !keys.isEmpty();
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (keys: ");
-    result.append(keys);
-    result.append(')');
-    return result.toString();
   }
 
 } //ComparatorImpl

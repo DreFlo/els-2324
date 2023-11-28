@@ -18,10 +18,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Operation" eSuperTypes="#//TableAction"/>
   <eClassifiers xsi:type="ecore:EClass" name="Select" eSuperTypes="#//Operation">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="columnsPatterns" unique="false"
-        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="columnPatterns" unique="false"
-        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="columnsPatterns" upperBound="-1"
+        eType="#//ColumnName" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="columnPatterns" upperBound="-1"
+        eType="#//ColumnName" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RenameColumn" eSuperTypes="#//Operation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="renameTuples" upperBound="-1"
@@ -52,12 +52,12 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="n" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Comparator">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="keys" unique="false" upperBound="-1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="keys" upperBound="-1" eType="#//ColumnName"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SquashRows" eSuperTypes="#//Operation">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="columns" unique="false"
-        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="columns" upperBound="-1"
+        eType="#//ColumnName" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Filter" eSuperTypes="#//Operation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="denylist" eType="#//FilterDenylist"
@@ -75,9 +75,13 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FilterRule"/>
   <eClassifiers xsi:type="ecore:EClass" name="FilterObjectTypeRule" eSuperTypes="#//FilterRule">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="columnPattern" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="columnPattern" eType="#//ColumnName"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FilterColumnRule" eSuperTypes="#//FilterRule">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="objectClass" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ColumnName">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="columnName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

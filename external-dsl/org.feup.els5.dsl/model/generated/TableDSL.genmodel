@@ -20,8 +20,8 @@
     </genClasses>
     <genClasses ecoreClass="TableDSL.ecore#//Operation"/>
     <genClasses ecoreClass="TableDSL.ecore#//Select">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//Select/columnsPatterns"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//Select/columnPatterns"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TableDSL.ecore#//Select/columnsPatterns"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TableDSL.ecore#//Select/columnPatterns"/>
     </genClasses>
     <genClasses ecoreClass="TableDSL.ecore#//RenameColumn">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TableDSL.ecore#//RenameColumn/renameTuples"/>
@@ -48,10 +48,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//Selector/n"/>
     </genClasses>
     <genClasses ecoreClass="TableDSL.ecore#//Comparator">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//Comparator/keys"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TableDSL.ecore#//Comparator/keys"/>
     </genClasses>
     <genClasses ecoreClass="TableDSL.ecore#//SquashRows">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//SquashRows/columns"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TableDSL.ecore#//SquashRows/columns"/>
     </genClasses>
     <genClasses ecoreClass="TableDSL.ecore#//Filter">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TableDSL.ecore#//Filter/denylist"/>
@@ -65,10 +65,13 @@
     </genClasses>
     <genClasses ecoreClass="TableDSL.ecore#//FilterRule"/>
     <genClasses ecoreClass="TableDSL.ecore#//FilterObjectTypeRule">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//FilterObjectTypeRule/columnPattern"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TableDSL.ecore#//FilterObjectTypeRule/columnPattern"/>
     </genClasses>
     <genClasses ecoreClass="TableDSL.ecore#//FilterColumnRule">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//FilterColumnRule/objectClass"/>
+    </genClasses>
+    <genClasses ecoreClass="TableDSL.ecore#//ColumnName">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//ColumnName/columnName"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -228,7 +228,7 @@ public interface TableDSLPackage extends EPackage
   int SELECT = 7;
 
   /**
-   * The feature id for the '<em><b>Columns Patterns</b></em>' attribute list.
+   * The feature id for the '<em><b>Columns Patterns</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -237,7 +237,7 @@ public interface TableDSLPackage extends EPackage
   int SELECT__COLUMNS_PATTERNS = OPERATION_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Column Patterns</b></em>' attribute list.
+   * The feature id for the '<em><b>Column Patterns</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -515,7 +515,7 @@ public interface TableDSLPackage extends EPackage
   int COMPARATOR = 15;
 
   /**
-   * The feature id for the '<em><b>Keys</b></em>' attribute list.
+   * The feature id for the '<em><b>Keys</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -543,7 +543,7 @@ public interface TableDSLPackage extends EPackage
   int SQUASH_ROWS = 16;
 
   /**
-   * The feature id for the '<em><b>Columns</b></em>' attribute list.
+   * The feature id for the '<em><b>Columns</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -683,7 +683,7 @@ public interface TableDSLPackage extends EPackage
   int FILTER_OBJECT_TYPE_RULE = 21;
 
   /**
-   * The feature id for the '<em><b>Column Pattern</b></em>' attribute.
+   * The feature id for the '<em><b>Column Pattern</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -727,6 +727,34 @@ public interface TableDSLPackage extends EPackage
    * @ordered
    */
   int FILTER_COLUMN_RULE_FEATURE_COUNT = FILTER_RULE_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.feup.els5.dsl.tableDSL.impl.ColumnNameImpl <em>Column Name</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.feup.els5.dsl.tableDSL.impl.ColumnNameImpl
+   * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getColumnName()
+   * @generated
+   */
+  int COLUMN_NAME = 23;
+
+  /**
+   * The feature id for the '<em><b>Column Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COLUMN_NAME__COLUMN_NAME = 0;
+
+  /**
+   * The number of structural features of the '<em>Column Name</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COLUMN_NAME_FEATURE_COUNT = 1;
 
 
   /**
@@ -843,26 +871,26 @@ public interface TableDSLPackage extends EPackage
   EClass getSelect();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.feup.els5.dsl.tableDSL.Select#getColumnsPatterns <em>Columns Patterns</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.feup.els5.dsl.tableDSL.Select#getColumnsPatterns <em>Columns Patterns</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Columns Patterns</em>'.
+   * @return the meta object for the containment reference list '<em>Columns Patterns</em>'.
    * @see org.feup.els5.dsl.tableDSL.Select#getColumnsPatterns()
    * @see #getSelect()
    * @generated
    */
-  EAttribute getSelect_ColumnsPatterns();
+  EReference getSelect_ColumnsPatterns();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.feup.els5.dsl.tableDSL.Select#getColumnPatterns <em>Column Patterns</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.feup.els5.dsl.tableDSL.Select#getColumnPatterns <em>Column Patterns</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Column Patterns</em>'.
+   * @return the meta object for the containment reference list '<em>Column Patterns</em>'.
    * @see org.feup.els5.dsl.tableDSL.Select#getColumnPatterns()
    * @see #getSelect()
    * @generated
    */
-  EAttribute getSelect_ColumnPatterns();
+  EReference getSelect_ColumnPatterns();
 
   /**
    * Returns the meta object for class '{@link org.feup.els5.dsl.tableDSL.RenameColumn <em>Rename Column</em>}'.
@@ -1055,15 +1083,15 @@ public interface TableDSLPackage extends EPackage
   EClass getComparator();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.feup.els5.dsl.tableDSL.Comparator#getKeys <em>Keys</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.feup.els5.dsl.tableDSL.Comparator#getKeys <em>Keys</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Keys</em>'.
+   * @return the meta object for the containment reference list '<em>Keys</em>'.
    * @see org.feup.els5.dsl.tableDSL.Comparator#getKeys()
    * @see #getComparator()
    * @generated
    */
-  EAttribute getComparator_Keys();
+  EReference getComparator_Keys();
 
   /**
    * Returns the meta object for class '{@link org.feup.els5.dsl.tableDSL.SquashRows <em>Squash Rows</em>}'.
@@ -1076,15 +1104,15 @@ public interface TableDSLPackage extends EPackage
   EClass getSquashRows();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.feup.els5.dsl.tableDSL.SquashRows#getColumns <em>Columns</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.feup.els5.dsl.tableDSL.SquashRows#getColumns <em>Columns</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Columns</em>'.
+   * @return the meta object for the containment reference list '<em>Columns</em>'.
    * @see org.feup.els5.dsl.tableDSL.SquashRows#getColumns()
    * @see #getSquashRows()
    * @generated
    */
-  EAttribute getSquashRows_Columns();
+  EReference getSquashRows_Columns();
 
   /**
    * Returns the meta object for class '{@link org.feup.els5.dsl.tableDSL.Filter <em>Filter</em>}'.
@@ -1181,15 +1209,15 @@ public interface TableDSLPackage extends EPackage
   EClass getFilterObjectTypeRule();
 
   /**
-   * Returns the meta object for the attribute '{@link org.feup.els5.dsl.tableDSL.FilterObjectTypeRule#getColumnPattern <em>Column Pattern</em>}'.
+   * Returns the meta object for the containment reference '{@link org.feup.els5.dsl.tableDSL.FilterObjectTypeRule#getColumnPattern <em>Column Pattern</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Column Pattern</em>'.
+   * @return the meta object for the containment reference '<em>Column Pattern</em>'.
    * @see org.feup.els5.dsl.tableDSL.FilterObjectTypeRule#getColumnPattern()
    * @see #getFilterObjectTypeRule()
    * @generated
    */
-  EAttribute getFilterObjectTypeRule_ColumnPattern();
+  EReference getFilterObjectTypeRule_ColumnPattern();
 
   /**
    * Returns the meta object for class '{@link org.feup.els5.dsl.tableDSL.FilterColumnRule <em>Filter Column Rule</em>}'.
@@ -1211,6 +1239,27 @@ public interface TableDSLPackage extends EPackage
    * @generated
    */
   EAttribute getFilterColumnRule_ObjectClass();
+
+  /**
+   * Returns the meta object for class '{@link org.feup.els5.dsl.tableDSL.ColumnName <em>Column Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Column Name</em>'.
+   * @see org.feup.els5.dsl.tableDSL.ColumnName
+   * @generated
+   */
+  EClass getColumnName();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.feup.els5.dsl.tableDSL.ColumnName#getColumnName <em>Column Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Column Name</em>'.
+   * @see org.feup.els5.dsl.tableDSL.ColumnName#getColumnName()
+   * @see #getColumnName()
+   * @generated
+   */
+  EAttribute getColumnName_ColumnName();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -1340,20 +1389,20 @@ public interface TableDSLPackage extends EPackage
     EClass SELECT = eINSTANCE.getSelect();
 
     /**
-     * The meta object literal for the '<em><b>Columns Patterns</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Columns Patterns</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute SELECT__COLUMNS_PATTERNS = eINSTANCE.getSelect_ColumnsPatterns();
+    EReference SELECT__COLUMNS_PATTERNS = eINSTANCE.getSelect_ColumnsPatterns();
 
     /**
-     * The meta object literal for the '<em><b>Column Patterns</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Column Patterns</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute SELECT__COLUMN_PATTERNS = eINSTANCE.getSelect_ColumnPatterns();
+    EReference SELECT__COLUMN_PATTERNS = eINSTANCE.getSelect_ColumnPatterns();
 
     /**
      * The meta object literal for the '{@link org.feup.els5.dsl.tableDSL.impl.RenameColumnImpl <em>Rename Column</em>}' class.
@@ -1516,12 +1565,12 @@ public interface TableDSLPackage extends EPackage
     EClass COMPARATOR = eINSTANCE.getComparator();
 
     /**
-     * The meta object literal for the '<em><b>Keys</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Keys</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute COMPARATOR__KEYS = eINSTANCE.getComparator_Keys();
+    EReference COMPARATOR__KEYS = eINSTANCE.getComparator_Keys();
 
     /**
      * The meta object literal for the '{@link org.feup.els5.dsl.tableDSL.impl.SquashRowsImpl <em>Squash Rows</em>}' class.
@@ -1534,12 +1583,12 @@ public interface TableDSLPackage extends EPackage
     EClass SQUASH_ROWS = eINSTANCE.getSquashRows();
 
     /**
-     * The meta object literal for the '<em><b>Columns</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Columns</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute SQUASH_ROWS__COLUMNS = eINSTANCE.getSquashRows_Columns();
+    EReference SQUASH_ROWS__COLUMNS = eINSTANCE.getSquashRows_Columns();
 
     /**
      * The meta object literal for the '{@link org.feup.els5.dsl.tableDSL.impl.FilterImpl <em>Filter</em>}' class.
@@ -1624,12 +1673,12 @@ public interface TableDSLPackage extends EPackage
     EClass FILTER_OBJECT_TYPE_RULE = eINSTANCE.getFilterObjectTypeRule();
 
     /**
-     * The meta object literal for the '<em><b>Column Pattern</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Column Pattern</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute FILTER_OBJECT_TYPE_RULE__COLUMN_PATTERN = eINSTANCE.getFilterObjectTypeRule_ColumnPattern();
+    EReference FILTER_OBJECT_TYPE_RULE__COLUMN_PATTERN = eINSTANCE.getFilterObjectTypeRule_ColumnPattern();
 
     /**
      * The meta object literal for the '{@link org.feup.els5.dsl.tableDSL.impl.FilterColumnRuleImpl <em>Filter Column Rule</em>}' class.
@@ -1648,6 +1697,24 @@ public interface TableDSLPackage extends EPackage
      * @generated
      */
     EAttribute FILTER_COLUMN_RULE__OBJECT_CLASS = eINSTANCE.getFilterColumnRule_ObjectClass();
+
+    /**
+     * The meta object literal for the '{@link org.feup.els5.dsl.tableDSL.impl.ColumnNameImpl <em>Column Name</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.feup.els5.dsl.tableDSL.impl.ColumnNameImpl
+     * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getColumnName()
+     * @generated
+     */
+    EClass COLUMN_NAME = eINSTANCE.getColumnName();
+
+    /**
+     * The meta object literal for the '<em><b>Column Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute COLUMN_NAME__COLUMN_NAME = eINSTANCE.getColumnName_ColumnName();
 
   }
 

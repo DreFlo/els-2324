@@ -15,6 +15,7 @@ import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
 import org.feup.els5.dsl.services.TableDSLGrammarAccess;
+import org.feup.els5.dsl.tableDSL.ColumnName;
 import org.feup.els5.dsl.tableDSL.Comparator;
 import org.feup.els5.dsl.tableDSL.Extract;
 import org.feup.els5.dsl.tableDSL.Filter;
@@ -48,6 +49,9 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == TableDSLPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case TableDSLPackage.COLUMN_NAME:
+				sequence_ColumnName(context, (ColumnName) semanticObject); 
+				return; 
 			case TableDSLPackage.COMPARATOR:
 				sequence_Comparator(context, (Comparator) semanticObject); 
 				return; 
@@ -107,10 +111,24 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     ColumnName returns ColumnName
+	 *
+	 * Constraint:
+	 *     (columnName=RESERVED_KEYWORDS | columnName=STRING)
+	 * </pre>
+	 */
+	protected void sequence_ColumnName(ISerializationContext context, ColumnName semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     Comparator returns Comparator
 	 *
 	 * Constraint:
-	 *     (keys+=STRING keys+=STRING*)
+	 *     (keys+=ColumnName keys+=ColumnName*)
 	 * </pre>
 	 */
 	protected void sequence_Comparator(ISerializationContext context, Comparator semanticObject) {
@@ -190,7 +208,7 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     FilterObjectTypeRule returns FilterObjectTypeRule
 	 *
 	 * Constraint:
-	 *     columnPattern=STRING
+	 *     columnPattern=ColumnName
 	 * </pre>
 	 */
 	protected void sequence_FilterObjectTypeRule(ISerializationContext context, FilterObjectTypeRule semanticObject) {
@@ -199,7 +217,7 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TableDSLPackage.Literals.FILTER_OBJECT_TYPE_RULE__COLUMN_PATTERN));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getFilterObjectTypeRuleAccess().getColumnPatternSTRINGTerminalRuleCall_1_0(), semanticObject.getColumnPattern());
+		feeder.accept(grammarAccess.getFilterObjectTypeRuleAccess().getColumnPatternColumnNameParserRuleCall_1_0(), semanticObject.getColumnPattern());
 		feeder.finish();
 	}
 	
@@ -331,7 +349,7 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     Select returns Select
 	 *
 	 * Constraint:
-	 *     (columnsPatterns+=STRING columnPatterns+=STRING*)
+	 *     (columnsPatterns+=ColumnName columnPatterns+=ColumnName*)
 	 * </pre>
 	 */
 	protected void sequence_Select(ISerializationContext context, Select semanticObject) {
@@ -361,7 +379,7 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     SquashRows returns SquashRows
 	 *
 	 * Constraint:
-	 *     (columns+=STRING columns+=STRING*)
+	 *     (columns+=ColumnName columns+=ColumnName*)
 	 * </pre>
 	 */
 	protected void sequence_SquashRows(ISerializationContext context, SquashRows semanticObject) {

@@ -26,15 +26,15 @@ import org.eclipse.emf.ecore.EObject;
 public interface Comparator extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Keys</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
+   * Returns the value of the '<em><b>Keys</b></em>' containment reference list.
+   * The list contents are of type {@link org.feup.els5.dsl.tableDSL.ColumnName}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Keys</em>' attribute list.
+   * @return the value of the '<em>Keys</em>' containment reference list.
    * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getComparator_Keys()
-   * @model unique="false"
+   * @model containment="true"
    * @generated
    */
-  EList<String> getKeys();
+  EList<ColumnName> getKeys();
 
 } // Comparator

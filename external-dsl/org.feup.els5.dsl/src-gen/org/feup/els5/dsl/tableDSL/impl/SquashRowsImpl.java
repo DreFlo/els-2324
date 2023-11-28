@@ -5,12 +5,17 @@ package org.feup.els5.dsl.tableDSL.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.feup.els5.dsl.tableDSL.ColumnName;
 import org.feup.els5.dsl.tableDSL.SquashRows;
 import org.feup.els5.dsl.tableDSL.TableDSLPackage;
 
@@ -30,14 +35,14 @@ import org.feup.els5.dsl.tableDSL.TableDSLPackage;
 public class SquashRowsImpl extends OperationImpl implements SquashRows
 {
   /**
-   * The cached value of the '{@link #getColumns() <em>Columns</em>}' attribute list.
+   * The cached value of the '{@link #getColumns() <em>Columns</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getColumns()
    * @generated
    * @ordered
    */
-  protected EList<String> columns;
+  protected EList<ColumnName> columns;
 
   /**
    * <!-- begin-user-doc -->
@@ -66,13 +71,29 @@ public class SquashRowsImpl extends OperationImpl implements SquashRows
    * @generated
    */
   @Override
-  public EList<String> getColumns()
+  public EList<ColumnName> getColumns()
   {
     if (columns == null)
     {
-      columns = new EDataTypeEList<String>(String.class, this, TableDSLPackage.SQUASH_ROWS__COLUMNS);
+      columns = new EObjectContainmentEList<ColumnName>(ColumnName.class, this, TableDSLPackage.SQUASH_ROWS__COLUMNS);
     }
     return columns;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case TableDSLPackage.SQUASH_ROWS__COLUMNS:
+        return ((InternalEList<?>)getColumns()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -104,7 +125,7 @@ public class SquashRowsImpl extends OperationImpl implements SquashRows
     {
       case TableDSLPackage.SQUASH_ROWS__COLUMNS:
         getColumns().clear();
-        getColumns().addAll((Collection<? extends String>)newValue);
+        getColumns().addAll((Collection<? extends ColumnName>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -141,23 +162,6 @@ public class SquashRowsImpl extends OperationImpl implements SquashRows
         return columns != null && !columns.isEmpty();
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (columns: ");
-    result.append(columns);
-    result.append(')');
-    return result.toString();
   }
 
 } //SquashRowsImpl

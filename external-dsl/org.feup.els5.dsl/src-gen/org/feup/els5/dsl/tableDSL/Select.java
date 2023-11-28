@@ -25,27 +25,27 @@ import org.eclipse.emf.common.util.EList;
 public interface Select extends Operation
 {
   /**
-   * Returns the value of the '<em><b>Columns Patterns</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
+   * Returns the value of the '<em><b>Columns Patterns</b></em>' containment reference list.
+   * The list contents are of type {@link org.feup.els5.dsl.tableDSL.ColumnName}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Columns Patterns</em>' attribute list.
+   * @return the value of the '<em>Columns Patterns</em>' containment reference list.
    * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getSelect_ColumnsPatterns()
-   * @model unique="false"
+   * @model containment="true"
    * @generated
    */
-  EList<String> getColumnsPatterns();
+  EList<ColumnName> getColumnsPatterns();
 
   /**
-   * Returns the value of the '<em><b>Column Patterns</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
+   * Returns the value of the '<em><b>Column Patterns</b></em>' containment reference list.
+   * The list contents are of type {@link org.feup.els5.dsl.tableDSL.ColumnName}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Column Patterns</em>' attribute list.
+   * @return the value of the '<em>Column Patterns</em>' containment reference list.
    * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getSelect_ColumnPatterns()
-   * @model unique="false"
+   * @model containment="true"
    * @generated
    */
-  EList<String> getColumnPatterns();
+  EList<ColumnName> getColumnPatterns();
 
 } // Select
