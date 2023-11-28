@@ -8,8 +8,10 @@ public class DSLSelect extends DSLOperation<Select> {
         super(dslTableBuilder, new Select());
     }
 
-    public DSLSelect column(String column) {
-        getCommand().addHeaderPattern(column);
+    public DSLSelect column(String... column) {
+        for (String c : column) {
+            getCommand().addHeaderPattern(c);
+        }
         return this;
     }
 }

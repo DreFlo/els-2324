@@ -11,9 +11,9 @@ public abstract class DSLFilterList {
         this.dslFilter = dslFilter;
     }
 
-    public abstract DSLFilterList column(String string);
+    public abstract DSLFilterList column(String... string);
 
-    public abstract DSLFilterList objectOfType(Class<?> objectType);
+    public abstract DSLFilterList objectOfType(Class<?>... objectType);
 
     public DSLFilter end() {
         return dslFilter;

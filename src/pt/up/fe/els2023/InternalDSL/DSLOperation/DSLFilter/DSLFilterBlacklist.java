@@ -7,13 +7,17 @@ public class DSLFilterBlacklist extends DSLFilterList {
         super(dslTableBuilder, dslFilter);
     }
 
-    public DSLFilterBlacklist column(String string) {
-        dslFilter.getCommand().addBlacklistedColumn(string);
+    public DSLFilterBlacklist column(String... string) {
+        for (String column : string) {
+            dslFilter.getCommand().addBlacklistedColumn(column);
+        }
         return this;
     }
 
-    public DSLFilterBlacklist objectOfType(Class<?> objectType) {
-        dslFilter.getCommand().addBlacklistedType(objectType);
+    public DSLFilterBlacklist objectOfType(Class<?>... objectType) {
+        for (Class<?> type : objectType) {
+            dslFilter.getCommand().addBlacklistedType(type);
+        }
         return this;
     }
 }

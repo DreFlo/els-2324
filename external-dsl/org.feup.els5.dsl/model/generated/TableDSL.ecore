@@ -74,12 +74,13 @@
         eType="#//FilterRule" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FilterRule"/>
-  <eClassifiers xsi:type="ecore:EClass" name="FilterObjectTypeRule" eSuperTypes="#//FilterRule">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="columnPattern" eType="#//ColumnName"
-        containment="true"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FilterColumnRule" eSuperTypes="#//FilterRule">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="objectClass" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="columnPatterns" upperBound="-1"
+        eType="#//ColumnName" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FilterObjectTypeRule" eSuperTypes="#//FilterRule">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="objectClasses" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ColumnName">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="columnName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

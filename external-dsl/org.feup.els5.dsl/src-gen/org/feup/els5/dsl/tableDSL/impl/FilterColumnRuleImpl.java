@@ -3,12 +3,19 @@
  */
 package org.feup.els5.dsl.tableDSL.impl;
 
-import org.eclipse.emf.common.notify.Notification;
+import java.util.Collection;
+
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.feup.els5.dsl.tableDSL.ColumnName;
 import org.feup.els5.dsl.tableDSL.FilterColumnRule;
 import org.feup.els5.dsl.tableDSL.TableDSLPackage;
 
@@ -20,7 +27,7 @@ import org.feup.els5.dsl.tableDSL.TableDSLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.feup.els5.dsl.tableDSL.impl.FilterColumnRuleImpl#getObjectClass <em>Object Class</em>}</li>
+ *   <li>{@link org.feup.els5.dsl.tableDSL.impl.FilterColumnRuleImpl#getColumnPatterns <em>Column Patterns</em>}</li>
  * </ul>
  *
  * @generated
@@ -28,24 +35,14 @@ import org.feup.els5.dsl.tableDSL.TableDSLPackage;
 public class FilterColumnRuleImpl extends FilterRuleImpl implements FilterColumnRule
 {
   /**
-   * The default value of the '{@link #getObjectClass() <em>Object Class</em>}' attribute.
+   * The cached value of the '{@link #getColumnPatterns() <em>Column Patterns</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getObjectClass()
+   * @see #getColumnPatterns()
    * @generated
    * @ordered
    */
-  protected static final String OBJECT_CLASS_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getObjectClass() <em>Object Class</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getObjectClass()
-   * @generated
-   * @ordered
-   */
-  protected String objectClass = OBJECT_CLASS_EDEFAULT;
+  protected EList<ColumnName> columnPatterns;
 
   /**
    * <!-- begin-user-doc -->
@@ -74,9 +71,13 @@ public class FilterColumnRuleImpl extends FilterRuleImpl implements FilterColumn
    * @generated
    */
   @Override
-  public String getObjectClass()
+  public EList<ColumnName> getColumnPatterns()
   {
-    return objectClass;
+    if (columnPatterns == null)
+    {
+      columnPatterns = new EObjectContainmentEList<ColumnName>(ColumnName.class, this, TableDSLPackage.FILTER_COLUMN_RULE__COLUMN_PATTERNS);
+    }
+    return columnPatterns;
   }
 
   /**
@@ -85,12 +86,14 @@ public class FilterColumnRuleImpl extends FilterRuleImpl implements FilterColumn
    * @generated
    */
   @Override
-  public void setObjectClass(String newObjectClass)
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    String oldObjectClass = objectClass;
-    objectClass = newObjectClass;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TableDSLPackage.FILTER_COLUMN_RULE__OBJECT_CLASS, oldObjectClass, objectClass));
+    switch (featureID)
+    {
+      case TableDSLPackage.FILTER_COLUMN_RULE__COLUMN_PATTERNS:
+        return ((InternalEList<?>)getColumnPatterns()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -103,8 +106,8 @@ public class FilterColumnRuleImpl extends FilterRuleImpl implements FilterColumn
   {
     switch (featureID)
     {
-      case TableDSLPackage.FILTER_COLUMN_RULE__OBJECT_CLASS:
-        return getObjectClass();
+      case TableDSLPackage.FILTER_COLUMN_RULE__COLUMN_PATTERNS:
+        return getColumnPatterns();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -114,13 +117,15 @@ public class FilterColumnRuleImpl extends FilterRuleImpl implements FilterColumn
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case TableDSLPackage.FILTER_COLUMN_RULE__OBJECT_CLASS:
-        setObjectClass((String)newValue);
+      case TableDSLPackage.FILTER_COLUMN_RULE__COLUMN_PATTERNS:
+        getColumnPatterns().clear();
+        getColumnPatterns().addAll((Collection<? extends ColumnName>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -136,8 +141,8 @@ public class FilterColumnRuleImpl extends FilterRuleImpl implements FilterColumn
   {
     switch (featureID)
     {
-      case TableDSLPackage.FILTER_COLUMN_RULE__OBJECT_CLASS:
-        setObjectClass(OBJECT_CLASS_EDEFAULT);
+      case TableDSLPackage.FILTER_COLUMN_RULE__COLUMN_PATTERNS:
+        getColumnPatterns().clear();
         return;
     }
     super.eUnset(featureID);
@@ -153,27 +158,10 @@ public class FilterColumnRuleImpl extends FilterRuleImpl implements FilterColumn
   {
     switch (featureID)
     {
-      case TableDSLPackage.FILTER_COLUMN_RULE__OBJECT_CLASS:
-        return OBJECT_CLASS_EDEFAULT == null ? objectClass != null : !OBJECT_CLASS_EDEFAULT.equals(objectClass);
+      case TableDSLPackage.FILTER_COLUMN_RULE__COLUMN_PATTERNS:
+        return columnPatterns != null && !columnPatterns.isEmpty();
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (objectClass: ");
-    result.append(objectClass);
-    result.append(')');
-    return result.toString();
   }
 
 } //FilterColumnRuleImpl

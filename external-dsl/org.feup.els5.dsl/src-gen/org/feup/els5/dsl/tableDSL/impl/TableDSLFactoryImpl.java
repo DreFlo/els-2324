@@ -86,8 +86,8 @@ public class TableDSLFactoryImpl extends EFactoryImpl implements TableDSLFactory
       case TableDSLPackage.FILTER_DENYLIST: return createFilterDenylist();
       case TableDSLPackage.FILTER_EXCEPTLIST: return createFilterExceptlist();
       case TableDSLPackage.FILTER_RULE: return createFilterRule();
-      case TableDSLPackage.FILTER_OBJECT_TYPE_RULE: return createFilterObjectTypeRule();
       case TableDSLPackage.FILTER_COLUMN_RULE: return createFilterColumnRule();
+      case TableDSLPackage.FILTER_OBJECT_TYPE_RULE: return createFilterObjectTypeRule();
       case TableDSLPackage.COLUMN_NAME: return createColumnName();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -352,10 +352,10 @@ public class TableDSLFactoryImpl extends EFactoryImpl implements TableDSLFactory
    * @generated
    */
   @Override
-  public FilterObjectTypeRule createFilterObjectTypeRule()
+  public FilterColumnRule createFilterColumnRule()
   {
-    FilterObjectTypeRuleImpl filterObjectTypeRule = new FilterObjectTypeRuleImpl();
-    return filterObjectTypeRule;
+    FilterColumnRuleImpl filterColumnRule = new FilterColumnRuleImpl();
+    return filterColumnRule;
   }
 
   /**
@@ -364,10 +364,10 @@ public class TableDSLFactoryImpl extends EFactoryImpl implements TableDSLFactory
    * @generated
    */
   @Override
-  public FilterColumnRule createFilterColumnRule()
+  public FilterObjectTypeRule createFilterObjectTypeRule()
   {
-    FilterColumnRuleImpl filterColumnRule = new FilterColumnRuleImpl();
-    return filterColumnRule;
+    FilterObjectTypeRuleImpl filterObjectTypeRule = new FilterObjectTypeRuleImpl();
+    return filterObjectTypeRule;
   }
 
   /**

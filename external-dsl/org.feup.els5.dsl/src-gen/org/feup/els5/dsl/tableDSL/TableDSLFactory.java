@@ -213,15 +213,6 @@ public interface TableDSLFactory extends EFactory
   FilterRule createFilterRule();
 
   /**
-   * Returns a new object of class '<em>Filter Object Type Rule</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Filter Object Type Rule</em>'.
-   * @generated
-   */
-  FilterObjectTypeRule createFilterObjectTypeRule();
-
-  /**
    * Returns a new object of class '<em>Filter Column Rule</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -229,6 +220,15 @@ public interface TableDSLFactory extends EFactory
    * @generated
    */
   FilterColumnRule createFilterColumnRule();
+
+  /**
+   * Returns a new object of class '<em>Filter Object Type Rule</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Filter Object Type Rule</em>'.
+   * @generated
+   */
+  FilterObjectTypeRule createFilterObjectTypeRule();
 
   /**
    * Returns a new object of class '<em>Column Name</em>'.

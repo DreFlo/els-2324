@@ -63,7 +63,11 @@ Extract:
 ;
 
 Selector:
-	{Selector} "MAX" | {Selector} "MIN" | {Selector} "MEDIAN" | ("TOP" n=INT)
+	{Selector} SELECTOR_KEYWORDS | ("TOP" n=INT)
+;
+
+terminal SELECTOR_KEYWORDS returns ecore::EString:
+	"MAX" | "MIN" | "MEDIAN"
 ;
 
 Comparator:
@@ -79,30 +83,30 @@ Filter:
 ;
 
 FilterDenylist:
-	"deny" denylist+=FilterRule
+	"deny" denylist+=FilterRule ("," denylist+=FilterRule)*
 ;
 
 FilterExceptlist:
-	"except" exceptlist+=FilterRule
+	"except" exceptlist+=FilterRule ("," exceptlist+=FilterRule)*
 ;
 
 FilterRule:
 	FilterColumnRule | FilterObjectTypeRule
 ;
 
-FilterObjectTypeRule:
-	"column" columnPattern=ColumnName
+FilterColumnRule:
+	("column" | "columns") columnPatterns+=ColumnName ("," columnPatterns+=ColumnName)*
 ;
 
-FilterColumnRule:
-	"object" "of"? objectClass=STRING
+FilterObjectTypeRule:
+	("object" | "objects") "of"? objectClasses+=STRING ("," objectClasses+=STRING)*
 ;
 
 ColumnName:
-	columnName=(RESERVED_KEYWORDS | STRING)
+	columnName=(COLUMN_NAME_KEYWORDS | STRING)
 ;
 
-terminal RESERVED_KEYWORDS returns ecore::EString:
+terminal COLUMN_NAME_KEYWORDS returns ecore::EString:
 	"FILENAME" |
 	"DIRECTORY"
 ;

@@ -114,7 +114,7 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     ColumnName returns ColumnName
 	 *
 	 * Constraint:
-	 *     (columnName=RESERVED_KEYWORDS | columnName=STRING)
+	 *     (columnName=COLUMN_NAME_KEYWORDS | columnName=STRING)
 	 * </pre>
 	 */
 	protected void sequence_ColumnName(ISerializationContext context, ColumnName semanticObject) {
@@ -159,17 +159,11 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     FilterColumnRule returns FilterColumnRule
 	 *
 	 * Constraint:
-	 *     objectClass=STRING
+	 *     (columnPatterns+=ColumnName columnPatterns+=ColumnName*)
 	 * </pre>
 	 */
 	protected void sequence_FilterColumnRule(ISerializationContext context, FilterColumnRule semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, TableDSLPackage.Literals.FILTER_COLUMN_RULE__OBJECT_CLASS) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TableDSLPackage.Literals.FILTER_COLUMN_RULE__OBJECT_CLASS));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getFilterColumnRuleAccess().getObjectClassSTRINGTerminalRuleCall_2_0(), semanticObject.getObjectClass());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -179,7 +173,7 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     FilterDenylist returns FilterDenylist
 	 *
 	 * Constraint:
-	 *     denylist+=FilterRule
+	 *     (denylist+=FilterRule denylist+=FilterRule*)
 	 * </pre>
 	 */
 	protected void sequence_FilterDenylist(ISerializationContext context, FilterDenylist semanticObject) {
@@ -193,7 +187,7 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     FilterExceptlist returns FilterExceptlist
 	 *
 	 * Constraint:
-	 *     exceptlist+=FilterRule
+	 *     (exceptlist+=FilterRule exceptlist+=FilterRule*)
 	 * </pre>
 	 */
 	protected void sequence_FilterExceptlist(ISerializationContext context, FilterExceptlist semanticObject) {
@@ -208,17 +202,11 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     FilterObjectTypeRule returns FilterObjectTypeRule
 	 *
 	 * Constraint:
-	 *     columnPattern=ColumnName
+	 *     (objectClasses+=STRING objectClasses+=STRING*)
 	 * </pre>
 	 */
 	protected void sequence_FilterObjectTypeRule(ISerializationContext context, FilterObjectTypeRule semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, TableDSLPackage.Literals.FILTER_OBJECT_TYPE_RULE__COLUMN_PATTERN) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TableDSLPackage.Literals.FILTER_OBJECT_TYPE_RULE__COLUMN_PATTERN));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getFilterObjectTypeRuleAccess().getColumnPatternColumnNameParserRuleCall_1_0(), semanticObject.getColumnPattern());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

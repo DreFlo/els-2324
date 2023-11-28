@@ -8,14 +8,18 @@ public class DSLFilterWhitelist extends DSLFilterList {
     }
 
     @Override
-    public DSLFilterList column(String string) {
-        dslFilter.getCommand().addWhitelistedColumn(string);
+    public DSLFilterList column(String... string) {
+        for (String column : string) {
+            dslFilter.getCommand().addWhitelistedColumn(column);
+        }
         return this;
     }
 
     @Override
-    public DSLFilterList objectOfType(Class<?> objectType) {
-        dslFilter.getCommand().addWhitelistedType(objectType);
+    public DSLFilterList objectOfType(Class<?>... objectType) {
+        for (Class<?> type : objectType) {
+            dslFilter.getCommand().addWhitelistedType(type);
+        }
         return this;
     }
 }

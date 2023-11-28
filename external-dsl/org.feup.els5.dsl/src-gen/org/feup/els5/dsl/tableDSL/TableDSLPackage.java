@@ -673,34 +673,6 @@ public interface TableDSLPackage extends EPackage
   int FILTER_RULE_FEATURE_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link org.feup.els5.dsl.tableDSL.impl.FilterObjectTypeRuleImpl <em>Filter Object Type Rule</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.feup.els5.dsl.tableDSL.impl.FilterObjectTypeRuleImpl
-   * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getFilterObjectTypeRule()
-   * @generated
-   */
-  int FILTER_OBJECT_TYPE_RULE = 21;
-
-  /**
-   * The feature id for the '<em><b>Column Pattern</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FILTER_OBJECT_TYPE_RULE__COLUMN_PATTERN = FILTER_RULE_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Filter Object Type Rule</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FILTER_OBJECT_TYPE_RULE_FEATURE_COUNT = FILTER_RULE_FEATURE_COUNT + 1;
-
-  /**
    * The meta object id for the '{@link org.feup.els5.dsl.tableDSL.impl.FilterColumnRuleImpl <em>Filter Column Rule</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -708,16 +680,16 @@ public interface TableDSLPackage extends EPackage
    * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getFilterColumnRule()
    * @generated
    */
-  int FILTER_COLUMN_RULE = 22;
+  int FILTER_COLUMN_RULE = 21;
 
   /**
-   * The feature id for the '<em><b>Object Class</b></em>' attribute.
+   * The feature id for the '<em><b>Column Patterns</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FILTER_COLUMN_RULE__OBJECT_CLASS = FILTER_RULE_FEATURE_COUNT + 0;
+  int FILTER_COLUMN_RULE__COLUMN_PATTERNS = FILTER_RULE_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Filter Column Rule</em>' class.
@@ -727,6 +699,34 @@ public interface TableDSLPackage extends EPackage
    * @ordered
    */
   int FILTER_COLUMN_RULE_FEATURE_COUNT = FILTER_RULE_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.feup.els5.dsl.tableDSL.impl.FilterObjectTypeRuleImpl <em>Filter Object Type Rule</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.feup.els5.dsl.tableDSL.impl.FilterObjectTypeRuleImpl
+   * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getFilterObjectTypeRule()
+   * @generated
+   */
+  int FILTER_OBJECT_TYPE_RULE = 22;
+
+  /**
+   * The feature id for the '<em><b>Object Classes</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FILTER_OBJECT_TYPE_RULE__OBJECT_CLASSES = FILTER_RULE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Filter Object Type Rule</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FILTER_OBJECT_TYPE_RULE_FEATURE_COUNT = FILTER_RULE_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.feup.els5.dsl.tableDSL.impl.ColumnNameImpl <em>Column Name</em>}' class.
@@ -1199,27 +1199,6 @@ public interface TableDSLPackage extends EPackage
   EClass getFilterRule();
 
   /**
-   * Returns the meta object for class '{@link org.feup.els5.dsl.tableDSL.FilterObjectTypeRule <em>Filter Object Type Rule</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Filter Object Type Rule</em>'.
-   * @see org.feup.els5.dsl.tableDSL.FilterObjectTypeRule
-   * @generated
-   */
-  EClass getFilterObjectTypeRule();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.feup.els5.dsl.tableDSL.FilterObjectTypeRule#getColumnPattern <em>Column Pattern</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Column Pattern</em>'.
-   * @see org.feup.els5.dsl.tableDSL.FilterObjectTypeRule#getColumnPattern()
-   * @see #getFilterObjectTypeRule()
-   * @generated
-   */
-  EReference getFilterObjectTypeRule_ColumnPattern();
-
-  /**
    * Returns the meta object for class '{@link org.feup.els5.dsl.tableDSL.FilterColumnRule <em>Filter Column Rule</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1230,15 +1209,36 @@ public interface TableDSLPackage extends EPackage
   EClass getFilterColumnRule();
 
   /**
-   * Returns the meta object for the attribute '{@link org.feup.els5.dsl.tableDSL.FilterColumnRule#getObjectClass <em>Object Class</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.feup.els5.dsl.tableDSL.FilterColumnRule#getColumnPatterns <em>Column Patterns</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Object Class</em>'.
-   * @see org.feup.els5.dsl.tableDSL.FilterColumnRule#getObjectClass()
+   * @return the meta object for the containment reference list '<em>Column Patterns</em>'.
+   * @see org.feup.els5.dsl.tableDSL.FilterColumnRule#getColumnPatterns()
    * @see #getFilterColumnRule()
    * @generated
    */
-  EAttribute getFilterColumnRule_ObjectClass();
+  EReference getFilterColumnRule_ColumnPatterns();
+
+  /**
+   * Returns the meta object for class '{@link org.feup.els5.dsl.tableDSL.FilterObjectTypeRule <em>Filter Object Type Rule</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Filter Object Type Rule</em>'.
+   * @see org.feup.els5.dsl.tableDSL.FilterObjectTypeRule
+   * @generated
+   */
+  EClass getFilterObjectTypeRule();
+
+  /**
+   * Returns the meta object for the attribute list '{@link org.feup.els5.dsl.tableDSL.FilterObjectTypeRule#getObjectClasses <em>Object Classes</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Object Classes</em>'.
+   * @see org.feup.els5.dsl.tableDSL.FilterObjectTypeRule#getObjectClasses()
+   * @see #getFilterObjectTypeRule()
+   * @generated
+   */
+  EAttribute getFilterObjectTypeRule_ObjectClasses();
 
   /**
    * Returns the meta object for class '{@link org.feup.els5.dsl.tableDSL.ColumnName <em>Column Name</em>}'.
@@ -1663,24 +1663,6 @@ public interface TableDSLPackage extends EPackage
     EClass FILTER_RULE = eINSTANCE.getFilterRule();
 
     /**
-     * The meta object literal for the '{@link org.feup.els5.dsl.tableDSL.impl.FilterObjectTypeRuleImpl <em>Filter Object Type Rule</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.feup.els5.dsl.tableDSL.impl.FilterObjectTypeRuleImpl
-     * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getFilterObjectTypeRule()
-     * @generated
-     */
-    EClass FILTER_OBJECT_TYPE_RULE = eINSTANCE.getFilterObjectTypeRule();
-
-    /**
-     * The meta object literal for the '<em><b>Column Pattern</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference FILTER_OBJECT_TYPE_RULE__COLUMN_PATTERN = eINSTANCE.getFilterObjectTypeRule_ColumnPattern();
-
-    /**
      * The meta object literal for the '{@link org.feup.els5.dsl.tableDSL.impl.FilterColumnRuleImpl <em>Filter Column Rule</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1691,12 +1673,30 @@ public interface TableDSLPackage extends EPackage
     EClass FILTER_COLUMN_RULE = eINSTANCE.getFilterColumnRule();
 
     /**
-     * The meta object literal for the '<em><b>Object Class</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Column Patterns</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute FILTER_COLUMN_RULE__OBJECT_CLASS = eINSTANCE.getFilterColumnRule_ObjectClass();
+    EReference FILTER_COLUMN_RULE__COLUMN_PATTERNS = eINSTANCE.getFilterColumnRule_ColumnPatterns();
+
+    /**
+     * The meta object literal for the '{@link org.feup.els5.dsl.tableDSL.impl.FilterObjectTypeRuleImpl <em>Filter Object Type Rule</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.feup.els5.dsl.tableDSL.impl.FilterObjectTypeRuleImpl
+     * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getFilterObjectTypeRule()
+     * @generated
+     */
+    EClass FILTER_OBJECT_TYPE_RULE = eINSTANCE.getFilterObjectTypeRule();
+
+    /**
+     * The meta object literal for the '<em><b>Object Classes</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute FILTER_OBJECT_TYPE_RULE__OBJECT_CLASSES = eINSTANCE.getFilterObjectTypeRule_ObjectClasses();
 
     /**
      * The meta object literal for the '{@link org.feup.els5.dsl.tableDSL.impl.ColumnNameImpl <em>Column Name</em>}' class.

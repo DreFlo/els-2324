@@ -25,7 +25,7 @@ public class DSLOperation<C extends Command> implements InternalDSLExecutable {
         return dslTableBuilder;
     }
 
-    public DSLTableBuilder end() throws Exception {
+    public DSLTableBuilder end() {
         getDSLTableBuilder().addExecutable(this);
         return getDSLTableBuilder();
     }

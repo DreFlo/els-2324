@@ -3,6 +3,7 @@
  */
 package org.feup.els5.dsl.tableDSL;
 
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -13,7 +14,7 @@ package org.feup.els5.dsl.tableDSL;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.feup.els5.dsl.tableDSL.FilterColumnRule#getObjectClass <em>Object Class</em>}</li>
+ *   <li>{@link org.feup.els5.dsl.tableDSL.FilterColumnRule#getColumnPatterns <em>Column Patterns</em>}</li>
  * </ul>
  *
  * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getFilterColumnRule()
@@ -23,25 +24,15 @@ package org.feup.els5.dsl.tableDSL;
 public interface FilterColumnRule extends FilterRule
 {
   /**
-   * Returns the value of the '<em><b>Object Class</b></em>' attribute.
+   * Returns the value of the '<em><b>Column Patterns</b></em>' containment reference list.
+   * The list contents are of type {@link org.feup.els5.dsl.tableDSL.ColumnName}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Object Class</em>' attribute.
-   * @see #setObjectClass(String)
-   * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getFilterColumnRule_ObjectClass()
-   * @model
+   * @return the value of the '<em>Column Patterns</em>' containment reference list.
+   * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getFilterColumnRule_ColumnPatterns()
+   * @model containment="true"
    * @generated
    */
-  String getObjectClass();
-
-  /**
-   * Sets the value of the '{@link org.feup.els5.dsl.tableDSL.FilterColumnRule#getObjectClass <em>Object Class</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Object Class</em>' attribute.
-   * @see #getObjectClass()
-   * @generated
-   */
-  void setObjectClass(String value);
+  EList<ColumnName> getColumnPatterns();
 
 } // FilterColumnRule

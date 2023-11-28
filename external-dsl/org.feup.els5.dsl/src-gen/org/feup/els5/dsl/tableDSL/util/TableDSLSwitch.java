@@ -239,19 +239,19 @@ public class TableDSLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TableDSLPackage.FILTER_OBJECT_TYPE_RULE:
-      {
-        FilterObjectTypeRule filterObjectTypeRule = (FilterObjectTypeRule)theEObject;
-        T result = caseFilterObjectTypeRule(filterObjectTypeRule);
-        if (result == null) result = caseFilterRule(filterObjectTypeRule);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case TableDSLPackage.FILTER_COLUMN_RULE:
       {
         FilterColumnRule filterColumnRule = (FilterColumnRule)theEObject;
         T result = caseFilterColumnRule(filterColumnRule);
         if (result == null) result = caseFilterRule(filterColumnRule);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TableDSLPackage.FILTER_OBJECT_TYPE_RULE:
+      {
+        FilterObjectTypeRule filterObjectTypeRule = (FilterObjectTypeRule)theEObject;
+        T result = caseFilterObjectTypeRule(filterObjectTypeRule);
+        if (result == null) result = caseFilterRule(filterObjectTypeRule);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -603,22 +603,6 @@ public class TableDSLSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Filter Object Type Rule</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Filter Object Type Rule</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseFilterObjectTypeRule(FilterObjectTypeRule object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Filter Column Rule</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -630,6 +614,22 @@ public class TableDSLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseFilterColumnRule(FilterColumnRule object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Filter Object Type Rule</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Filter Object Type Rule</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFilterObjectTypeRule(FilterObjectTypeRule object)
   {
     return null;
   }

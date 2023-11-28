@@ -1,0 +1,10 @@
+create table from "resources/run2.*";
+
+squash rows by DIRECTORY;
+
+extract "name", "time%" from "functions" select MAX sort by "time%";
+
+filter deny column ".*\\/.*", object "List" except column "^params\\/.*", ".*AreaEstimates/Resources/.*", "^functions\\/.*";
+
+output to "output/DSL4.html";
+

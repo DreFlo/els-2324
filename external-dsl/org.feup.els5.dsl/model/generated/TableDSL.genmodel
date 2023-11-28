@@ -64,11 +64,11 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TableDSL.ecore#//FilterExceptlist/exceptlist"/>
     </genClasses>
     <genClasses ecoreClass="TableDSL.ecore#//FilterRule"/>
-    <genClasses ecoreClass="TableDSL.ecore#//FilterObjectTypeRule">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TableDSL.ecore#//FilterObjectTypeRule/columnPattern"/>
-    </genClasses>
     <genClasses ecoreClass="TableDSL.ecore#//FilterColumnRule">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//FilterColumnRule/objectClass"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TableDSL.ecore#//FilterColumnRule/columnPatterns"/>
+    </genClasses>
+    <genClasses ecoreClass="TableDSL.ecore#//FilterObjectTypeRule">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//FilterObjectTypeRule/objectClasses"/>
     </genClasses>
     <genClasses ecoreClass="TableDSL.ecore#//ColumnName">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//ColumnName/columnName"/>

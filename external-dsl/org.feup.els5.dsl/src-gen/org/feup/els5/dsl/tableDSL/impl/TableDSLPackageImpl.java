@@ -197,14 +197,14 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass filterObjectTypeRuleEClass = null;
+  private EClass filterColumnRuleEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass filterColumnRuleEClass = null;
+  private EClass filterObjectTypeRuleEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -743,28 +743,6 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
    * @generated
    */
   @Override
-  public EClass getFilterObjectTypeRule()
-  {
-    return filterObjectTypeRuleEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getFilterObjectTypeRule_ColumnPattern()
-  {
-    return (EReference)filterObjectTypeRuleEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EClass getFilterColumnRule()
   {
     return filterColumnRuleEClass;
@@ -776,9 +754,31 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getFilterColumnRule_ObjectClass()
+  public EReference getFilterColumnRule_ColumnPatterns()
   {
-    return (EAttribute)filterColumnRuleEClass.getEStructuralFeatures().get(0);
+    return (EReference)filterColumnRuleEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getFilterObjectTypeRule()
+  {
+    return filterObjectTypeRuleEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getFilterObjectTypeRule_ObjectClasses()
+  {
+    return (EAttribute)filterObjectTypeRuleEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -897,11 +897,11 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
 
     filterRuleEClass = createEClass(FILTER_RULE);
 
-    filterObjectTypeRuleEClass = createEClass(FILTER_OBJECT_TYPE_RULE);
-    createEReference(filterObjectTypeRuleEClass, FILTER_OBJECT_TYPE_RULE__COLUMN_PATTERN);
-
     filterColumnRuleEClass = createEClass(FILTER_COLUMN_RULE);
-    createEAttribute(filterColumnRuleEClass, FILTER_COLUMN_RULE__OBJECT_CLASS);
+    createEReference(filterColumnRuleEClass, FILTER_COLUMN_RULE__COLUMN_PATTERNS);
+
+    filterObjectTypeRuleEClass = createEClass(FILTER_OBJECT_TYPE_RULE);
+    createEAttribute(filterObjectTypeRuleEClass, FILTER_OBJECT_TYPE_RULE__OBJECT_CLASSES);
 
     columnNameEClass = createEClass(COLUMN_NAME);
     createEAttribute(columnNameEClass, COLUMN_NAME__COLUMN_NAME);
@@ -949,8 +949,8 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
     extractEClass.getESuperTypes().add(this.getOperation());
     squashRowsEClass.getESuperTypes().add(this.getOperation());
     filterEClass.getESuperTypes().add(this.getOperation());
-    filterObjectTypeRuleEClass.getESuperTypes().add(this.getFilterRule());
     filterColumnRuleEClass.getESuperTypes().add(this.getFilterRule());
+    filterObjectTypeRuleEClass.getESuperTypes().add(this.getFilterRule());
 
     // Initialize classes and features; add operations and parameters
     initEClass(startEClass, Start.class, "Start", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1016,11 +1016,11 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
 
     initEClass(filterRuleEClass, FilterRule.class, "FilterRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(filterObjectTypeRuleEClass, FilterObjectTypeRule.class, "FilterObjectTypeRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getFilterObjectTypeRule_ColumnPattern(), this.getColumnName(), null, "columnPattern", null, 0, 1, FilterObjectTypeRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
     initEClass(filterColumnRuleEClass, FilterColumnRule.class, "FilterColumnRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getFilterColumnRule_ObjectClass(), ecorePackage.getEString(), "objectClass", null, 0, 1, FilterColumnRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFilterColumnRule_ColumnPatterns(), this.getColumnName(), null, "columnPatterns", null, 0, -1, FilterColumnRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(filterObjectTypeRuleEClass, FilterObjectTypeRule.class, "FilterObjectTypeRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getFilterObjectTypeRule_ObjectClasses(), ecorePackage.getEString(), "objectClasses", null, 0, -1, FilterObjectTypeRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(columnNameEClass, ColumnName.class, "ColumnName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getColumnName_ColumnName(), ecorePackage.getEString(), "columnName", null, 0, 1, ColumnName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
