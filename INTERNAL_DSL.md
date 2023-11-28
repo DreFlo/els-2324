@@ -67,7 +67,7 @@ internalDSL
             .end();
 ```
 
-- **Select**
+- **Rename**
 
 Change the name of a column from "foo" to "bar".
 
