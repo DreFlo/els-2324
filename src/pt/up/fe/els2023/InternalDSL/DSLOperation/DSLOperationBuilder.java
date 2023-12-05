@@ -26,4 +26,8 @@ public class DSLOperationBuilder {
     public DSLExtract extract() { return new DSLExtract(dslTableBuilder); }
 
     public DSLFilter filter() { return new DSLFilter(dslTableBuilder); }
+
+    public DSLReduce reduce() {
+        return new DSLReduce(dslTableBuilder);
+    }
 }
