@@ -1,5 +1,7 @@
 package pt.up.fe.els2023.InternalDSL.DSLOperation;
 
+import pt.up.fe.els2023.InternalDSL.DSLOperation.DSLExtract.DSLExtract;
+import pt.up.fe.els2023.InternalDSL.DSLOperation.DSLExtract.DSLExtractBuilder;
 import pt.up.fe.els2023.InternalDSL.DSLOperation.DSLFilter.DSLFilter;
 import pt.up.fe.els2023.InternalDSL.DSLTableBuilder;
 
@@ -23,7 +25,7 @@ public class DSLOperationBuilder {
         return new DSLSquashRows(dslTableBuilder);
     }
 
-    public DSLExtract extract() { return new DSLExtract(dslTableBuilder); }
+    public DSLExtractBuilder extract() { return new DSLExtractBuilder(dslTableBuilder); }
 
     public DSLFilter filter() { return new DSLFilter(dslTableBuilder); }
 }

@@ -18,22 +18,24 @@ import org.feup.els5.dsl.services.TableDSLGrammarAccess;
 import org.feup.els5.dsl.tableDSL.ColumnName;
 import org.feup.els5.dsl.tableDSL.Comparator;
 import org.feup.els5.dsl.tableDSL.Extract;
+import org.feup.els5.dsl.tableDSL.ExtractColumnMapping;
 import org.feup.els5.dsl.tableDSL.Filter;
 import org.feup.els5.dsl.tableDSL.FilterColumnRule;
 import org.feup.els5.dsl.tableDSL.FilterDenylist;
 import org.feup.els5.dsl.tableDSL.FilterExceptlist;
 import org.feup.els5.dsl.tableDSL.FilterObjectTypeRule;
+import org.feup.els5.dsl.tableDSL.KeySelector;
 import org.feup.els5.dsl.tableDSL.Output;
 import org.feup.els5.dsl.tableDSL.RenameColumn;
 import org.feup.els5.dsl.tableDSL.RenameColumnAppendPair;
 import org.feup.els5.dsl.tableDSL.RenameColumnPrependPair;
 import org.feup.els5.dsl.tableDSL.RenameColumnToPair;
 import org.feup.els5.dsl.tableDSL.Select;
-import org.feup.els5.dsl.tableDSL.Selector;
 import org.feup.els5.dsl.tableDSL.SquashRows;
 import org.feup.els5.dsl.tableDSL.Start;
 import org.feup.els5.dsl.tableDSL.TableDSLPackage;
 import org.feup.els5.dsl.tableDSL.TableInputPath;
+import org.feup.els5.dsl.tableDSL.TopNSelector;
 
 @SuppressWarnings("all")
 public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequencer {
@@ -58,6 +60,9 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 			case TableDSLPackage.EXTRACT:
 				sequence_Extract(context, (Extract) semanticObject); 
 				return; 
+			case TableDSLPackage.EXTRACT_COLUMN_MAPPING:
+				sequence_ExtractColumnMapping(context, (ExtractColumnMapping) semanticObject); 
+				return; 
 			case TableDSLPackage.FILTER:
 				sequence_Filter(context, (Filter) semanticObject); 
 				return; 
@@ -72,6 +77,9 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 				return; 
 			case TableDSLPackage.FILTER_OBJECT_TYPE_RULE:
 				sequence_FilterObjectTypeRule(context, (FilterObjectTypeRule) semanticObject); 
+				return; 
+			case TableDSLPackage.KEY_SELECTOR:
+				sequence_KeySelector(context, (KeySelector) semanticObject); 
 				return; 
 			case TableDSLPackage.OUTPUT:
 				sequence_Output(context, (Output) semanticObject); 
@@ -91,9 +99,6 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 			case TableDSLPackage.SELECT:
 				sequence_Select(context, (Select) semanticObject); 
 				return; 
-			case TableDSLPackage.SELECTOR:
-				sequence_Selector(context, (Selector) semanticObject); 
-				return; 
 			case TableDSLPackage.SQUASH_ROWS:
 				sequence_SquashRows(context, (SquashRows) semanticObject); 
 				return; 
@@ -102,6 +107,9 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 				return; 
 			case TableDSLPackage.TABLE_INPUT_PATH:
 				sequence_TableInputPath(context, (TableInputPath) semanticObject); 
+				return; 
+			case TableDSLPackage.TOP_NSELECTOR:
+				sequence_TopNSelector(context, (TopNSelector) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null)
@@ -139,12 +147,26 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     ExtractColumnMapping returns ExtractColumnMapping
+	 *
+	 * Constraint:
+	 *     (targetColumn=STRING newName=STRING?)
+	 * </pre>
+	 */
+	protected void sequence_ExtractColumnMapping(ISerializationContext context, ExtractColumnMapping semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     TableAction returns Extract
 	 *     Operation returns Extract
 	 *     Extract returns Extract
 	 *
 	 * Constraint:
-	 *     (targetColumns+=STRING targetColumns+=STRING* sourceColumn=STRING selector=Selector comparator=Comparator)
+	 *     (targets+=ExtractColumnMapping targets+=ExtractColumnMapping* sourceColumn=STRING selector=Selector comparator=Comparator)
 	 * </pre>
 	 */
 	protected void sequence_Extract(ISerializationContext context, Extract semanticObject) {
@@ -223,6 +245,27 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 */
 	protected void sequence_Filter(ISerializationContext context, Filter semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Selector returns KeySelector
+	 *     KeySelector returns KeySelector
+	 *
+	 * Constraint:
+	 *     key=SELECTOR_KEYWORDS
+	 * </pre>
+	 */
+	protected void sequence_KeySelector(ISerializationContext context, KeySelector semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, TableDSLPackage.Literals.KEY_SELECTOR__KEY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TableDSLPackage.Literals.KEY_SELECTOR__KEY));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getKeySelectorAccess().getKeySELECTOR_KEYWORDSTerminalRuleCall_0(), semanticObject.getKey());
+		feeder.finish();
 	}
 	
 	
@@ -348,20 +391,6 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Selector returns Selector
-	 *
-	 * Constraint:
-	 *     n=INT?
-	 * </pre>
-	 */
-	protected void sequence_Selector(ISerializationContext context, Selector semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
 	 *     TableAction returns SquashRows
 	 *     Operation returns SquashRows
 	 *     SquashRows returns SquashRows
@@ -403,6 +432,27 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 */
 	protected void sequence_TableInputPath(ISerializationContext context, TableInputPath semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Selector returns TopNSelector
+	 *     TopNSelector returns TopNSelector
+	 *
+	 * Constraint:
+	 *     n=INT
+	 * </pre>
+	 */
+	protected void sequence_TopNSelector(ISerializationContext context, TopNSelector semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, TableDSLPackage.Literals.TOP_NSELECTOR__N) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TableDSLPackage.Literals.TOP_NSELECTOR__N));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getTopNSelectorAccess().getNINTTerminalRuleCall_1_0(), semanticObject.getN());
+		feeder.finish();
 	}
 	
 	

@@ -14,7 +14,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.feup.els5.dsl.tableDSL.Extract#getTargetColumns <em>Target Columns</em>}</li>
+ *   <li>{@link org.feup.els5.dsl.tableDSL.Extract#getTargets <em>Targets</em>}</li>
  *   <li>{@link org.feup.els5.dsl.tableDSL.Extract#getSourceColumn <em>Source Column</em>}</li>
  *   <li>{@link org.feup.els5.dsl.tableDSL.Extract#getSelector <em>Selector</em>}</li>
  *   <li>{@link org.feup.els5.dsl.tableDSL.Extract#getComparator <em>Comparator</em>}</li>
@@ -27,16 +27,16 @@ import org.eclipse.emf.common.util.EList;
 public interface Extract extends Operation
 {
   /**
-   * Returns the value of the '<em><b>Target Columns</b></em>' attribute list.
-   * The list contents are of type {@link java.lang.String}.
+   * Returns the value of the '<em><b>Targets</b></em>' containment reference list.
+   * The list contents are of type {@link org.feup.els5.dsl.tableDSL.ExtractColumnMapping}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Target Columns</em>' attribute list.
-   * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getExtract_TargetColumns()
-   * @model unique="false"
+   * @return the value of the '<em>Targets</em>' containment reference list.
+   * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getExtract_Targets()
+   * @model containment="true"
    * @generated
    */
-  EList<String> getTargetColumns();
+  EList<ExtractColumnMapping> getTargets();
 
   /**
    * Returns the value of the '<em><b>Source Column</b></em>' attribute.

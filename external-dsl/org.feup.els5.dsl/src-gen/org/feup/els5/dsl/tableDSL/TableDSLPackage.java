@@ -432,13 +432,13 @@ public interface TableDSLPackage extends EPackage
   int EXTRACT = 13;
 
   /**
-   * The feature id for the '<em><b>Target Columns</b></em>' attribute list.
+   * The feature id for the '<em><b>Targets</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXTRACT__TARGET_COLUMNS = OPERATION_FEATURE_COUNT + 0;
+  int EXTRACT__TARGETS = OPERATION_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Source Column</b></em>' attribute.
@@ -477,6 +477,43 @@ public interface TableDSLPackage extends EPackage
   int EXTRACT_FEATURE_COUNT = OPERATION_FEATURE_COUNT + 4;
 
   /**
+   * The meta object id for the '{@link org.feup.els5.dsl.tableDSL.impl.ExtractColumnMappingImpl <em>Extract Column Mapping</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.feup.els5.dsl.tableDSL.impl.ExtractColumnMappingImpl
+   * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getExtractColumnMapping()
+   * @generated
+   */
+  int EXTRACT_COLUMN_MAPPING = 14;
+
+  /**
+   * The feature id for the '<em><b>Target Column</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXTRACT_COLUMN_MAPPING__TARGET_COLUMN = 0;
+
+  /**
+   * The feature id for the '<em><b>New Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXTRACT_COLUMN_MAPPING__NEW_NAME = 1;
+
+  /**
+   * The number of structural features of the '<em>Extract Column Mapping</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXTRACT_COLUMN_MAPPING_FEATURE_COUNT = 2;
+
+  /**
    * The meta object id for the '{@link org.feup.els5.dsl.tableDSL.impl.SelectorImpl <em>Selector</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -484,16 +521,7 @@ public interface TableDSLPackage extends EPackage
    * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getSelector()
    * @generated
    */
-  int SELECTOR = 14;
-
-  /**
-   * The feature id for the '<em><b>N</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SELECTOR__N = 0;
+  int SELECTOR = 15;
 
   /**
    * The number of structural features of the '<em>Selector</em>' class.
@@ -502,7 +530,63 @@ public interface TableDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SELECTOR_FEATURE_COUNT = 1;
+  int SELECTOR_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link org.feup.els5.dsl.tableDSL.impl.KeySelectorImpl <em>Key Selector</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.feup.els5.dsl.tableDSL.impl.KeySelectorImpl
+   * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getKeySelector()
+   * @generated
+   */
+  int KEY_SELECTOR = 16;
+
+  /**
+   * The feature id for the '<em><b>Key</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int KEY_SELECTOR__KEY = SELECTOR_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Key Selector</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int KEY_SELECTOR_FEATURE_COUNT = SELECTOR_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.feup.els5.dsl.tableDSL.impl.TopNSelectorImpl <em>Top NSelector</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.feup.els5.dsl.tableDSL.impl.TopNSelectorImpl
+   * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getTopNSelector()
+   * @generated
+   */
+  int TOP_NSELECTOR = 17;
+
+  /**
+   * The feature id for the '<em><b>N</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TOP_NSELECTOR__N = SELECTOR_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Top NSelector</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TOP_NSELECTOR_FEATURE_COUNT = SELECTOR_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.feup.els5.dsl.tableDSL.impl.ComparatorImpl <em>Comparator</em>}' class.
@@ -512,7 +596,7 @@ public interface TableDSLPackage extends EPackage
    * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getComparator()
    * @generated
    */
-  int COMPARATOR = 15;
+  int COMPARATOR = 18;
 
   /**
    * The feature id for the '<em><b>Keys</b></em>' containment reference list.
@@ -540,7 +624,7 @@ public interface TableDSLPackage extends EPackage
    * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getSquashRows()
    * @generated
    */
-  int SQUASH_ROWS = 16;
+  int SQUASH_ROWS = 19;
 
   /**
    * The feature id for the '<em><b>Columns</b></em>' containment reference list.
@@ -568,7 +652,7 @@ public interface TableDSLPackage extends EPackage
    * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getFilter()
    * @generated
    */
-  int FILTER = 17;
+  int FILTER = 20;
 
   /**
    * The feature id for the '<em><b>Denylist</b></em>' containment reference.
@@ -605,7 +689,7 @@ public interface TableDSLPackage extends EPackage
    * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getFilterDenylist()
    * @generated
    */
-  int FILTER_DENYLIST = 18;
+  int FILTER_DENYLIST = 21;
 
   /**
    * The feature id for the '<em><b>Denylist</b></em>' containment reference list.
@@ -633,7 +717,7 @@ public interface TableDSLPackage extends EPackage
    * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getFilterExceptlist()
    * @generated
    */
-  int FILTER_EXCEPTLIST = 19;
+  int FILTER_EXCEPTLIST = 22;
 
   /**
    * The feature id for the '<em><b>Exceptlist</b></em>' containment reference list.
@@ -661,7 +745,7 @@ public interface TableDSLPackage extends EPackage
    * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getFilterRule()
    * @generated
    */
-  int FILTER_RULE = 20;
+  int FILTER_RULE = 23;
 
   /**
    * The number of structural features of the '<em>Filter Rule</em>' class.
@@ -680,7 +764,7 @@ public interface TableDSLPackage extends EPackage
    * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getFilterColumnRule()
    * @generated
    */
-  int FILTER_COLUMN_RULE = 21;
+  int FILTER_COLUMN_RULE = 24;
 
   /**
    * The feature id for the '<em><b>Column Patterns</b></em>' containment reference list.
@@ -708,7 +792,7 @@ public interface TableDSLPackage extends EPackage
    * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getFilterObjectTypeRule()
    * @generated
    */
-  int FILTER_OBJECT_TYPE_RULE = 22;
+  int FILTER_OBJECT_TYPE_RULE = 25;
 
   /**
    * The feature id for the '<em><b>Object Classes</b></em>' attribute list.
@@ -736,7 +820,7 @@ public interface TableDSLPackage extends EPackage
    * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getColumnName()
    * @generated
    */
-  int COLUMN_NAME = 23;
+  int COLUMN_NAME = 26;
 
   /**
    * The feature id for the '<em><b>Column Name</b></em>' attribute.
@@ -1008,15 +1092,15 @@ public interface TableDSLPackage extends EPackage
   EClass getExtract();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.feup.els5.dsl.tableDSL.Extract#getTargetColumns <em>Target Columns</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.feup.els5.dsl.tableDSL.Extract#getTargets <em>Targets</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Target Columns</em>'.
-   * @see org.feup.els5.dsl.tableDSL.Extract#getTargetColumns()
+   * @return the meta object for the containment reference list '<em>Targets</em>'.
+   * @see org.feup.els5.dsl.tableDSL.Extract#getTargets()
    * @see #getExtract()
    * @generated
    */
-  EAttribute getExtract_TargetColumns();
+  EReference getExtract_Targets();
 
   /**
    * Returns the meta object for the attribute '{@link org.feup.els5.dsl.tableDSL.Extract#getSourceColumn <em>Source Column</em>}'.
@@ -1052,6 +1136,38 @@ public interface TableDSLPackage extends EPackage
   EReference getExtract_Comparator();
 
   /**
+   * Returns the meta object for class '{@link org.feup.els5.dsl.tableDSL.ExtractColumnMapping <em>Extract Column Mapping</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Extract Column Mapping</em>'.
+   * @see org.feup.els5.dsl.tableDSL.ExtractColumnMapping
+   * @generated
+   */
+  EClass getExtractColumnMapping();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.feup.els5.dsl.tableDSL.ExtractColumnMapping#getTargetColumn <em>Target Column</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Target Column</em>'.
+   * @see org.feup.els5.dsl.tableDSL.ExtractColumnMapping#getTargetColumn()
+   * @see #getExtractColumnMapping()
+   * @generated
+   */
+  EAttribute getExtractColumnMapping_TargetColumn();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.feup.els5.dsl.tableDSL.ExtractColumnMapping#getNewName <em>New Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>New Name</em>'.
+   * @see org.feup.els5.dsl.tableDSL.ExtractColumnMapping#getNewName()
+   * @see #getExtractColumnMapping()
+   * @generated
+   */
+  EAttribute getExtractColumnMapping_NewName();
+
+  /**
    * Returns the meta object for class '{@link org.feup.els5.dsl.tableDSL.Selector <em>Selector</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1062,15 +1178,46 @@ public interface TableDSLPackage extends EPackage
   EClass getSelector();
 
   /**
-   * Returns the meta object for the attribute '{@link org.feup.els5.dsl.tableDSL.Selector#getN <em>N</em>}'.
+   * Returns the meta object for class '{@link org.feup.els5.dsl.tableDSL.KeySelector <em>Key Selector</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Key Selector</em>'.
+   * @see org.feup.els5.dsl.tableDSL.KeySelector
+   * @generated
+   */
+  EClass getKeySelector();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.feup.els5.dsl.tableDSL.KeySelector#getKey <em>Key</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Key</em>'.
+   * @see org.feup.els5.dsl.tableDSL.KeySelector#getKey()
+   * @see #getKeySelector()
+   * @generated
+   */
+  EAttribute getKeySelector_Key();
+
+  /**
+   * Returns the meta object for class '{@link org.feup.els5.dsl.tableDSL.TopNSelector <em>Top NSelector</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Top NSelector</em>'.
+   * @see org.feup.els5.dsl.tableDSL.TopNSelector
+   * @generated
+   */
+  EClass getTopNSelector();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.feup.els5.dsl.tableDSL.TopNSelector#getN <em>N</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>N</em>'.
-   * @see org.feup.els5.dsl.tableDSL.Selector#getN()
-   * @see #getSelector()
+   * @see org.feup.els5.dsl.tableDSL.TopNSelector#getN()
+   * @see #getTopNSelector()
    * @generated
    */
-  EAttribute getSelector_N();
+  EAttribute getTopNSelector_N();
 
   /**
    * Returns the meta object for class '{@link org.feup.els5.dsl.tableDSL.Comparator <em>Comparator</em>}'.
@@ -1505,12 +1652,12 @@ public interface TableDSLPackage extends EPackage
     EClass EXTRACT = eINSTANCE.getExtract();
 
     /**
-     * The meta object literal for the '<em><b>Target Columns</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Targets</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute EXTRACT__TARGET_COLUMNS = eINSTANCE.getExtract_TargetColumns();
+    EReference EXTRACT__TARGETS = eINSTANCE.getExtract_Targets();
 
     /**
      * The meta object literal for the '<em><b>Source Column</b></em>' attribute feature.
@@ -1537,6 +1684,32 @@ public interface TableDSLPackage extends EPackage
     EReference EXTRACT__COMPARATOR = eINSTANCE.getExtract_Comparator();
 
     /**
+     * The meta object literal for the '{@link org.feup.els5.dsl.tableDSL.impl.ExtractColumnMappingImpl <em>Extract Column Mapping</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.feup.els5.dsl.tableDSL.impl.ExtractColumnMappingImpl
+     * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getExtractColumnMapping()
+     * @generated
+     */
+    EClass EXTRACT_COLUMN_MAPPING = eINSTANCE.getExtractColumnMapping();
+
+    /**
+     * The meta object literal for the '<em><b>Target Column</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute EXTRACT_COLUMN_MAPPING__TARGET_COLUMN = eINSTANCE.getExtractColumnMapping_TargetColumn();
+
+    /**
+     * The meta object literal for the '<em><b>New Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute EXTRACT_COLUMN_MAPPING__NEW_NAME = eINSTANCE.getExtractColumnMapping_NewName();
+
+    /**
      * The meta object literal for the '{@link org.feup.els5.dsl.tableDSL.impl.SelectorImpl <em>Selector</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1547,12 +1720,40 @@ public interface TableDSLPackage extends EPackage
     EClass SELECTOR = eINSTANCE.getSelector();
 
     /**
+     * The meta object literal for the '{@link org.feup.els5.dsl.tableDSL.impl.KeySelectorImpl <em>Key Selector</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.feup.els5.dsl.tableDSL.impl.KeySelectorImpl
+     * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getKeySelector()
+     * @generated
+     */
+    EClass KEY_SELECTOR = eINSTANCE.getKeySelector();
+
+    /**
+     * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute KEY_SELECTOR__KEY = eINSTANCE.getKeySelector_Key();
+
+    /**
+     * The meta object literal for the '{@link org.feup.els5.dsl.tableDSL.impl.TopNSelectorImpl <em>Top NSelector</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.feup.els5.dsl.tableDSL.impl.TopNSelectorImpl
+     * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getTopNSelector()
+     * @generated
+     */
+    EClass TOP_NSELECTOR = eINSTANCE.getTopNSelector();
+
+    /**
      * The meta object literal for the '<em><b>N</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute SELECTOR__N = eINSTANCE.getSelector_N();
+    EAttribute TOP_NSELECTOR__N = eINSTANCE.getTopNSelector_N();
 
     /**
      * The meta object literal for the '{@link org.feup.els5.dsl.tableDSL.impl.ComparatorImpl <em>Comparator</em>}' class.

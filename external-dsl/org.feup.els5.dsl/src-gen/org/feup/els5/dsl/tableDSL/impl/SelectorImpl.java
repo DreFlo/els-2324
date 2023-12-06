@@ -3,11 +3,8 @@
  */
 package org.feup.els5.dsl.tableDSL.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.feup.els5.dsl.tableDSL.Selector;
@@ -17,37 +14,11 @@ import org.feup.els5.dsl.tableDSL.TableDSLPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Selector</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * </p>
- * <ul>
- *   <li>{@link org.feup.els5.dsl.tableDSL.impl.SelectorImpl#getN <em>N</em>}</li>
- * </ul>
  *
  * @generated
  */
 public class SelectorImpl extends MinimalEObjectImpl.Container implements Selector
 {
-  /**
-   * The default value of the '{@link #getN() <em>N</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getN()
-   * @generated
-   * @ordered
-   */
-  protected static final int N_EDEFAULT = 0;
-
-  /**
-   * The cached value of the '{@link #getN() <em>N</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getN()
-   * @generated
-   * @ordered
-   */
-  protected int n = N_EDEFAULT;
-
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -67,114 +38,6 @@ public class SelectorImpl extends MinimalEObjectImpl.Container implements Select
   protected EClass eStaticClass()
   {
     return TableDSLPackage.Literals.SELECTOR;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public int getN()
-  {
-    return n;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setN(int newN)
-  {
-    int oldN = n;
-    n = newN;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TableDSLPackage.SELECTOR__N, oldN, n));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
-    switch (featureID)
-    {
-      case TableDSLPackage.SELECTOR__N:
-        return getN();
-    }
-    return super.eGet(featureID, resolve, coreType);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
-    switch (featureID)
-    {
-      case TableDSLPackage.SELECTOR__N:
-        setN((Integer)newValue);
-        return;
-    }
-    super.eSet(featureID, newValue);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID)
-  {
-    switch (featureID)
-    {
-      case TableDSLPackage.SELECTOR__N:
-        setN(N_EDEFAULT);
-        return;
-    }
-    super.eUnset(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
-    switch (featureID)
-    {
-      case TableDSLPackage.SELECTOR__N:
-        return n != N_EDEFAULT;
-    }
-    return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (n: ");
-    result.append(n);
-    result.append(')');
-    return result.toString();
   }
 
 } //SelectorImpl

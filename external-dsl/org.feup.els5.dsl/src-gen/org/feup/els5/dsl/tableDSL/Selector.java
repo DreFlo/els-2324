@@ -10,12 +10,6 @@ import org.eclipse.emf.ecore.EObject;
  * A representation of the model object '<em><b>Selector</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * </p>
- * <ul>
- *   <li>{@link org.feup.els5.dsl.tableDSL.Selector#getN <em>N</em>}</li>
- * </ul>
  *
  * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getSelector()
  * @model
@@ -23,26 +17,4 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Selector extends EObject
 {
-  /**
-   * Returns the value of the '<em><b>N</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>N</em>' attribute.
-   * @see #setN(int)
-   * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getSelector_N()
-   * @model
-   * @generated
-   */
-  int getN();
-
-  /**
-   * Sets the value of the '{@link org.feup.els5.dsl.tableDSL.Selector#getN <em>N</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>N</em>' attribute.
-   * @see #getN()
-   * @generated
-   */
-  void setN(int value);
-
 } // Selector

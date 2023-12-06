@@ -59,11 +59,23 @@ RenameColumnAppendPair:
 ;
 
 Extract:
-	"extract" targetColumns+=STRING ("," targetColumns+=STRING)* "from" sourceColumn=STRING "select" selector=Selector "sort" "by"? comparator=Comparator
+	"extract" targets+=ExtractColumnMapping ("," targets+=ExtractColumnMapping)* "from" sourceColumn=STRING "select" selector=Selector "sort" "by"? comparator=Comparator
+;
+
+ExtractColumnMapping:
+	targetColumn=STRING ("as" newName=STRING)?
 ;
 
 Selector:
-	{Selector} SELECTOR_KEYWORDS | ("TOP" n=INT)
+	KeySelector | TopNSelector
+;
+
+KeySelector:
+	key=SELECTOR_KEYWORDS
+;
+
+TopNSelector:
+	"TOP" n=INT
 ;
 
 terminal SELECTOR_KEYWORDS returns ecore::EString:
