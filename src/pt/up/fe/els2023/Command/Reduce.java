@@ -2,7 +2,6 @@ package pt.up.fe.els2023.Command;
 
 import pt.up.fe.els2023.Table.Table;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
