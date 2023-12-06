@@ -186,10 +186,33 @@ public class TableDSLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case TableDSLPackage.EXTRACT_COLUMN_MAPPING:
+      {
+        ExtractColumnMapping extractColumnMapping = (ExtractColumnMapping)theEObject;
+        T result = caseExtractColumnMapping(extractColumnMapping);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case TableDSLPackage.SELECTOR:
       {
         Selector selector = (Selector)theEObject;
         T result = caseSelector(selector);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TableDSLPackage.KEY_SELECTOR:
+      {
+        KeySelector keySelector = (KeySelector)theEObject;
+        T result = caseKeySelector(keySelector);
+        if (result == null) result = caseSelector(keySelector);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TableDSLPackage.TOP_NSELECTOR:
+      {
+        TopNSelector topNSelector = (TopNSelector)theEObject;
+        T result = caseTopNSelector(topNSelector);
+        if (result == null) result = caseSelector(topNSelector);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -491,6 +514,22 @@ public class TableDSLSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Extract Column Mapping</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Extract Column Mapping</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExtractColumnMapping(ExtractColumnMapping object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Selector</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -502,6 +541,38 @@ public class TableDSLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseSelector(Selector object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Key Selector</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Key Selector</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseKeySelector(KeySelector object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Top NSelector</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Top NSelector</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTopNSelector(TopNSelector object)
   {
     return null;
   }

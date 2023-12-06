@@ -45,8 +45,6 @@ public class TableDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (ruleCall.getRule() == grammarAccess.getANY_OTHERRule())
 			return getANY_OTHERToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getSELECTOR_KEYWORDSRule())
-			return getSELECTOR_KEYWORDSToken(semanticObject, ruleCall, node);
 		return "";
 	}
 	
@@ -57,17 +55,6 @@ public class TableDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 		if (node != null)
 			return getTokenText(node);
 		return "";
-	}
-	
-	/**
-	 * terminal SELECTOR_KEYWORDS returns ecore::EString:
-	 * 	"MAX" | "MIN" | "MEDIAN"
-	 * ;
-	 */
-	protected String getSELECTOR_KEYWORDSToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "MAX";
 	}
 	
 	@Override

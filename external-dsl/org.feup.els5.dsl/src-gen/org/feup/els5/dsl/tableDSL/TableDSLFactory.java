@@ -150,6 +150,15 @@ public interface TableDSLFactory extends EFactory
   Extract createExtract();
 
   /**
+   * Returns a new object of class '<em>Extract Column Mapping</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Extract Column Mapping</em>'.
+   * @generated
+   */
+  ExtractColumnMapping createExtractColumnMapping();
+
+  /**
    * Returns a new object of class '<em>Selector</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -157,6 +166,24 @@ public interface TableDSLFactory extends EFactory
    * @generated
    */
   Selector createSelector();
+
+  /**
+   * Returns a new object of class '<em>Key Selector</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Key Selector</em>'.
+   * @generated
+   */
+  KeySelector createKeySelector();
+
+  /**
+   * Returns a new object of class '<em>Top NSelector</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Top NSelector</em>'.
+   * @generated
+   */
+  TopNSelector createTopNSelector();
 
   /**
    * Returns a new object of class '<em>Comparator</em>'.

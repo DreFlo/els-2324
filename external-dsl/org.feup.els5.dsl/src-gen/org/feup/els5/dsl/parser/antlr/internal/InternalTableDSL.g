@@ -796,19 +796,20 @@ ruleExtract returns [EObject current=null]
 		}
 		(
 			(
-				lv_targetColumns_1_0=RULE_STRING
 				{
-					newLeafNode(lv_targetColumns_1_0, grammarAccess.getExtractAccess().getTargetColumnsSTRINGTerminalRuleCall_1_0());
+					newCompositeNode(grammarAccess.getExtractAccess().getTargetsExtractColumnMappingParserRuleCall_1_0());
 				}
+				lv_targets_1_0=ruleExtractColumnMapping
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getExtractRule());
+						$current = createModelElementForParent(grammarAccess.getExtractRule());
 					}
-					addWithLastConsumed(
+					add(
 						$current,
-						"targetColumns",
-						lv_targetColumns_1_0,
-						"org.eclipse.xtext.common.Terminals.STRING");
+						"targets",
+						lv_targets_1_0,
+						"org.feup.els5.dsl.TableDSL.ExtractColumnMapping");
+					afterParserOrEnumRuleCall();
 				}
 			)
 		)
@@ -819,19 +820,20 @@ ruleExtract returns [EObject current=null]
 			}
 			(
 				(
-					lv_targetColumns_3_0=RULE_STRING
 					{
-						newLeafNode(lv_targetColumns_3_0, grammarAccess.getExtractAccess().getTargetColumnsSTRINGTerminalRuleCall_2_1_0());
+						newCompositeNode(grammarAccess.getExtractAccess().getTargetsExtractColumnMappingParserRuleCall_2_1_0());
 					}
+					lv_targets_3_0=ruleExtractColumnMapping
 					{
 						if ($current==null) {
-							$current = createModelElement(grammarAccess.getExtractRule());
+							$current = createModelElementForParent(grammarAccess.getExtractRule());
 						}
-						addWithLastConsumed(
+						add(
 							$current,
-							"targetColumns",
-							lv_targetColumns_3_0,
-							"org.eclipse.xtext.common.Terminals.STRING");
+							"targets",
+							lv_targets_3_0,
+							"org.feup.els5.dsl.TableDSL.ExtractColumnMapping");
+						afterParserOrEnumRuleCall();
 					}
 				)
 			)
@@ -913,6 +915,67 @@ ruleExtract returns [EObject current=null]
 	)
 ;
 
+// Entry rule entryRuleExtractColumnMapping
+entryRuleExtractColumnMapping returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getExtractColumnMappingRule()); }
+	iv_ruleExtractColumnMapping=ruleExtractColumnMapping
+	{ $current=$iv_ruleExtractColumnMapping.current; }
+	EOF;
+
+// Rule ExtractColumnMapping
+ruleExtractColumnMapping returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				lv_targetColumn_0_0=RULE_STRING
+				{
+					newLeafNode(lv_targetColumn_0_0, grammarAccess.getExtractColumnMappingAccess().getTargetColumnSTRINGTerminalRuleCall_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getExtractColumnMappingRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"targetColumn",
+						lv_targetColumn_0_0,
+						"org.eclipse.xtext.common.Terminals.STRING");
+				}
+			)
+		)
+		(
+			otherlv_1='as'
+			{
+				newLeafNode(otherlv_1, grammarAccess.getExtractColumnMappingAccess().getAsKeyword_1_0());
+			}
+			(
+				(
+					lv_newName_2_0=RULE_STRING
+					{
+						newLeafNode(lv_newName_2_0, grammarAccess.getExtractColumnMappingAccess().getNewNameSTRINGTerminalRuleCall_1_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getExtractColumnMappingRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"newName",
+							lv_newName_2_0,
+							"org.eclipse.xtext.common.Terminals.STRING");
+					}
+				)
+			)
+		)?
+	)
+;
+
 // Entry rule entryRuleSelector
 entryRuleSelector returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getSelectorRule()); }
@@ -929,42 +992,97 @@ ruleSelector returns [EObject current=null]
 	leaveRule();
 }:
 	(
+		{
+			newCompositeNode(grammarAccess.getSelectorAccess().getKeySelectorParserRuleCall_0());
+		}
+		this_KeySelector_0=ruleKeySelector
+		{
+			$current = $this_KeySelector_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getSelectorAccess().getTopNSelectorParserRuleCall_1());
+		}
+		this_TopNSelector_1=ruleTopNSelector
+		{
+			$current = $this_TopNSelector_1.current;
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+// Entry rule entryRuleKeySelector
+entryRuleKeySelector returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getKeySelectorRule()); }
+	iv_ruleKeySelector=ruleKeySelector
+	{ $current=$iv_ruleKeySelector.current; }
+	EOF;
+
+// Rule KeySelector
+ruleKeySelector returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
 		(
-			(
-				{
-					$current = forceCreateModelElement(
-						grammarAccess.getSelectorAccess().getSelectorAction_0_0(),
-						$current);
-				}
-			)
-			this_SELECTOR_KEYWORDS_1=RULE_SELECTOR_KEYWORDS
+			lv_key_0_0=RULE_SELECTOR_KEYWORDS
 			{
-				newLeafNode(this_SELECTOR_KEYWORDS_1, grammarAccess.getSelectorAccess().getSELECTOR_KEYWORDSTerminalRuleCall_0_1());
+				newLeafNode(lv_key_0_0, grammarAccess.getKeySelectorAccess().getKeySELECTOR_KEYWORDSTerminalRuleCall_0());
+			}
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getKeySelectorRule());
+				}
+				setWithLastConsumed(
+					$current,
+					"key",
+					lv_key_0_0,
+					"org.feup.els5.dsl.TableDSL.SELECTOR_KEYWORDS");
 			}
 		)
-		    |
+	)
+;
+
+// Entry rule entryRuleTopNSelector
+entryRuleTopNSelector returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getTopNSelectorRule()); }
+	iv_ruleTopNSelector=ruleTopNSelector
+	{ $current=$iv_ruleTopNSelector.current; }
+	EOF;
+
+// Rule TopNSelector
+ruleTopNSelector returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='TOP'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getTopNSelectorAccess().getTOPKeyword_0());
+		}
 		(
-			otherlv_2='TOP'
-			{
-				newLeafNode(otherlv_2, grammarAccess.getSelectorAccess().getTOPKeyword_1_0());
-			}
 			(
-				(
-					lv_n_3_0=RULE_INT
-					{
-						newLeafNode(lv_n_3_0, grammarAccess.getSelectorAccess().getNINTTerminalRuleCall_1_1_0());
+				lv_n_1_0=RULE_INT
+				{
+					newLeafNode(lv_n_1_0, grammarAccess.getTopNSelectorAccess().getNINTTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getTopNSelectorRule());
 					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getSelectorRule());
-						}
-						setWithLastConsumed(
-							$current,
-							"n",
-							lv_n_3_0,
-							"org.eclipse.xtext.common.Terminals.INT");
-					}
-				)
+					setWithLastConsumed(
+						$current,
+						"n",
+						lv_n_1_0,
+						"org.eclipse.xtext.common.Terminals.INT");
+				}
 			)
 		)
 	)

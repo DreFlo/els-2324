@@ -6,7 +6,6 @@ package org.feup.els5.dsl.services;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import java.util.List;
-import org.eclipse.xtext.Action;
 import org.eclipse.xtext.Alternatives;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.Grammar;
@@ -444,12 +443,12 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.feup.els5.dsl.TableDSL.Extract");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cExtractKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cTargetColumnsAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cTargetColumnsSTRINGTerminalRuleCall_1_0 = (RuleCall)cTargetColumnsAssignment_1.eContents().get(0);
+		private final Assignment cTargetsAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cTargetsExtractColumnMappingParserRuleCall_1_0 = (RuleCall)cTargetsAssignment_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cTargetColumnsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cTargetColumnsSTRINGTerminalRuleCall_2_1_0 = (RuleCall)cTargetColumnsAssignment_2_1.eContents().get(0);
+		private final Assignment cTargetsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cTargetsExtractColumnMappingParserRuleCall_2_1_0 = (RuleCall)cTargetsAssignment_2_1.eContents().get(0);
 		private final Keyword cFromKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cSourceColumnAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cSourceColumnSTRINGTerminalRuleCall_4_0 = (RuleCall)cSourceColumnAssignment_4.eContents().get(0);
@@ -462,33 +461,33 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final RuleCall cComparatorComparatorParserRuleCall_9_0 = (RuleCall)cComparatorAssignment_9.eContents().get(0);
 		
 		//Extract:
-		//    "extract" targetColumns+=STRING ("," targetColumns+=STRING)* "from" sourceColumn=STRING "select" selector=Selector "sort" "by"? comparator=Comparator
+		//    "extract" targets+=ExtractColumnMapping ("," targets+=ExtractColumnMapping)* "from" sourceColumn=STRING "select" selector=Selector "sort" "by"? comparator=Comparator
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"extract" targetColumns+=STRING ("," targetColumns+=STRING)* "from" sourceColumn=STRING "select" selector=Selector "sort" "by"? comparator=Comparator
+		//"extract" targets+=ExtractColumnMapping ("," targets+=ExtractColumnMapping)* "from" sourceColumn=STRING "select" selector=Selector "sort" "by"? comparator=Comparator
 		public Group getGroup() { return cGroup; }
 		
 		//"extract"
 		public Keyword getExtractKeyword_0() { return cExtractKeyword_0; }
 		
-		//targetColumns+=STRING
-		public Assignment getTargetColumnsAssignment_1() { return cTargetColumnsAssignment_1; }
+		//targets+=ExtractColumnMapping
+		public Assignment getTargetsAssignment_1() { return cTargetsAssignment_1; }
 		
-		//STRING
-		public RuleCall getTargetColumnsSTRINGTerminalRuleCall_1_0() { return cTargetColumnsSTRINGTerminalRuleCall_1_0; }
+		//ExtractColumnMapping
+		public RuleCall getTargetsExtractColumnMappingParserRuleCall_1_0() { return cTargetsExtractColumnMappingParserRuleCall_1_0; }
 		
-		//("," targetColumns+=STRING)*
+		//("," targets+=ExtractColumnMapping)*
 		public Group getGroup_2() { return cGroup_2; }
 		
 		//","
 		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
 		
-		//targetColumns+=STRING
-		public Assignment getTargetColumnsAssignment_2_1() { return cTargetColumnsAssignment_2_1; }
+		//targets+=ExtractColumnMapping
+		public Assignment getTargetsAssignment_2_1() { return cTargetsAssignment_2_1; }
 		
-		//STRING
-		public RuleCall getTargetColumnsSTRINGTerminalRuleCall_2_1_0() { return cTargetColumnsSTRINGTerminalRuleCall_2_1_0; }
+		//ExtractColumnMapping
+		public RuleCall getTargetsExtractColumnMappingParserRuleCall_2_1_0() { return cTargetsExtractColumnMappingParserRuleCall_2_1_0; }
 		
 		//"from"
 		public Keyword getFromKeyword_3() { return cFromKeyword_3; }
@@ -520,45 +519,101 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//Comparator
 		public RuleCall getComparatorComparatorParserRuleCall_9_0() { return cComparatorComparatorParserRuleCall_9_0; }
 	}
-	public class SelectorElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.feup.els5.dsl.TableDSL.Selector");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Action cSelectorAction_0_0 = (Action)cGroup_0.eContents().get(0);
-		private final RuleCall cSELECTOR_KEYWORDSTerminalRuleCall_0_1 = (RuleCall)cGroup_0.eContents().get(1);
-		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
-		private final Keyword cTOPKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cNAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cNINTTerminalRuleCall_1_1_0 = (RuleCall)cNAssignment_1_1.eContents().get(0);
+	public class ExtractColumnMappingElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.feup.els5.dsl.TableDSL.ExtractColumnMapping");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cTargetColumnAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cTargetColumnSTRINGTerminalRuleCall_0_0 = (RuleCall)cTargetColumnAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cAsKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cNewNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cNewNameSTRINGTerminalRuleCall_1_1_0 = (RuleCall)cNewNameAssignment_1_1.eContents().get(0);
 		
-		//Selector:
-		//    {Selector} SELECTOR_KEYWORDS | ("TOP" n=INT)
+		//ExtractColumnMapping:
+		//    targetColumn=STRING ("as" newName=STRING)?
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Selector} SELECTOR_KEYWORDS | ("TOP" n=INT)
-		public Alternatives getAlternatives() { return cAlternatives; }
+		//targetColumn=STRING ("as" newName=STRING)?
+		public Group getGroup() { return cGroup; }
 		
-		//{Selector} SELECTOR_KEYWORDS
-		public Group getGroup_0() { return cGroup_0; }
+		//targetColumn=STRING
+		public Assignment getTargetColumnAssignment_0() { return cTargetColumnAssignment_0; }
 		
-		//{Selector}
-		public Action getSelectorAction_0_0() { return cSelectorAction_0_0; }
+		//STRING
+		public RuleCall getTargetColumnSTRINGTerminalRuleCall_0_0() { return cTargetColumnSTRINGTerminalRuleCall_0_0; }
 		
-		//SELECTOR_KEYWORDS
-		public RuleCall getSELECTOR_KEYWORDSTerminalRuleCall_0_1() { return cSELECTOR_KEYWORDSTerminalRuleCall_0_1; }
-		
-		//("TOP" n=INT)
+		//("as" newName=STRING)?
 		public Group getGroup_1() { return cGroup_1; }
 		
+		//"as"
+		public Keyword getAsKeyword_1_0() { return cAsKeyword_1_0; }
+		
+		//newName=STRING
+		public Assignment getNewNameAssignment_1_1() { return cNewNameAssignment_1_1; }
+		
+		//STRING
+		public RuleCall getNewNameSTRINGTerminalRuleCall_1_1_0() { return cNewNameSTRINGTerminalRuleCall_1_1_0; }
+	}
+	public class SelectorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.feup.els5.dsl.TableDSL.Selector");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cKeySelectorParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cTopNSelectorParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//Selector:
+		//    KeySelector | TopNSelector
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//KeySelector | TopNSelector
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//KeySelector
+		public RuleCall getKeySelectorParserRuleCall_0() { return cKeySelectorParserRuleCall_0; }
+		
+		//TopNSelector
+		public RuleCall getTopNSelectorParserRuleCall_1() { return cTopNSelectorParserRuleCall_1; }
+	}
+	public class KeySelectorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.feup.els5.dsl.TableDSL.KeySelector");
+		private final Assignment cKeyAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cKeySELECTOR_KEYWORDSTerminalRuleCall_0 = (RuleCall)cKeyAssignment.eContents().get(0);
+		
+		//KeySelector:
+		//    key=SELECTOR_KEYWORDS
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//key=SELECTOR_KEYWORDS
+		public Assignment getKeyAssignment() { return cKeyAssignment; }
+		
+		//SELECTOR_KEYWORDS
+		public RuleCall getKeySELECTOR_KEYWORDSTerminalRuleCall_0() { return cKeySELECTOR_KEYWORDSTerminalRuleCall_0; }
+	}
+	public class TopNSelectorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.feup.els5.dsl.TableDSL.TopNSelector");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cTOPKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNINTTerminalRuleCall_1_0 = (RuleCall)cNAssignment_1.eContents().get(0);
+		
+		//TopNSelector:
+		//    "TOP" n=INT
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//"TOP" n=INT
+		public Group getGroup() { return cGroup; }
+		
 		//"TOP"
-		public Keyword getTOPKeyword_1_0() { return cTOPKeyword_1_0; }
+		public Keyword getTOPKeyword_0() { return cTOPKeyword_0; }
 		
 		//n=INT
-		public Assignment getNAssignment_1_1() { return cNAssignment_1_1; }
+		public Assignment getNAssignment_1() { return cNAssignment_1; }
 		
 		//INT
-		public RuleCall getNINTTerminalRuleCall_1_1_0() { return cNINTTerminalRuleCall_1_1_0; }
+		public RuleCall getNINTTerminalRuleCall_1_0() { return cNINTTerminalRuleCall_1_0; }
 	}
 	public class ComparatorElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.feup.els5.dsl.TableDSL.Comparator");
@@ -916,7 +971,10 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	private final RenameColumnPrependPairElements pRenameColumnPrependPair;
 	private final RenameColumnAppendPairElements pRenameColumnAppendPair;
 	private final ExtractElements pExtract;
+	private final ExtractColumnMappingElements pExtractColumnMapping;
 	private final SelectorElements pSelector;
+	private final KeySelectorElements pKeySelector;
+	private final TopNSelectorElements pTopNSelector;
 	private final TerminalRule tSELECTOR_KEYWORDS;
 	private final ComparatorElements pComparator;
 	private final SquashRowsElements pSquashRows;
@@ -952,7 +1010,10 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		this.pRenameColumnPrependPair = new RenameColumnPrependPairElements();
 		this.pRenameColumnAppendPair = new RenameColumnAppendPairElements();
 		this.pExtract = new ExtractElements();
+		this.pExtractColumnMapping = new ExtractColumnMappingElements();
 		this.pSelector = new SelectorElements();
+		this.pKeySelector = new KeySelectorElements();
+		this.pTopNSelector = new TopNSelectorElements();
 		this.tSELECTOR_KEYWORDS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.feup.els5.dsl.TableDSL.SELECTOR_KEYWORDS");
 		this.pComparator = new ComparatorElements();
 		this.pSquashRows = new SquashRowsElements();
@@ -1139,7 +1200,7 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//Extract:
-	//    "extract" targetColumns+=STRING ("," targetColumns+=STRING)* "from" sourceColumn=STRING "select" selector=Selector "sort" "by"? comparator=Comparator
+	//    "extract" targets+=ExtractColumnMapping ("," targets+=ExtractColumnMapping)* "from" sourceColumn=STRING "select" selector=Selector "sort" "by"? comparator=Comparator
 	//;
 	public ExtractElements getExtractAccess() {
 		return pExtract;
@@ -1149,8 +1210,19 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		return getExtractAccess().getRule();
 	}
 	
+	//ExtractColumnMapping:
+	//    targetColumn=STRING ("as" newName=STRING)?
+	//;
+	public ExtractColumnMappingElements getExtractColumnMappingAccess() {
+		return pExtractColumnMapping;
+	}
+	
+	public ParserRule getExtractColumnMappingRule() {
+		return getExtractColumnMappingAccess().getRule();
+	}
+	
 	//Selector:
-	//    {Selector} SELECTOR_KEYWORDS | ("TOP" n=INT)
+	//    KeySelector | TopNSelector
 	//;
 	public SelectorElements getSelectorAccess() {
 		return pSelector;
@@ -1158,6 +1230,28 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	
 	public ParserRule getSelectorRule() {
 		return getSelectorAccess().getRule();
+	}
+	
+	//KeySelector:
+	//    key=SELECTOR_KEYWORDS
+	//;
+	public KeySelectorElements getKeySelectorAccess() {
+		return pKeySelector;
+	}
+	
+	public ParserRule getKeySelectorRule() {
+		return getKeySelectorAccess().getRule();
+	}
+	
+	//TopNSelector:
+	//    "TOP" n=INT
+	//;
+	public TopNSelectorElements getTopNSelectorAccess() {
+		return pTopNSelector;
+	}
+	
+	public ParserRule getTopNSelectorRule() {
+		return getTopNSelectorAccess().getRule();
 	}
 	
 	//terminal SELECTOR_KEYWORDS returns ecore::EString:

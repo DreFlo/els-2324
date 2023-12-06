@@ -15,10 +15,12 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.feup.els5.dsl.tableDSL.Comparator;
 import org.feup.els5.dsl.tableDSL.Extract;
+import org.feup.els5.dsl.tableDSL.ExtractColumnMapping;
 import org.feup.els5.dsl.tableDSL.Selector;
 import org.feup.els5.dsl.tableDSL.TableDSLPackage;
 
@@ -30,7 +32,7 @@ import org.feup.els5.dsl.tableDSL.TableDSLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.feup.els5.dsl.tableDSL.impl.ExtractImpl#getTargetColumns <em>Target Columns</em>}</li>
+ *   <li>{@link org.feup.els5.dsl.tableDSL.impl.ExtractImpl#getTargets <em>Targets</em>}</li>
  *   <li>{@link org.feup.els5.dsl.tableDSL.impl.ExtractImpl#getSourceColumn <em>Source Column</em>}</li>
  *   <li>{@link org.feup.els5.dsl.tableDSL.impl.ExtractImpl#getSelector <em>Selector</em>}</li>
  *   <li>{@link org.feup.els5.dsl.tableDSL.impl.ExtractImpl#getComparator <em>Comparator</em>}</li>
@@ -41,14 +43,14 @@ import org.feup.els5.dsl.tableDSL.TableDSLPackage;
 public class ExtractImpl extends OperationImpl implements Extract
 {
   /**
-   * The cached value of the '{@link #getTargetColumns() <em>Target Columns</em>}' attribute list.
+   * The cached value of the '{@link #getTargets() <em>Targets</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getTargetColumns()
+   * @see #getTargets()
    * @generated
    * @ordered
    */
-  protected EList<String> targetColumns;
+  protected EList<ExtractColumnMapping> targets;
 
   /**
    * The default value of the '{@link #getSourceColumn() <em>Source Column</em>}' attribute.
@@ -117,13 +119,13 @@ public class ExtractImpl extends OperationImpl implements Extract
    * @generated
    */
   @Override
-  public EList<String> getTargetColumns()
+  public EList<ExtractColumnMapping> getTargets()
   {
-    if (targetColumns == null)
+    if (targets == null)
     {
-      targetColumns = new EDataTypeEList<String>(String.class, this, TableDSLPackage.EXTRACT__TARGET_COLUMNS);
+      targets = new EObjectContainmentEList<ExtractColumnMapping>(ExtractColumnMapping.class, this, TableDSLPackage.EXTRACT__TARGETS);
     }
-    return targetColumns;
+    return targets;
   }
 
   /**
@@ -261,6 +263,8 @@ public class ExtractImpl extends OperationImpl implements Extract
   {
     switch (featureID)
     {
+      case TableDSLPackage.EXTRACT__TARGETS:
+        return ((InternalEList<?>)getTargets()).basicRemove(otherEnd, msgs);
       case TableDSLPackage.EXTRACT__SELECTOR:
         return basicSetSelector(null, msgs);
       case TableDSLPackage.EXTRACT__COMPARATOR:
@@ -279,8 +283,8 @@ public class ExtractImpl extends OperationImpl implements Extract
   {
     switch (featureID)
     {
-      case TableDSLPackage.EXTRACT__TARGET_COLUMNS:
-        return getTargetColumns();
+      case TableDSLPackage.EXTRACT__TARGETS:
+        return getTargets();
       case TableDSLPackage.EXTRACT__SOURCE_COLUMN:
         return getSourceColumn();
       case TableDSLPackage.EXTRACT__SELECTOR:
@@ -302,9 +306,9 @@ public class ExtractImpl extends OperationImpl implements Extract
   {
     switch (featureID)
     {
-      case TableDSLPackage.EXTRACT__TARGET_COLUMNS:
-        getTargetColumns().clear();
-        getTargetColumns().addAll((Collection<? extends String>)newValue);
+      case TableDSLPackage.EXTRACT__TARGETS:
+        getTargets().clear();
+        getTargets().addAll((Collection<? extends ExtractColumnMapping>)newValue);
         return;
       case TableDSLPackage.EXTRACT__SOURCE_COLUMN:
         setSourceColumn((String)newValue);
@@ -329,8 +333,8 @@ public class ExtractImpl extends OperationImpl implements Extract
   {
     switch (featureID)
     {
-      case TableDSLPackage.EXTRACT__TARGET_COLUMNS:
-        getTargetColumns().clear();
+      case TableDSLPackage.EXTRACT__TARGETS:
+        getTargets().clear();
         return;
       case TableDSLPackage.EXTRACT__SOURCE_COLUMN:
         setSourceColumn(SOURCE_COLUMN_EDEFAULT);
@@ -355,8 +359,8 @@ public class ExtractImpl extends OperationImpl implements Extract
   {
     switch (featureID)
     {
-      case TableDSLPackage.EXTRACT__TARGET_COLUMNS:
-        return targetColumns != null && !targetColumns.isEmpty();
+      case TableDSLPackage.EXTRACT__TARGETS:
+        return targets != null && !targets.isEmpty();
       case TableDSLPackage.EXTRACT__SOURCE_COLUMN:
         return SOURCE_COLUMN_EDEFAULT == null ? sourceColumn != null : !SOURCE_COLUMN_EDEFAULT.equals(sourceColumn);
       case TableDSLPackage.EXTRACT__SELECTOR:
@@ -378,9 +382,7 @@ public class ExtractImpl extends OperationImpl implements Extract
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (targetColumns: ");
-    result.append(targetColumns);
-    result.append(", sourceColumn: ");
+    result.append(" (sourceColumn: ");
     result.append(sourceColumn);
     result.append(')');
     return result.toString();

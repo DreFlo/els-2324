@@ -14,12 +14,14 @@ import org.feup.els5.dsl.tableDSL.ColumnName;
 import org.feup.els5.dsl.tableDSL.Comparator;
 import org.feup.els5.dsl.tableDSL.CreateTable;
 import org.feup.els5.dsl.tableDSL.Extract;
+import org.feup.els5.dsl.tableDSL.ExtractColumnMapping;
 import org.feup.els5.dsl.tableDSL.Filter;
 import org.feup.els5.dsl.tableDSL.FilterColumnRule;
 import org.feup.els5.dsl.tableDSL.FilterDenylist;
 import org.feup.els5.dsl.tableDSL.FilterExceptlist;
 import org.feup.els5.dsl.tableDSL.FilterObjectTypeRule;
 import org.feup.els5.dsl.tableDSL.FilterRule;
+import org.feup.els5.dsl.tableDSL.KeySelector;
 import org.feup.els5.dsl.tableDSL.LoadData;
 import org.feup.els5.dsl.tableDSL.Operation;
 import org.feup.els5.dsl.tableDSL.Output;
@@ -36,6 +38,7 @@ import org.feup.els5.dsl.tableDSL.TableAction;
 import org.feup.els5.dsl.tableDSL.TableDSLFactory;
 import org.feup.els5.dsl.tableDSL.TableDSLPackage;
 import org.feup.els5.dsl.tableDSL.TableInputPath;
+import org.feup.els5.dsl.tableDSL.TopNSelector;
 
 /**
  * <!-- begin-user-doc -->
@@ -148,7 +151,28 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass extractColumnMappingEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass selectorEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass keySelectorEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass topNSelectorEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -545,9 +569,9 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getExtract_TargetColumns()
+  public EReference getExtract_Targets()
   {
-    return (EAttribute)extractEClass.getEStructuralFeatures().get(0);
+    return (EReference)extractEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -589,6 +613,39 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
    * @generated
    */
   @Override
+  public EClass getExtractColumnMapping()
+  {
+    return extractColumnMappingEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getExtractColumnMapping_TargetColumn()
+  {
+    return (EAttribute)extractColumnMappingEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getExtractColumnMapping_NewName()
+  {
+    return (EAttribute)extractColumnMappingEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getSelector()
   {
     return selectorEClass;
@@ -600,9 +657,42 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getSelector_N()
+  public EClass getKeySelector()
   {
-    return (EAttribute)selectorEClass.getEStructuralFeatures().get(0);
+    return keySelectorEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getKeySelector_Key()
+  {
+    return (EAttribute)keySelectorEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getTopNSelector()
+  {
+    return topNSelectorEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getTopNSelector_N()
+  {
+    return (EAttribute)topNSelectorEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -871,13 +961,22 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
     createEAttribute(renameColumnAppendPairEClass, RENAME_COLUMN_APPEND_PAIR__SUFFIX);
 
     extractEClass = createEClass(EXTRACT);
-    createEAttribute(extractEClass, EXTRACT__TARGET_COLUMNS);
+    createEReference(extractEClass, EXTRACT__TARGETS);
     createEAttribute(extractEClass, EXTRACT__SOURCE_COLUMN);
     createEReference(extractEClass, EXTRACT__SELECTOR);
     createEReference(extractEClass, EXTRACT__COMPARATOR);
 
+    extractColumnMappingEClass = createEClass(EXTRACT_COLUMN_MAPPING);
+    createEAttribute(extractColumnMappingEClass, EXTRACT_COLUMN_MAPPING__TARGET_COLUMN);
+    createEAttribute(extractColumnMappingEClass, EXTRACT_COLUMN_MAPPING__NEW_NAME);
+
     selectorEClass = createEClass(SELECTOR);
-    createEAttribute(selectorEClass, SELECTOR__N);
+
+    keySelectorEClass = createEClass(KEY_SELECTOR);
+    createEAttribute(keySelectorEClass, KEY_SELECTOR__KEY);
+
+    topNSelectorEClass = createEClass(TOP_NSELECTOR);
+    createEAttribute(topNSelectorEClass, TOP_NSELECTOR__N);
 
     comparatorEClass = createEClass(COMPARATOR);
     createEReference(comparatorEClass, COMPARATOR__KEYS);
@@ -947,6 +1046,8 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
     renameColumnPrependPairEClass.getESuperTypes().add(this.getRenameColumnPair());
     renameColumnAppendPairEClass.getESuperTypes().add(this.getRenameColumnPair());
     extractEClass.getESuperTypes().add(this.getOperation());
+    keySelectorEClass.getESuperTypes().add(this.getSelector());
+    topNSelectorEClass.getESuperTypes().add(this.getSelector());
     squashRowsEClass.getESuperTypes().add(this.getOperation());
     filterEClass.getESuperTypes().add(this.getOperation());
     filterColumnRuleEClass.getESuperTypes().add(this.getFilterRule());
@@ -990,13 +1091,22 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
     initEAttribute(getRenameColumnAppendPair_Suffix(), ecorePackage.getEString(), "suffix", null, 0, 1, RenameColumnAppendPair.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(extractEClass, Extract.class, "Extract", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getExtract_TargetColumns(), ecorePackage.getEString(), "targetColumns", null, 0, -1, Extract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExtract_Targets(), this.getExtractColumnMapping(), null, "targets", null, 0, -1, Extract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getExtract_SourceColumn(), ecorePackage.getEString(), "sourceColumn", null, 0, 1, Extract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExtract_Selector(), this.getSelector(), null, "selector", null, 0, 1, Extract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExtract_Comparator(), this.getComparator(), null, "comparator", null, 0, 1, Extract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(extractColumnMappingEClass, ExtractColumnMapping.class, "ExtractColumnMapping", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getExtractColumnMapping_TargetColumn(), ecorePackage.getEString(), "targetColumn", null, 0, 1, ExtractColumnMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getExtractColumnMapping_NewName(), ecorePackage.getEString(), "newName", null, 0, 1, ExtractColumnMapping.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(selectorEClass, Selector.class, "Selector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getSelector_N(), ecorePackage.getEInt(), "n", null, 0, 1, Selector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(keySelectorEClass, KeySelector.class, "KeySelector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getKeySelector_Key(), ecorePackage.getEString(), "key", null, 0, 1, KeySelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(topNSelectorEClass, TopNSelector.class, "TopNSelector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getTopNSelector_N(), ecorePackage.getEInt(), "n", null, 0, 1, TopNSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(comparatorEClass, Comparator.class, "Comparator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getComparator_Keys(), this.getColumnName(), null, "keys", null, 0, -1, Comparator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

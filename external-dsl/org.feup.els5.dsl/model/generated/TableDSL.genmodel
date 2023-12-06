@@ -39,13 +39,21 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//RenameColumnAppendPair/suffix"/>
     </genClasses>
     <genClasses ecoreClass="TableDSL.ecore#//Extract">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//Extract/targetColumns"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TableDSL.ecore#//Extract/targets"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//Extract/sourceColumn"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TableDSL.ecore#//Extract/selector"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TableDSL.ecore#//Extract/comparator"/>
     </genClasses>
-    <genClasses ecoreClass="TableDSL.ecore#//Selector">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//Selector/n"/>
+    <genClasses ecoreClass="TableDSL.ecore#//ExtractColumnMapping">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//ExtractColumnMapping/targetColumn"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//ExtractColumnMapping/newName"/>
+    </genClasses>
+    <genClasses ecoreClass="TableDSL.ecore#//Selector"/>
+    <genClasses ecoreClass="TableDSL.ecore#//KeySelector">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//KeySelector/key"/>
+    </genClasses>
+    <genClasses ecoreClass="TableDSL.ecore#//TopNSelector">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//TopNSelector/n"/>
     </genClasses>
     <genClasses ecoreClass="TableDSL.ecore#//Comparator">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TableDSL.ecore#//Comparator/keys"/>

@@ -146,9 +146,24 @@ public class TableDSLAdapterFactory extends AdapterFactoryImpl
         return createExtractAdapter();
       }
       @Override
+      public Adapter caseExtractColumnMapping(ExtractColumnMapping object)
+      {
+        return createExtractColumnMappingAdapter();
+      }
+      @Override
       public Adapter caseSelector(Selector object)
       {
         return createSelectorAdapter();
+      }
+      @Override
+      public Adapter caseKeySelector(KeySelector object)
+      {
+        return createKeySelectorAdapter();
+      }
+      @Override
+      public Adapter caseTopNSelector(TopNSelector object)
+      {
+        return createTopNSelectorAdapter();
       }
       @Override
       public Adapter caseComparator(Comparator object)
@@ -428,6 +443,21 @@ public class TableDSLAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.feup.els5.dsl.tableDSL.ExtractColumnMapping <em>Extract Column Mapping</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.feup.els5.dsl.tableDSL.ExtractColumnMapping
+   * @generated
+   */
+  public Adapter createExtractColumnMappingAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.feup.els5.dsl.tableDSL.Selector <em>Selector</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -438,6 +468,36 @@ public class TableDSLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createSelectorAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.feup.els5.dsl.tableDSL.KeySelector <em>Key Selector</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.feup.els5.dsl.tableDSL.KeySelector
+   * @generated
+   */
+  public Adapter createKeySelectorAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.feup.els5.dsl.tableDSL.TopNSelector <em>Top NSelector</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.feup.els5.dsl.tableDSL.TopNSelector
+   * @generated
+   */
+  public Adapter createTopNSelectorAdapter()
   {
     return null;
   }

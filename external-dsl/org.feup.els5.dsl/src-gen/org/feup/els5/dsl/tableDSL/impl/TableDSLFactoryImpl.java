@@ -79,7 +79,10 @@ public class TableDSLFactoryImpl extends EFactoryImpl implements TableDSLFactory
       case TableDSLPackage.RENAME_COLUMN_PREPEND_PAIR: return createRenameColumnPrependPair();
       case TableDSLPackage.RENAME_COLUMN_APPEND_PAIR: return createRenameColumnAppendPair();
       case TableDSLPackage.EXTRACT: return createExtract();
+      case TableDSLPackage.EXTRACT_COLUMN_MAPPING: return createExtractColumnMapping();
       case TableDSLPackage.SELECTOR: return createSelector();
+      case TableDSLPackage.KEY_SELECTOR: return createKeySelector();
+      case TableDSLPackage.TOP_NSELECTOR: return createTopNSelector();
       case TableDSLPackage.COMPARATOR: return createComparator();
       case TableDSLPackage.SQUASH_ROWS: return createSquashRows();
       case TableDSLPackage.FILTER: return createFilter();
@@ -268,10 +271,46 @@ public class TableDSLFactoryImpl extends EFactoryImpl implements TableDSLFactory
    * @generated
    */
   @Override
+  public ExtractColumnMapping createExtractColumnMapping()
+  {
+    ExtractColumnMappingImpl extractColumnMapping = new ExtractColumnMappingImpl();
+    return extractColumnMapping;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Selector createSelector()
   {
     SelectorImpl selector = new SelectorImpl();
     return selector;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public KeySelector createKeySelector()
+  {
+    KeySelectorImpl keySelector = new KeySelectorImpl();
+    return keySelector;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public TopNSelector createTopNSelector()
+  {
+    TopNSelectorImpl topNSelector = new TopNSelectorImpl();
+    return topNSelector;
   }
 
   /**
