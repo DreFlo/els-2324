@@ -4,7 +4,6 @@ import pt.up.fe.els2023.Command.Command;
 import pt.up.fe.els2023.Table.Table;
 
 import java.util.*;
-import java.util.function.Function;
 
 import javafx.util.Pair;
 
@@ -13,6 +12,8 @@ public abstract class Extract<ExtractArgument> implements Command {
     private List<String> comparisonKeys;
     private Map<String, String> unwindColumns;
     private int numberOfColumns = 1;
+
+    private ExtractArgument selector;
     private final Comparator<Map<?, ?>> mapComparator = (map1, map2) -> {
         for (String key : getComparisonKeys()) {
             if (!map1.containsKey(key) || !map2.containsKey(key)) {
@@ -63,11 +64,8 @@ public abstract class Extract<ExtractArgument> implements Command {
             for (String newHeader : unwindColumns.keySet()) {
                 List<Object> valuesToAdd = new ArrayList<>();
 
-                for (Object object : values.get(i)) {
-                    if (!(object instanceof Map<?, ?> map)) {
-                        throw new Exception(sourceColumn + " is not a map");
-                    }
-                    valuesToAdd.add(map.get(newHeader));
+                for (List<Map<String, Object>> row : values) {
+                    valuesToAdd.add(row.get(i).get(newHeader));
                 }
 
                 String newColumnName = sourceColumn + '/' + unwindColumns.get(newHeader);
@@ -102,7 +100,7 @@ public abstract class Extract<ExtractArgument> implements Command {
                 cellList.add((Map<String, Object>) object);
             }
             cellList.sort(mapComparator);
-            values.add(selector(cellList));
+            values.add(select(cellList));
         }
 
         return values;
@@ -144,5 +142,13 @@ public abstract class Extract<ExtractArgument> implements Command {
         return numberOfColumns;
     }
 
-    protected abstract List<Map<String, Object>> selector(List<Map<String, Object>> cellList);
+    protected abstract List<Map<String, Object>> select(List<Map<String, Object>> cellList);
+
+    public void setSelector(ExtractArgument selector) {
+        this.selector = selector;
+    }
+
+    public ExtractArgument getSelector() {
+        return selector;
+    }
 }

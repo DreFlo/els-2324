@@ -5,6 +5,7 @@ import org.eclipse.xtext.parser.IParser;
 import com.google.inject.Inject;
 import org.feup.els5.dsl.TableDSLStandaloneSetup;
 import org.feup.els5.dsl.tableDSL.*;
+import pt.up.fe.els2023.Command.Extract.ExtractSelectors;
 import pt.up.fe.els2023.CustomExceptions.SyntaxException;
 import pt.up.fe.els2023.InternalDSL.DSLOperation.DSLExtract.DSLExtractByKey;
 import pt.up.fe.els2023.InternalDSL.DSLOperation.DSLExtract.DSLExtractTopN;
@@ -127,9 +128,9 @@ public class Parser {
         }
 
         if (extract.getSelector() instanceof KeySelector keySelector) {
-            ((DSLExtractByKey) dslTableBuilder.operation().extract().byKey().get(targetColumnMap).from(extract.getSourceColumn()).sortBy(comparisonKeys)).extract(keySelector.getKey());
+            dslTableBuilder.operation().extract().byKey().get(targetColumnMap).from(extract.getSourceColumn()).sortBy(comparisonKeys).extract(ExtractSelectors.valueOf(keySelector.getKey()));
         } else if (extract.getSelector() instanceof TopNSelector topNSelector) {
-            ((DSLExtractTopN) dslTableBuilder.operation().extract().byKey().get(targetColumnMap).from(extract.getSourceColumn()).sortBy(comparisonKeys)).extractTop()
+            dslTableBuilder.operation().extract().top().get(targetColumnMap).from(extract.getSourceColumn()).sortBy(comparisonKeys).extract(topNSelector.getN());
         }
     }
 

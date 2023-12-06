@@ -48,7 +48,8 @@ public abstract class DSLExtract<E extends Extract<EA>, EA> extends DSLOperation
     }
 
     public DSLExtract<E, EA> extract(EA extractArgument) {
-
+        getCommand().setSelector(extractArgument);
+        return this;
     }
 }
 

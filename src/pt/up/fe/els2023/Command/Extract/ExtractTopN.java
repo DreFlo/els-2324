@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class ExtractTopN extends Extract{
+public class ExtractTopN extends Extract<Integer>{
     @Override
-    protected List<Map<String, Object>> selector(List<Map<String, Object>> cellList) {
+    protected List<Map<String, Object>> select(List cellList) {
         // Reverse the list
         List<Map<String, Object>> reversedList = new ArrayList<>();
 
         for (int i = cellList.size() - 1; i >= 0; i--) {
-            reversedList.add(cellList.get(i));
+            reversedList.add((Map<String, Object>) cellList.get(i));
         }
 
         int end = Math.min(getNumberOfColumns(), reversedList.size());
@@ -26,7 +26,9 @@ public class ExtractTopN extends Extract{
         return result;
     }
 
-    public void setN(int n) {
-        setNumberOfColumns(n);
+    @Override
+    public void setSelector(Integer selector) {
+        super.setSelector(selector);
+        setNumberOfColumns(selector);
     }
 }
