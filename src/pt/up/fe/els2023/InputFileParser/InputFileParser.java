@@ -23,7 +23,7 @@ public abstract class InputFileParser implements FileParser {
     protected abstract Map<String, Object> getMapFromFile();
 
     public final Map<String, Object> getFlattenedRow() {
-        return getFlattenedMapHelper(obj, "");
+        return getFlattenedMapHelper(obj, inputFile.getName());
     }
 
     private Map<String, Object> getFlattenedMapHelper(Map<String, Object> originalMap, String parentKey){
