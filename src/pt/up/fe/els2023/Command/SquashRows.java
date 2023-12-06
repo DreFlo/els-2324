@@ -8,20 +8,34 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class SquashRows implements Command {
-    @Override
-    public Table execute(Table table) {
-        List<List<Object>> newRows = new ArrayList<>();
-        int folderIndex = table.getHeaders().indexOf("0__folder");
+    private final List<String> squashHeaders;
 
-        if (folderIndex == -1) {
+    public SquashRows() {
+        this.squashHeaders = new ArrayList<>();
+    }
+
+    public SquashRows(List<String> squashHeaders) {
+        this.squashHeaders = squashHeaders;
+    }
+
+    public void addSquashHeader(String header) {
+        if (!this.squashHeaders.contains(header))
+            this.squashHeaders.add(header);
+    }
+
+    private Table squash(Table table, String header) {
+        List<List<Object>> newRows = new ArrayList<>();
+        int headerIndex = table.getHeaders().indexOf(header);
+
+        if (headerIndex == -1) {
             return table;
         }
 
         Map<String, List<List<Object>>> groupByFolder = table.getRows().stream().collect(Collectors.groupingBy(row -> {
-            if (row.get(folderIndex) == null) {
+            if (row.get(headerIndex) == null) {
                 return "";
             }
-            return (String) row.get(folderIndex);
+            return (String) row.get(headerIndex);
         }));
 
         for (String folder: groupByFolder.keySet()) {
@@ -48,6 +62,15 @@ public class SquashRows implements Command {
 
         newTable.removeColumn("0__filename");
 
+        return newTable;
+    }
+
+    @Override
+    public Table execute(Table table) throws Exception {
+        Table newTable = table;
+        for (String header: squashHeaders) {
+            newTable = squash(newTable, header);
+        }
         return newTable;
     }
 }

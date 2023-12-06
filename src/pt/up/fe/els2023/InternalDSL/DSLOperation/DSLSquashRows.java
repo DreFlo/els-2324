@@ -7,4 +7,11 @@ public class DSLSquashRows extends DSLOperation<SquashRows> {
     public DSLSquashRows(DSLTableBuilder dslTableBuilder) {
         super(dslTableBuilder, new SquashRows());
     }
+
+    public DSLSquashRows column(String... column) {
+        for (String c : column) {
+            getCommand().addSquashHeader(c);
+        }
+        return this;
+    }
 }
