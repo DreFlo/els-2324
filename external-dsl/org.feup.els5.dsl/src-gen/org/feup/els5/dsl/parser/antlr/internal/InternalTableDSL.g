@@ -325,10 +325,12 @@ ruleOutput returns [EObject current=null]
 		{
 			newLeafNode(otherlv_0, grammarAccess.getOutputAccess().getOutputKeyword_0());
 		}
-		otherlv_1='to'
-		{
-			newLeafNode(otherlv_1, grammarAccess.getOutputAccess().getToKeyword_1());
-		}
+		(
+			otherlv_1='to'
+			{
+				newLeafNode(otherlv_1, grammarAccess.getOutputAccess().getToKeyword_1());
+			}
+		)?
 		(
 			(
 				lv_outputPaths_2_0=RULE_STRING
@@ -434,6 +436,15 @@ ruleOperation returns [EObject current=null]
 			$current = $this_Filter_4.current;
 			afterParserOrEnumRuleCall();
 		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getOperationAccess().getReduceParserRuleCall_5());
+		}
+		this_Reduce_5=ruleReduce
+		{
+			$current = $this_Reduce_5.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -460,17 +471,17 @@ ruleSelect returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getSelectAccess().getColumnsPatternsColumnNameParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getSelectAccess().getColumnPatternsColumnNameParserRuleCall_1_0());
 				}
-				lv_columnsPatterns_1_0=ruleColumnName
+				lv_columnPatterns_1_0=ruleColumnName
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getSelectRule());
 					}
 					add(
 						$current,
-						"columnsPatterns",
-						lv_columnsPatterns_1_0,
+						"columnPatterns",
+						lv_columnPatterns_1_0,
 						"org.feup.els5.dsl.TableDSL.ColumnName");
 					afterParserOrEnumRuleCall();
 				}
@@ -548,7 +559,32 @@ ruleRenameColumn returns [EObject current=null]
 					afterParserOrEnumRuleCall();
 				}
 			)
-		)+
+		)
+		(
+			otherlv_3=','
+			{
+				newLeafNode(otherlv_3, grammarAccess.getRenameColumnAccess().getCommaKeyword_3_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getRenameColumnAccess().getRenameTuplesRenameColumnPairParserRuleCall_3_1_0());
+					}
+					lv_renameTuples_4_0=ruleRenameColumnPair
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getRenameColumnRule());
+						}
+						add(
+							$current,
+							"renameTuples",
+							lv_renameTuples_4_0,
+							"org.feup.els5.dsl.TableDSL.RenameColumnPair");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)*
 	)
 ;
 
@@ -1611,6 +1647,95 @@ ruleFilterObjectTypeRule returns [EObject current=null]
 	)
 ;
 
+// Entry rule entryRuleReduce
+entryRuleReduce returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getReduceRule()); }
+	iv_ruleReduce=ruleReduce
+	{ $current=$iv_ruleReduce.current; }
+	EOF;
+
+// Rule Reduce
+ruleReduce returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='reduce'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getReduceAccess().getReduceKeyword_0());
+		}
+		(
+			(
+				lv_objectClass_1_0=RULE_STRING
+				{
+					newLeafNode(lv_objectClass_1_0, grammarAccess.getReduceAccess().getObjectClassSTRINGTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getReduceRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"objectClass",
+						lv_objectClass_1_0,
+						"org.eclipse.xtext.common.Terminals.STRING");
+				}
+			)
+		)
+		(
+			otherlv_2='to'
+			{
+				newLeafNode(otherlv_2, grammarAccess.getReduceAccess().getToKeyword_2());
+			}
+		)?
+		(
+			(
+				lv_functions_3_0=RULE_SELECTOR_KEYWORDS
+				{
+					newLeafNode(lv_functions_3_0, grammarAccess.getReduceAccess().getFunctionsSELECTOR_KEYWORDSTerminalRuleCall_3_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getReduceRule());
+					}
+					addWithLastConsumed(
+						$current,
+						"functions",
+						lv_functions_3_0,
+						"org.feup.els5.dsl.TableDSL.SELECTOR_KEYWORDS");
+				}
+			)
+		)
+		(
+			otherlv_4=','
+			{
+				newLeafNode(otherlv_4, grammarAccess.getReduceAccess().getCommaKeyword_4_0());
+			}
+			(
+				(
+					lv_functions_5_0=RULE_SELECTOR_KEYWORDS
+					{
+						newLeafNode(lv_functions_5_0, grammarAccess.getReduceAccess().getFunctionsSELECTOR_KEYWORDSTerminalRuleCall_4_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getReduceRule());
+						}
+						addWithLastConsumed(
+							$current,
+							"functions",
+							lv_functions_5_0,
+							"org.feup.els5.dsl.TableDSL.SELECTOR_KEYWORDS");
+					}
+				)
+			)
+		)*
+	)
+;
+
 // Entry rule entryRuleColumnName
 entryRuleColumnName returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getColumnNameRule()); }
@@ -1663,7 +1788,7 @@ ruleColumnName returns [EObject current=null]
 	)
 ;
 
-RULE_SELECTOR_KEYWORDS : ('MAX'|'MIN'|'MEDIAN');
+RULE_SELECTOR_KEYWORDS : ('MAX'|'MIN'|'MEDIAN'|'SUM'|'AVG');
 
 RULE_COLUMN_NAME_KEYWORDS : ('FILENAME'|'DIRECTORY');
 

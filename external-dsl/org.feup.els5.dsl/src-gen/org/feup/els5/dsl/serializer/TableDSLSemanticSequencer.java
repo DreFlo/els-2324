@@ -26,6 +26,7 @@ import org.feup.els5.dsl.tableDSL.FilterExceptlist;
 import org.feup.els5.dsl.tableDSL.FilterObjectTypeRule;
 import org.feup.els5.dsl.tableDSL.KeySelector;
 import org.feup.els5.dsl.tableDSL.Output;
+import org.feup.els5.dsl.tableDSL.Reduce;
 import org.feup.els5.dsl.tableDSL.RenameColumn;
 import org.feup.els5.dsl.tableDSL.RenameColumnAppendPair;
 import org.feup.els5.dsl.tableDSL.RenameColumnPrependPair;
@@ -83,6 +84,9 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 				return; 
 			case TableDSLPackage.OUTPUT:
 				sequence_Output(context, (Output) semanticObject); 
+				return; 
+			case TableDSLPackage.REDUCE:
+				sequence_Reduce(context, (Reduce) semanticObject); 
 				return; 
 			case TableDSLPackage.RENAME_COLUMN:
 				sequence_RenameColumn(context, (RenameColumn) semanticObject); 
@@ -287,6 +291,22 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     TableAction returns Reduce
+	 *     Operation returns Reduce
+	 *     Reduce returns Reduce
+	 *
+	 * Constraint:
+	 *     (objectClass=STRING functions+=SELECTOR_KEYWORDS functions+=SELECTOR_KEYWORDS*)
+	 * </pre>
+	 */
+	protected void sequence_Reduce(ISerializationContext context, Reduce semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     RenameColumnPair returns RenameColumnAppendPair
 	 *     RenameColumnAppendPair returns RenameColumnAppendPair
 	 *
@@ -364,7 +384,7 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     RenameColumn returns RenameColumn
 	 *
 	 * Constraint:
-	 *     renameTuples+=RenameColumnPair+
+	 *     (renameTuples+=RenameColumnPair renameTuples+=RenameColumnPair*)
 	 * </pre>
 	 */
 	protected void sequence_RenameColumn(ISerializationContext context, RenameColumn semanticObject) {
@@ -380,7 +400,7 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     Select returns Select
 	 *
 	 * Constraint:
-	 *     (columnsPatterns+=ColumnName columnPatterns+=ColumnName*)
+	 *     (columnPatterns+=ColumnName columnPatterns+=ColumnName*)
 	 * </pre>
 	 */
 	protected void sequence_Select(ISerializationContext context, Select semanticObject) {

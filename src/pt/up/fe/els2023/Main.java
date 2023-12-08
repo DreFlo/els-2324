@@ -40,33 +40,9 @@ public class Main {
     public static void main(String[] args) throws Exception {
         DSLTableBuilder table = new DSLTableBuilder();
 
-//        table
-//            .source()
-//                .fileSystemSource()
-//                    .path("resources/run2.*")
-//                    .end()
-//            .operation()
-//                .squashRows()
-//                    .end()
-//            .operation()
-//                .extract()
-//                    .byKey()
-//                    .from("functions")
-//                    .get("name", "time%")
-//                    .extract(ExtractSelectors.MEDIAN)
-//                    .sortBy("time%", "calls")
-//                    .end()
-//            .operation()
-//                .select()
-//                    .column("^function.*")
-//                    .end()
-//            .outputTo("output/DSL5.csv")
-//            .end()
-//            .execute();
-
         Parser parser = new Parser();
 
-        DSLTableExecutor dslTableExecutor = parser.parse(Files.readString(Path.of("./resources/configFiles/test.table")));
+        DSLTableExecutor dslTableExecutor = parser.parse(Files.readString(Path.of("./resources/configFiles/ass3.table")));
 
         dslTableExecutor.execute();
     }

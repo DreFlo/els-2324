@@ -228,22 +228,13 @@ public interface TableDSLPackage extends EPackage
   int SELECT = 7;
 
   /**
-   * The feature id for the '<em><b>Columns Patterns</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SELECT__COLUMNS_PATTERNS = OPERATION_FEATURE_COUNT + 0;
-
-  /**
    * The feature id for the '<em><b>Column Patterns</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SELECT__COLUMN_PATTERNS = OPERATION_FEATURE_COUNT + 1;
+  int SELECT__COLUMN_PATTERNS = OPERATION_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Select</em>' class.
@@ -252,7 +243,7 @@ public interface TableDSLPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SELECT_FEATURE_COUNT = OPERATION_FEATURE_COUNT + 2;
+  int SELECT_FEATURE_COUNT = OPERATION_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.feup.els5.dsl.tableDSL.impl.RenameColumnImpl <em>Rename Column</em>}' class.
@@ -813,6 +804,43 @@ public interface TableDSLPackage extends EPackage
   int FILTER_OBJECT_TYPE_RULE_FEATURE_COUNT = FILTER_RULE_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link org.feup.els5.dsl.tableDSL.impl.ReduceImpl <em>Reduce</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.feup.els5.dsl.tableDSL.impl.ReduceImpl
+   * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getReduce()
+   * @generated
+   */
+  int REDUCE = 26;
+
+  /**
+   * The feature id for the '<em><b>Object Class</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REDUCE__OBJECT_CLASS = OPERATION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Functions</b></em>' attribute list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REDUCE__FUNCTIONS = OPERATION_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Reduce</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REDUCE_FEATURE_COUNT = OPERATION_FEATURE_COUNT + 2;
+
+  /**
    * The meta object id for the '{@link org.feup.els5.dsl.tableDSL.impl.ColumnNameImpl <em>Column Name</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -820,7 +848,7 @@ public interface TableDSLPackage extends EPackage
    * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getColumnName()
    * @generated
    */
-  int COLUMN_NAME = 26;
+  int COLUMN_NAME = 27;
 
   /**
    * The feature id for the '<em><b>Column Name</b></em>' attribute.
@@ -953,17 +981,6 @@ public interface TableDSLPackage extends EPackage
    * @generated
    */
   EClass getSelect();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.feup.els5.dsl.tableDSL.Select#getColumnsPatterns <em>Columns Patterns</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Columns Patterns</em>'.
-   * @see org.feup.els5.dsl.tableDSL.Select#getColumnsPatterns()
-   * @see #getSelect()
-   * @generated
-   */
-  EReference getSelect_ColumnsPatterns();
 
   /**
    * Returns the meta object for the containment reference list '{@link org.feup.els5.dsl.tableDSL.Select#getColumnPatterns <em>Column Patterns</em>}'.
@@ -1388,6 +1405,38 @@ public interface TableDSLPackage extends EPackage
   EAttribute getFilterObjectTypeRule_ObjectClasses();
 
   /**
+   * Returns the meta object for class '{@link org.feup.els5.dsl.tableDSL.Reduce <em>Reduce</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Reduce</em>'.
+   * @see org.feup.els5.dsl.tableDSL.Reduce
+   * @generated
+   */
+  EClass getReduce();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.feup.els5.dsl.tableDSL.Reduce#getObjectClass <em>Object Class</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Object Class</em>'.
+   * @see org.feup.els5.dsl.tableDSL.Reduce#getObjectClass()
+   * @see #getReduce()
+   * @generated
+   */
+  EAttribute getReduce_ObjectClass();
+
+  /**
+   * Returns the meta object for the attribute list '{@link org.feup.els5.dsl.tableDSL.Reduce#getFunctions <em>Functions</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute list '<em>Functions</em>'.
+   * @see org.feup.els5.dsl.tableDSL.Reduce#getFunctions()
+   * @see #getReduce()
+   * @generated
+   */
+  EAttribute getReduce_Functions();
+
+  /**
    * Returns the meta object for class '{@link org.feup.els5.dsl.tableDSL.ColumnName <em>Column Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1534,14 +1583,6 @@ public interface TableDSLPackage extends EPackage
      * @generated
      */
     EClass SELECT = eINSTANCE.getSelect();
-
-    /**
-     * The meta object literal for the '<em><b>Columns Patterns</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SELECT__COLUMNS_PATTERNS = eINSTANCE.getSelect_ColumnsPatterns();
 
     /**
      * The meta object literal for the '<em><b>Column Patterns</b></em>' containment reference list feature.
@@ -1898,6 +1939,32 @@ public interface TableDSLPackage extends EPackage
      * @generated
      */
     EAttribute FILTER_OBJECT_TYPE_RULE__OBJECT_CLASSES = eINSTANCE.getFilterObjectTypeRule_ObjectClasses();
+
+    /**
+     * The meta object literal for the '{@link org.feup.els5.dsl.tableDSL.impl.ReduceImpl <em>Reduce</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.feup.els5.dsl.tableDSL.impl.ReduceImpl
+     * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getReduce()
+     * @generated
+     */
+    EClass REDUCE = eINSTANCE.getReduce();
+
+    /**
+     * The meta object literal for the '<em><b>Object Class</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute REDUCE__OBJECT_CLASS = eINSTANCE.getReduce_ObjectClass();
+
+    /**
+     * The meta object literal for the '<em><b>Functions</b></em>' attribute list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute REDUCE__FUNCTIONS = eINSTANCE.getReduce_Functions();
 
     /**
      * The meta object literal for the '{@link org.feup.els5.dsl.tableDSL.impl.ColumnNameImpl <em>Column Name</em>}' class.

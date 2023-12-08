@@ -278,6 +278,15 @@ public class TableDSLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case TableDSLPackage.REDUCE:
+      {
+        Reduce reduce = (Reduce)theEObject;
+        T result = caseReduce(reduce);
+        if (result == null) result = caseOperation(reduce);
+        if (result == null) result = caseTableAction(reduce);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case TableDSLPackage.COLUMN_NAME:
       {
         ColumnName columnName = (ColumnName)theEObject;
@@ -701,6 +710,22 @@ public class TableDSLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseFilterObjectTypeRule(FilterObjectTypeRule object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Reduce</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Reduce</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseReduce(Reduce object)
   {
     return null;
   }

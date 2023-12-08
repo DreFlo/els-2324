@@ -26,6 +26,8 @@ public class TableDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_FilterColumnRule_ColumnKeyword_0_0_or_ColumnsKeyword_0_1;
 	protected AbstractElementAlias match_FilterObjectTypeRule_ObjectKeyword_0_0_or_ObjectsKeyword_0_1;
 	protected AbstractElementAlias match_FilterObjectTypeRule_OfKeyword_1_q;
+	protected AbstractElementAlias match_Output_ToKeyword_1_q;
+	protected AbstractElementAlias match_Reduce_ToKeyword_2_q;
 	protected AbstractElementAlias match_RenameColumn_ColumnKeyword_1_q;
 	protected AbstractElementAlias match_SquashRows_RowsKeyword_1_q;
 	
@@ -37,6 +39,8 @@ public class TableDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_FilterColumnRule_ColumnKeyword_0_0_or_ColumnsKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getFilterColumnRuleAccess().getColumnKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getFilterColumnRuleAccess().getColumnsKeyword_0_1()));
 		match_FilterObjectTypeRule_ObjectKeyword_0_0_or_ObjectsKeyword_0_1 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getFilterObjectTypeRuleAccess().getObjectKeyword_0_0()), new TokenAlias(false, false, grammarAccess.getFilterObjectTypeRuleAccess().getObjectsKeyword_0_1()));
 		match_FilterObjectTypeRule_OfKeyword_1_q = new TokenAlias(false, true, grammarAccess.getFilterObjectTypeRuleAccess().getOfKeyword_1());
+		match_Output_ToKeyword_1_q = new TokenAlias(false, true, grammarAccess.getOutputAccess().getToKeyword_1());
+		match_Reduce_ToKeyword_2_q = new TokenAlias(false, true, grammarAccess.getReduceAccess().getToKeyword_2());
 		match_RenameColumn_ColumnKeyword_1_q = new TokenAlias(false, true, grammarAccess.getRenameColumnAccess().getColumnKeyword_1());
 		match_SquashRows_RowsKeyword_1_q = new TokenAlias(false, true, grammarAccess.getSquashRowsAccess().getRowsKeyword_1());
 	}
@@ -73,6 +77,10 @@ public class TableDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_FilterObjectTypeRule_ObjectKeyword_0_0_or_ObjectsKeyword_0_1(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_FilterObjectTypeRule_OfKeyword_1_q.equals(syntax))
 				emit_FilterObjectTypeRule_OfKeyword_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Output_ToKeyword_1_q.equals(syntax))
+				emit_Output_ToKeyword_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Reduce_ToKeyword_2_q.equals(syntax))
+				emit_Reduce_ToKeyword_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_RenameColumn_ColumnKeyword_1_q.equals(syntax))
 				emit_RenameColumn_ColumnKeyword_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_SquashRows_RowsKeyword_1_q.equals(syntax))
@@ -148,6 +156,34 @@ public class TableDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * </pre>
 	 */
 	protected void emit_FilterObjectTypeRule_OfKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * <pre>
+	 * Ambiguous syntax:
+	 *     'to'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) 'output' (ambiguity) outputPaths+=STRING
+	 
+	 * </pre>
+	 */
+	protected void emit_Output_ToKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * <pre>
+	 * Ambiguous syntax:
+	 *     'to'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     objectClass=STRING (ambiguity) functions+=SELECTOR_KEYWORDS
+	 
+	 * </pre>
+	 */
+	protected void emit_Reduce_ToKeyword_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

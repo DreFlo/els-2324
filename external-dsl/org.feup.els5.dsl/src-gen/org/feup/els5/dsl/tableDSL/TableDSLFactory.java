@@ -258,6 +258,15 @@ public interface TableDSLFactory extends EFactory
   FilterObjectTypeRule createFilterObjectTypeRule();
 
   /**
+   * Returns a new object of class '<em>Reduce</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Reduce</em>'.
+   * @generated
+   */
+  Reduce createReduce();
+
+  /**
    * Returns a new object of class '<em>Column Name</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

@@ -188,17 +188,17 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final RuleCall cOutputPathsSTRINGTerminalRuleCall_3_1_0 = (RuleCall)cOutputPathsAssignment_3_1.eContents().get(0);
 		
 		//Output:
-		//    "output" "to" outputPaths+=STRING ("," outputPaths+=STRING)*
+		//    "output" "to"? outputPaths+=STRING ("," outputPaths+=STRING)*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"output" "to" outputPaths+=STRING ("," outputPaths+=STRING)*
+		//"output" "to"? outputPaths+=STRING ("," outputPaths+=STRING)*
 		public Group getGroup() { return cGroup; }
 		
 		//"output"
 		public Keyword getOutputKeyword_0() { return cOutputKeyword_0; }
 		
-		//"to"
+		//"to"?
 		public Keyword getToKeyword_1() { return cToKeyword_1; }
 		
 		//outputPaths+=STRING
@@ -227,13 +227,14 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final RuleCall cExtractParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cSquashRowsParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cFilterParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cReduceParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		
 		//Operation:
-		//    Select | RenameColumn | Extract | SquashRows | Filter
+		//    Select | RenameColumn | Extract | SquashRows | Filter | Reduce
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Select | RenameColumn | Extract | SquashRows | Filter
+		//Select | RenameColumn | Extract | SquashRows | Filter | Reduce
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Select
@@ -250,34 +251,37 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		
 		//Filter
 		public RuleCall getFilterParserRuleCall_4() { return cFilterParserRuleCall_4; }
+		
+		//Reduce
+		public RuleCall getReduceParserRuleCall_5() { return cReduceParserRuleCall_5; }
 	}
 	public class SelectElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.feup.els5.dsl.TableDSL.Select");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cSelectKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cColumnsPatternsAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cColumnsPatternsColumnNameParserRuleCall_1_0 = (RuleCall)cColumnsPatternsAssignment_1.eContents().get(0);
+		private final Assignment cColumnPatternsAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cColumnPatternsColumnNameParserRuleCall_1_0 = (RuleCall)cColumnPatternsAssignment_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Assignment cColumnPatternsAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
 		private final RuleCall cColumnPatternsColumnNameParserRuleCall_2_1_0 = (RuleCall)cColumnPatternsAssignment_2_1.eContents().get(0);
 		
 		//Select:
-		//    "select" columnsPatterns+=ColumnName ("," columnPatterns+=ColumnName)*
+		//    "select" columnPatterns+=ColumnName ("," columnPatterns+=ColumnName)*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"select" columnsPatterns+=ColumnName ("," columnPatterns+=ColumnName)*
+		//"select" columnPatterns+=ColumnName ("," columnPatterns+=ColumnName)*
 		public Group getGroup() { return cGroup; }
 		
 		//"select"
 		public Keyword getSelectKeyword_0() { return cSelectKeyword_0; }
 		
-		//columnsPatterns+=ColumnName
-		public Assignment getColumnsPatternsAssignment_1() { return cColumnsPatternsAssignment_1; }
+		//columnPatterns+=ColumnName
+		public Assignment getColumnPatternsAssignment_1() { return cColumnPatternsAssignment_1; }
 		
 		//ColumnName
-		public RuleCall getColumnsPatternsColumnNameParserRuleCall_1_0() { return cColumnsPatternsColumnNameParserRuleCall_1_0; }
+		public RuleCall getColumnPatternsColumnNameParserRuleCall_1_0() { return cColumnPatternsColumnNameParserRuleCall_1_0; }
 		
 		//("," columnPatterns+=ColumnName)*
 		public Group getGroup_2() { return cGroup_2; }
@@ -298,13 +302,17 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final Keyword cColumnKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cRenameTuplesAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cRenameTuplesRenameColumnPairParserRuleCall_2_0 = (RuleCall)cRenameTuplesAssignment_2.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cCommaKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Assignment cRenameTuplesAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cRenameTuplesRenameColumnPairParserRuleCall_3_1_0 = (RuleCall)cRenameTuplesAssignment_3_1.eContents().get(0);
 		
 		//RenameColumn:
-		//    "rename" "column"? renameTuples+=RenameColumnPair+
+		//    "rename" "column"? renameTuples+=RenameColumnPair ("," renameTuples+=RenameColumnPair)*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"rename" "column"? renameTuples+=RenameColumnPair+
+		//"rename" "column"? renameTuples+=RenameColumnPair ("," renameTuples+=RenameColumnPair)*
 		public Group getGroup() { return cGroup; }
 		
 		//"rename"
@@ -313,11 +321,23 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//"column"?
 		public Keyword getColumnKeyword_1() { return cColumnKeyword_1; }
 		
-		//renameTuples+=RenameColumnPair+
+		//renameTuples+=RenameColumnPair
 		public Assignment getRenameTuplesAssignment_2() { return cRenameTuplesAssignment_2; }
 		
 		//RenameColumnPair
 		public RuleCall getRenameTuplesRenameColumnPairParserRuleCall_2_0() { return cRenameTuplesRenameColumnPairParserRuleCall_2_0; }
+		
+		//("," renameTuples+=RenameColumnPair)*
+		public Group getGroup_3() { return cGroup_3; }
+		
+		//","
+		public Keyword getCommaKeyword_3_0() { return cCommaKeyword_3_0; }
+		
+		//renameTuples+=RenameColumnPair
+		public Assignment getRenameTuplesAssignment_3_1() { return cRenameTuplesAssignment_3_1; }
+		
+		//RenameColumnPair
+		public RuleCall getRenameTuplesRenameColumnPairParserRuleCall_3_1_0() { return cRenameTuplesRenameColumnPairParserRuleCall_3_1_0; }
 	}
 	public class RenameColumnPairElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.feup.els5.dsl.TableDSL.RenameColumnPair");
@@ -931,6 +951,58 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//STRING
 		public RuleCall getObjectClassesSTRINGTerminalRuleCall_3_1_0() { return cObjectClassesSTRINGTerminalRuleCall_3_1_0; }
 	}
+	public class ReduceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.feup.els5.dsl.TableDSL.Reduce");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cReduceKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cObjectClassAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cObjectClassSTRINGTerminalRuleCall_1_0 = (RuleCall)cObjectClassAssignment_1.eContents().get(0);
+		private final Keyword cToKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cFunctionsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cFunctionsSELECTOR_KEYWORDSTerminalRuleCall_3_0 = (RuleCall)cFunctionsAssignment_3.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cCommaKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cFunctionsAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cFunctionsSELECTOR_KEYWORDSTerminalRuleCall_4_1_0 = (RuleCall)cFunctionsAssignment_4_1.eContents().get(0);
+		
+		//Reduce:
+		//   "reduce" objectClass=STRING "to"? functions+=SELECTOR_KEYWORDS ("," functions+=SELECTOR_KEYWORDS)*
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//"reduce" objectClass=STRING "to"? functions+=SELECTOR_KEYWORDS ("," functions+=SELECTOR_KEYWORDS)*
+		public Group getGroup() { return cGroup; }
+		
+		//"reduce"
+		public Keyword getReduceKeyword_0() { return cReduceKeyword_0; }
+		
+		//objectClass=STRING
+		public Assignment getObjectClassAssignment_1() { return cObjectClassAssignment_1; }
+		
+		//STRING
+		public RuleCall getObjectClassSTRINGTerminalRuleCall_1_0() { return cObjectClassSTRINGTerminalRuleCall_1_0; }
+		
+		//"to"?
+		public Keyword getToKeyword_2() { return cToKeyword_2; }
+		
+		//functions+=SELECTOR_KEYWORDS
+		public Assignment getFunctionsAssignment_3() { return cFunctionsAssignment_3; }
+		
+		//SELECTOR_KEYWORDS
+		public RuleCall getFunctionsSELECTOR_KEYWORDSTerminalRuleCall_3_0() { return cFunctionsSELECTOR_KEYWORDSTerminalRuleCall_3_0; }
+		
+		//("," functions+=SELECTOR_KEYWORDS)*
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//","
+		public Keyword getCommaKeyword_4_0() { return cCommaKeyword_4_0; }
+		
+		//functions+=SELECTOR_KEYWORDS
+		public Assignment getFunctionsAssignment_4_1() { return cFunctionsAssignment_4_1; }
+		
+		//SELECTOR_KEYWORDS
+		public RuleCall getFunctionsSELECTOR_KEYWORDSTerminalRuleCall_4_1_0() { return cFunctionsSELECTOR_KEYWORDSTerminalRuleCall_4_1_0; }
+	}
 	public class ColumnNameElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.feup.els5.dsl.TableDSL.ColumnName");
 		private final Assignment cColumnNameAssignment = (Assignment)rule.eContents().get(1);
@@ -984,6 +1056,7 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	private final FilterRuleElements pFilterRule;
 	private final FilterColumnRuleElements pFilterColumnRule;
 	private final FilterObjectTypeRuleElements pFilterObjectTypeRule;
+	private final ReduceElements pReduce;
 	private final ColumnNameElements pColumnName;
 	private final TerminalRule tCOLUMN_NAME_KEYWORDS;
 	
@@ -1023,6 +1096,7 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		this.pFilterRule = new FilterRuleElements();
 		this.pFilterColumnRule = new FilterColumnRuleElements();
 		this.pFilterObjectTypeRule = new FilterObjectTypeRuleElements();
+		this.pReduce = new ReduceElements();
 		this.pColumnName = new ColumnNameElements();
 		this.tCOLUMN_NAME_KEYWORDS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.feup.els5.dsl.TableDSL.COLUMN_NAME_KEYWORDS");
 	}
@@ -1112,7 +1186,7 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//Output:
-	//    "output" "to" outputPaths+=STRING ("," outputPaths+=STRING)*
+	//    "output" "to"? outputPaths+=STRING ("," outputPaths+=STRING)*
 	//;
 	public OutputElements getOutputAccess() {
 		return pOutput;
@@ -1123,7 +1197,7 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//Operation:
-	//    Select | RenameColumn | Extract | SquashRows | Filter
+	//    Select | RenameColumn | Extract | SquashRows | Filter | Reduce
 	//;
 	public OperationElements getOperationAccess() {
 		return pOperation;
@@ -1134,7 +1208,7 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//Select:
-	//    "select" columnsPatterns+=ColumnName ("," columnPatterns+=ColumnName)*
+	//    "select" columnPatterns+=ColumnName ("," columnPatterns+=ColumnName)*
 	//;
 	public SelectElements getSelectAccess() {
 		return pSelect;
@@ -1145,7 +1219,7 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//RenameColumn:
-	//    "rename" "column"? renameTuples+=RenameColumnPair+
+	//    "rename" "column"? renameTuples+=RenameColumnPair ("," renameTuples+=RenameColumnPair)*
 	//;
 	public RenameColumnElements getRenameColumnAccess() {
 		return pRenameColumn;
@@ -1255,7 +1329,7 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//terminal SELECTOR_KEYWORDS returns ecore::EString:
-	//    "MAX" | "MIN" | "MEDIAN"
+	//    "MAX" | "MIN" | "MEDIAN" | "SUM" | "AVG"
 	//;
 	public TerminalRule getSELECTOR_KEYWORDSRule() {
 		return tSELECTOR_KEYWORDS;
@@ -1347,6 +1421,17 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	
 	public ParserRule getFilterObjectTypeRuleRule() {
 		return getFilterObjectTypeRuleAccess().getRule();
+	}
+	
+	//Reduce:
+	//   "reduce" objectClass=STRING "to"? functions+=SELECTOR_KEYWORDS ("," functions+=SELECTOR_KEYWORDS)*
+	//;
+	public ReduceElements getReduceAccess() {
+		return pReduce;
+	}
+	
+	public ParserRule getReduceRule() {
+		return getReduceAccess().getRule();
 	}
 	
 	//ColumnName:

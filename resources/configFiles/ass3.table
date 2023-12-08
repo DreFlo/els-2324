@@ -1,0 +1,13 @@
+create table from "resources/run3";
+
+select DIRECTORY, "^analysis\\.yaml\\/total\\/.*\\/dynamic.*", "^analysis\\.xml\\/.*\\/total\\/.*\\/static.*", "^profiling.*";
+
+squash rows by DIRECTORY;
+
+rename "^analysis.yaml.*" append "(Dynamic)", "^analysis.xml.*" append "(Static)";
+
+extract "name", "time%" as "%" from "profiling.json/functions" select TOP 3 sort by "time%";
+
+reduce "java.lang.Number" to SUM, AVG;
+
+output to "output/run3.csv";

@@ -25,6 +25,7 @@ import org.feup.els5.dsl.tableDSL.KeySelector;
 import org.feup.els5.dsl.tableDSL.LoadData;
 import org.feup.els5.dsl.tableDSL.Operation;
 import org.feup.els5.dsl.tableDSL.Output;
+import org.feup.els5.dsl.tableDSL.Reduce;
 import org.feup.els5.dsl.tableDSL.RenameColumn;
 import org.feup.els5.dsl.tableDSL.RenameColumnAppendPair;
 import org.feup.els5.dsl.tableDSL.RenameColumnPair;
@@ -235,6 +236,13 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass reduceEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass columnNameEClass = null;
 
   /**
@@ -426,20 +434,9 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
    * @generated
    */
   @Override
-  public EReference getSelect_ColumnsPatterns()
-  {
-    return (EReference)selectEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EReference getSelect_ColumnPatterns()
   {
-    return (EReference)selectEClass.getEStructuralFeatures().get(1);
+    return (EReference)selectEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -877,6 +874,39 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
    * @generated
    */
   @Override
+  public EClass getReduce()
+  {
+    return reduceEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getReduce_ObjectClass()
+  {
+    return (EAttribute)reduceEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getReduce_Functions()
+  {
+    return (EAttribute)reduceEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getColumnName()
   {
     return columnNameEClass;
@@ -942,7 +972,6 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
     operationEClass = createEClass(OPERATION);
 
     selectEClass = createEClass(SELECT);
-    createEReference(selectEClass, SELECT__COLUMNS_PATTERNS);
     createEReference(selectEClass, SELECT__COLUMN_PATTERNS);
 
     renameColumnEClass = createEClass(RENAME_COLUMN);
@@ -1002,6 +1031,10 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
     filterObjectTypeRuleEClass = createEClass(FILTER_OBJECT_TYPE_RULE);
     createEAttribute(filterObjectTypeRuleEClass, FILTER_OBJECT_TYPE_RULE__OBJECT_CLASSES);
 
+    reduceEClass = createEClass(REDUCE);
+    createEAttribute(reduceEClass, REDUCE__OBJECT_CLASS);
+    createEAttribute(reduceEClass, REDUCE__FUNCTIONS);
+
     columnNameEClass = createEClass(COLUMN_NAME);
     createEAttribute(columnNameEClass, COLUMN_NAME__COLUMN_NAME);
   }
@@ -1052,6 +1085,7 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
     filterEClass.getESuperTypes().add(this.getOperation());
     filterColumnRuleEClass.getESuperTypes().add(this.getFilterRule());
     filterObjectTypeRuleEClass.getESuperTypes().add(this.getFilterRule());
+    reduceEClass.getESuperTypes().add(this.getOperation());
 
     // Initialize classes and features; add operations and parameters
     initEClass(startEClass, Start.class, "Start", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1072,7 +1106,6 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
     initEClass(operationEClass, Operation.class, "Operation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(selectEClass, Select.class, "Select", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getSelect_ColumnsPatterns(), this.getColumnName(), null, "columnsPatterns", null, 0, -1, Select.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSelect_ColumnPatterns(), this.getColumnName(), null, "columnPatterns", null, 0, -1, Select.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(renameColumnEClass, RenameColumn.class, "RenameColumn", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1131,6 +1164,10 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
 
     initEClass(filterObjectTypeRuleEClass, FilterObjectTypeRule.class, "FilterObjectTypeRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getFilterObjectTypeRule_ObjectClasses(), ecorePackage.getEString(), "objectClasses", null, 0, -1, FilterObjectTypeRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(reduceEClass, Reduce.class, "Reduce", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getReduce_ObjectClass(), ecorePackage.getEString(), "objectClass", null, 0, 1, Reduce.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getReduce_Functions(), ecorePackage.getEString(), "functions", null, 0, -1, Reduce.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(columnNameEClass, ColumnName.class, "ColumnName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getColumnName_ColumnName(), ecorePackage.getEString(), "columnName", null, 0, 1, ColumnName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -50,6 +50,7 @@ public class TableDSLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSelectAccess().getGroup(), "rule__Select__Group__0");
 			builder.put(grammarAccess.getSelectAccess().getGroup_2(), "rule__Select__Group_2__0");
 			builder.put(grammarAccess.getRenameColumnAccess().getGroup(), "rule__RenameColumn__Group__0");
+			builder.put(grammarAccess.getRenameColumnAccess().getGroup_3(), "rule__RenameColumn__Group_3__0");
 			builder.put(grammarAccess.getRenameColumnToPairAccess().getGroup(), "rule__RenameColumnToPair__Group__0");
 			builder.put(grammarAccess.getRenameColumnPrependPairAccess().getGroup(), "rule__RenameColumnPrependPair__Group__0");
 			builder.put(grammarAccess.getRenameColumnAppendPairAccess().getGroup(), "rule__RenameColumnAppendPair__Group__0");
@@ -71,15 +72,18 @@ public class TableDSLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFilterColumnRuleAccess().getGroup_2(), "rule__FilterColumnRule__Group_2__0");
 			builder.put(grammarAccess.getFilterObjectTypeRuleAccess().getGroup(), "rule__FilterObjectTypeRule__Group__0");
 			builder.put(grammarAccess.getFilterObjectTypeRuleAccess().getGroup_3(), "rule__FilterObjectTypeRule__Group_3__0");
+			builder.put(grammarAccess.getReduceAccess().getGroup(), "rule__Reduce__Group__0");
+			builder.put(grammarAccess.getReduceAccess().getGroup_4(), "rule__Reduce__Group_4__0");
 			builder.put(grammarAccess.getStartAccess().getActionsAssignment_0(), "rule__Start__ActionsAssignment_0");
 			builder.put(grammarAccess.getStartAccess().getActionsAssignment_1(), "rule__Start__ActionsAssignment_1");
 			builder.put(grammarAccess.getTableInputPathAccess().getPathPatternsAssignment_0(), "rule__TableInputPath__PathPatternsAssignment_0");
 			builder.put(grammarAccess.getTableInputPathAccess().getPathPatternsAssignment_1_1(), "rule__TableInputPath__PathPatternsAssignment_1_1");
 			builder.put(grammarAccess.getOutputAccess().getOutputPathsAssignment_2(), "rule__Output__OutputPathsAssignment_2");
 			builder.put(grammarAccess.getOutputAccess().getOutputPathsAssignment_3_1(), "rule__Output__OutputPathsAssignment_3_1");
-			builder.put(grammarAccess.getSelectAccess().getColumnsPatternsAssignment_1(), "rule__Select__ColumnsPatternsAssignment_1");
+			builder.put(grammarAccess.getSelectAccess().getColumnPatternsAssignment_1(), "rule__Select__ColumnPatternsAssignment_1");
 			builder.put(grammarAccess.getSelectAccess().getColumnPatternsAssignment_2_1(), "rule__Select__ColumnPatternsAssignment_2_1");
 			builder.put(grammarAccess.getRenameColumnAccess().getRenameTuplesAssignment_2(), "rule__RenameColumn__RenameTuplesAssignment_2");
+			builder.put(grammarAccess.getRenameColumnAccess().getRenameTuplesAssignment_3_1(), "rule__RenameColumn__RenameTuplesAssignment_3_1");
 			builder.put(grammarAccess.getRenameColumnToPairAccess().getOldNameAssignment_0(), "rule__RenameColumnToPair__OldNameAssignment_0");
 			builder.put(grammarAccess.getRenameColumnToPairAccess().getNewNameAssignment_2(), "rule__RenameColumnToPair__NewNameAssignment_2");
 			builder.put(grammarAccess.getRenameColumnPrependPairAccess().getOldNameAssignment_0(), "rule__RenameColumnPrependPair__OldNameAssignment_0");
@@ -109,6 +113,9 @@ public class TableDSLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getFilterColumnRuleAccess().getColumnPatternsAssignment_2_1(), "rule__FilterColumnRule__ColumnPatternsAssignment_2_1");
 			builder.put(grammarAccess.getFilterObjectTypeRuleAccess().getObjectClassesAssignment_2(), "rule__FilterObjectTypeRule__ObjectClassesAssignment_2");
 			builder.put(grammarAccess.getFilterObjectTypeRuleAccess().getObjectClassesAssignment_3_1(), "rule__FilterObjectTypeRule__ObjectClassesAssignment_3_1");
+			builder.put(grammarAccess.getReduceAccess().getObjectClassAssignment_1(), "rule__Reduce__ObjectClassAssignment_1");
+			builder.put(grammarAccess.getReduceAccess().getFunctionsAssignment_3(), "rule__Reduce__FunctionsAssignment_3");
+			builder.put(grammarAccess.getReduceAccess().getFunctionsAssignment_4_1(), "rule__Reduce__FunctionsAssignment_4_1");
 			builder.put(grammarAccess.getColumnNameAccess().getColumnNameAssignment(), "rule__ColumnName__ColumnNameAssignment");
 		}
 	}

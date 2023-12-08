@@ -20,7 +20,6 @@
     </genClasses>
     <genClasses ecoreClass="TableDSL.ecore#//Operation"/>
     <genClasses ecoreClass="TableDSL.ecore#//Select">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TableDSL.ecore#//Select/columnsPatterns"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TableDSL.ecore#//Select/columnPatterns"/>
     </genClasses>
     <genClasses ecoreClass="TableDSL.ecore#//RenameColumn">
@@ -77,6 +76,10 @@
     </genClasses>
     <genClasses ecoreClass="TableDSL.ecore#//FilterObjectTypeRule">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//FilterObjectTypeRule/objectClasses"/>
+    </genClasses>
+    <genClasses ecoreClass="TableDSL.ecore#//Reduce">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//Reduce/objectClass"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//Reduce/functions"/>
     </genClasses>
     <genClasses ecoreClass="TableDSL.ecore#//ColumnName">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//ColumnName/columnName"/>

@@ -206,6 +206,11 @@ public class TableDSLAdapterFactory extends AdapterFactoryImpl
         return createFilterObjectTypeRuleAdapter();
       }
       @Override
+      public Adapter caseReduce(Reduce object)
+      {
+        return createReduceAdapter();
+      }
+      @Override
       public Adapter caseColumnName(ColumnName object)
       {
         return createColumnNameAdapter();
@@ -618,6 +623,21 @@ public class TableDSLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createFilterObjectTypeRuleAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.feup.els5.dsl.tableDSL.Reduce <em>Reduce</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.feup.els5.dsl.tableDSL.Reduce
+   * @generated
+   */
+  public Adapter createReduceAdapter()
   {
     return null;
   }

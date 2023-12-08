@@ -27,19 +27,19 @@ TableInputPath:
 ;
 
 Output:
-	"output" "to" outputPaths+=STRING ("," outputPaths+=STRING)*
+	"output" "to"? outputPaths+=STRING ("," outputPaths+=STRING)*
 ;
 
 Operation:
-	Select | RenameColumn | Extract | SquashRows | Filter
+	Select | RenameColumn | Extract | SquashRows | Filter | Reduce
 ;
 
 Select:
-	"select" columnsPatterns+=ColumnName ("," columnPatterns+=ColumnName)*
+	"select" columnPatterns+=ColumnName ("," columnPatterns+=ColumnName)*
 ;
 
 RenameColumn:
-	"rename" "column"? renameTuples+=RenameColumnPair+
+	"rename" "column"? renameTuples+=RenameColumnPair ("," renameTuples+=RenameColumnPair)*
 ;
 
 RenameColumnPair:
@@ -79,7 +79,7 @@ TopNSelector:
 ;
 
 terminal SELECTOR_KEYWORDS returns ecore::EString:
-	"MAX" | "MIN" | "MEDIAN"
+	"MAX" | "MIN" | "MEDIAN" | "SUM" | "AVG"
 ;
 
 Comparator:
@@ -112,6 +112,10 @@ FilterColumnRule:
 
 FilterObjectTypeRule:
 	("object" | "objects") "of"? objectClasses+=STRING ("," objectClasses+=STRING)*
+;
+
+Reduce:
+   "reduce" objectClass=STRING "to"? functions+=SELECTOR_KEYWORDS ("," functions+=SELECTOR_KEYWORDS)*
 ;
 
 ColumnName:

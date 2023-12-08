@@ -27,7 +27,6 @@ import org.feup.els5.dsl.tableDSL.TableDSLPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.feup.els5.dsl.tableDSL.impl.SelectImpl#getColumnsPatterns <em>Columns Patterns</em>}</li>
  *   <li>{@link org.feup.els5.dsl.tableDSL.impl.SelectImpl#getColumnPatterns <em>Column Patterns</em>}</li>
  * </ul>
  *
@@ -35,16 +34,6 @@ import org.feup.els5.dsl.tableDSL.TableDSLPackage;
  */
 public class SelectImpl extends OperationImpl implements Select
 {
-  /**
-   * The cached value of the '{@link #getColumnsPatterns() <em>Columns Patterns</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getColumnsPatterns()
-   * @generated
-   * @ordered
-   */
-  protected EList<ColumnName> columnsPatterns;
-
   /**
    * The cached value of the '{@link #getColumnPatterns() <em>Column Patterns</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -82,21 +71,6 @@ public class SelectImpl extends OperationImpl implements Select
    * @generated
    */
   @Override
-  public EList<ColumnName> getColumnsPatterns()
-  {
-    if (columnsPatterns == null)
-    {
-      columnsPatterns = new EObjectContainmentEList<ColumnName>(ColumnName.class, this, TableDSLPackage.SELECT__COLUMNS_PATTERNS);
-    }
-    return columnsPatterns;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EList<ColumnName> getColumnPatterns()
   {
     if (columnPatterns == null)
@@ -116,8 +90,6 @@ public class SelectImpl extends OperationImpl implements Select
   {
     switch (featureID)
     {
-      case TableDSLPackage.SELECT__COLUMNS_PATTERNS:
-        return ((InternalEList<?>)getColumnsPatterns()).basicRemove(otherEnd, msgs);
       case TableDSLPackage.SELECT__COLUMN_PATTERNS:
         return ((InternalEList<?>)getColumnPatterns()).basicRemove(otherEnd, msgs);
     }
@@ -134,8 +106,6 @@ public class SelectImpl extends OperationImpl implements Select
   {
     switch (featureID)
     {
-      case TableDSLPackage.SELECT__COLUMNS_PATTERNS:
-        return getColumnsPatterns();
       case TableDSLPackage.SELECT__COLUMN_PATTERNS:
         return getColumnPatterns();
     }
@@ -153,10 +123,6 @@ public class SelectImpl extends OperationImpl implements Select
   {
     switch (featureID)
     {
-      case TableDSLPackage.SELECT__COLUMNS_PATTERNS:
-        getColumnsPatterns().clear();
-        getColumnsPatterns().addAll((Collection<? extends ColumnName>)newValue);
-        return;
       case TableDSLPackage.SELECT__COLUMN_PATTERNS:
         getColumnPatterns().clear();
         getColumnPatterns().addAll((Collection<? extends ColumnName>)newValue);
@@ -175,9 +141,6 @@ public class SelectImpl extends OperationImpl implements Select
   {
     switch (featureID)
     {
-      case TableDSLPackage.SELECT__COLUMNS_PATTERNS:
-        getColumnsPatterns().clear();
-        return;
       case TableDSLPackage.SELECT__COLUMN_PATTERNS:
         getColumnPatterns().clear();
         return;
@@ -195,8 +158,6 @@ public class SelectImpl extends OperationImpl implements Select
   {
     switch (featureID)
     {
-      case TableDSLPackage.SELECT__COLUMNS_PATTERNS:
-        return columnsPatterns != null && !columnsPatterns.isEmpty();
       case TableDSLPackage.SELECT__COLUMN_PATTERNS:
         return columnPatterns != null && !columnPatterns.isEmpty();
     }

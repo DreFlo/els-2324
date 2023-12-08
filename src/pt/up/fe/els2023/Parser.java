@@ -7,8 +7,6 @@ import org.feup.els5.dsl.TableDSLStandaloneSetup;
 import org.feup.els5.dsl.tableDSL.*;
 import pt.up.fe.els2023.Command.Extract.ExtractSelectors;
 import pt.up.fe.els2023.CustomExceptions.SyntaxException;
-import pt.up.fe.els2023.InternalDSL.DSLOperation.DSLExtract.DSLExtractByKey;
-import pt.up.fe.els2023.InternalDSL.DSLOperation.DSLExtract.DSLExtractTopN;
 import pt.up.fe.els2023.InternalDSL.DSLTableBuilder;
 import pt.up.fe.els2023.InternalDSL.DSLTableExecutor;
 import pt.up.fe.specs.util.classmap.FunctionClassMap;
@@ -31,6 +29,7 @@ public class Parser {
         dslTableBuilder = new DSLTableBuilder();
         operationMap = new FunctionClassMap<>();
         buildOperationFunctionClassMap();
+
         var injector = new TableDSLStandaloneSetup().createInjectorAndDoEMFRegistration();
         injector.injectMembers(this);
     }
@@ -55,23 +54,36 @@ public class Parser {
             visitExtract(extract);
             return null;
         });
+
+        operationMap.put(SquashRows.class, squashRows -> {
+            visitSquashRows(squashRows);
+            return null;
+        });
+
+        operationMap.put(Reduce.class, reduce -> {
+            visitReduce(reduce);
+            return null;
+        });
     }
 
-    private void parseLine(EObject node) throws NotImplementedException {
+    private void visitSquashRows(SquashRows squashRows) {
+        List<String> columnRules = squashRows.getColumns().stream().map(ColumnName::getColumnName).toList();
+        dslTableBuilder.operation().squashBy().column(getColumnNames(columnRules).toArray(new String[0])).end();
+    }
+
+    private void visitNode(EObject node) {
         if (node instanceof TableInputPath tableInputPath) {
-            parseInputPath(tableInputPath);
-        }
-        else if (node instanceof Operation operation) {
-            parseOperation(operation);
+            visitTableInputPath(tableInputPath);
+        } else if (node instanceof Operation operation) {
+            visitOperation(operation);
         } else if (node instanceof Output output) {
-            parseOutputPath(output);
-        }
-        else {
+            visitOutput(output);
+        } else {
             throw new NotImplementedException("Node type not implemented: " + node.getClass().getSimpleName());
         }
     }
 
-    private void parseInputPath(TableInputPath inputPath) {
+    private void visitTableInputPath(TableInputPath inputPath) {
         for (String pathPattern : inputPath.getPathPatterns()) {
             dslTableBuilder.source().fileSystemSource().path(pathPattern).end();
         }
@@ -80,18 +92,20 @@ public class Parser {
     private void visitFilter(Filter filter) {
         for (FilterRule filterRule : filter.getDenylist().getDenylist()) {
             if (filterRule instanceof FilterColumnRule filterColumnRule) {
-                dslTableBuilder.operation().filter().blacklist().column(parseFilterColumnRule(filterColumnRule).toArray(new String[0])).end();
+                List<String> columnRules = filterColumnRule.getColumnPatterns().stream().map(ColumnName::getColumnName).toList();
+                dslTableBuilder.operation().filter().blacklist().column(getColumnNames(columnRules).toArray(new String[0])).end();
             } else if (filterRule instanceof FilterObjectTypeRule filterObjectTypeRule) {
-                dslTableBuilder.operation().filter().blacklist().objectOfType(parseFilterTypeRule(filterObjectTypeRule).toArray(new Class[0])).end();
+                dslTableBuilder.operation().filter().blacklist().objectOfType(getClasses(filterObjectTypeRule).toArray(new Class[0])).end();
             } else {
                 throw new NotImplementedException("Filter rule type not implemented: " + filterRule.getClass().getSimpleName());
             }
         }
         for (FilterRule filterRule : filter.getExceptlist().getExceptlist()) {
             if (filterRule instanceof FilterColumnRule filterColumnRule) {
-                dslTableBuilder.operation().filter().whitelist().column(parseFilterColumnRule(filterColumnRule).toArray(new String[0])).end();
+                List<String> columnRules = filterColumnRule.getColumnPatterns().stream().map(ColumnName::getColumnName).toList();
+                dslTableBuilder.operation().filter().whitelist().column(getColumnNames(columnRules).toArray(new String[0])).end();
             } else if (filterRule instanceof FilterObjectTypeRule filterObjectTypeRule) {
-                dslTableBuilder.operation().filter().whitelist().objectOfType(parseFilterTypeRule(filterObjectTypeRule).toArray(new Class[0])).end();
+                dslTableBuilder.operation().filter().whitelist().objectOfType(getClasses(filterObjectTypeRule).toArray(new Class[0])).end();
             } else {
                 throw new NotImplementedException("Filter rule type not implemented: " + filterRule.getClass().getSimpleName());
             }
@@ -99,7 +113,8 @@ public class Parser {
     }
 
     private void visitSelect(Select select) {
-        dslTableBuilder.operation().select().column(select.getColumnPatterns().stream().map(ColumnName::getColumnName).toList().toArray(new String[0])).end();
+        List<String> columnRules = select.getColumnPatterns().stream().map(ColumnName::getColumnName).toList();
+        dslTableBuilder.operation().select().column(getColumnNames(columnRules).toArray(new String[0])).end();
     }
 
     private void visitRenameColumn(RenameColumn renameColumn) {
@@ -128,23 +143,27 @@ public class Parser {
         }
 
         if (extract.getSelector() instanceof KeySelector keySelector) {
-            dslTableBuilder.operation().extract().byKey().get(targetColumnMap).from(extract.getSourceColumn()).sortBy(comparisonKeys).extract(ExtractSelectors.valueOf(keySelector.getKey()));
+            dslTableBuilder.operation().extract().byKey().get(targetColumnMap).from(extract.getSourceColumn()).sortBy(comparisonKeys).extract(ExtractSelectors.valueOf(keySelector.getKey())).end();
         } else if (extract.getSelector() instanceof TopNSelector topNSelector) {
-            dslTableBuilder.operation().extract().top().get(targetColumnMap).from(extract.getSourceColumn()).sortBy(comparisonKeys).extract(topNSelector.getN());
+            dslTableBuilder.operation().extract().top().get(targetColumnMap).from(extract.getSourceColumn()).sortBy(comparisonKeys).extract(topNSelector.getN()).end();
         }
     }
 
-    private void parseOperation(Operation operation) {
+    private void visitReduce(Reduce reduce) {
+        throw new NotImplementedException("Reduce not implemented");
+    }
+
+    private void visitOperation(Operation operation) {
         operationMap.apply(operation);
     }
 
-    private List<String> parseFilterColumnRule(FilterColumnRule filterColumnRule) {
-        return filterColumnRule.getColumnPatterns().stream().map(
-                pattern -> pattern.getColumnName().equals("FILENAME") ? "0__filename"
-                        : pattern.getColumnName().equals("DIRECTORY") ? "0__folder" : pattern.getColumnName()).toList();
+    private List<String> getColumnNames(List<String> columnRules) {
+        return columnRules.stream().map(
+                pattern -> pattern.equals("FILENAME") ? "0__filename"
+                        : pattern.equals("DIRECTORY") ? "0__folder" : pattern).toList();
     }
 
-    private List<? extends Class<?>> parseFilterTypeRule(FilterObjectTypeRule filterObjectTypeRule) {
+    private List<? extends Class<?>> getClasses(FilterObjectTypeRule filterObjectTypeRule) {
         return filterObjectTypeRule.getObjectClasses().stream().map(className -> {
             try {
                 return Class.forName(className);
@@ -154,7 +173,17 @@ public class Parser {
         }).toList();
     }
 
-    private void parseOutputPath(Output output) {
+    private List<? extends Class<?>> getClasses(List<String> classNames) {
+        return classNames.stream().map(className -> {
+            try {
+                return Class.forName(className);
+            } catch (ClassNotFoundException e) {
+                return null;
+            }
+        }).toList();
+    }
+
+    private void visitOutput(Output output) {
         for (String outputPath : output.getOutputPaths()) {
             dslTableBuilder.outputTo(outputPath);
         }
@@ -164,14 +193,15 @@ public class Parser {
         var result = parser.parse(new StringReader(code));
 
         if (result.hasSyntaxErrors()) {
-            throw new SyntaxException(StreamSupport.stream(result.getSyntaxErrors().spliterator(), false).map(error -> error.getSyntaxErrorMessage().getMessage()).toList());
+            throw new SyntaxException(StreamSupport.stream(result.getSyntaxErrors().spliterator(), false)
+                    .map(error -> error.getSyntaxErrorMessage().getMessage()).toList());
         }
 
         Start start = (Start) result.getRootASTElement();
 
         for (EObject action : start.getActions()) {
             try {
-                parseLine(action);
+                visitNode(action);
             } catch (NotImplementedException e) {
                 System.out.println(action);
             }
