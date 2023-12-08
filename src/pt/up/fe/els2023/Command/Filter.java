@@ -8,17 +8,17 @@ import java.util.regex.Pattern;
 
 public class Filter implements Command {
 
-    List<String> blacklistedColumns;
-    List<Class<?>> blacklistedTypes;
+    List<String> denylistedColumns;
+    List<Class<?>> denylistedTypes;
 
-    List<String> whitelistedColumns;
-    List<Class<?>> whitelistedTypes;
+    List<String> exceptlistedColumns;
+    List<Class<?>> exceptlistedTypes;
 
     public Filter() {
-        blacklistedColumns = new ArrayList<>();
-        blacklistedTypes = new ArrayList<>();
-        whitelistedColumns = new ArrayList<>();
-        whitelistedTypes = new ArrayList<>();
+        denylistedColumns = new ArrayList<>();
+        denylistedTypes = new ArrayList<>();
+        exceptlistedColumns = new ArrayList<>();
+        exceptlistedTypes = new ArrayList<>();
     }
 
     @Override
@@ -34,15 +34,15 @@ public class Filter implements Command {
                 continue;
             }
 
-            if (checkStringConditions(header, whitelistedColumns)) {
+            if (checkStringConditions(header, exceptlistedColumns)) {
                 continue;
             }
 
-            if (checkStringConditions(header, blacklistedColumns)) {
+            if (checkStringConditions(header, denylistedColumns)) {
                 columnsToExclude.add(header);
             } else {
                 for (List<Object> row : table.getRows()) {
-                    if (checkTypeConditions(row.get(i), blacklistedTypes) && !checkTypeConditions(row.get(i), whitelistedTypes)) {
+                    if (checkTypeConditions(row.get(i), denylistedTypes) && !checkTypeConditions(row.get(i), exceptlistedTypes)) {
                         columnsToExclude.add(header);
                         break;
                     }
@@ -57,20 +57,20 @@ public class Filter implements Command {
         return table;
     }
 
-    public void addBlacklistedColumn(String condition) {
-        blacklistedColumns.add(condition);
+    public void addDenylistedColumn(String condition) {
+        denylistedColumns.add(condition);
     }
 
-    public void addBlacklistedType(Class<?> condition) {
-        blacklistedTypes.add(condition);
+    public void addDenylistedType(Class<?> condition) {
+        denylistedTypes.add(condition);
     }
 
-    public void addWhitelistedColumn(String condition) {
-        whitelistedColumns.add(condition);
+    public void addExceptlistedColumn(String condition) {
+        exceptlistedColumns.add(condition);
     }
 
-    public void addWhitelistedType(Class<?> condition) {
-        whitelistedTypes.add(condition);
+    public void addExceptlistedType(Class<?> condition) {
+        exceptlistedTypes.add(condition);
     }
 
     private static boolean checkStringConditions(String header, List<String> stringConditions) {

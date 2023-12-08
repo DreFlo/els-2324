@@ -93,9 +93,9 @@ public class Parser {
         for (FilterRule filterRule : filter.getDenylist().getDenylist()) {
             if (filterRule instanceof FilterColumnRule filterColumnRule) {
                 List<String> columnRules = filterColumnRule.getColumnPatterns().stream().map(ColumnName::getColumnName).toList();
-                dslTableBuilder.operation().filter().blacklist().column(getColumnNames(columnRules).toArray(new String[0])).end();
+                dslTableBuilder.operation().filter().denylist().column(getColumnNames(columnRules).toArray(new String[0])).end();
             } else if (filterRule instanceof FilterObjectTypeRule filterObjectTypeRule) {
-                dslTableBuilder.operation().filter().blacklist().objectOfType(getClasses(filterObjectTypeRule).toArray(new Class[0])).end();
+                dslTableBuilder.operation().filter().denylist().objectOfType(getClasses(filterObjectTypeRule).toArray(new Class[0])).end();
             } else {
                 throw new NotImplementedException("Filter rule type not implemented: " + filterRule.getClass().getSimpleName());
             }
@@ -103,9 +103,9 @@ public class Parser {
         for (FilterRule filterRule : filter.getExceptlist().getExceptlist()) {
             if (filterRule instanceof FilterColumnRule filterColumnRule) {
                 List<String> columnRules = filterColumnRule.getColumnPatterns().stream().map(ColumnName::getColumnName).toList();
-                dslTableBuilder.operation().filter().whitelist().column(getColumnNames(columnRules).toArray(new String[0])).end();
+                dslTableBuilder.operation().filter().exceptlist().column(getColumnNames(columnRules).toArray(new String[0])).end();
             } else if (filterRule instanceof FilterObjectTypeRule filterObjectTypeRule) {
-                dslTableBuilder.operation().filter().whitelist().objectOfType(getClasses(filterObjectTypeRule).toArray(new Class[0])).end();
+                dslTableBuilder.operation().filter().exceptlist().objectOfType(getClasses(filterObjectTypeRule).toArray(new Class[0])).end();
             } else {
                 throw new NotImplementedException("Filter rule type not implemented: " + filterRule.getClass().getSimpleName());
             }

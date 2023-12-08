@@ -10,11 +10,11 @@ public class DSLFilter extends DSLOperation<Filter> {
         super(dslTableBuilder, new Filter());
     }
 
-    public DSLFilterBlacklist blacklist() {
-        return new DSLFilterBlacklist(dslTableBuilder, this);
+    public DSLFilterDenylist denylist() {
+        return new DSLFilterDenylist(dslTableBuilder, this);
     }
 
-    public DSLFilterWhitelist whitelist() {
-        return new DSLFilterWhitelist(dslTableBuilder, this);
+    public DSLFilterExceptlist exceptlist() {
+        return new DSLFilterExceptlist(dslTableBuilder, this);
     }
 }
