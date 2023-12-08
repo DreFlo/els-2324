@@ -68,7 +68,7 @@ public class TableUtils {
                         map.put(element.getNodeName(), childMap);
                     }
                     else if (node.getNodeType() == Node.TEXT_NODE) {
-                        safelyCastToStringObjectMap(map.get(element.getNodeName())).put(node.getNodeName(), node.getTextContent());
+                        safelyCastToStringObjectMap(map.get(element.getNodeName())).put(node.getNodeName(), convertText(node.getTextContent()));
                     }
                 }
             }
@@ -76,5 +76,19 @@ public class TableUtils {
         return map;
     }
 
-
+    private static Object convertText(String text) {
+        if (text.equals("true")) {
+            return true;
+        } else if (text.equals("false")) {
+            return false;
+        }
+        else if (text.matches("-?\\d+")) {
+            return Integer.parseInt(text);
+        } else if (text.matches("-?\\d+(\\.\\d+)?")) {
+            return Double.parseDouble(text);
+        }
+        else {
+            return text;
+        }
+    }
 }
