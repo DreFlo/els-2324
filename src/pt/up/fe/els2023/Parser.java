@@ -7,6 +7,7 @@ import org.feup.els5.dsl.TableDSLStandaloneSetup;
 import org.feup.els5.dsl.tableDSL.*;
 import pt.up.fe.els2023.Command.Extract.ExtractSelectors;
 import pt.up.fe.els2023.CustomExceptions.SyntaxException;
+import pt.up.fe.els2023.InternalDSL.DSLOperation.DSLFilter.DSLFilter;
 import pt.up.fe.els2023.InternalDSL.DSLTableBuilder;
 import pt.up.fe.els2023.InternalDSL.DSLTableExecutor;
 import pt.up.fe.specs.util.classmap.FunctionClassMap;
@@ -90,26 +91,32 @@ public class Parser {
     }
 
     private void visitFilter(Filter filter) {
+        DSLFilter dslFilter = dslTableBuilder.operation().filter();
         for (FilterRule filterRule : filter.getDenylist().getDenylist()) {
             if (filterRule instanceof FilterColumnRule filterColumnRule) {
                 List<String> columnRules = filterColumnRule.getColumnPatterns().stream().map(ColumnName::getColumnName).toList();
-                dslTableBuilder.operation().filter().denylist().column(getColumnNames(columnRules).toArray(new String[0])).end();
+                dslFilter.denylist().column(getColumnNames(columnRules).toArray(new String[0])).end();
             } else if (filterRule instanceof FilterObjectTypeRule filterObjectTypeRule) {
-                dslTableBuilder.operation().filter().denylist().objectOfType(getClasses(filterObjectTypeRule).toArray(new Class[0])).end();
+                List<ObjectTypeSelector> objectTypes = filterObjectTypeRule.getObjectClasses();
+                dslFilter.denylist().objectOfType(getClasses(objectTypes).toArray(new Class[0])).end();
             } else {
                 throw new NotImplementedException("Filter rule type not implemented: " + filterRule.getClass().getSimpleName());
             }
         }
-        for (FilterRule filterRule : filter.getExceptlist().getExceptlist()) {
-            if (filterRule instanceof FilterColumnRule filterColumnRule) {
-                List<String> columnRules = filterColumnRule.getColumnPatterns().stream().map(ColumnName::getColumnName).toList();
-                dslTableBuilder.operation().filter().exceptlist().column(getColumnNames(columnRules).toArray(new String[0])).end();
-            } else if (filterRule instanceof FilterObjectTypeRule filterObjectTypeRule) {
-                dslTableBuilder.operation().filter().exceptlist().objectOfType(getClasses(filterObjectTypeRule).toArray(new Class[0])).end();
-            } else {
-                throw new NotImplementedException("Filter rule type not implemented: " + filterRule.getClass().getSimpleName());
+        if (filter.getExceptlist() != null) {
+            for (FilterRule filterRule : filter.getExceptlist().getExceptlist()) {
+                if (filterRule instanceof FilterColumnRule filterColumnRule) {
+                    List<String> columnRules = filterColumnRule.getColumnPatterns().stream().map(ColumnName::getColumnName).toList();
+                    dslFilter.exceptlist().column(getColumnNames(columnRules).toArray(new String[0])).end();
+                } else if (filterRule instanceof FilterObjectTypeRule filterObjectTypeRule) {
+                    List<ObjectTypeSelector> objectTypes = filterObjectTypeRule.getObjectClasses();
+                    dslFilter.exceptlist().objectOfType(getClasses(objectTypes).toArray(new Class[0])).end();
+                } else {
+                    throw new NotImplementedException("Filter rule type not implemented: " + filterRule.getClass().getSimpleName());
+                }
             }
         }
+        dslFilter.end();
     }
 
     private void visitSelect(Select select) {
@@ -181,8 +188,8 @@ public class Parser {
         };
     }
 
-    private List<? extends Class<?>> getClasses(FilterObjectTypeRule filterObjectTypeRule) {
-        return filterObjectTypeRule.getObjectClasses().stream().map(this::getClass).toList();
+    private List<? extends Class<?>> getClasses(List<ObjectTypeSelector> objectTypes) {
+        return objectTypes.stream().map(this::getClass).toList();
     }
 
     private void visitOutput(Output output) {
