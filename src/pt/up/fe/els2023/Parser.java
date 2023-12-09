@@ -163,24 +163,26 @@ public class Parser {
                         : pattern.equals("DIRECTORY") ? "0__folder" : pattern).toList();
     }
 
-    private List<? extends Class<?>> getClasses(FilterObjectTypeRule filterObjectTypeRule) {
-        return filterObjectTypeRule.getObjectClasses().stream().map(className -> {
-            try {
-                return Class.forName(className);
-            } catch (ClassNotFoundException e) {
-                return null;
+    private Class<?> getClass(ObjectTypeSelector objectTypeSelector) {
+        return switch (objectTypeSelector.getObjectType()) {
+            case "STRING" -> String.class;
+            case "INTEGER" -> Integer.class;
+            case "DOUBLE" -> Double.class;
+            case "NUMBER" -> Number.class;
+            case "BOOLEAN" -> Boolean.class;
+            case "FLOAT" -> Float.class;
+            default -> {
+                try {
+                    yield Class.forName(objectTypeSelector.getObjectType());
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
-        }).toList();
+        };
     }
 
-    private List<? extends Class<?>> getClasses(List<String> classNames) {
-        return classNames.stream().map(className -> {
-            try {
-                return Class.forName(className);
-            } catch (ClassNotFoundException e) {
-                return null;
-            }
-        }).toList();
+    private List<? extends Class<?>> getClasses(FilterObjectTypeRule filterObjectTypeRule) {
+        return filterObjectTypeRule.getObjectClasses().stream().map(this::getClass).toList();
     }
 
     private void visitOutput(Output output) {

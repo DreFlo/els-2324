@@ -137,7 +137,7 @@ public class TableDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'object' | 'objects'
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) 'of'? objectClasses+=STRING
+	 *     (rule start) (ambiguity) 'of'? objectClasses+=ObjectTypeSelector
 	 
 	 * </pre>
 	 */
@@ -151,7 +151,7 @@ public class TableDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'of'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) ('object' | 'objects') (ambiguity) objectClasses+=STRING
+	 *     (rule start) ('object' | 'objects') (ambiguity) objectClasses+=ObjectTypeSelector
 	 
 	 * </pre>
 	 */
@@ -179,7 +179,7 @@ public class TableDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'to'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     objectClass=STRING (ambiguity) functions+=SELECTOR_KEYWORDS
+	 *     objectClass=ObjectTypeSelector (ambiguity) functions+=SELECTOR_KEYWORDS
 	 
 	 * </pre>
 	 */

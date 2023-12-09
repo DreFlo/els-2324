@@ -907,18 +907,18 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final Keyword cObjectsKeyword_0_1 = (Keyword)cAlternatives_0.eContents().get(1);
 		private final Keyword cOfKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cObjectClassesAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cObjectClassesSTRINGTerminalRuleCall_2_0 = (RuleCall)cObjectClassesAssignment_2.eContents().get(0);
+		private final RuleCall cObjectClassesObjectTypeSelectorParserRuleCall_2_0 = (RuleCall)cObjectClassesAssignment_2.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Keyword cCommaKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
 		private final Assignment cObjectClassesAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cObjectClassesSTRINGTerminalRuleCall_3_1_0 = (RuleCall)cObjectClassesAssignment_3_1.eContents().get(0);
+		private final RuleCall cObjectClassesObjectTypeSelectorParserRuleCall_3_1_0 = (RuleCall)cObjectClassesAssignment_3_1.eContents().get(0);
 		
 		//FilterObjectTypeRule:
-		//    ("object" | "objects") "of"? objectClasses+=STRING ("," objectClasses+=STRING)*
+		//    ("object" | "objects") "of"? objectClasses+=ObjectTypeSelector ("," objectClasses+=ObjectTypeSelector)*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//("object" | "objects") "of"? objectClasses+=STRING ("," objectClasses+=STRING)*
+		//("object" | "objects") "of"? objectClasses+=ObjectTypeSelector ("," objectClasses+=ObjectTypeSelector)*
 		public Group getGroup() { return cGroup; }
 		
 		//("object" | "objects")
@@ -933,30 +933,30 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//"of"?
 		public Keyword getOfKeyword_1() { return cOfKeyword_1; }
 		
-		//objectClasses+=STRING
+		//objectClasses+=ObjectTypeSelector
 		public Assignment getObjectClassesAssignment_2() { return cObjectClassesAssignment_2; }
 		
-		//STRING
-		public RuleCall getObjectClassesSTRINGTerminalRuleCall_2_0() { return cObjectClassesSTRINGTerminalRuleCall_2_0; }
+		//ObjectTypeSelector
+		public RuleCall getObjectClassesObjectTypeSelectorParserRuleCall_2_0() { return cObjectClassesObjectTypeSelectorParserRuleCall_2_0; }
 		
-		//("," objectClasses+=STRING)*
+		//("," objectClasses+=ObjectTypeSelector)*
 		public Group getGroup_3() { return cGroup_3; }
 		
 		//","
 		public Keyword getCommaKeyword_3_0() { return cCommaKeyword_3_0; }
 		
-		//objectClasses+=STRING
+		//objectClasses+=ObjectTypeSelector
 		public Assignment getObjectClassesAssignment_3_1() { return cObjectClassesAssignment_3_1; }
 		
-		//STRING
-		public RuleCall getObjectClassesSTRINGTerminalRuleCall_3_1_0() { return cObjectClassesSTRINGTerminalRuleCall_3_1_0; }
+		//ObjectTypeSelector
+		public RuleCall getObjectClassesObjectTypeSelectorParserRuleCall_3_1_0() { return cObjectClassesObjectTypeSelectorParserRuleCall_3_1_0; }
 	}
 	public class ReduceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.feup.els5.dsl.TableDSL.Reduce");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cReduceKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cObjectClassAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cObjectClassSTRINGTerminalRuleCall_1_0 = (RuleCall)cObjectClassAssignment_1.eContents().get(0);
+		private final RuleCall cObjectClassObjectTypeSelectorParserRuleCall_1_0 = (RuleCall)cObjectClassAssignment_1.eContents().get(0);
 		private final Keyword cToKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final Assignment cFunctionsAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cFunctionsSELECTOR_KEYWORDSTerminalRuleCall_3_0 = (RuleCall)cFunctionsAssignment_3.eContents().get(0);
@@ -966,21 +966,21 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final RuleCall cFunctionsSELECTOR_KEYWORDSTerminalRuleCall_4_1_0 = (RuleCall)cFunctionsAssignment_4_1.eContents().get(0);
 		
 		//Reduce:
-		//   "reduce" objectClass=STRING "to"? functions+=SELECTOR_KEYWORDS ("," functions+=SELECTOR_KEYWORDS)*
+		//   "reduce" objectClass=ObjectTypeSelector "to"? functions+=SELECTOR_KEYWORDS ("," functions+=SELECTOR_KEYWORDS)*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"reduce" objectClass=STRING "to"? functions+=SELECTOR_KEYWORDS ("," functions+=SELECTOR_KEYWORDS)*
+		//"reduce" objectClass=ObjectTypeSelector "to"? functions+=SELECTOR_KEYWORDS ("," functions+=SELECTOR_KEYWORDS)*
 		public Group getGroup() { return cGroup; }
 		
 		//"reduce"
 		public Keyword getReduceKeyword_0() { return cReduceKeyword_0; }
 		
-		//objectClass=STRING
+		//objectClass=ObjectTypeSelector
 		public Assignment getObjectClassAssignment_1() { return cObjectClassAssignment_1; }
 		
-		//STRING
-		public RuleCall getObjectClassSTRINGTerminalRuleCall_1_0() { return cObjectClassSTRINGTerminalRuleCall_1_0; }
+		//ObjectTypeSelector
+		public RuleCall getObjectClassObjectTypeSelectorParserRuleCall_1_0() { return cObjectClassObjectTypeSelectorParserRuleCall_1_0; }
 		
 		//"to"?
 		public Keyword getToKeyword_2() { return cToKeyword_2; }
@@ -1027,6 +1027,30 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		//STRING
 		public RuleCall getColumnNameSTRINGTerminalRuleCall_0_1() { return cColumnNameSTRINGTerminalRuleCall_0_1; }
 	}
+	public class ObjectTypeSelectorElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.feup.els5.dsl.TableDSL.ObjectTypeSelector");
+		private final Assignment cObjectTypeAssignment = (Assignment)rule.eContents().get(1);
+		private final Alternatives cObjectTypeAlternatives_0 = (Alternatives)cObjectTypeAssignment.eContents().get(0);
+		private final RuleCall cObjectTypeOBJECT_TYPESTerminalRuleCall_0_0 = (RuleCall)cObjectTypeAlternatives_0.eContents().get(0);
+		private final RuleCall cObjectTypeSTRINGTerminalRuleCall_0_1 = (RuleCall)cObjectTypeAlternatives_0.eContents().get(1);
+		
+		//ObjectTypeSelector:
+		//    objectType=(OBJECT_TYPES | STRING)
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//objectType=(OBJECT_TYPES | STRING)
+		public Assignment getObjectTypeAssignment() { return cObjectTypeAssignment; }
+		
+		//(OBJECT_TYPES | STRING)
+		public Alternatives getObjectTypeAlternatives_0() { return cObjectTypeAlternatives_0; }
+		
+		//OBJECT_TYPES
+		public RuleCall getObjectTypeOBJECT_TYPESTerminalRuleCall_0_0() { return cObjectTypeOBJECT_TYPESTerminalRuleCall_0_0; }
+		
+		//STRING
+		public RuleCall getObjectTypeSTRINGTerminalRuleCall_0_1() { return cObjectTypeSTRINGTerminalRuleCall_0_1; }
+	}
 	
 	
 	private final StartElements pStart;
@@ -1058,6 +1082,8 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	private final FilterObjectTypeRuleElements pFilterObjectTypeRule;
 	private final ReduceElements pReduce;
 	private final ColumnNameElements pColumnName;
+	private final ObjectTypeSelectorElements pObjectTypeSelector;
+	private final TerminalRule tOBJECT_TYPES;
 	private final TerminalRule tCOLUMN_NAME_KEYWORDS;
 	
 	private final Grammar grammar;
@@ -1098,6 +1124,8 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		this.pFilterObjectTypeRule = new FilterObjectTypeRuleElements();
 		this.pReduce = new ReduceElements();
 		this.pColumnName = new ColumnNameElements();
+		this.pObjectTypeSelector = new ObjectTypeSelectorElements();
+		this.tOBJECT_TYPES = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.feup.els5.dsl.TableDSL.OBJECT_TYPES");
 		this.tCOLUMN_NAME_KEYWORDS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.feup.els5.dsl.TableDSL.COLUMN_NAME_KEYWORDS");
 	}
 	
@@ -1413,7 +1441,7 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//FilterObjectTypeRule:
-	//    ("object" | "objects") "of"? objectClasses+=STRING ("," objectClasses+=STRING)*
+	//    ("object" | "objects") "of"? objectClasses+=ObjectTypeSelector ("," objectClasses+=ObjectTypeSelector)*
 	//;
 	public FilterObjectTypeRuleElements getFilterObjectTypeRuleAccess() {
 		return pFilterObjectTypeRule;
@@ -1424,7 +1452,7 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//Reduce:
-	//   "reduce" objectClass=STRING "to"? functions+=SELECTOR_KEYWORDS ("," functions+=SELECTOR_KEYWORDS)*
+	//   "reduce" objectClass=ObjectTypeSelector "to"? functions+=SELECTOR_KEYWORDS ("," functions+=SELECTOR_KEYWORDS)*
 	//;
 	public ReduceElements getReduceAccess() {
 		return pReduce;
@@ -1443,6 +1471,29 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	
 	public ParserRule getColumnNameRule() {
 		return getColumnNameAccess().getRule();
+	}
+	
+	//ObjectTypeSelector:
+	//    objectType=(OBJECT_TYPES | STRING)
+	//;
+	public ObjectTypeSelectorElements getObjectTypeSelectorAccess() {
+		return pObjectTypeSelector;
+	}
+	
+	public ParserRule getObjectTypeSelectorRule() {
+		return getObjectTypeSelectorAccess().getRule();
+	}
+	
+	//terminal OBJECT_TYPES returns ecore::EString:
+	//    "STRING" |
+	//    "NUMBER" |
+	//    "INTEGER"|
+	//    "FLOAT" |
+	//    "DOUBLE" |
+	//    "BOOLEAN"
+	//;
+	public TerminalRule getOBJECT_TYPESRule() {
+		return tOBJECT_TYPES;
 	}
 	
 	//terminal COLUMN_NAME_KEYWORDS returns ecore::EString:

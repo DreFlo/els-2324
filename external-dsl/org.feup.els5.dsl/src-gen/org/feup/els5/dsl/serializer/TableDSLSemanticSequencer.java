@@ -25,6 +25,7 @@ import org.feup.els5.dsl.tableDSL.FilterDenylist;
 import org.feup.els5.dsl.tableDSL.FilterExceptlist;
 import org.feup.els5.dsl.tableDSL.FilterObjectTypeRule;
 import org.feup.els5.dsl.tableDSL.KeySelector;
+import org.feup.els5.dsl.tableDSL.ObjectTypeSelector;
 import org.feup.els5.dsl.tableDSL.Output;
 import org.feup.els5.dsl.tableDSL.Reduce;
 import org.feup.els5.dsl.tableDSL.RenameColumn;
@@ -81,6 +82,9 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 				return; 
 			case TableDSLPackage.KEY_SELECTOR:
 				sequence_KeySelector(context, (KeySelector) semanticObject); 
+				return; 
+			case TableDSLPackage.OBJECT_TYPE_SELECTOR:
+				sequence_ObjectTypeSelector(context, (ObjectTypeSelector) semanticObject); 
 				return; 
 			case TableDSLPackage.OUTPUT:
 				sequence_Output(context, (Output) semanticObject); 
@@ -228,7 +232,7 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     FilterObjectTypeRule returns FilterObjectTypeRule
 	 *
 	 * Constraint:
-	 *     (objectClasses+=STRING objectClasses+=STRING*)
+	 *     (objectClasses+=ObjectTypeSelector objectClasses+=ObjectTypeSelector*)
 	 * </pre>
 	 */
 	protected void sequence_FilterObjectTypeRule(ISerializationContext context, FilterObjectTypeRule semanticObject) {
@@ -276,6 +280,20 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     ObjectTypeSelector returns ObjectTypeSelector
+	 *
+	 * Constraint:
+	 *     (objectType=OBJECT_TYPES | objectType=STRING)
+	 * </pre>
+	 */
+	protected void sequence_ObjectTypeSelector(ISerializationContext context, ObjectTypeSelector semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     TableAction returns Output
 	 *     Output returns Output
 	 *
@@ -296,7 +314,7 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *     Reduce returns Reduce
 	 *
 	 * Constraint:
-	 *     (objectClass=STRING functions+=SELECTOR_KEYWORDS functions+=SELECTOR_KEYWORDS*)
+	 *     (objectClass=ObjectTypeSelector functions+=SELECTOR_KEYWORDS functions+=SELECTOR_KEYWORDS*)
 	 * </pre>
 	 */
 	protected void sequence_Reduce(ISerializationContext context, Reduce semanticObject) {

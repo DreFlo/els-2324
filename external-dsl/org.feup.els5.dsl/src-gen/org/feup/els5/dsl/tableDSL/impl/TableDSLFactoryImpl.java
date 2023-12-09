@@ -93,6 +93,7 @@ public class TableDSLFactoryImpl extends EFactoryImpl implements TableDSLFactory
       case TableDSLPackage.FILTER_OBJECT_TYPE_RULE: return createFilterObjectTypeRule();
       case TableDSLPackage.REDUCE: return createReduce();
       case TableDSLPackage.COLUMN_NAME: return createColumnName();
+      case TableDSLPackage.OBJECT_TYPE_SELECTOR: return createObjectTypeSelector();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -432,6 +433,18 @@ public class TableDSLFactoryImpl extends EFactoryImpl implements TableDSLFactory
   {
     ColumnNameImpl columnName = new ColumnNameImpl();
     return columnName;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ObjectTypeSelector createObjectTypeSelector()
+  {
+    ObjectTypeSelectorImpl objectTypeSelector = new ObjectTypeSelectorImpl();
+    return objectTypeSelector;
   }
 
   /**

@@ -25,26 +25,26 @@ import org.eclipse.emf.common.util.EList;
 public interface Reduce extends Operation
 {
   /**
-   * Returns the value of the '<em><b>Object Class</b></em>' attribute.
+   * Returns the value of the '<em><b>Object Class</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Object Class</em>' attribute.
-   * @see #setObjectClass(String)
+   * @return the value of the '<em>Object Class</em>' containment reference.
+   * @see #setObjectClass(ObjectTypeSelector)
    * @see org.feup.els5.dsl.tableDSL.TableDSLPackage#getReduce_ObjectClass()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getObjectClass();
+  ObjectTypeSelector getObjectClass();
 
   /**
-   * Sets the value of the '{@link org.feup.els5.dsl.tableDSL.Reduce#getObjectClass <em>Object Class</em>}' attribute.
+   * Sets the value of the '{@link org.feup.els5.dsl.tableDSL.Reduce#getObjectClass <em>Object Class</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Object Class</em>' attribute.
+   * @param value the new value of the '<em>Object Class</em>' containment reference.
    * @see #getObjectClass()
    * @generated
    */
-  void setObjectClass(String value);
+  void setObjectClass(ObjectTypeSelector value);
 
   /**
    * Returns the value of the '<em><b>Functions</b></em>' attribute list.

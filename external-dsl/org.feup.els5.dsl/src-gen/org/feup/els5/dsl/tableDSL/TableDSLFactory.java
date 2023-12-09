@@ -276,6 +276,15 @@ public interface TableDSLFactory extends EFactory
   ColumnName createColumnName();
 
   /**
+   * Returns a new object of class '<em>Object Type Selector</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Object Type Selector</em>'.
+   * @generated
+   */
+  ObjectTypeSelector createObjectTypeSelector();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

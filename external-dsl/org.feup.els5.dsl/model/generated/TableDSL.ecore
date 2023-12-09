@@ -85,15 +85,19 @@
         eType="#//ColumnName" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FilterObjectTypeRule" eSuperTypes="#//FilterRule">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="objectClasses" unique="false"
-        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectClasses" upperBound="-1"
+        eType="#//ObjectTypeSelector" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Reduce" eSuperTypes="#//Operation">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="objectClass" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objectClass" eType="#//ObjectTypeSelector"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="functions" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ColumnName">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="columnName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectTypeSelector">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="objectType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>
