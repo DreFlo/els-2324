@@ -12,4 +12,6 @@ reduce "java.lang.Number" to SUM, AVG;
 
 filter deny objects of STRING except columns ".*#\\d$";
 
+squash rows by DIRECTORY, "profiling.json/functions/name #1";
+
 output to "output/run3.csv";

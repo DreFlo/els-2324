@@ -62,6 +62,9 @@ public class SquashRows implements Command {
 
         newTable.removeColumn("0__filename");
 
+        if (!header.equals("0__folder"))
+            newTable.removeColumn("0__folder");
+
         return newTable;
     }
 
