@@ -23,6 +23,7 @@ import org.feup.els5.dsl.tableDSL.FilterObjectTypeRule;
 import org.feup.els5.dsl.tableDSL.FilterRule;
 import org.feup.els5.dsl.tableDSL.KeySelector;
 import org.feup.els5.dsl.tableDSL.LoadData;
+import org.feup.els5.dsl.tableDSL.ObjectTypeSelector;
 import org.feup.els5.dsl.tableDSL.Operation;
 import org.feup.els5.dsl.tableDSL.Output;
 import org.feup.els5.dsl.tableDSL.Reduce;
@@ -244,6 +245,13 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
    * @generated
    */
   private EClass columnNameEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass objectTypeSelectorEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -863,9 +871,9 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getFilterObjectTypeRule_ObjectClasses()
+  public EReference getFilterObjectTypeRule_ObjectClasses()
   {
-    return (EAttribute)filterObjectTypeRuleEClass.getEStructuralFeatures().get(0);
+    return (EReference)filterObjectTypeRuleEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -885,9 +893,9 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
    * @generated
    */
   @Override
-  public EAttribute getReduce_ObjectClass()
+  public EReference getReduce_ObjectClass()
   {
-    return (EAttribute)reduceEClass.getEStructuralFeatures().get(0);
+    return (EReference)reduceEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -921,6 +929,28 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
   public EAttribute getColumnName_ColumnName()
   {
     return (EAttribute)columnNameEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getObjectTypeSelector()
+  {
+    return objectTypeSelectorEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getObjectTypeSelector_ObjectType()
+  {
+    return (EAttribute)objectTypeSelectorEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1029,14 +1059,17 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
     createEReference(filterColumnRuleEClass, FILTER_COLUMN_RULE__COLUMN_PATTERNS);
 
     filterObjectTypeRuleEClass = createEClass(FILTER_OBJECT_TYPE_RULE);
-    createEAttribute(filterObjectTypeRuleEClass, FILTER_OBJECT_TYPE_RULE__OBJECT_CLASSES);
+    createEReference(filterObjectTypeRuleEClass, FILTER_OBJECT_TYPE_RULE__OBJECT_CLASSES);
 
     reduceEClass = createEClass(REDUCE);
-    createEAttribute(reduceEClass, REDUCE__OBJECT_CLASS);
+    createEReference(reduceEClass, REDUCE__OBJECT_CLASS);
     createEAttribute(reduceEClass, REDUCE__FUNCTIONS);
 
     columnNameEClass = createEClass(COLUMN_NAME);
     createEAttribute(columnNameEClass, COLUMN_NAME__COLUMN_NAME);
+
+    objectTypeSelectorEClass = createEClass(OBJECT_TYPE_SELECTOR);
+    createEAttribute(objectTypeSelectorEClass, OBJECT_TYPE_SELECTOR__OBJECT_TYPE);
   }
 
   /**
@@ -1163,14 +1196,17 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
     initEReference(getFilterColumnRule_ColumnPatterns(), this.getColumnName(), null, "columnPatterns", null, 0, -1, FilterColumnRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(filterObjectTypeRuleEClass, FilterObjectTypeRule.class, "FilterObjectTypeRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getFilterObjectTypeRule_ObjectClasses(), ecorePackage.getEString(), "objectClasses", null, 0, -1, FilterObjectTypeRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFilterObjectTypeRule_ObjectClasses(), this.getObjectTypeSelector(), null, "objectClasses", null, 0, -1, FilterObjectTypeRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(reduceEClass, Reduce.class, "Reduce", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getReduce_ObjectClass(), ecorePackage.getEString(), "objectClass", null, 0, 1, Reduce.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getReduce_ObjectClass(), this.getObjectTypeSelector(), null, "objectClass", null, 0, 1, Reduce.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getReduce_Functions(), ecorePackage.getEString(), "functions", null, 0, -1, Reduce.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(columnNameEClass, ColumnName.class, "ColumnName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getColumnName_ColumnName(), ecorePackage.getEString(), "columnName", null, 0, 1, ColumnName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(objectTypeSelectorEClass, ObjectTypeSelector.class, "ObjectTypeSelector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getObjectTypeSelector_ObjectType(), ecorePackage.getEString(), "objectType", null, 0, 1, ObjectTypeSelector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

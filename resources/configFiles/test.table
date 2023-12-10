@@ -1,10 +1,17 @@
-create table from "resources/run2.*";
+create table from "resources/run3";
+
+select DIRECTORY, "^analysis\\.yaml\\/total\\/.*\\/dynamic.*", "^analysis\\.xml\\/.*\\/total\\/.*\\/static.*", "^profiling.*";
 
 squash rows by DIRECTORY;
 
-extract "name", "time%" from "functions" select MAX sort by "time%";
+rename column "^analysis.yaml.*" append " (Dynamic)", "^analysis.xml.*" append " (Static)";
 
-filter deny column ".*\\/.*", object "List" except column "^params\\/.*", ".*AreaEstimates/Resources/.*", "^functions\\/.*";
+extract "name", "time%" as "%" from "profiling.json/functions" select TOP 3 sort by "time%";
 
-output to "output/DSL4.html";
+reduce "java.lang.Number" to SUM, AVG;
 
+filter deny objects of STRING except columns ".*#\\d$";
+
+squash rows by DIRECTORY, "profiling.json/functions/name #1";
+
+output to "output/run3.csv";

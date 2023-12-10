@@ -4,7 +4,7 @@ select DIRECTORY, "^analysis\\.yaml\\/total\\/.*\\/dynamic.*", "^analysis\\.xml\
 
 squash rows by DIRECTORY;
 
-rename "^analysis.yaml.*" append "(Dynamic)", "^analysis.xml.*" append "(Static)";
+rename column "^analysis.yaml.*" append " (Dynamic)", "^analysis.xml.*" append " (Static)";
 
 extract "name", "time%" as "%" from "profiling.json/functions" select TOP 3 sort by "time%";
 

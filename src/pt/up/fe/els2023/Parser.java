@@ -8,6 +8,7 @@ import org.feup.els5.dsl.TableDSLStandaloneSetup;
 import org.feup.els5.dsl.tableDSL.*;
 import pt.up.fe.els2023.Command.Extract.ExtractSelectors;
 import pt.up.fe.els2023.CustomExceptions.SyntaxException;
+import pt.up.fe.els2023.InternalDSL.DSLOperation.DSLFilter.DSLFilter;
 import pt.up.fe.els2023.InternalDSL.DSLTableBuilder;
 import pt.up.fe.els2023.InternalDSL.DSLTableExecutor;
 import pt.up.fe.els2023.Utils.Selectors;
@@ -90,26 +91,32 @@ public class Parser {
     }
 
     private void visitFilter(Filter filter) {
+        DSLFilter dslFilter = dslTableBuilder.operation().filter();
         for (FilterRule filterRule : filter.getDenylist().getDenylist()) {
             if (filterRule instanceof FilterColumnRule filterColumnRule) {
                 List<String> columnRules = filterColumnRule.getColumnPatterns().stream().map(ColumnName::getColumnName).toList();
-                dslTableBuilder.operation().filter().denylist().column(getColumnNames(columnRules).toArray(new String[0])).end();
+                dslFilter.denylist().column(getColumnNames(columnRules).toArray(new String[0])).end();
             } else if (filterRule instanceof FilterObjectTypeRule filterObjectTypeRule) {
-                dslTableBuilder.operation().filter().denylist().objectOfType(getClasses(filterObjectTypeRule).toArray(new Class[0])).end();
+                List<ObjectTypeSelector> objectTypes = filterObjectTypeRule.getObjectClasses();
+                dslFilter.denylist().objectOfType(getClasses(objectTypes).toArray(new Class[0])).end();
             } else {
                 throw new NotImplementedException("Filter rule type not implemented: " + filterRule.getClass().getSimpleName());
             }
         }
-        for (FilterRule filterRule : filter.getExceptlist().getExceptlist()) {
-            if (filterRule instanceof FilterColumnRule filterColumnRule) {
-                List<String> columnRules = filterColumnRule.getColumnPatterns().stream().map(ColumnName::getColumnName).toList();
-                dslTableBuilder.operation().filter().exceptlist().column(getColumnNames(columnRules).toArray(new String[0])).end();
-            } else if (filterRule instanceof FilterObjectTypeRule filterObjectTypeRule) {
-                dslTableBuilder.operation().filter().exceptlist().objectOfType(getClasses(filterObjectTypeRule).toArray(new Class[0])).end();
-            } else {
-                throw new NotImplementedException("Filter rule type not implemented: " + filterRule.getClass().getSimpleName());
+        if (filter.getExceptlist() != null) {
+            for (FilterRule filterRule : filter.getExceptlist().getExceptlist()) {
+                if (filterRule instanceof FilterColumnRule filterColumnRule) {
+                    List<String> columnRules = filterColumnRule.getColumnPatterns().stream().map(ColumnName::getColumnName).toList();
+                    dslFilter.exceptlist().column(getColumnNames(columnRules).toArray(new String[0])).end();
+                } else if (filterRule instanceof FilterObjectTypeRule filterObjectTypeRule) {
+                    List<ObjectTypeSelector> objectTypes = filterObjectTypeRule.getObjectClasses();
+                    dslFilter.exceptlist().objectOfType(getClasses(objectTypes).toArray(new Class[0])).end();
+                } else {
+                    throw new NotImplementedException("Filter rule type not implemented: " + filterRule.getClass().getSimpleName());
+                }
             }
         }
+        dslFilter.end();
     }
 
     private void visitSelect(Select select) {
@@ -121,6 +128,10 @@ public class Parser {
         for (RenameColumnPair renameColumnPair : renameColumn.getRenameTuples()) {
             if (renameColumnPair instanceof RenameColumnToPair renameColumnToPair) {
                 dslTableBuilder.operation().renameColumn().from(renameColumnToPair.getOldName()).to(renameColumnToPair.getNewName()).end();
+            } else if (renameColumnPair instanceof RenameColumnPrependPair renameColumnPrependPair) {
+                dslTableBuilder.operation().renameColumn().from(renameColumnPrependPair.getOldName()).prepend(renameColumnPrependPair.getPrefix()).end();
+            } else if (renameColumnPair instanceof RenameColumnAppendPair renameColumnAppendPair) {
+                dslTableBuilder.operation().renameColumn().from(renameColumnAppendPair.getOldName()).append(renameColumnAppendPair.getSuffix()).end();
             } else {
                 throw new NotImplementedException("Rename column pair type not implemented: " + renameColumnPair.getClass().getSimpleName());
             }
@@ -170,24 +181,26 @@ public class Parser {
                         : pattern.equals("DIRECTORY") ? "0__folder" : pattern).toList();
     }
 
-    private List<? extends Class<?>> getClasses(FilterObjectTypeRule filterObjectTypeRule) {
-        return filterObjectTypeRule.getObjectClasses().stream().map(className -> {
-            try {
-                return Class.forName(className);
-            } catch (ClassNotFoundException e) {
-                return null;
+    private Class<?> getClass(ObjectTypeSelector objectTypeSelector) {
+        return switch (objectTypeSelector.getObjectType()) {
+            case "STRING" -> String.class;
+            case "INTEGER" -> Integer.class;
+            case "DOUBLE" -> Double.class;
+            case "NUMBER" -> Number.class;
+            case "BOOLEAN" -> Boolean.class;
+            case "FLOAT" -> Float.class;
+            default -> {
+                try {
+                    yield Class.forName(objectTypeSelector.getObjectType());
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
-        }).toList();
+        };
     }
 
-    private List<? extends Class<?>> getClasses(List<String> classNames) {
-        return classNames.stream().map(className -> {
-            try {
-                return Class.forName(className);
-            } catch (ClassNotFoundException e) {
-                return null;
-            }
-        }).toList();
+    private List<? extends Class<?>> getClasses(List<ObjectTypeSelector> objectTypes) {
+        return objectTypes.stream().map(this::getClass).toList();
     }
 
     private void visitOutput(Output output) {

@@ -5,13 +5,18 @@ package org.feup.els5.dsl.tableDSL.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
-import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.feup.els5.dsl.tableDSL.FilterObjectTypeRule;
+import org.feup.els5.dsl.tableDSL.ObjectTypeSelector;
 import org.feup.els5.dsl.tableDSL.TableDSLPackage;
 
 /**
@@ -30,14 +35,14 @@ import org.feup.els5.dsl.tableDSL.TableDSLPackage;
 public class FilterObjectTypeRuleImpl extends FilterRuleImpl implements FilterObjectTypeRule
 {
   /**
-   * The cached value of the '{@link #getObjectClasses() <em>Object Classes</em>}' attribute list.
+   * The cached value of the '{@link #getObjectClasses() <em>Object Classes</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getObjectClasses()
    * @generated
    * @ordered
    */
-  protected EList<String> objectClasses;
+  protected EList<ObjectTypeSelector> objectClasses;
 
   /**
    * <!-- begin-user-doc -->
@@ -66,13 +71,29 @@ public class FilterObjectTypeRuleImpl extends FilterRuleImpl implements FilterOb
    * @generated
    */
   @Override
-  public EList<String> getObjectClasses()
+  public EList<ObjectTypeSelector> getObjectClasses()
   {
     if (objectClasses == null)
     {
-      objectClasses = new EDataTypeEList<String>(String.class, this, TableDSLPackage.FILTER_OBJECT_TYPE_RULE__OBJECT_CLASSES);
+      objectClasses = new EObjectContainmentEList<ObjectTypeSelector>(ObjectTypeSelector.class, this, TableDSLPackage.FILTER_OBJECT_TYPE_RULE__OBJECT_CLASSES);
     }
     return objectClasses;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case TableDSLPackage.FILTER_OBJECT_TYPE_RULE__OBJECT_CLASSES:
+        return ((InternalEList<?>)getObjectClasses()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -104,7 +125,7 @@ public class FilterObjectTypeRuleImpl extends FilterRuleImpl implements FilterOb
     {
       case TableDSLPackage.FILTER_OBJECT_TYPE_RULE__OBJECT_CLASSES:
         getObjectClasses().clear();
-        getObjectClasses().addAll((Collection<? extends String>)newValue);
+        getObjectClasses().addAll((Collection<? extends ObjectTypeSelector>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -141,23 +162,6 @@ public class FilterObjectTypeRuleImpl extends FilterRuleImpl implements FilterOb
         return objectClasses != null && !objectClasses.isEmpty();
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (objectClasses: ");
-    result.append(objectClasses);
-    result.append(')');
-    return result.toString();
   }
 
 } //FilterObjectTypeRuleImpl

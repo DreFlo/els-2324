@@ -38,11 +38,9 @@ public class Main {
     }
 
     public static void main(String[] args) throws Exception {
-        DSLTableBuilder table = new DSLTableBuilder();
-
         Parser parser = new Parser();
 
-        DSLTableExecutor dslTableExecutor = parser.parse(Files.readString(Path.of("./resources/configFiles/ass3.table")));
+        DSLTableExecutor dslTableExecutor = parser.parse(Files.readString(Path.of(args[0])));
 
         dslTableExecutor.execute();
     }

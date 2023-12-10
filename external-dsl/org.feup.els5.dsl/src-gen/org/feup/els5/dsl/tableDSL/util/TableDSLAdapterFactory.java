@@ -216,6 +216,11 @@ public class TableDSLAdapterFactory extends AdapterFactoryImpl
         return createColumnNameAdapter();
       }
       @Override
+      public Adapter caseObjectTypeSelector(ObjectTypeSelector object)
+      {
+        return createObjectTypeSelectorAdapter();
+      }
+      @Override
       public Adapter defaultCase(EObject object)
       {
         return createEObjectAdapter();
@@ -653,6 +658,21 @@ public class TableDSLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createColumnNameAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.feup.els5.dsl.tableDSL.ObjectTypeSelector <em>Object Type Selector</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.feup.els5.dsl.tableDSL.ObjectTypeSelector
+   * @generated
+   */
+  public Adapter createObjectTypeSelectorAdapter()
   {
     return null;
   }

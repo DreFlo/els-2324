@@ -6,15 +6,18 @@ package org.feup.els5.dsl.tableDSL.impl;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EDataTypeEList;
 
+import org.feup.els5.dsl.tableDSL.ObjectTypeSelector;
 import org.feup.els5.dsl.tableDSL.Reduce;
 import org.feup.els5.dsl.tableDSL.TableDSLPackage;
 
@@ -35,24 +38,14 @@ import org.feup.els5.dsl.tableDSL.TableDSLPackage;
 public class ReduceImpl extends OperationImpl implements Reduce
 {
   /**
-   * The default value of the '{@link #getObjectClass() <em>Object Class</em>}' attribute.
+   * The cached value of the '{@link #getObjectClass() <em>Object Class</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getObjectClass()
    * @generated
    * @ordered
    */
-  protected static final String OBJECT_CLASS_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getObjectClass() <em>Object Class</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getObjectClass()
-   * @generated
-   * @ordered
-   */
-  protected String objectClass = OBJECT_CLASS_EDEFAULT;
+  protected ObjectTypeSelector objectClass;
 
   /**
    * The cached value of the '{@link #getFunctions() <em>Functions</em>}' attribute list.
@@ -91,7 +84,7 @@ public class ReduceImpl extends OperationImpl implements Reduce
    * @generated
    */
   @Override
-  public String getObjectClass()
+  public ObjectTypeSelector getObjectClass()
   {
     return objectClass;
   }
@@ -101,13 +94,38 @@ public class ReduceImpl extends OperationImpl implements Reduce
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public void setObjectClass(String newObjectClass)
+  public NotificationChain basicSetObjectClass(ObjectTypeSelector newObjectClass, NotificationChain msgs)
   {
-    String oldObjectClass = objectClass;
+    ObjectTypeSelector oldObjectClass = objectClass;
     objectClass = newObjectClass;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TableDSLPackage.REDUCE__OBJECT_CLASS, oldObjectClass, objectClass));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TableDSLPackage.REDUCE__OBJECT_CLASS, oldObjectClass, newObjectClass);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setObjectClass(ObjectTypeSelector newObjectClass)
+  {
+    if (newObjectClass != objectClass)
+    {
+      NotificationChain msgs = null;
+      if (objectClass != null)
+        msgs = ((InternalEObject)objectClass).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TableDSLPackage.REDUCE__OBJECT_CLASS, null, msgs);
+      if (newObjectClass != null)
+        msgs = ((InternalEObject)newObjectClass).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TableDSLPackage.REDUCE__OBJECT_CLASS, null, msgs);
+      msgs = basicSetObjectClass(newObjectClass, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TableDSLPackage.REDUCE__OBJECT_CLASS, newObjectClass, newObjectClass));
   }
 
   /**
@@ -123,6 +141,22 @@ public class ReduceImpl extends OperationImpl implements Reduce
       functions = new EDataTypeEList<String>(String.class, this, TableDSLPackage.REDUCE__FUNCTIONS);
     }
     return functions;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case TableDSLPackage.REDUCE__OBJECT_CLASS:
+        return basicSetObjectClass(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -155,7 +189,7 @@ public class ReduceImpl extends OperationImpl implements Reduce
     switch (featureID)
     {
       case TableDSLPackage.REDUCE__OBJECT_CLASS:
-        setObjectClass((String)newValue);
+        setObjectClass((ObjectTypeSelector)newValue);
         return;
       case TableDSLPackage.REDUCE__FUNCTIONS:
         getFunctions().clear();
@@ -176,7 +210,7 @@ public class ReduceImpl extends OperationImpl implements Reduce
     switch (featureID)
     {
       case TableDSLPackage.REDUCE__OBJECT_CLASS:
-        setObjectClass(OBJECT_CLASS_EDEFAULT);
+        setObjectClass((ObjectTypeSelector)null);
         return;
       case TableDSLPackage.REDUCE__FUNCTIONS:
         getFunctions().clear();
@@ -196,7 +230,7 @@ public class ReduceImpl extends OperationImpl implements Reduce
     switch (featureID)
     {
       case TableDSLPackage.REDUCE__OBJECT_CLASS:
-        return OBJECT_CLASS_EDEFAULT == null ? objectClass != null : !OBJECT_CLASS_EDEFAULT.equals(objectClass);
+        return objectClass != null;
       case TableDSLPackage.REDUCE__FUNCTIONS:
         return functions != null && !functions.isEmpty();
     }
@@ -214,9 +248,7 @@ public class ReduceImpl extends OperationImpl implements Reduce
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (objectClass: ");
-    result.append(objectClass);
-    result.append(", functions: ");
+    result.append(" (functions: ");
     result.append(functions);
     result.append(')');
     return result.toString();

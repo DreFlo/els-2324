@@ -786,7 +786,7 @@ public interface TableDSLPackage extends EPackage
   int FILTER_OBJECT_TYPE_RULE = 25;
 
   /**
-   * The feature id for the '<em><b>Object Classes</b></em>' attribute list.
+   * The feature id for the '<em><b>Object Classes</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -814,7 +814,7 @@ public interface TableDSLPackage extends EPackage
   int REDUCE = 26;
 
   /**
-   * The feature id for the '<em><b>Object Class</b></em>' attribute.
+   * The feature id for the '<em><b>Object Class</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -867,6 +867,34 @@ public interface TableDSLPackage extends EPackage
    * @ordered
    */
   int COLUMN_NAME_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.feup.els5.dsl.tableDSL.impl.ObjectTypeSelectorImpl <em>Object Type Selector</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.feup.els5.dsl.tableDSL.impl.ObjectTypeSelectorImpl
+   * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getObjectTypeSelector()
+   * @generated
+   */
+  int OBJECT_TYPE_SELECTOR = 28;
+
+  /**
+   * The feature id for the '<em><b>Object Type</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OBJECT_TYPE_SELECTOR__OBJECT_TYPE = 0;
+
+  /**
+   * The number of structural features of the '<em>Object Type Selector</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OBJECT_TYPE_SELECTOR_FEATURE_COUNT = 1;
 
 
   /**
@@ -1394,15 +1422,15 @@ public interface TableDSLPackage extends EPackage
   EClass getFilterObjectTypeRule();
 
   /**
-   * Returns the meta object for the attribute list '{@link org.feup.els5.dsl.tableDSL.FilterObjectTypeRule#getObjectClasses <em>Object Classes</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.feup.els5.dsl.tableDSL.FilterObjectTypeRule#getObjectClasses <em>Object Classes</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Object Classes</em>'.
+   * @return the meta object for the containment reference list '<em>Object Classes</em>'.
    * @see org.feup.els5.dsl.tableDSL.FilterObjectTypeRule#getObjectClasses()
    * @see #getFilterObjectTypeRule()
    * @generated
    */
-  EAttribute getFilterObjectTypeRule_ObjectClasses();
+  EReference getFilterObjectTypeRule_ObjectClasses();
 
   /**
    * Returns the meta object for class '{@link org.feup.els5.dsl.tableDSL.Reduce <em>Reduce</em>}'.
@@ -1415,15 +1443,15 @@ public interface TableDSLPackage extends EPackage
   EClass getReduce();
 
   /**
-   * Returns the meta object for the attribute '{@link org.feup.els5.dsl.tableDSL.Reduce#getObjectClass <em>Object Class</em>}'.
+   * Returns the meta object for the containment reference '{@link org.feup.els5.dsl.tableDSL.Reduce#getObjectClass <em>Object Class</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Object Class</em>'.
+   * @return the meta object for the containment reference '<em>Object Class</em>'.
    * @see org.feup.els5.dsl.tableDSL.Reduce#getObjectClass()
    * @see #getReduce()
    * @generated
    */
-  EAttribute getReduce_ObjectClass();
+  EReference getReduce_ObjectClass();
 
   /**
    * Returns the meta object for the attribute list '{@link org.feup.els5.dsl.tableDSL.Reduce#getFunctions <em>Functions</em>}'.
@@ -1456,6 +1484,27 @@ public interface TableDSLPackage extends EPackage
    * @generated
    */
   EAttribute getColumnName_ColumnName();
+
+  /**
+   * Returns the meta object for class '{@link org.feup.els5.dsl.tableDSL.ObjectTypeSelector <em>Object Type Selector</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Object Type Selector</em>'.
+   * @see org.feup.els5.dsl.tableDSL.ObjectTypeSelector
+   * @generated
+   */
+  EClass getObjectTypeSelector();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.feup.els5.dsl.tableDSL.ObjectTypeSelector#getObjectType <em>Object Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Object Type</em>'.
+   * @see org.feup.els5.dsl.tableDSL.ObjectTypeSelector#getObjectType()
+   * @see #getObjectTypeSelector()
+   * @generated
+   */
+  EAttribute getObjectTypeSelector_ObjectType();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -1933,12 +1982,12 @@ public interface TableDSLPackage extends EPackage
     EClass FILTER_OBJECT_TYPE_RULE = eINSTANCE.getFilterObjectTypeRule();
 
     /**
-     * The meta object literal for the '<em><b>Object Classes</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Object Classes</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute FILTER_OBJECT_TYPE_RULE__OBJECT_CLASSES = eINSTANCE.getFilterObjectTypeRule_ObjectClasses();
+    EReference FILTER_OBJECT_TYPE_RULE__OBJECT_CLASSES = eINSTANCE.getFilterObjectTypeRule_ObjectClasses();
 
     /**
      * The meta object literal for the '{@link org.feup.els5.dsl.tableDSL.impl.ReduceImpl <em>Reduce</em>}' class.
@@ -1951,12 +2000,12 @@ public interface TableDSLPackage extends EPackage
     EClass REDUCE = eINSTANCE.getReduce();
 
     /**
-     * The meta object literal for the '<em><b>Object Class</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Object Class</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute REDUCE__OBJECT_CLASS = eINSTANCE.getReduce_ObjectClass();
+    EReference REDUCE__OBJECT_CLASS = eINSTANCE.getReduce_ObjectClass();
 
     /**
      * The meta object literal for the '<em><b>Functions</b></em>' attribute list feature.
@@ -1983,6 +2032,24 @@ public interface TableDSLPackage extends EPackage
      * @generated
      */
     EAttribute COLUMN_NAME__COLUMN_NAME = eINSTANCE.getColumnName_ColumnName();
+
+    /**
+     * The meta object literal for the '{@link org.feup.els5.dsl.tableDSL.impl.ObjectTypeSelectorImpl <em>Object Type Selector</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.feup.els5.dsl.tableDSL.impl.ObjectTypeSelectorImpl
+     * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getObjectTypeSelector()
+     * @generated
+     */
+    EClass OBJECT_TYPE_SELECTOR = eINSTANCE.getObjectTypeSelector();
+
+    /**
+     * The meta object literal for the '<em><b>Object Type</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute OBJECT_TYPE_SELECTOR__OBJECT_TYPE = eINSTANCE.getObjectTypeSelector_ObjectType();
 
   }
 

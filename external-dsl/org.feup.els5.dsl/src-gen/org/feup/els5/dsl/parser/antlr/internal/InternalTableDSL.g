@@ -1604,19 +1604,20 @@ ruleFilterObjectTypeRule returns [EObject current=null]
 		)?
 		(
 			(
-				lv_objectClasses_3_0=RULE_STRING
 				{
-					newLeafNode(lv_objectClasses_3_0, grammarAccess.getFilterObjectTypeRuleAccess().getObjectClassesSTRINGTerminalRuleCall_2_0());
+					newCompositeNode(grammarAccess.getFilterObjectTypeRuleAccess().getObjectClassesObjectTypeSelectorParserRuleCall_2_0());
 				}
+				lv_objectClasses_3_0=ruleObjectTypeSelector
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getFilterObjectTypeRuleRule());
+						$current = createModelElementForParent(grammarAccess.getFilterObjectTypeRuleRule());
 					}
-					addWithLastConsumed(
+					add(
 						$current,
 						"objectClasses",
 						lv_objectClasses_3_0,
-						"org.eclipse.xtext.common.Terminals.STRING");
+						"org.feup.els5.dsl.TableDSL.ObjectTypeSelector");
+					afterParserOrEnumRuleCall();
 				}
 			)
 		)
@@ -1627,19 +1628,20 @@ ruleFilterObjectTypeRule returns [EObject current=null]
 			}
 			(
 				(
-					lv_objectClasses_5_0=RULE_STRING
 					{
-						newLeafNode(lv_objectClasses_5_0, grammarAccess.getFilterObjectTypeRuleAccess().getObjectClassesSTRINGTerminalRuleCall_3_1_0());
+						newCompositeNode(grammarAccess.getFilterObjectTypeRuleAccess().getObjectClassesObjectTypeSelectorParserRuleCall_3_1_0());
 					}
+					lv_objectClasses_5_0=ruleObjectTypeSelector
 					{
 						if ($current==null) {
-							$current = createModelElement(grammarAccess.getFilterObjectTypeRuleRule());
+							$current = createModelElementForParent(grammarAccess.getFilterObjectTypeRuleRule());
 						}
-						addWithLastConsumed(
+						add(
 							$current,
 							"objectClasses",
 							lv_objectClasses_5_0,
-							"org.eclipse.xtext.common.Terminals.STRING");
+							"org.feup.els5.dsl.TableDSL.ObjectTypeSelector");
+						afterParserOrEnumRuleCall();
 					}
 				)
 			)
@@ -1669,19 +1671,20 @@ ruleReduce returns [EObject current=null]
 		}
 		(
 			(
-				lv_objectClass_1_0=RULE_STRING
 				{
-					newLeafNode(lv_objectClass_1_0, grammarAccess.getReduceAccess().getObjectClassSTRINGTerminalRuleCall_1_0());
+					newCompositeNode(grammarAccess.getReduceAccess().getObjectClassObjectTypeSelectorParserRuleCall_1_0());
 				}
+				lv_objectClass_1_0=ruleObjectTypeSelector
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getReduceRule());
+						$current = createModelElementForParent(grammarAccess.getReduceRule());
 					}
-					setWithLastConsumed(
+					set(
 						$current,
 						"objectClass",
 						lv_objectClass_1_0,
-						"org.eclipse.xtext.common.Terminals.STRING");
+						"org.feup.els5.dsl.TableDSL.ObjectTypeSelector");
+					afterParserOrEnumRuleCall();
 				}
 			)
 		)
@@ -1788,7 +1791,61 @@ ruleColumnName returns [EObject current=null]
 	)
 ;
 
+// Entry rule entryRuleObjectTypeSelector
+entryRuleObjectTypeSelector returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getObjectTypeSelectorRule()); }
+	iv_ruleObjectTypeSelector=ruleObjectTypeSelector
+	{ $current=$iv_ruleObjectTypeSelector.current; }
+	EOF;
+
+// Rule ObjectTypeSelector
+ruleObjectTypeSelector returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				lv_objectType_0_1=RULE_OBJECT_TYPES
+				{
+					newLeafNode(lv_objectType_0_1, grammarAccess.getObjectTypeSelectorAccess().getObjectTypeOBJECT_TYPESTerminalRuleCall_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getObjectTypeSelectorRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"objectType",
+						lv_objectType_0_1,
+						"org.feup.els5.dsl.TableDSL.OBJECT_TYPES");
+				}
+				    |
+				lv_objectType_0_2=RULE_STRING
+				{
+					newLeafNode(lv_objectType_0_2, grammarAccess.getObjectTypeSelectorAccess().getObjectTypeSTRINGTerminalRuleCall_0_1());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getObjectTypeSelectorRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"objectType",
+						lv_objectType_0_2,
+						"org.eclipse.xtext.common.Terminals.STRING");
+				}
+			)
+		)
+	)
+;
+
 RULE_SELECTOR_KEYWORDS : ('MAX'|'MIN'|'MEDIAN'|'SUM'|'AVG');
+
+RULE_OBJECT_TYPES : ('STRING'|'NUMBER'|'INTEGER'|'FLOAT'|'DOUBLE'|'BOOLEAN');
 
 RULE_COLUMN_NAME_KEYWORDS : ('FILENAME'|'DIRECTORY');
 

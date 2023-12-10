@@ -111,15 +111,28 @@ FilterColumnRule:
 ;
 
 FilterObjectTypeRule:
-	("object" | "objects") "of"? objectClasses+=STRING ("," objectClasses+=STRING)*
+	("object" | "objects") "of"? objectClasses+=ObjectTypeSelector ("," objectClasses+=ObjectTypeSelector)*
 ;
 
 Reduce:
-   "reduce" objectClass=STRING "to"? functions+=SELECTOR_KEYWORDS ("," functions+=SELECTOR_KEYWORDS)*
+   "reduce" objectClass=ObjectTypeSelector "to"? functions+=SELECTOR_KEYWORDS ("," functions+=SELECTOR_KEYWORDS)*
 ;
 
 ColumnName:
 	columnName=(COLUMN_NAME_KEYWORDS | STRING)
+;
+
+ObjectTypeSelector:
+	objectType=(OBJECT_TYPES | STRING)
+;
+
+terminal OBJECT_TYPES returns ecore::EString:
+	"STRING" |
+	"NUMBER" |
+	"INTEGER"|
+	"FLOAT" |
+	"DOUBLE" |
+	"BOOLEAN"
 ;
 
 terminal COLUMN_NAME_KEYWORDS returns ecore::EString:

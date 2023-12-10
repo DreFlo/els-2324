@@ -17,4 +17,14 @@ public class DSLRenameColumn extends DSLOperation<RenameColumn> {
         getCommand().setNewName(column);
         return this;
     }
+
+    public DSLRenameColumn prepend(String prefix) {
+        getCommand().setPrefix(prefix);
+        return this;
+    }
+
+    public DSLRenameColumn append(String suffix) {
+        getCommand().setSuffix(suffix);
+        return this;
+    }
 }
