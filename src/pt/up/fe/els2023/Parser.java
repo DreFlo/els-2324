@@ -3,20 +3,20 @@ package pt.up.fe.els2023;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.parser.IParser;
 import com.google.inject.Inject;
+import org.eclipse.xtext.xbase.lib.Functions;
 import org.feup.els5.dsl.TableDSLStandaloneSetup;
 import org.feup.els5.dsl.tableDSL.*;
 import pt.up.fe.els2023.Command.Extract.ExtractSelectors;
 import pt.up.fe.els2023.CustomExceptions.SyntaxException;
 import pt.up.fe.els2023.InternalDSL.DSLTableBuilder;
 import pt.up.fe.els2023.InternalDSL.DSLTableExecutor;
+import pt.up.fe.els2023.Utils.Selectors;
 import pt.up.fe.specs.util.classmap.FunctionClassMap;
 import pt.up.fe.specs.util.exceptions.NotImplementedException;
 
 import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.Array;
+import java.util.*;
 import java.util.stream.StreamSupport;
 
 public class Parser {
@@ -150,7 +150,14 @@ public class Parser {
     }
 
     private void visitReduce(Reduce reduce) {
-        throw new NotImplementedException("Reduce not implemented");
+        Class<?> objectClass = getClasses(new ArrayList<String>(List.of(reduce.getObjectClass()))).get(0);
+
+        List<Selectors> selectors = new ArrayList<>();
+        for (String functions: reduce.getFunctions()) {
+            Selectors selector = Selectors.valueof(functions);
+        }
+
+        dslTableBuilder.operation().reduce().objectType(objectClass).end();
     }
 
     private void visitOperation(Operation operation) {

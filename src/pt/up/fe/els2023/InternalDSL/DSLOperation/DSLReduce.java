@@ -1,6 +1,6 @@
 package pt.up.fe.els2023.InternalDSL.DSLOperation;
 
-import pt.up.fe.els2023.Command.Reduce;
+import pt.up.fe.els2023.Command.Reduce.Reduce;
 import pt.up.fe.els2023.InternalDSL.DSLTableBuilder;
 
 import java.util.List;
