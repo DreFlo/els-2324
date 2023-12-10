@@ -51,6 +51,16 @@ public class Parser {
             return null;
         });
 
+        operationMap.put(RenameColumn.class, renameColumnPrepend -> {
+            visitRenameColumnPrependPair(renameColumnPrepend);
+            return null;
+        });
+
+        operationMap.put(RenameColumn.class, renameColumnAppend -> {
+            visitRenameColumnAppendPair(renameColumnAppend);
+            return null;
+        });
+
         operationMap.put(Extract.class, extract -> {
             visitExtract(extract);
             return null;
@@ -130,6 +140,26 @@ public class Parser {
                 dslTableBuilder.operation().renameColumn().from(renameColumnToPair.getOldName()).to(renameColumnToPair.getNewName()).end();
             } else {
                 throw new NotImplementedException("Rename column pair type not implemented: " + renameColumnPair.getClass().getSimpleName());
+            }
+        }
+    }
+
+    private void visitRenameColumnPrependPair(RenameColumn renameColumn) {
+        for (RenameColumnPair renameColumnPair : renameColumn.getRenameTuples()) {
+            if (renameColumnPair instanceof RenameColumnPrependPair renameColumnPrependPair) {
+                dslTableBuilder.operation().renameColumn().from(renameColumnPrependPair.getOldName()).prepend(renameColumnPrependPair.getPrefix()).end();
+            } else {
+                throw new NotImplementedException("Rename column prepend pair type not implemented: " + renameColumnPair.getClass().getSimpleName());
+            }
+        }
+    }
+
+    private void visitRenameColumnAppendPair(RenameColumn renameColumn) {
+        for (RenameColumnPair renameColumnPair : renameColumn.getRenameTuples()) {
+            if (renameColumnPair instanceof RenameColumnAppendPair renameColumnAppendPair) {
+                dslTableBuilder.operation().renameColumn().from(renameColumnAppendPair.getOldName()).append(renameColumnAppendPair.getSuffix()).end();
+            } else {
+                throw new NotImplementedException("Rename column append pair type not implemented: " + renameColumnPair.getClass().getSimpleName());
             }
         }
     }
