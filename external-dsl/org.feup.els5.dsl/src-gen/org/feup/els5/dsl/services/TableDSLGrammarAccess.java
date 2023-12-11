@@ -1551,7 +1551,8 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	
 	//terminal COLUMN_NAME_KEYWORDS returns ecore::EString:
 	//    "FILENAME" |
-	//    "DIRECTORY"
+	//    "DIRECTORY" |
+	//    "GENERATED"
 	//;
 	public TerminalRule getCOLUMN_NAME_KEYWORDSRule() {
 		return tCOLUMN_NAME_KEYWORDS;

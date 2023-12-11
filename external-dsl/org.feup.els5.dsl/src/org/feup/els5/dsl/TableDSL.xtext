@@ -141,5 +141,6 @@ terminal OBJECT_TYPES returns ecore::EString:
 
 terminal COLUMN_NAME_KEYWORDS returns ecore::EString:
 	"FILENAME" |
-	"DIRECTORY"
+	"DIRECTORY" |
+	"GENERATED"
 ;

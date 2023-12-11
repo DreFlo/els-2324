@@ -179,8 +179,23 @@ public class Parser {
 
     private List<String> getColumnNames(List<String> columnRules) {
         return columnRules.stream().map(
-                pattern -> pattern.equals("FILENAME") ? "0__filename"
-                        : pattern.equals("DIRECTORY") ? "0__folder" : pattern).toList();
+                pattern -> {
+                    switch (pattern) {
+                        case "FILENAME" -> {
+                            return "0__filename";
+                        }
+                        case "DIRECTORY" -> {
+                            return "0__folder";
+                        }
+                        case "GENERATED" -> {
+                            return "0__generated";
+                        }
+                        default -> {
+                            return pattern;
+                        }
+                    }
+                }
+        ).toList();
     }
 
     private Class<?> getClass(ObjectTypeSelector objectTypeSelector) {
