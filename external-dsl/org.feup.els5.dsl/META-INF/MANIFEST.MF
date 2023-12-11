@@ -19,11 +19,11 @@ Export-Package: org.feup.els5.dsl,
  org.feup.els5.dsl.generator,
  org.feup.els5.dsl.serializer,
  org.feup.els5.dsl.tableDSL,
- org.feup.els5.dsl.parser.antlr.internal,
+ org.feup.els5.dsl.compiler.antlr.internal,
  org.feup.els5.dsl.scoping,
  org.feup.els5.dsl.services,
  org.feup.els5.dsl.tableDSL.impl,
  org.feup.els5.dsl.tableDSL.util,
- org.feup.els5.dsl.parser.antlr,
+ org.feup.els5.dsl.compiler.antlr,
  org.feup.els5.dsl.validation
 Import-Package: org.apache.log4j

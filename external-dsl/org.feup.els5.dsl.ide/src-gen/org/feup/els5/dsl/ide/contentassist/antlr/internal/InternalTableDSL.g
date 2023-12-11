@@ -15,23 +15,23 @@ package org.feup.els5.dsl.ide.contentassist.antlr.internal;
 import org.eclipse.xtext.ide.editor.contentassist.antlr.internal.Lexer;
 }
 
-@parser::header {
+@compiler::header {
 package org.feup.els5.dsl.ide.contentassist.antlr.internal;
 
 import java.io.InputStream;
 import org.eclipse.xtext.*;
-import org.eclipse.xtext.parser.*;
-import org.eclipse.xtext.parser.impl.*;
+import org.eclipse.xtext.compiler.*;
+import org.eclipse.xtext.compiler.impl.*;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.parser.antlr.XtextTokenStream;
-import org.eclipse.xtext.parser.antlr.XtextTokenStream.HiddenTokens;
+import org.eclipse.xtext.compiler.antlr.XtextTokenStream;
+import org.eclipse.xtext.compiler.antlr.XtextTokenStream.HiddenTokens;
 import org.eclipse.xtext.ide.editor.contentassist.antlr.internal.AbstractInternalContentAssistParser;
 import org.eclipse.xtext.ide.editor.contentassist.antlr.internal.DFA;
 import org.feup.els5.dsl.services.TableDSLGrammarAccess;
 
 }
-@parser::members {
+@compiler::members {
 	private TableDSLGrammarAccess grammarAccess;
 
 	public void setGrammarAccess(TableDSLGrammarAccess grammarAccess) {

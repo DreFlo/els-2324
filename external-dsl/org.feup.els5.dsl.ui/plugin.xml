@@ -216,10 +216,10 @@
 	<!-- adding resource factories -->
 	<extension
 		point="org.eclipse.emf.ecore.extension_parser">
-		<parser
+		<compiler
 			class="org.feup.els5.dsl.ui.TableDSLExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
 			type="table">
-		</parser>
+		</compiler>
 	</extension>
 	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
 		<resourceServiceProvider

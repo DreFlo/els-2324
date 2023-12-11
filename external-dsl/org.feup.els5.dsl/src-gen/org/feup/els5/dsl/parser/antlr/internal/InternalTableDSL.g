@@ -8,30 +8,30 @@ options {
 }
 
 @lexer::header {
-package org.feup.els5.dsl.parser.antlr.internal;
+package org.feup.els5.dsl.compiler.antlr.internal;
 
 // Hack: Use our own Lexer superclass by means of import. 
 // Currently there is no other way to specify the superclass for the lexer.
-import org.eclipse.xtext.parser.antlr.Lexer;
+import org.eclipse.xtext.compiler.antlr.Lexer;
 }
 
-@parser::header {
-package org.feup.els5.dsl.parser.antlr.internal;
+@compiler::header {
+package org.feup.els5.dsl.compiler.antlr.internal;
 
 import org.eclipse.xtext.*;
-import org.eclipse.xtext.parser.*;
-import org.eclipse.xtext.parser.impl.*;
+import org.eclipse.xtext.compiler.*;
+import org.eclipse.xtext.compiler.impl.*;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.parser.antlr.AbstractInternalAntlrParser;
-import org.eclipse.xtext.parser.antlr.XtextTokenStream;
-import org.eclipse.xtext.parser.antlr.XtextTokenStream.HiddenTokens;
-import org.eclipse.xtext.parser.antlr.AntlrDatatypeRuleToken;
+import org.eclipse.xtext.compiler.antlr.AbstractInternalAntlrParser;
+import org.eclipse.xtext.compiler.antlr.XtextTokenStream;
+import org.eclipse.xtext.compiler.antlr.XtextTokenStream.HiddenTokens;
+import org.eclipse.xtext.compiler.antlr.AntlrDatatypeRuleToken;
 import org.feup.els5.dsl.services.TableDSLGrammarAccess;
 
 }
 
-@parser::members {
+@compiler::members {
 
  	private TableDSLGrammarAccess grammarAccess;
 

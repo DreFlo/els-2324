@@ -18,13 +18,13 @@ import java.io.StringReader;
 import java.util.*;
 import java.util.stream.StreamSupport;
 
-public class Parser {
+public class Compiler {
     private final DSLTableBuilder dslTableBuilder;
     @Inject
     private IParser parser;
     private final FunctionClassMap<Operation, Void> operationMap;
 
-    public Parser() {
+    public Compiler() {
         dslTableBuilder = new DSLTableBuilder();
         operationMap = new FunctionClassMap<>();
         buildOperationFunctionClassMap();
