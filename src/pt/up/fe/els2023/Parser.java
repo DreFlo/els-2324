@@ -1,9 +1,9 @@
 package pt.up.fe.els2023;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.parser.IParser;
 import com.google.inject.Inject;
-import org.eclipse.xtext.xbase.lib.Functions;
 import org.feup.els5.dsl.TableDSLStandaloneSetup;
 import org.feup.els5.dsl.tableDSL.*;
 import pt.up.fe.els2023.Command.Extract.ExtractSelectors;
@@ -11,12 +11,10 @@ import pt.up.fe.els2023.CustomExceptions.SyntaxException;
 import pt.up.fe.els2023.InternalDSL.DSLOperation.DSLFilter.DSLFilter;
 import pt.up.fe.els2023.InternalDSL.DSLTableBuilder;
 import pt.up.fe.els2023.InternalDSL.DSLTableExecutor;
-import pt.up.fe.els2023.Utils.Selectors;
 import pt.up.fe.specs.util.classmap.FunctionClassMap;
 import pt.up.fe.specs.util.exceptions.NotImplementedException;
 
 import java.io.StringReader;
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.StreamSupport;
 
@@ -62,7 +60,11 @@ public class Parser {
         });
 
         operationMap.put(Reduce.class, reduce -> {
-            visitReduce(reduce);
+            try {
+                visitReduce(reduce);
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
             return null;
         });
     }
@@ -160,15 +162,13 @@ public class Parser {
         }
     }
 
-    private void visitReduce(Reduce reduce) {
-        Class<?> objectClass = getClasses(new ArrayList<String>(List.of(reduce.getObjectClass()))).get(0);
+    private void visitReduce(Reduce reduce) throws ClassNotFoundException {
+        String objectType = reduce.getObjectClass().getObjectType();
+        EList<String> functions = reduce.getFunctions();
 
-        List<Selectors> selectors = new ArrayList<>();
-        for (String functions: reduce.getFunctions()) {
-            Selectors selector = Selectors.valueof(functions);
+        for (String function: functions) {
+            dslTableBuilder.operation().reduce().objectType(objectType).function(function).end();
         }
-
-        dslTableBuilder.operation().reduce().objectType(objectClass).end();
     }
 
     private void visitOperation(Operation operation) {

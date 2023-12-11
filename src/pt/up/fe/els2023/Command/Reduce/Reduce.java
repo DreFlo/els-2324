@@ -6,79 +6,72 @@ import pt.up.fe.els2023.Table.Table;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.Function;
 
-public abstract class Reduce<ReduceArgument> implements Command {
-    Function<List<?>, Object> function;
+public class Reduce implements Command {
+    ReduceFunctions function;
     Class<?> objectType;
 
-    private ReduceArgument selector;
 
     public Reduce() {
         function = null;
         objectType = null;
     }
 
-    public void setSelector(ReduceArgument selector) {
-        this.selector = selector;
-    }
-
-    public ReduceArgument getSelector() { return selector; }
-
-    public void setFunction(Function<List<?>, Object> function) {
+    public void setFunction(ReduceFunctions function) {
         this.function = function;
-    }
-    public Function<List<?>, Object> getFunction() {
-        return this.function;
     }
 
     public void setObjectType(Class<?> objectType) {
         this.objectType = objectType;
     }
 
-    public Class<?> getObjectType() {
-        return this.objectType;
-    }
-
     @Override
     public Table execute(Table table) {
-        table.addColumn("generated", Collections.nCopies(table.getHeaders().size(), false));
+        table.addColumn("generated", Collections.nCopies(table.getRows().size(), false));
+
+        int generatedIndex = table.getHeaders().indexOf("generated");
 
         List<List<Object>> tableRows = table.getRows();
-        List<String> headers = table.getHeaders();
-        int generatedIndex = -1;
-        if (tableRows.isEmpty()) return table;
-        for (int i = 0; i < headers.size(); i++) {
-            if (Objects.equals(headers.get(i), "generated")) {
-                generatedIndex = i;
-                break;
-            }
-        }
-
         List<Object> firstRow = tableRows.get(tableRows.size()-1);
         List<Object> res = new ArrayList<>();
 
         for (int i = 0; i < firstRow.size(); i++) {
             Object columnRes = null;
 
-            if (firstRow.get(i) != null && firstRow.get(i).getClass() == objectType) {
+            if (firstRow.get(i) != null && objectType.isAssignableFrom(firstRow.get(i).getClass())) {
                 List<Object> list = new ArrayList<>();
 
                 for (List<Object> obj : tableRows) {
-                    if (!(Boolean) obj.get(generatedIndex)) {
-                        list.add(obj.get(i));
+                    if ((boolean) obj.get(generatedIndex)) {
+                        continue;
                     }
+                    list.add(obj.get(i));
                 }
 
-                columnRes = function.apply(list);
+                columnRes = applyFunction(list);
             }
             res.add(columnRes);
         }
+
         res.set(generatedIndex, true);
         table.addRow(res);
         return table;
     }
 
-    protected abstract Object reduce(List<Object> cellList);
+    private Object applyFunction(List<Object> list) {
+        return switch (function) {
+            case SUM -> list.isEmpty() ? null : list.stream().mapToDouble(this::toDouble).sum();
+            case AVG -> list.isEmpty() ? null : list.stream().mapToDouble(this::toDouble).average().orElse(0.0);
+        };
+
+    }
+
+    private double toDouble(Object element) {
+        if (element instanceof Number) {
+            return ((Number) element).doubleValue();
+        } else {
+            throw new IllegalArgumentException("Unsupported element type for AVERAGE and SUM");
+        }
+    }
 }
