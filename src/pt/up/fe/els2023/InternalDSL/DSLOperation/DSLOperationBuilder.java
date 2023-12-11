@@ -2,6 +2,8 @@ package pt.up.fe.els2023.InternalDSL.DSLOperation;
 
 import pt.up.fe.els2023.InternalDSL.DSLOperation.DSLExtract.DSLExtractBuilder;
 import pt.up.fe.els2023.InternalDSL.DSLOperation.DSLFilter.DSLFilter;
+import pt.up.fe.els2023.InternalDSL.DSLOperation.DSLRenameColumn.DSLRenameColumnBuilder;
+import pt.up.fe.els2023.InternalDSL.DSLOperation.DSLRenameColumn.DSLRenameColumnTo;
 import pt.up.fe.els2023.InternalDSL.DSLTableBuilder;
 
 
@@ -16,8 +18,8 @@ public class DSLOperationBuilder {
         return new DSLSelect(dslTableBuilder);
     }
 
-    public DSLRenameColumn renameColumn() {
-        return new DSLRenameColumn(dslTableBuilder);
+    public DSLRenameColumnBuilder renameColumn() {
+        return new DSLRenameColumnBuilder(dslTableBuilder);
     }
 
     public DSLSquashRows squashBy() {

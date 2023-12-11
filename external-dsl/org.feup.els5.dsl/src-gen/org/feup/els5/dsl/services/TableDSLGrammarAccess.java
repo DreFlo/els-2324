@@ -345,13 +345,14 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		private final RuleCall cRenameColumnToPairParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cRenameColumnAppendPairParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cRenameColumnPrependPairParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cRenameColumnReplacePairParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//RenameColumnPair:
-		//    RenameColumnToPair | RenameColumnAppendPair | RenameColumnPrependPair
+		//    RenameColumnToPair | RenameColumnAppendPair | RenameColumnPrependPair | RenameColumnReplacePair
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//RenameColumnToPair | RenameColumnAppendPair | RenameColumnPrependPair
+		//RenameColumnToPair | RenameColumnAppendPair | RenameColumnPrependPair | RenameColumnReplacePair
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//RenameColumnToPair
@@ -362,6 +363,9 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		
 		//RenameColumnPrependPair
 		public RuleCall getRenameColumnPrependPairParserRuleCall_2() { return cRenameColumnPrependPairParserRuleCall_2; }
+		
+		//RenameColumnReplacePair
+		public RuleCall getRenameColumnReplacePairParserRuleCall_3() { return cRenameColumnReplacePairParserRuleCall_3; }
 	}
 	public class RenameColumnToPairElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.feup.els5.dsl.TableDSL.RenameColumnToPair");
@@ -458,6 +462,42 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		
 		//STRING
 		public RuleCall getSuffixSTRINGTerminalRuleCall_2_0() { return cSuffixSTRINGTerminalRuleCall_2_0; }
+	}
+	public class RenameColumnReplacePairElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.feup.els5.dsl.TableDSL.RenameColumnReplacePair");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cOldNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cOldNameSTRINGTerminalRuleCall_0_0 = (RuleCall)cOldNameAssignment_0.eContents().get(0);
+		private final Keyword cReplaceKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cWithKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cReplacementAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cReplacementSTRINGTerminalRuleCall_3_0 = (RuleCall)cReplacementAssignment_3.eContents().get(0);
+		
+		//RenameColumnReplacePair:
+		//    oldName=STRING "replace" "with"? replacement=STRING
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//oldName=STRING "replace" "with"? replacement=STRING
+		public Group getGroup() { return cGroup; }
+		
+		//oldName=STRING
+		public Assignment getOldNameAssignment_0() { return cOldNameAssignment_0; }
+		
+		//STRING
+		public RuleCall getOldNameSTRINGTerminalRuleCall_0_0() { return cOldNameSTRINGTerminalRuleCall_0_0; }
+		
+		//"replace"
+		public Keyword getReplaceKeyword_1() { return cReplaceKeyword_1; }
+		
+		//"with"?
+		public Keyword getWithKeyword_2() { return cWithKeyword_2; }
+		
+		//replacement=STRING
+		public Assignment getReplacementAssignment_3() { return cReplacementAssignment_3; }
+		
+		//STRING
+		public RuleCall getReplacementSTRINGTerminalRuleCall_3_0() { return cReplacementSTRINGTerminalRuleCall_3_0; }
 	}
 	public class ExtractElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.feup.els5.dsl.TableDSL.Extract");
@@ -1066,6 +1106,7 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	private final RenameColumnToPairElements pRenameColumnToPair;
 	private final RenameColumnPrependPairElements pRenameColumnPrependPair;
 	private final RenameColumnAppendPairElements pRenameColumnAppendPair;
+	private final RenameColumnReplacePairElements pRenameColumnReplacePair;
 	private final ExtractElements pExtract;
 	private final ExtractColumnMappingElements pExtractColumnMapping;
 	private final SelectorElements pSelector;
@@ -1108,6 +1149,7 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 		this.pRenameColumnToPair = new RenameColumnToPairElements();
 		this.pRenameColumnPrependPair = new RenameColumnPrependPairElements();
 		this.pRenameColumnAppendPair = new RenameColumnAppendPairElements();
+		this.pRenameColumnReplacePair = new RenameColumnReplacePairElements();
 		this.pExtract = new ExtractElements();
 		this.pExtractColumnMapping = new ExtractColumnMappingElements();
 		this.pSelector = new SelectorElements();
@@ -1258,7 +1300,7 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	}
 	
 	//RenameColumnPair:
-	//    RenameColumnToPair | RenameColumnAppendPair | RenameColumnPrependPair
+	//    RenameColumnToPair | RenameColumnAppendPair | RenameColumnPrependPair | RenameColumnReplacePair
 	//;
 	public RenameColumnPairElements getRenameColumnPairAccess() {
 		return pRenameColumnPair;
@@ -1299,6 +1341,17 @@ public class TableDSLGrammarAccess extends AbstractElementFinder.AbstractGrammar
 	
 	public ParserRule getRenameColumnAppendPairRule() {
 		return getRenameColumnAppendPairAccess().getRule();
+	}
+	
+	//RenameColumnReplacePair:
+	//    oldName=STRING "replace" "with"? replacement=STRING
+	//;
+	public RenameColumnReplacePairElements getRenameColumnReplacePairAccess() {
+		return pRenameColumnReplacePair;
+	}
+	
+	public ParserRule getRenameColumnReplacePairRule() {
+		return getRenameColumnReplacePairAccess().getRule();
 	}
 	
 	//Extract:

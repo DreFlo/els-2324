@@ -141,6 +141,11 @@ public class TableDSLAdapterFactory extends AdapterFactoryImpl
         return createRenameColumnAppendPairAdapter();
       }
       @Override
+      public Adapter caseRenameColumnReplacePair(RenameColumnReplacePair object)
+      {
+        return createRenameColumnReplacePairAdapter();
+      }
+      @Override
       public Adapter caseExtract(Extract object)
       {
         return createExtractAdapter();
@@ -433,6 +438,21 @@ public class TableDSLAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createRenameColumnAppendPairAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.feup.els5.dsl.tableDSL.RenameColumnReplacePair <em>Rename Column Replace Pair</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.feup.els5.dsl.tableDSL.RenameColumnReplacePair
+   * @generated
+   */
+  public Adapter createRenameColumnReplacePairAdapter()
   {
     return null;
   }

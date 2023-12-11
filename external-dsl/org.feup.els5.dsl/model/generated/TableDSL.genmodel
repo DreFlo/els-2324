@@ -37,6 +37,9 @@
     <genClasses ecoreClass="TableDSL.ecore#//RenameColumnAppendPair">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//RenameColumnAppendPair/suffix"/>
     </genClasses>
+    <genClasses ecoreClass="TableDSL.ecore#//RenameColumnReplacePair">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//RenameColumnReplacePair/replacement"/>
+    </genClasses>
     <genClasses ecoreClass="TableDSL.ecore#//Extract">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TableDSL.ecore#//Extract/targets"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TableDSL.ecore#//Extract/sourceColumn"/>

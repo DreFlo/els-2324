@@ -10,7 +10,6 @@ extract "name", "time%" as "%" from "profiling.json/functions" select TOP 3 sort
 
 reduce "java.lang.Number" to SUM, AVG;
 
-reduce "java.lang.Number" to SUM, AVG;
-
+rename column "^.*\\/" replace with "";
 
 output to "output/run3.csv";

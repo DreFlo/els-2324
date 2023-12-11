@@ -31,6 +31,7 @@ import org.feup.els5.dsl.tableDSL.RenameColumn;
 import org.feup.els5.dsl.tableDSL.RenameColumnAppendPair;
 import org.feup.els5.dsl.tableDSL.RenameColumnPair;
 import org.feup.els5.dsl.tableDSL.RenameColumnPrependPair;
+import org.feup.els5.dsl.tableDSL.RenameColumnReplacePair;
 import org.feup.els5.dsl.tableDSL.RenameColumnToPair;
 import org.feup.els5.dsl.tableDSL.Select;
 import org.feup.els5.dsl.tableDSL.Selector;
@@ -140,6 +141,13 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
    * @generated
    */
   private EClass renameColumnAppendPairEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass renameColumnReplacePairEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -555,6 +563,28 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
   public EAttribute getRenameColumnAppendPair_Suffix()
   {
     return (EAttribute)renameColumnAppendPairEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getRenameColumnReplacePair()
+  {
+    return renameColumnReplacePairEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getRenameColumnReplacePair_Replacement()
+  {
+    return (EAttribute)renameColumnReplacePairEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1019,6 +1049,9 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
     renameColumnAppendPairEClass = createEClass(RENAME_COLUMN_APPEND_PAIR);
     createEAttribute(renameColumnAppendPairEClass, RENAME_COLUMN_APPEND_PAIR__SUFFIX);
 
+    renameColumnReplacePairEClass = createEClass(RENAME_COLUMN_REPLACE_PAIR);
+    createEAttribute(renameColumnReplacePairEClass, RENAME_COLUMN_REPLACE_PAIR__REPLACEMENT);
+
     extractEClass = createEClass(EXTRACT);
     createEReference(extractEClass, EXTRACT__TARGETS);
     createEAttribute(extractEClass, EXTRACT__SOURCE_COLUMN);
@@ -1111,6 +1144,7 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
     renameColumnToPairEClass.getESuperTypes().add(this.getRenameColumnPair());
     renameColumnPrependPairEClass.getESuperTypes().add(this.getRenameColumnPair());
     renameColumnAppendPairEClass.getESuperTypes().add(this.getRenameColumnPair());
+    renameColumnReplacePairEClass.getESuperTypes().add(this.getRenameColumnPair());
     extractEClass.getESuperTypes().add(this.getOperation());
     keySelectorEClass.getESuperTypes().add(this.getSelector());
     topNSelectorEClass.getESuperTypes().add(this.getSelector());
@@ -1155,6 +1189,9 @@ public class TableDSLPackageImpl extends EPackageImpl implements TableDSLPackage
 
     initEClass(renameColumnAppendPairEClass, RenameColumnAppendPair.class, "RenameColumnAppendPair", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getRenameColumnAppendPair_Suffix(), ecorePackage.getEString(), "suffix", null, 0, 1, RenameColumnAppendPair.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(renameColumnReplacePairEClass, RenameColumnReplacePair.class, "RenameColumnReplacePair", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRenameColumnReplacePair_Replacement(), ecorePackage.getEString(), "replacement", null, 0, 1, RenameColumnReplacePair.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(extractEClass, Extract.class, "Extract", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExtract_Targets(), this.getExtractColumnMapping(), null, "targets", null, 0, -1, Extract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

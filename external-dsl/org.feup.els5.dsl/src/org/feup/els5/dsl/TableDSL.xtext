@@ -43,7 +43,7 @@ RenameColumn:
 ;
 
 RenameColumnPair:
-	RenameColumnToPair | RenameColumnAppendPair | RenameColumnPrependPair
+	RenameColumnToPair | RenameColumnAppendPair | RenameColumnPrependPair | RenameColumnReplacePair
 ;
 
 RenameColumnToPair:
@@ -56,6 +56,10 @@ RenameColumnPrependPair:
 
 RenameColumnAppendPair:
 	oldName=STRING "append" suffix=STRING
+;
+
+RenameColumnReplacePair:
+	oldName=STRING "replace" "with"? replacement=STRING
 ;
 
 Extract:

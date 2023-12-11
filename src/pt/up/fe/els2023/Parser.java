@@ -129,11 +129,13 @@ public class Parser {
     private void visitRenameColumn(RenameColumn renameColumn) {
         for (RenameColumnPair renameColumnPair : renameColumn.getRenameTuples()) {
             if (renameColumnPair instanceof RenameColumnToPair renameColumnToPair) {
-                dslTableBuilder.operation().renameColumn().from(renameColumnToPair.getOldName()).to(renameColumnToPair.getNewName()).end();
+                dslTableBuilder.operation().renameColumn().rename().column(renameColumnToPair.getOldName()).to(renameColumnToPair.getNewName()).end();
             } else if (renameColumnPair instanceof RenameColumnPrependPair renameColumnPrependPair) {
-                dslTableBuilder.operation().renameColumn().from(renameColumnPrependPair.getOldName()).prepend(renameColumnPrependPair.getPrefix()).end();
+                dslTableBuilder.operation().renameColumn().prepend().matchColumns(renameColumnPrependPair.getOldName()).with(renameColumnPrependPair.getPrefix()).end();
             } else if (renameColumnPair instanceof RenameColumnAppendPair renameColumnAppendPair) {
-                dslTableBuilder.operation().renameColumn().from(renameColumnAppendPair.getOldName()).append(renameColumnAppendPair.getSuffix()).end();
+                dslTableBuilder.operation().renameColumn().append().matchColumns(renameColumnAppendPair.getOldName()).with(renameColumnAppendPair.getSuffix()).end();
+            } else if (renameColumnPair instanceof RenameColumnReplacePair renameColumnReplacePair) {
+                dslTableBuilder.operation().renameColumn().replace().matchColumns(renameColumnReplacePair.getOldName()).with(renameColumnReplacePair.getReplacement()).end();
             } else {
                 throw new NotImplementedException("Rename column pair type not implemented: " + renameColumnPair.getClass().getSimpleName());
             }

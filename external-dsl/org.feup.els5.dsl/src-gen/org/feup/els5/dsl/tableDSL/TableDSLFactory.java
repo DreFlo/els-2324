@@ -141,6 +141,15 @@ public interface TableDSLFactory extends EFactory
   RenameColumnAppendPair createRenameColumnAppendPair();
 
   /**
+   * Returns a new object of class '<em>Rename Column Replace Pair</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Rename Column Replace Pair</em>'.
+   * @generated
+   */
+  RenameColumnReplacePair createRenameColumnReplacePair();
+
+  /**
    * Returns a new object of class '<em>Extract</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

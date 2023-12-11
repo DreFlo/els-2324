@@ -37,6 +37,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="RenameColumnAppendPair" eSuperTypes="#//RenameColumnPair">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="suffix" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RenameColumnReplacePair" eSuperTypes="#//RenameColumnPair">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="replacement" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Extract" eSuperTypes="#//Operation">
     <eStructuralFeatures xsi:type="ecore:EReference" name="targets" upperBound="-1"
         eType="#//ExtractColumnMapping" containment="true"/>

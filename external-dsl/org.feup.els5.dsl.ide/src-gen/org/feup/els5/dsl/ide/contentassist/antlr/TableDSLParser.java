@@ -55,6 +55,7 @@ public class TableDSLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRenameColumnToPairAccess().getGroup(), "rule__RenameColumnToPair__Group__0");
 			builder.put(grammarAccess.getRenameColumnPrependPairAccess().getGroup(), "rule__RenameColumnPrependPair__Group__0");
 			builder.put(grammarAccess.getRenameColumnAppendPairAccess().getGroup(), "rule__RenameColumnAppendPair__Group__0");
+			builder.put(grammarAccess.getRenameColumnReplacePairAccess().getGroup(), "rule__RenameColumnReplacePair__Group__0");
 			builder.put(grammarAccess.getExtractAccess().getGroup(), "rule__Extract__Group__0");
 			builder.put(grammarAccess.getExtractAccess().getGroup_2(), "rule__Extract__Group_2__0");
 			builder.put(grammarAccess.getExtractColumnMappingAccess().getGroup(), "rule__ExtractColumnMapping__Group__0");
@@ -91,6 +92,8 @@ public class TableDSLParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRenameColumnPrependPairAccess().getPrefixAssignment_2(), "rule__RenameColumnPrependPair__PrefixAssignment_2");
 			builder.put(grammarAccess.getRenameColumnAppendPairAccess().getOldNameAssignment_0(), "rule__RenameColumnAppendPair__OldNameAssignment_0");
 			builder.put(grammarAccess.getRenameColumnAppendPairAccess().getSuffixAssignment_2(), "rule__RenameColumnAppendPair__SuffixAssignment_2");
+			builder.put(grammarAccess.getRenameColumnReplacePairAccess().getOldNameAssignment_0(), "rule__RenameColumnReplacePair__OldNameAssignment_0");
+			builder.put(grammarAccess.getRenameColumnReplacePairAccess().getReplacementAssignment_3(), "rule__RenameColumnReplacePair__ReplacementAssignment_3");
 			builder.put(grammarAccess.getExtractAccess().getTargetsAssignment_1(), "rule__Extract__TargetsAssignment_1");
 			builder.put(grammarAccess.getExtractAccess().getTargetsAssignment_2_1(), "rule__Extract__TargetsAssignment_2_1");
 			builder.put(grammarAccess.getExtractAccess().getSourceColumnAssignment_4(), "rule__Extract__SourceColumnAssignment_4");

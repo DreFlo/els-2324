@@ -630,6 +630,15 @@ ruleRenameColumnPair returns [EObject current=null]
 			$current = $this_RenameColumnPrependPair_2.current;
 			afterParserOrEnumRuleCall();
 		}
+		    |
+		{
+			newCompositeNode(grammarAccess.getRenameColumnPairAccess().getRenameColumnReplacePairParserRuleCall_3());
+		}
+		this_RenameColumnReplacePair_3=ruleRenameColumnReplacePair
+		{
+			$current = $this_RenameColumnReplacePair_3.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -803,6 +812,71 @@ ruleRenameColumnAppendPair returns [EObject current=null]
 						$current,
 						"suffix",
 						lv_suffix_2_0,
+						"org.eclipse.xtext.common.Terminals.STRING");
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleRenameColumnReplacePair
+entryRuleRenameColumnReplacePair returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getRenameColumnReplacePairRule()); }
+	iv_ruleRenameColumnReplacePair=ruleRenameColumnReplacePair
+	{ $current=$iv_ruleRenameColumnReplacePair.current; }
+	EOF;
+
+// Rule RenameColumnReplacePair
+ruleRenameColumnReplacePair returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				lv_oldName_0_0=RULE_STRING
+				{
+					newLeafNode(lv_oldName_0_0, grammarAccess.getRenameColumnReplacePairAccess().getOldNameSTRINGTerminalRuleCall_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getRenameColumnReplacePairRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"oldName",
+						lv_oldName_0_0,
+						"org.eclipse.xtext.common.Terminals.STRING");
+				}
+			)
+		)
+		otherlv_1='replace'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getRenameColumnReplacePairAccess().getReplaceKeyword_1());
+		}
+		(
+			otherlv_2='with'
+			{
+				newLeafNode(otherlv_2, grammarAccess.getRenameColumnReplacePairAccess().getWithKeyword_2());
+			}
+		)?
+		(
+			(
+				lv_replacement_3_0=RULE_STRING
+				{
+					newLeafNode(lv_replacement_3_0, grammarAccess.getRenameColumnReplacePairAccess().getReplacementSTRINGTerminalRuleCall_3_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getRenameColumnReplacePairRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"replacement",
+						lv_replacement_3_0,
 						"org.eclipse.xtext.common.Terminals.STRING");
 				}
 			)

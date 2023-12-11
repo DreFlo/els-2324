@@ -28,6 +28,7 @@ public class TableDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_FilterObjectTypeRule_OfKeyword_1_q;
 	protected AbstractElementAlias match_Output_ToKeyword_1_q;
 	protected AbstractElementAlias match_Reduce_ToKeyword_2_q;
+	protected AbstractElementAlias match_RenameColumnReplacePair_WithKeyword_2_q;
 	protected AbstractElementAlias match_RenameColumn_ColumnKeyword_1_q;
 	protected AbstractElementAlias match_SquashRows_RowsKeyword_1_q;
 	
@@ -41,6 +42,7 @@ public class TableDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_FilterObjectTypeRule_OfKeyword_1_q = new TokenAlias(false, true, grammarAccess.getFilterObjectTypeRuleAccess().getOfKeyword_1());
 		match_Output_ToKeyword_1_q = new TokenAlias(false, true, grammarAccess.getOutputAccess().getToKeyword_1());
 		match_Reduce_ToKeyword_2_q = new TokenAlias(false, true, grammarAccess.getReduceAccess().getToKeyword_2());
+		match_RenameColumnReplacePair_WithKeyword_2_q = new TokenAlias(false, true, grammarAccess.getRenameColumnReplacePairAccess().getWithKeyword_2());
 		match_RenameColumn_ColumnKeyword_1_q = new TokenAlias(false, true, grammarAccess.getRenameColumnAccess().getColumnKeyword_1());
 		match_SquashRows_RowsKeyword_1_q = new TokenAlias(false, true, grammarAccess.getSquashRowsAccess().getRowsKeyword_1());
 	}
@@ -81,6 +83,8 @@ public class TableDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_Output_ToKeyword_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Reduce_ToKeyword_2_q.equals(syntax))
 				emit_Reduce_ToKeyword_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_RenameColumnReplacePair_WithKeyword_2_q.equals(syntax))
+				emit_RenameColumnReplacePair_WithKeyword_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_RenameColumn_ColumnKeyword_1_q.equals(syntax))
 				emit_RenameColumn_ColumnKeyword_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_SquashRows_RowsKeyword_1_q.equals(syntax))
@@ -184,6 +188,20 @@ public class TableDSLSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * </pre>
 	 */
 	protected void emit_Reduce_ToKeyword_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * <pre>
+	 * Ambiguous syntax:
+	 *     'with'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     oldName=STRING 'replace' (ambiguity) replacement=STRING
+	 
+	 * </pre>
+	 */
+	protected void emit_RenameColumnReplacePair_WithKeyword_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

@@ -78,6 +78,7 @@ public class TableDSLFactoryImpl extends EFactoryImpl implements TableDSLFactory
       case TableDSLPackage.RENAME_COLUMN_TO_PAIR: return createRenameColumnToPair();
       case TableDSLPackage.RENAME_COLUMN_PREPEND_PAIR: return createRenameColumnPrependPair();
       case TableDSLPackage.RENAME_COLUMN_APPEND_PAIR: return createRenameColumnAppendPair();
+      case TableDSLPackage.RENAME_COLUMN_REPLACE_PAIR: return createRenameColumnReplacePair();
       case TableDSLPackage.EXTRACT: return createExtract();
       case TableDSLPackage.EXTRACT_COLUMN_MAPPING: return createExtractColumnMapping();
       case TableDSLPackage.SELECTOR: return createSelector();
@@ -253,6 +254,18 @@ public class TableDSLFactoryImpl extends EFactoryImpl implements TableDSLFactory
   {
     RenameColumnAppendPairImpl renameColumnAppendPair = new RenameColumnAppendPairImpl();
     return renameColumnAppendPair;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public RenameColumnReplacePair createRenameColumnReplacePair()
+  {
+    RenameColumnReplacePairImpl renameColumnReplacePair = new RenameColumnReplacePairImpl();
+    return renameColumnReplacePair;
   }
 
   /**

@@ -31,6 +31,7 @@ import org.feup.els5.dsl.tableDSL.Reduce;
 import org.feup.els5.dsl.tableDSL.RenameColumn;
 import org.feup.els5.dsl.tableDSL.RenameColumnAppendPair;
 import org.feup.els5.dsl.tableDSL.RenameColumnPrependPair;
+import org.feup.els5.dsl.tableDSL.RenameColumnReplacePair;
 import org.feup.els5.dsl.tableDSL.RenameColumnToPair;
 import org.feup.els5.dsl.tableDSL.Select;
 import org.feup.els5.dsl.tableDSL.SquashRows;
@@ -100,6 +101,9 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 				return; 
 			case TableDSLPackage.RENAME_COLUMN_PREPEND_PAIR:
 				sequence_RenameColumnPrependPair(context, (RenameColumnPrependPair) semanticObject); 
+				return; 
+			case TableDSLPackage.RENAME_COLUMN_REPLACE_PAIR:
+				sequence_RenameColumnReplacePair(context, (RenameColumnReplacePair) semanticObject); 
 				return; 
 			case TableDSLPackage.RENAME_COLUMN_TO_PAIR:
 				sequence_RenameColumnToPair(context, (RenameColumnToPair) semanticObject); 
@@ -366,6 +370,30 @@ public class TableDSLSemanticSequencer extends AbstractDelegatingSemanticSequenc
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getRenameColumnPrependPairAccess().getOldNameSTRINGTerminalRuleCall_0_0(), semanticObject.getOldName());
 		feeder.accept(grammarAccess.getRenameColumnPrependPairAccess().getPrefixSTRINGTerminalRuleCall_2_0(), semanticObject.getPrefix());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     RenameColumnPair returns RenameColumnReplacePair
+	 *     RenameColumnReplacePair returns RenameColumnReplacePair
+	 *
+	 * Constraint:
+	 *     (oldName=STRING replacement=STRING)
+	 * </pre>
+	 */
+	protected void sequence_RenameColumnReplacePair(ISerializationContext context, RenameColumnReplacePair semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, TableDSLPackage.Literals.RENAME_COLUMN_PAIR__OLD_NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TableDSLPackage.Literals.RENAME_COLUMN_PAIR__OLD_NAME));
+			if (transientValues.isValueTransient(semanticObject, TableDSLPackage.Literals.RENAME_COLUMN_REPLACE_PAIR__REPLACEMENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TableDSLPackage.Literals.RENAME_COLUMN_REPLACE_PAIR__REPLACEMENT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getRenameColumnReplacePairAccess().getOldNameSTRINGTerminalRuleCall_0_0(), semanticObject.getOldName());
+		feeder.accept(grammarAccess.getRenameColumnReplacePairAccess().getReplacementSTRINGTerminalRuleCall_3_0(), semanticObject.getReplacement());
 		feeder.finish();
 	}
 	

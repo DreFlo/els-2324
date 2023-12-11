@@ -413,6 +413,43 @@ public interface TableDSLPackage extends EPackage
   int RENAME_COLUMN_APPEND_PAIR_FEATURE_COUNT = RENAME_COLUMN_PAIR_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link org.feup.els5.dsl.tableDSL.impl.RenameColumnReplacePairImpl <em>Rename Column Replace Pair</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.feup.els5.dsl.tableDSL.impl.RenameColumnReplacePairImpl
+   * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getRenameColumnReplacePair()
+   * @generated
+   */
+  int RENAME_COLUMN_REPLACE_PAIR = 13;
+
+  /**
+   * The feature id for the '<em><b>Old Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RENAME_COLUMN_REPLACE_PAIR__OLD_NAME = RENAME_COLUMN_PAIR__OLD_NAME;
+
+  /**
+   * The feature id for the '<em><b>Replacement</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RENAME_COLUMN_REPLACE_PAIR__REPLACEMENT = RENAME_COLUMN_PAIR_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Rename Column Replace Pair</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RENAME_COLUMN_REPLACE_PAIR_FEATURE_COUNT = RENAME_COLUMN_PAIR_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link org.feup.els5.dsl.tableDSL.impl.ExtractImpl <em>Extract</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -420,7 +457,7 @@ public interface TableDSLPackage extends EPackage
    * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getExtract()
    * @generated
    */
-  int EXTRACT = 13;
+  int EXTRACT = 14;
 
   /**
    * The feature id for the '<em><b>Targets</b></em>' containment reference list.
@@ -475,7 +512,7 @@ public interface TableDSLPackage extends EPackage
    * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getExtractColumnMapping()
    * @generated
    */
-  int EXTRACT_COLUMN_MAPPING = 14;
+  int EXTRACT_COLUMN_MAPPING = 15;
 
   /**
    * The feature id for the '<em><b>Target Column</b></em>' attribute.
@@ -512,7 +549,7 @@ public interface TableDSLPackage extends EPackage
    * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getSelector()
    * @generated
    */
-  int SELECTOR = 15;
+  int SELECTOR = 16;
 
   /**
    * The number of structural features of the '<em>Selector</em>' class.
@@ -531,7 +568,7 @@ public interface TableDSLPackage extends EPackage
    * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getKeySelector()
    * @generated
    */
-  int KEY_SELECTOR = 16;
+  int KEY_SELECTOR = 17;
 
   /**
    * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -559,7 +596,7 @@ public interface TableDSLPackage extends EPackage
    * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getTopNSelector()
    * @generated
    */
-  int TOP_NSELECTOR = 17;
+  int TOP_NSELECTOR = 18;
 
   /**
    * The feature id for the '<em><b>N</b></em>' attribute.
@@ -587,7 +624,7 @@ public interface TableDSLPackage extends EPackage
    * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getComparator()
    * @generated
    */
-  int COMPARATOR = 18;
+  int COMPARATOR = 19;
 
   /**
    * The feature id for the '<em><b>Keys</b></em>' containment reference list.
@@ -615,7 +652,7 @@ public interface TableDSLPackage extends EPackage
    * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getSquashRows()
    * @generated
    */
-  int SQUASH_ROWS = 19;
+  int SQUASH_ROWS = 20;
 
   /**
    * The feature id for the '<em><b>Columns</b></em>' containment reference list.
@@ -643,7 +680,7 @@ public interface TableDSLPackage extends EPackage
    * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getFilter()
    * @generated
    */
-  int FILTER = 20;
+  int FILTER = 21;
 
   /**
    * The feature id for the '<em><b>Denylist</b></em>' containment reference.
@@ -680,7 +717,7 @@ public interface TableDSLPackage extends EPackage
    * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getFilterDenylist()
    * @generated
    */
-  int FILTER_DENYLIST = 21;
+  int FILTER_DENYLIST = 22;
 
   /**
    * The feature id for the '<em><b>Denylist</b></em>' containment reference list.
@@ -708,7 +745,7 @@ public interface TableDSLPackage extends EPackage
    * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getFilterExceptlist()
    * @generated
    */
-  int FILTER_EXCEPTLIST = 22;
+  int FILTER_EXCEPTLIST = 23;
 
   /**
    * The feature id for the '<em><b>Exceptlist</b></em>' containment reference list.
@@ -736,7 +773,7 @@ public interface TableDSLPackage extends EPackage
    * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getFilterRule()
    * @generated
    */
-  int FILTER_RULE = 23;
+  int FILTER_RULE = 24;
 
   /**
    * The number of structural features of the '<em>Filter Rule</em>' class.
@@ -755,7 +792,7 @@ public interface TableDSLPackage extends EPackage
    * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getFilterColumnRule()
    * @generated
    */
-  int FILTER_COLUMN_RULE = 24;
+  int FILTER_COLUMN_RULE = 25;
 
   /**
    * The feature id for the '<em><b>Column Patterns</b></em>' containment reference list.
@@ -783,7 +820,7 @@ public interface TableDSLPackage extends EPackage
    * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getFilterObjectTypeRule()
    * @generated
    */
-  int FILTER_OBJECT_TYPE_RULE = 25;
+  int FILTER_OBJECT_TYPE_RULE = 26;
 
   /**
    * The feature id for the '<em><b>Object Classes</b></em>' containment reference list.
@@ -811,7 +848,7 @@ public interface TableDSLPackage extends EPackage
    * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getReduce()
    * @generated
    */
-  int REDUCE = 26;
+  int REDUCE = 27;
 
   /**
    * The feature id for the '<em><b>Object Class</b></em>' containment reference.
@@ -848,7 +885,7 @@ public interface TableDSLPackage extends EPackage
    * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getColumnName()
    * @generated
    */
-  int COLUMN_NAME = 27;
+  int COLUMN_NAME = 28;
 
   /**
    * The feature id for the '<em><b>Column Name</b></em>' attribute.
@@ -876,7 +913,7 @@ public interface TableDSLPackage extends EPackage
    * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getObjectTypeSelector()
    * @generated
    */
-  int OBJECT_TYPE_SELECTOR = 28;
+  int OBJECT_TYPE_SELECTOR = 29;
 
   /**
    * The feature id for the '<em><b>Object Type</b></em>' attribute.
@@ -1125,6 +1162,27 @@ public interface TableDSLPackage extends EPackage
    * @generated
    */
   EAttribute getRenameColumnAppendPair_Suffix();
+
+  /**
+   * Returns the meta object for class '{@link org.feup.els5.dsl.tableDSL.RenameColumnReplacePair <em>Rename Column Replace Pair</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Rename Column Replace Pair</em>'.
+   * @see org.feup.els5.dsl.tableDSL.RenameColumnReplacePair
+   * @generated
+   */
+  EClass getRenameColumnReplacePair();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.feup.els5.dsl.tableDSL.RenameColumnReplacePair#getReplacement <em>Replacement</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Replacement</em>'.
+   * @see org.feup.els5.dsl.tableDSL.RenameColumnReplacePair#getReplacement()
+   * @see #getRenameColumnReplacePair()
+   * @generated
+   */
+  EAttribute getRenameColumnReplacePair_Replacement();
 
   /**
    * Returns the meta object for class '{@link org.feup.els5.dsl.tableDSL.Extract <em>Extract</em>}'.
@@ -1730,6 +1788,24 @@ public interface TableDSLPackage extends EPackage
      * @generated
      */
     EAttribute RENAME_COLUMN_APPEND_PAIR__SUFFIX = eINSTANCE.getRenameColumnAppendPair_Suffix();
+
+    /**
+     * The meta object literal for the '{@link org.feup.els5.dsl.tableDSL.impl.RenameColumnReplacePairImpl <em>Rename Column Replace Pair</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.feup.els5.dsl.tableDSL.impl.RenameColumnReplacePairImpl
+     * @see org.feup.els5.dsl.tableDSL.impl.TableDSLPackageImpl#getRenameColumnReplacePair()
+     * @generated
+     */
+    EClass RENAME_COLUMN_REPLACE_PAIR = eINSTANCE.getRenameColumnReplacePair();
+
+    /**
+     * The meta object literal for the '<em><b>Replacement</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute RENAME_COLUMN_REPLACE_PAIR__REPLACEMENT = eINSTANCE.getRenameColumnReplacePair_Replacement();
 
     /**
      * The meta object literal for the '{@link org.feup.els5.dsl.tableDSL.impl.ExtractImpl <em>Extract</em>}' class.

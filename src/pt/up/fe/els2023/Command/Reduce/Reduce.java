@@ -28,9 +28,9 @@ public class Reduce implements Command {
 
     @Override
     public Table execute(Table table) {
-        table.addColumn("generated", Collections.nCopies(table.getRows().size(), false));
+        table.addColumn("0__generated", Collections.nCopies(table.getRows().size(), null));
 
-        int generatedIndex = table.getHeaders().indexOf("generated");
+        int generatedIndex = table.getHeaders().indexOf("0__generated");
 
         List<List<Object>> tableRows = table.getRows();
         List<Object> firstRow = tableRows.get(tableRows.size()-1);
@@ -43,7 +43,7 @@ public class Reduce implements Command {
                 List<Object> list = new ArrayList<>();
 
                 for (List<Object> obj : tableRows) {
-                    if ((boolean) obj.get(generatedIndex)) {
+                    if (obj.get(generatedIndex) != null) {
                         continue;
                     }
                     list.add(obj.get(i));
@@ -54,7 +54,7 @@ public class Reduce implements Command {
             res.add(columnRes);
         }
 
-        res.set(generatedIndex, true);
+        res.set(generatedIndex, function.toString());
         table.addRow(res);
         return table;
     }

@@ -177,6 +177,14 @@ public class TableDSLSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case TableDSLPackage.RENAME_COLUMN_REPLACE_PAIR:
+      {
+        RenameColumnReplacePair renameColumnReplacePair = (RenameColumnReplacePair)theEObject;
+        T result = caseRenameColumnReplacePair(renameColumnReplacePair);
+        if (result == null) result = caseRenameColumnPair(renameColumnReplacePair);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case TableDSLPackage.EXTRACT:
       {
         Extract extract = (Extract)theEObject;
@@ -509,6 +517,22 @@ public class TableDSLSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseRenameColumnAppendPair(RenameColumnAppendPair object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Rename Column Replace Pair</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Rename Column Replace Pair</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRenameColumnReplacePair(RenameColumnReplacePair object)
   {
     return null;
   }
