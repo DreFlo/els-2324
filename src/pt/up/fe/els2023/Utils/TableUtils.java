@@ -57,7 +57,7 @@ public class TableUtils {
 
         if (element.getNodeType() == Node.ELEMENT_NODE) {
             if (element.getChildNodes().getLength() == 1 && element.getChildNodes().item(0).getNodeType() == Node.TEXT_NODE)
-                map.put(element.getNodeName(), element.getTextContent());
+                map.put(element.getNodeName(), convertText(element.getTextContent()));
             else {
                 map.put(element.getNodeName(), new HashMap<String, Object>());
                 for (int i = 0; i < element.getChildNodes().getLength(); i++) {
@@ -77,6 +77,7 @@ public class TableUtils {
     }
 
     private static Object convertText(String text) {
+        text = text.trim();
         if (text.equals("true")) {
             return true;
         } else if (text.equals("false")) {
