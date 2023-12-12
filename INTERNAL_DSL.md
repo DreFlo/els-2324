@@ -131,3 +131,68 @@ internalDSL
 
 These examples demonstrate some of the possible instructions and operations that can be performed using our internal DSL. The flexibility and extensibility of this internal DSL allow for complex data processing and manipulation, providing a powerful tool for working with structured data.
 
+- **Append**
+
+Addiction of the "suffix" string at the of the "column_name" specified.
+
+```
+internalDSL
+    .table()
+        .name("table_name")
+    .operation()
+        .renameColumn()
+            .append()
+                .matchColumns("column_name")
+                .with("suffix")
+            .end();
+```
+
+- **Prepend**
+
+Addiction of the "prefix" string at the beginning of the "column_name" specified.
+
+```
+internalDSL
+    .table()
+        .name("table_name")
+    .operation()
+        .renameColumn()
+            .prepend()
+                .matchColumns("column_name")
+                .with("prefix")
+            .end();
+``` 
+
+- **Replace**
+
+Replace "column_name" based on a specific regex pattern with a "replacement" string.
+
+```
+internalDSL
+    .table()
+        .name("table_name")
+    .operation()
+        .renameColumn()
+            .replace()
+                .matchColumns("regex_column_name")
+                .with("replacement")
+            .end();
+
+```
+
+- **Reduce**
+
+Apply a reduction operation to the column that has the type of the object objectType.
+objectType can be any java Class.
+The only function implemented are average(AVG) and sum(SUM)
+
+```
+internalDSL
+    .table()
+        .name("table_name")
+    .operation()
+        .reduce()
+            .objectType(objectType)
+            .function(function)
+        .end();
+```
