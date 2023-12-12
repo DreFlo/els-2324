@@ -17,6 +17,9 @@ Follow the link to read about our decisions and priorities designing this model.
 ## [Internal DSL](INTERNAL_DSL.md)
 Click the link to dive into the key concepts and rules of our Internal DSL.
 
+## [External DSL](EXTERNAL_DSL.md)
+Follow the link to understand the rules of our Xtext-based external DSL. 
+
 ## Project setup
 
 For this project, you need to [install Gradle](https://gradle.org/install/)
