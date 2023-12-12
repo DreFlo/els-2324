@@ -22,4 +22,9 @@ public class DSLReduce extends DSLOperation<Reduce> {
         getCommand().setObjectType(Class.forName(objectType));
         return this;
     }
+
+    public DSLReduce objectType(Class<?> objectType) {
+        getCommand().setObjectType(objectType);
+        return this;
+    }
 }

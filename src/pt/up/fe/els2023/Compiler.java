@@ -165,11 +165,10 @@ public class Compiler {
     }
 
     private void visitReduce(Reduce reduce) throws ClassNotFoundException {
-        String objectType = reduce.getObjectClass().getObjectType();
         EList<String> functions = reduce.getFunctions();
 
         for (String function: functions) {
-            dslTableBuilder.operation().reduce().objectType(objectType).function(function).end();
+            dslTableBuilder.operation().reduce().objectType(getClass(reduce.getObjectClass())).function(function).end();
         }
     }
 
