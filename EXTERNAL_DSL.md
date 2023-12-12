@@ -60,7 +60,7 @@ Output:
 output to "output/run3.csv";
 ```
 
-4. **Operation**
+6. **Operation**
 
 The `Operation` rule encompasses various operations that can be performed on the table, such as Select, RenameColumn, Extract, SquashRows, Filter, and Reduce.
 ```
