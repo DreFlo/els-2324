@@ -1,0 +1,9 @@
+create table from "resources/run2";
+
+squash rows by DIRECTORY;
+
+extract "name", "time%" from "functions" select MAX sort by "time%";
+
+filter deny columns ".*\\/.*", objects "java.util.List" except columns "^params\\/.*", ".*AreaEstimates/Resources/.*", "^functions\\/.*";
+
+output to "output/run2.html";

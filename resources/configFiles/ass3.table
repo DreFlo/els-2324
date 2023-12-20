@@ -1,12 +1,12 @@
 create table from "resources/run3";
 
-select DIRECTORY, "^analysis\\.yaml\\/total\\/.*\\/dynamic.*", "^analysis\\.xml\\/.*\\/total\\/.*\\/static.*", "^profiling.*";
+select DIRECTORY, "^total\\/.*\\/dynamic.*", "^root\\/total\\/.*\\/static.*", "^functions$";
 
 squash rows by DIRECTORY;
 
-rename column "^analysis.yaml.*" append " (Dynamic)", "^analysis.xml.*" append " (Static)";
+rename column "^.*\\/dynamic.*$" append " (Dynamic)", "^.*\\/static.*$" append " (Static)";
 
-extract "name", "time%" as "%" from "profiling.json/functions" select TOP 3 sort by "time%";
+extract "name", "time%" as "%" from "functions" select TOP 3 sort by "time%";
 
 reduce NUMBER to SUM, AVG;
 

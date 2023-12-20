@@ -1,0 +1,9 @@
+create table from "resources/run1";
+
+select "^params/.*", FILENAME;
+
+rename column "params/criterion" to "Criterion", "params/splitter" to "Splitter", "params/ccp_alpha" to "CPP Alpha", "params/min_samples_split" to "Min Samples Split";
+
+select FILENAME, "Criterion", "Splitter", "CPP Alpha", "Min Samples Split";
+
+output to "output/run1.csv";
